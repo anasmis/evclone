@@ -1,0 +1,1 @@
+"use strict";(self.__LOADABLE_LOADED_CHUNKS__=self.__LOADABLE_LOADED_CHUNKS__||[]).push([["51632"],{56943(_,e,s){s.r(e),s.d(e,{default:()=>D});var t=s(74848),A=s(38336);let D=({children:_,gutterBottom:e})=>(0,t.jsx)(A.B.Item,{marginBottom:e?"space/16":void 0,children:_})}}]);

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Careers at Pod</title>
+    <description>As one of the UK’s top EV charging providers, Pod is trusted by over 250,000 customers and powers more than 5 million miles every day. We started off in 2009 as Pod Point, helping people make the switch to electric as EVs began to hit the road. Today, we’re leading the way into a smarter energy future. We’ve evolved from simply installing chargers to building a connected, intelligent charging network that supports homes, workplaces, and public spaces across the UK.  We're the go-to for automotive giants like Mercedes-Benz, Hyundai, Jaguar Land Rover and BMW and support customers on the go through our partnership with Tesco. We're partnering with energy leaders Centrica and EDF and collaborating with Taylor Wimpey, Redrow and Barratt Developments to grow EV charging infrastructure in new homes.Our smart charging solutions don’t just serve drivers; they help balance the grid, reduce energy costs, and make clean energy more accessible to everyone.Pod offers a supportive, inclusive environment where collaboration, care, and ambition go hand in hand. Whether you’re helping a customer install their first home charger or designing the next generation of smart charging tech, you’ll be part of a team that’s driving real change.As the UK accelerates toward net zero, Pod is building the infrastructure, and the team, to power that future. People who care, who innovate, and who want to be part of something bigger. If you’re looking for a career with purpose, a team that supports you, and a company that’s shaping the future of energy, Pod might just be the place for you.</description>
+    <link>https://pod-point.pod-point.com/jobs</link>
+    <language>en-gb</language>
+    <atom:link rel="self" type="application/rss+xml" href="https://pod-point.pod-point.com/jobs.rss"/>
+    <image>
+      <url>https://app.pod-point.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCSmRudFFNPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--0deac8b0199adbc36b50e22aa3a9b56f02196a99/open_graph.png</url>
+      <title>Careers at Pod</title>
+      <link>https://pod-point.pod-point.com/jobs</link>
+    </image>
+  </channel>
+</rss>

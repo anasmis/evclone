@@ -1,0 +1,19 @@
+/**
+ * PSL Tab Block styles using theme tokens from Tailwind v4 (@theme in src/css/input.css).
+ */
+
+/* Disable hover effects on disabled submit button */
+.psl-lookup-form__submit:disabled {
+  background-color: transparent !important;
+  color: white !important;
+  border-color: white !important;
+  pointer-events: none !important;
+}
+
+.psl-lookup-form__submit:disabled:hover {
+  background-color: transparent !important;
+  color: white !important;
+  border-color: white !important;
+}
+
+
