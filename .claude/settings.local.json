@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(git -C \"/c/Users/LEGION 5/Desktop/EVPLUG/Cloned Podenergy/my-cloned-site\" diff --stat HEAD)",
+      "Bash(git -C \"/c/Users/LEGION 5/Desktop/EVPLUG/Cloned Podenergy/my-cloned-site\" status --short)",
+      "Bash(ls src/pages/solutions/)",
+      "Bash(ls src/styles/)",
+      "Read(//c/c/Users/LEGION 5/Desktop/EVPLUG/Cloned Podenergy/my-cloned-site/src/**)",
+      "Read(//c/c/Users/LEGION 5/Desktop/EVPLUG/Cloned Podenergy/my-cloned-site/**)",
+      "Read(//c/c/Users/LEGION 5/Desktop/EVPLUG/Cloned Podenergy/my-cloned-site/src/migrated/**)"
+    ]
+  }
+}

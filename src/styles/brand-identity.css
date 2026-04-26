@@ -1,0 +1,193 @@
+/*
+ * EVplug visual identity source of truth.
+ * Edit only the --brand-* tokens below to restyle the full mirrored site.
+ */
+
+:root {
+  /* Typography */
+  --brand-font-body: "TT Commons Pro", sans-serif;
+  --brand-font-heading: "Poster Cut Neue", sans-serif;
+
+  /* Core palette */
+  --brand-color-primary: #123d33;
+  --brand-color-secondary: #f2f5c4;
+  --brand-color-accent: #c8d72d;
+  --brand-color-highlight: #fe5716;
+  --brand-color-text: #163e4c;
+  --brand-color-surface: #f5f1eb;
+  --brand-color-page: #f7f7f5;
+  --brand-navbar-bg-start: rgba(8, 82, 48, 0.98);
+  --brand-navbar-bg-mid: rgba(21, 124, 71, 0.98);
+  --brand-navbar-bg-end: rgba(112, 205, 88, 0.94);
+  --brand-navbar-text: #f7fff5;
+  --brand-footer-bg-start: rgba(7, 62, 40, 0.98);
+  --brand-footer-bg-mid: rgba(18, 103, 61, 0.98);
+  --brand-footer-bg-end: rgba(56, 179, 91, 0.92);
+  --brand-footer-text: #f6fff4;
+  --brand-footer-link: #e4ffd5;
+
+  /* Shape and rhythm */
+  --brand-radius-sm: 0.25rem;
+  --brand-radius-md: 0.5rem;
+  --brand-radius-lg: 1rem;
+  --brand-spacing-unit: 0.25rem;
+
+  /* Map brand tokens to legacy theme tokens used across mirrored pages */
+  --default-font-family: var(--brand-font-body);
+  --font-TTCommons: var(--brand-font-body);
+  --font-PosterCutNeue: var(--brand-font-heading);
+
+  --color-primary: var(--brand-color-primary);
+  --color-blue-dianne: var(--brand-color-primary);
+  --color-secondary: var(--brand-color-secondary);
+  --color-pear: var(--brand-color-accent);
+  --color-lime: var(--brand-color-accent);
+  --color-orange: var(--brand-color-highlight);
+  --color-surface: var(--brand-color-surface);
+  --color-graylight: var(--brand-color-page);
+
+  --radius-sm: var(--brand-radius-sm);
+  --radius-lg: var(--brand-radius-md);
+  --radius-2xl: var(--brand-radius-lg);
+  --spacing: var(--brand-spacing-unit);
+}
+
+body {
+  font-family: var(--brand-font-body);
+  color: var(--brand-color-text);
+  background-color: var(--brand-color-page);
+}
+
+header.header-section {
+  color: var(--brand-color-primary);
+}
+
+header.header-section .header-section-inner {
+  background: linear-gradient(
+    135deg,
+    var(--brand-navbar-bg-start) 0%,
+    var(--brand-navbar-bg-mid) 58%,
+    var(--brand-navbar-bg-end) 100%
+  ) !important;
+  color: var(--brand-navbar-text) !important;
+  box-shadow: 0 14px 32px rgba(9, 74, 45, 0.18);
+}
+
+header.header-section,
+header.header-section > nav,
+header.header-section > nav.navbar,
+header.header-section.sticky,
+header.header-section.sticky > nav,
+header.header-section.sticky > nav.navbar {
+  background: transparent !important;
+}
+
+header.header-section.sticky > nav.navbar:before,
+header.header-section > nav.navbar:before {
+  background: transparent !important;
+}
+
+header.header-section a,
+header.header-section button,
+header.header-section .nav-link,
+header.header-section .navbar-brand,
+header.header-section .navbar-toggler {
+  color: var(--brand-navbar-text) !important;
+}
+
+header.header-section .nav-link:hover,
+header.header-section .nav-link:focus,
+header.header-section .navbar-brand:hover,
+header.header-section .navbar-brand:focus {
+  color: #dfffe0 !important;
+}
+
+header.header-section .header-section-inner .dropdown-menu,
+header.header-section .header-section-inner .megamenu {
+  background: rgba(255, 255, 255, 0.98);
+  color: var(--brand-color-primary);
+  border-color: rgba(22, 62, 76, 0.12);
+  box-shadow: 0 18px 36px rgba(22, 62, 76, 0.14);
+}
+
+header.header-section .header-section-inner .megamenu,
+header.header-section .header-section-inner .megamenu * {
+  color: var(--brand-color-primary) !important;
+}
+
+header.header-section .header-section-inner .megamenu .nav-link,
+header.header-section .header-section-inner .megamenu .submenu-block span.nav-link,
+header.header-section .header-section-inner .megamenu .submenu-item-block,
+header.header-section .header-section-inner .megamenu .submenu-item-block .nav-link,
+header.header-section .header-section-inner .megamenu .menu-item-description,
+header.header-section .header-section-inner .megamenu .menu-item-description p,
+header.header-section .header-section-inner .megamenu .back-arrow {
+  color: var(--brand-color-primary) !important;
+}
+
+header.header-section .header-section-inner .megamenu .submenu-item-block:hover,
+header.header-section .header-section-inner .megamenu .submenu-item-block:focus {
+  background-color: rgba(22, 62, 76, 0.06) !important;
+}
+
+header.header-section .header-section-inner .megamenu .nav-link.active,
+header.header-section .header-section-inner .megamenu .submenu-block span.nav-link.active {
+  color: #0f2e39 !important;
+}
+
+footer.footer-section {
+  color: var(--brand-footer-text) !important;
+}
+
+footer.footer-section > .grid,
+footer.footer-section .grid.bg-black,
+footer.footer-section .footer-section-inner {
+  background: linear-gradient(
+    135deg,
+    var(--brand-footer-bg-start) 0%,
+    var(--brand-footer-bg-mid) 52%,
+    var(--brand-footer-bg-end) 100%
+  ) !important;
+  color: var(--brand-footer-text) !important;
+  box-shadow: 0 -18px 44px rgba(7, 62, 40, 0.22);
+}
+
+footer.footer-section a,
+footer.footer-section .nav-link,
+footer.footer-section .menu-item,
+footer.footer-section .footer-bottom,
+footer.footer-section .footer-bottom a,
+footer.footer-section .footer-social-follow,
+footer.footer-section .footer-social-follow a {
+  color: var(--brand-footer-text) !important;
+}
+
+footer.footer-section a:hover,
+footer.footer-section .nav-link:hover,
+footer.footer-section .footer-bottom a:hover,
+footer.footer-section .footer-social-follow a:hover {
+  color: var(--brand-footer-link) !important;
+}
+
+footer.footer-section .footer-menu ul li,
+footer.footer-section .footer-menu ul li a,
+footer.footer-section .footer-bottom,
+footer.footer-section .footer-bottom * {
+  color: inherit !important;
+}
+
+footer.footer-section .footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+footer.footer-section .footer-menu ul li a.is-active {
+  color: var(--brand-footer-link) !important;
+}
+
+h1,
+h2,
+h3,
+.heading,
+.title {
+  font-family: var(--brand-font-heading);
+}

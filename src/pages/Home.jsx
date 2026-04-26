@@ -7,6 +7,7 @@ import homeBodyRaw from '../migrated/home-body.html?raw'
 import HtmlBlock from '../components/common/HtmlBlock'
 import { migrateBodyMarkup } from '../lib/mirrorMarkup'
 import useInternalRouteNavigation from '../lib/useInternalRouteNavigation'
+import useNavbarInteractions from '../lib/useNavbarInteractions'
 
 const PODENERGY_PAGE_CLASSES = 'path-frontpage page-node-type-page d-flex flex-column'
 
@@ -14,15 +15,19 @@ function normalizeText(value) {
   return value.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim()
 }
 
-function dedupeLayoutRangeBySectionClasses(layouts, startClassName, endClassName) {
+function dedupeLayoutRangeByHeadings(layouts, startHeading, endHeading) {
+  const normalizedStart = normalizeText(startHeading)
+  const normalizedEnd = normalizeText(endHeading)
+
   const startIndexes = []
   const endIndexes = []
 
   layouts.forEach((layout, index) => {
-    if (layout.querySelector(`.${startClassName}`)) {
+    const text = normalizeText(layout.textContent || '')
+    if (text.includes(normalizedStart)) {
       startIndexes.push(index)
     }
-    if (layout.querySelector(`.${endClassName}`)) {
+    if (text.includes(normalizedEnd)) {
       endIndexes.push(index)
     }
   })
@@ -92,7 +97,7 @@ function splitHomeBlocks(markup) {
   const uniqueLayouts = layouts.filter((layout, index, allLayouts) => {
     return allLayouts.findIndex((candidate) => candidate.outerHTML === layout.outerHTML) === index
   })
-  const dedupedLayouts = dedupeLayoutRangeBySectionClasses(uniqueLayouts, 'benefits-vertical', 'cta-banner')
+  const dedupedLayouts = dedupeLayoutRangeByHeadings(uniqueLayouts, 'Our Pod promise', 'Power of the People')
 
   return {
     preRoot: preRootContainer.innerHTML,
@@ -118,6 +123,8 @@ export default function Home() {
   const migratedMarkup = migratedData.markup
   const blocks = migratedData.blocks
 
+  useNavbarInteractions(migratedMarkup)
+
   useLayoutEffect(() => {
     const htmlElement = document.documentElement
     const bodyElement = document.body
@@ -134,6 +141,10 @@ export default function Home() {
   }, [])
 
   useEffect(() => {
+    if (typeof window.__podLegacyInit === 'function') {
+      window.__podLegacyInit()
+    }
+
     const $ = window.jQuery || window.$
 
     const initSwiper = (selector, options) => {

@@ -1,7 +1,8 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import AutoMirrorPage from './pages/AutoMirrorPage'
 import Home from './pages/Home'
-import MirrorPage from './pages/MirrorPage'
-import { homeRoute, mirroredRoutes } from './lib/routes'
+import { generatedPages } from './generatedPages'
+import { homeRoute } from './lib/routes'
 import useAnimationHandling from './lib/useAnimationHandling'
 
 function AppRoutes() {
@@ -10,10 +11,11 @@ function AppRoutes() {
   return (
     <Routes>
       <Route path={homeRoute} element={<Home />} />
-      {mirroredRoutes.map((path) => (
-        <Route key={path} path={path} element={<MirrorPage />} />
+      {generatedPages.map((entry) => (
+        <Route key={entry.route} path={entry.route} element={<AutoMirrorPage />} />
       ))}
-      <Route path="*" element={<MirrorPage />} />
+      {/* Catch-all: solution pages + any unknown URL */}
+      <Route path="*" element={<AutoMirrorPage />} />
     </Routes>
   )
 }

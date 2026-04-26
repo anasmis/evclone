@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { normalizeRoutePath } from './normalizeRoutePath'
 
 function isModifiedClick(event) {
   return event.metaKey || event.ctrlKey || event.shiftKey || event.altKey
@@ -19,8 +20,17 @@ export default function useInternalRouteNavigation() {
         return
       }
 
-      const href = link.getAttribute('href')
-      if (!href || !href.startsWith('/') || href.startsWith('/assets/')) {
+      const rawHref = link.getAttribute('href')
+      if (!rawHref) {
+        return
+      }
+
+      if (
+        rawHref.startsWith('#') ||
+        rawHref.startsWith('mailto:') ||
+        rawHref.startsWith('tel:') ||
+        rawHref.startsWith('javascript:')
+      ) {
         return
       }
 
@@ -28,8 +38,27 @@ export default function useInternalRouteNavigation() {
         return
       }
 
+      let url
+      try {
+        url = new URL(rawHref, window.location.href)
+      } catch {
+        return
+      }
+
+      if (!['http:', 'https:'].includes(url.protocol) || url.origin !== window.location.origin) {
+        return
+      }
+
+      const nextPathname = normalizeRoutePath(url.pathname)
+      const nextUrl = `${nextPathname}${url.search}${url.hash}`
+      const currentUrl = `${normalizeRoutePath(window.location.pathname)}${window.location.search}${window.location.hash}`
+
+      if (nextUrl === currentUrl) {
+        return
+      }
+
       event.preventDefault()
-      navigate(href)
+      navigate(nextUrl)
     }
 
     document.addEventListener('click', onClick)

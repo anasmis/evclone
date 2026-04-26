@@ -38,7 +38,10 @@ if (typeof window !== 'undefined' && window.jQuery) {
 }
 var $owl = jQuery.noConflict();
 var $ = $owl;
-$owl(document).ready(() => {
+
+window.__podLegacyInit = function podLegacyInit() {
+    const isFirstRun = !window.__podLegacyInitDone;
+    window.__podLegacyInitDone = true;
     // Reusable Owl Carousel initialization
     const initOwlCarousel = ($elements, options) => {
         if (!$elements.length) {
@@ -472,7 +475,9 @@ $owl(document).ready(() => {
         $owl(e.currentTarget).closest('.tooltip-box').addClass('hidden');
     });
 
-    $owl(document).on('click', () => $tooltipBox.addClass('hidden'));
+    if (isFirstRun) {
+        $owl(document).on('click', () => $owl('.tooltip-box').addClass('hidden'));
+    }
 
     // Toggle 'meganmenu open' class on nav-item hover
     $owl('.header-section #navbarSupportedContent li.nav-item').hover(
@@ -553,11 +558,13 @@ $owl(document).ready(() => {
     initMobileMenuHandlers();
 
     // Re-initialize on resize, but debounce to prevent rapid firing
-    let resizeTimer;
-    window.addEventListener("resize", function() {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(initMobileMenuHandlers, 150);
-    });
+    if (isFirstRun) {
+        let resizeTimer;
+        window.addEventListener("resize", function() {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(initMobileMenuHandlers, 150);
+        });
+    }
 
 
     function initializeAccordion() {
@@ -575,25 +582,27 @@ $owl(document).ready(() => {
     }
 
     // Use event delegation for dynamic content
-    $owl(document).on('click', '.accordion .accordion-item', function () {
-        const $this = $owl(this);
-        const $accordion = $this.closest('.accordion');
+    if (isFirstRun) {
+        $owl(document).on('click', '.accordion .accordion-item', function () {
+            const $this = $owl(this);
+            const $accordion = $this.closest('.accordion');
 
-        if (!$this.hasClass('is-active')) {
-            $accordion.find('.accordion-item.is-active')
-                .removeClass('is-active')
-                .children('.accordion-panel')
-                .stop(true, true).slideUp(300); // Smooth close
+            if (!$this.hasClass('is-active')) {
+                $accordion.find('.accordion-item.is-active')
+                    .removeClass('is-active')
+                    .children('.accordion-panel')
+                    .stop(true, true).slideUp(300); // Smooth close
 
-            $this.addClass('is-active')
-                .children('.accordion-panel')
-                .stop(true, true).slideDown(300); // Smooth open
-        } else {
-            $this.removeClass('is-active')
-                .children('.accordion-panel')
-                .stop(true, true).slideUp(300); // Smooth toggle close
-        }
-    });
+                $this.addClass('is-active')
+                    .children('.accordion-panel')
+                    .stop(true, true).slideDown(300); // Smooth open
+            } else {
+                $this.removeClass('is-active')
+                    .children('.accordion-panel')
+                    .stop(true, true).slideUp(300); // Smooth toggle close
+            }
+        });
+    }
 
     // Call this function AFTER appending HTML
     initializeAccordion();
@@ -609,13 +618,15 @@ $owl(document).ready(() => {
         };
     };
 
-    $owl(window).on('scroll', debounce(() => {
-        if ($owl(window).scrollTop() > 300) {
-            $backToTop.addClass('show');
-        } else {
-            $backToTop.removeClass('show');
-        }
-    }, 100));
+    if (isFirstRun) {
+        $owl(window).on('scroll', debounce(() => {
+            if ($owl(window).scrollTop() > 300) {
+                $owl('#back-to-top').addClass('show');
+            } else {
+                $owl('#back-to-top').removeClass('show');
+            }
+        }, 100));
+    }
 
     $backToTop.on('click', (e) => {
         e.preventDefault();
@@ -638,7 +649,9 @@ $owl(document).ready(() => {
             $mobileMenuBody.removeClass('overflow-hidden');
         }
     };
-    $owl(window).on('resize', removeOverflowOnResize);
+    if (isFirstRun) {
+        $owl(window).on('resize', removeOverflowOnResize);
+    }
     // Also run on initial load in case page is refreshed on desktop
     removeOverflowOnResize();
 
@@ -725,14 +738,17 @@ $owl(document).ready(() => {
     };
 
     // header sticky
-    window.addEventListener('scroll', function () {
-        const header = document.querySelector('header'); // Change 'header' to your actual header selector
-        if (window.scrollY > 123) {
-            header.classList.add('sticky');
-        } else {
-            header.classList.remove('sticky');
-        }
-    });
+    if (isFirstRun) {
+        window.addEventListener('scroll', function () {
+            const header = document.querySelector('header'); // Change 'header' to your actual header selector
+            if (!header) return;
+            if (window.scrollY > 123) {
+                header.classList.add('sticky');
+            } else {
+                header.classList.remove('sticky');
+            }
+        });
+    }
 
     // horizontal-slider-new
     initOwlCarousel($owl('.horizontal-slider-new'), {
@@ -901,34 +917,36 @@ $owl(document).ready(() => {
     });
 
 
-    window.onload = function () {
-        const urlParams = new URLSearchParams(window.location.search);
-        const selectedFilter = urlParams.get('field_categories_target_id');
+    if (isFirstRun) {
+        window.onload = function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const selectedFilter = urlParams.get('field_categories_target_id');
 
-        if (selectedFilter) {
-            const radioButton = document.querySelector(`input[type="radio"][value="${selectedFilter}"]`);
-            if (radioButton) {
-                radioButton.checked = true;
-            }
-        } else {
-            // Set "All" as default when no filter is selected
-            const allRadioButton = document.querySelector(`input[type="radio"][value="All"]`);
-            if (allRadioButton) {
-                allRadioButton.checked = true;
-            }
+            if (selectedFilter) {
+                const radioButton = document.querySelector(`input[type="radio"][value="${selectedFilter}"]`);
+                if (radioButton) {
+                    radioButton.checked = true;
+                }
+            } else {
+                // Set "All" as default when no filter is selected
+                const allRadioButton = document.querySelector(`input[type="radio"][value="All"]`);
+                if (allRadioButton) {
+                    allRadioButton.checked = true;
+                }
 
-            // Redirect to guides page with All filter if we're on guides page without filter
-            if (
-                window.location.pathname.includes('/guides') &&
-                !window.location.pathname.includes('/vehicle-guides') &&
-                !selectedFilter
-            ) {
-                const currentUrl = new URL(window.location);
-                // currentUrl.searchParams.set('field_categories_target_id', 'All');
-                window.history.replaceState({}, '', currentUrl.toString());
+                // Redirect to guides page with All filter if we're on guides page without filter
+                if (
+                    window.location.pathname.includes('/guides') &&
+                    !window.location.pathname.includes('/vehicle-guides') &&
+                    !selectedFilter
+                ) {
+                    const currentUrl = new URL(window.location);
+                    // currentUrl.searchParams.set('field_categories_target_id', 'All');
+                    window.history.replaceState({}, '', currentUrl.toString());
+                }
             }
-        }
-    };
+        };
+    }
 
     // Our installation process accordion
     $owl(document).ready(function () {
@@ -1112,26 +1130,30 @@ $owl(document).ready(() => {
         $form.data('analytics-pushed', true);
     };
 
-    $owl(document).on('submit', 'form.webform-submission-form', function (event) {
-        const form = this;
-        if (typeof form.checkValidity === 'function' && !form.checkValidity()) {
-            return;
-        }
+    if (isFirstRun) {
+        $owl(document).on('submit', 'form.webform-submission-form', function (event) {
+            const form = this;
+            if (typeof form.checkValidity === 'function' && !form.checkValidity()) {
+                return;
+            }
 
-        pushCommercialEnquiryEvent($owl(form));
-    });
+            pushCommercialEnquiryEvent($owl(form));
+        });
 
-    $owl(document).on('click', 'form.webform-submission-form [type="submit"]', function () {
-        const form = this.form;
-        if (!form) {
-            return;
-        }
+        $owl(document).on('click', 'form.webform-submission-form [type="submit"]', function () {
+            const form = this.form;
+            if (!form) {
+                return;
+            }
 
-        if (typeof form.checkValidity === 'function' && !form.checkValidity()) {
-            return;
-        }
+            if (typeof form.checkValidity === 'function' && !form.checkValidity()) {
+                return;
+            }
 
-        pushCommercialEnquiryEvent($owl(form));
-    });
+            pushCommercialEnquiryEvent($owl(form));
+        });
+    }
 
-});
+};
+
+$owl(document).ready(() => window.__podLegacyInit());

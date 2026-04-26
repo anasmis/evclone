@@ -1,9 +1,86 @@
 @import "tailwindcss";
-@config "../tailwind.config.js";
+@import "./styles/brand-identity.css";
 
 html,
 body,
 #root {
   margin: 0;
   min-height: 100%;
+}
+
+.evplug-navbar-portal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.evplug-navbar-portal > header.header-section {
+  pointer-events: auto;
+}
+
+.evplug-navbar-portal nav.navbar {
+  background: transparent !important;
+}
+
+.evplug-navbar-portal .header-section-inner {
+  transition: box-shadow 0.25s ease;
+}
+
+.evplug-navbar-portal.nav-scrolled .header-section-inner {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.22);
+}
+
+.evplug-navbar-portal,
+.evplug-navbar-portal header.header-section,
+.evplug-navbar-portal nav.navbar,
+.evplug-navbar-portal #mobile-menu-main,
+.evplug-navbar-portal .header-section-inner,
+.evplug-navbar-portal .navbar-collapse,
+.evplug-navbar-portal .navbar-nav,
+.evplug-navbar-portal li.nav-item {
+  overflow: visible !important;
+}
+
+.evplug-navbar-portal .megamenu,
+.evplug-navbar-portal .dropdown-menu {
+  z-index: 10000;
+  pointer-events: auto;
+}
+
+.dialog-off-canvas-main-canvas {
+  padding-top: var(--evplug-nav-h, 110px);
+}
+
+.evplug-navbar-portal .logo {
+  width: auto !important;
+  height: 44px !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  overflow: visible !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  flex: 0 0 auto !important;
+}
+
+.evplug-navbar-portal .logo a,
+.evplug-navbar-portal .logo .region-nav-branding,
+.evplug-navbar-portal .logo .block-system-branding-block {
+  display: flex !important;
+  align-items: center !important;
+  height: 100% !important;
+  width: auto !important;
+}
+
+.evplug-navbar-portal .logo img {
+  width: auto !important;
+  height: 44px !important;
+  max-width: none !important;
+  object-fit: contain !important;
+  object-position: left center !important;
+  display: block !important;
+  transform: none !important;
 }
