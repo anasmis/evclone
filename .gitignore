@@ -1,3 +1,10 @@
+# Large files
+public/assets/hts-cache/
+*.qt
+*.mp4
+*.mov
+*.avi
+
 # Logs
 logs
 *.log
