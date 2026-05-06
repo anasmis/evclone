@@ -536,11 +536,6 @@ export const generatedPages = [
     "title": "Pod Drive | Pod"
   },
   {
-    "route": "/products/pod-power",
-    "htmlPath": "products/pod-power.html",
-    "title": "EVplug Energie EV Tariff by partenaire energie | Pod"
-  },
-  {
     "route": "/products/site-management-service",
     "htmlPath": "products/site-management-service.html",
     "title": "Site Management Service | Podpoint"

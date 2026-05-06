@@ -9,6 +9,8 @@ import Entreprise from './solutions/Entreprise'
 import Hotels from './solutions/Hotels'
 import Parkings from './solutions/Parkings'
 import StationsService from './solutions/StationsService'
+import EvoneManagementPlatform from './solutions/EvoneManagementPlatform'
+import OrderNow from './OrderNow'
 
 // ---------------------------------------------------------------------------
 // Custom (non-captured) React pages registered by route
@@ -19,6 +21,8 @@ const CUSTOM_PAGES = {
   '/solutions/entreprise': Entreprise,
   '/solutions/copropriete': Copropriete,
   '/solutions/stations-service': StationsService,
+  '/solutions/evone-management-platform': EvoneManagementPlatform,
+  '/order-now': OrderNow,
 }
 
 // ---------------------------------------------------------------------------

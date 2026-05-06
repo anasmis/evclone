@@ -1,6 +1,20 @@
-﻿const SKIP_URL_PATTERN = /^(?:[a-z][a-z0-9+.-]*:|\/\/|#)/i
-const PODENERGY_ROOT = '/assets/podenergy.com/'
+﻿import { resolveAssetUrl } from './assetResolver'
+
+const SKIP_URL_PATTERN = /^(?:[a-z][a-z0-9+.-]*:|\/\/|#)/i
 const LOCAL_BASE_ORIGIN = 'https://local.mirror'
+
+function resolveExternalRelativeHost(rawPath) {
+  const match = rawPath.match(/^\.?\.?\/([a-z0-9.-]+\.[a-z]{2,})(\/.*)?$/i)
+
+  if (!match) {
+    return null
+  }
+
+  const host = match[1]
+  const rest = match[2] || ''
+
+  return `https://${host}${rest}`
+}
 
 const COPY_REPLACEMENTS = [
   [/Registered in England, no 06851754\s*&nbsp;\|&nbsp;\s*222 Gray's Inn Road, London WC1X 8HB/g, 'Siege : Casablanca, Maroc &nbsp;|&nbsp; Interventions : Casablanca, Rabat, Marrakech, Tanger'],
@@ -21,8 +35,8 @@ const COPY_REPLACEMENTS = [
   [/Purchase your award-winning EVplug charger today, and enjoy hassle-free, effortless charging\./g, 'Commandez votre borne EVplug aujourd\'hui et profitez d\'une recharge simple et sans soucis.'],
   [/The home charger trusted by thousands of EV drivers\./g, 'La borne de recharge choisie par de nombreux conducteurs au Maroc.'],
   [/Get your home charger today and unlock exclusive access to 7 hours of low-cost electricity for your car and home, every night\./g, 'Equipez-vous d\'une borne et profitez d\'une recharge optimisee pendant les plages les plus avantageuses.'],
-  [/Save Â£450\+ a year on charging with EVplug Energie tariff/g, 'Economisez jusqu\'a 5 000 DH par an avec le tarif EVplug Energie'],
-  [/Save &pound;450\+ a year on charging with EVplug Energie tariff/g, 'Economisez jusqu\'a 5 000 DH par an avec le tarif EVplug Energie'],
+  [/Save Â£450\+ a year on charging with EVplug Energie tariff/g, 'Economisez jusqu\'a 5 000 DH par an avec EVplug Access+: solution complete de recharge'],
+  [/Save &pound;450\+ a year on charging with EVplug Energie tariff/g, 'Economisez jusqu\'a 5 000 DH par an avec EVplug Access+: solution complete de recharge'],
   [/Earn up to &pound;172\.50 a year\s*(?:Ã¢â‚¬Â¨)?\s*in cashback\./g, 'Jusqu\'a 2 000 DH par an de recompenses.'],
   [/Earn up to Â£172\.50 a year\s*(?:Ã¢â‚¬Â¨)?\s*in cashback\./g, 'Jusqu\'a 2 000 DH par an de recompenses.'],
   [/Comprehensive warranty on all chargers/g, 'Garantie complete sur toutes les bornes'],
@@ -122,7 +136,11 @@ const COPY_REPLACEMENTS = [
   [/Pod Point/g, 'EVplug'],
   [/Podpoint/g, 'EVplug'],
   [/Pod Drive/g, 'EVplug Card'],
-  [/Pod Power/g, 'EVplug Energie'],
+  [/Pod Power/g, 'EVplug Access+'],
+  [/EVplug Energie tariff/g, 'EVplug Access+: solution complete de recharge'],
+  [/EVplug Energie/g, 'EVplug Access+: solution complete de recharge'],
+  [/\/products\/pod-power\b/g, '/products/pod-drive'],
+  [/https:\/\/podenergy\.com\/products\/pod-power/g, 'https://podenergy.com/products/pod-drive'],
   [/alt="Tariff">(\s+)Tariff/g, 'alt="Tarif">$1Tarif'],
   [/alt="Home">(\s+)Home(\s+<\/span>)/g, 'alt="Domicile">$1Domicile$2'],
   [/alt="Installation">(\s+)Installation/g, 'alt="Installation">$1Installation'],
@@ -203,15 +221,20 @@ export function normalizeAssetUrl(url, currentHtmlPath = 'index.html') {
     return trimmed
   }
 
+  const externalRelativeHost = resolveExternalRelativeHost(trimmed)
+  if (externalRelativeHost) {
+    return externalRelativeHost
+  }
+
   if (trimmed.startsWith('/assets/')) {
-    return trimmed
+    return resolveAssetUrl(trimmed)
   }
 
   if (trimmed.startsWith('/')) {
-    return `/assets/podenergy.com${trimmed}`
+    return resolveAssetUrl(`/assets/podenergy.com${trimmed}`)
   }
 
-  return resolvePodenergyPath(trimmed, currentHtmlPath)
+  return resolveAssetUrl(resolvePodenergyPath(trimmed, currentHtmlPath))
 }
 
 export function normalizeLinkUrl(url, currentHtmlPath = 'index.html') {
@@ -224,6 +247,11 @@ export function normalizeLinkUrl(url, currentHtmlPath = 'index.html') {
     return trimmed
   }
 
+  const externalRelativeHost = resolveExternalRelativeHost(trimmed)
+  if (externalRelativeHost) {
+    return externalRelativeHost
+  }
+
   if (trimmed.startsWith('../') || trimmed.startsWith('./') || !trimmed.startsWith('/')) {
     const asAsset = resolvePodenergyPath(trimmed, currentHtmlPath)
     const htmlAssetMatch = asAsset.match(/^\/assets\/podenergy\.com\/(.*\.html)$/i)
@@ -231,7 +259,7 @@ export function normalizeLinkUrl(url, currentHtmlPath = 'index.html') {
     if (htmlAssetMatch) {
       return htmlPathToRoutePath(htmlAssetMatch[1])
     }
-    return asAsset
+    return resolveAssetUrl(asAsset)
   }
 
   if (trimmed.startsWith('/assets/')) {
@@ -241,7 +269,7 @@ export function normalizeLinkUrl(url, currentHtmlPath = 'index.html') {
       return htmlPathToRoutePath(htmlAssetMatch[1])
     }
 
-    return trimmed
+    return resolveAssetUrl(trimmed)
   }
 
   if (trimmed.startsWith('/')) {
@@ -249,14 +277,14 @@ export function normalizeLinkUrl(url, currentHtmlPath = 'index.html') {
       return htmlPathToRoutePath(trimmed.slice(1))
     }
 
-    return `/assets/podenergy.com${trimmed}`
+    return resolveAssetUrl(`/assets/podenergy.com${trimmed}`)
   }
 
   if (trimmed.endsWith('.html')) {
     return htmlPathToRoutePath(trimmed)
   }
 
-  return resolvePodenergyPath(trimmed, currentHtmlPath)
+  return resolveAssetUrl(resolvePodenergyPath(trimmed, currentHtmlPath))
 }
 
 export function normalizeSrcSet(srcSet, currentHtmlPath = 'index.html') {
@@ -349,7 +377,8 @@ export function executeInlineScripts(scripts, currentHtmlPath = 'index.html') {
       normalized.includes('klaro.drupal') ||
       normalized.includes('gtag.ajax') ||
       normalized.includes('drupal.init') ||
-      normalized.includes('drupalsettingsloader')
+      normalized.includes('drupalsettingsloader') ||
+      normalized.includes('share-modal')
     )
   }
 

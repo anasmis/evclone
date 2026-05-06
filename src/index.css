@@ -1,5 +1,8 @@
 @import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
 @import "./styles/brand-identity.css";
+@import "./styles/editorial-pages.css";
+@config "../tailwind.config.js";
 
 html,
 body,
@@ -8,79 +11,101 @@ body,
   min-height: 100%;
 }
 
-.evplug-navbar-portal {
+.dialog-off-canvas-main-canvas header.header-section {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 9999;
-  pointer-events: none;
 }
 
-.evplug-navbar-portal > header.header-section {
+/* When the navbar is rendered via portal, apply the same positioning */
+.evplug-navbar-portal header.header-section {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+}
+
+/* Ensure portaled navbar and its dropdowns are clickable and above content */
+.evplug-navbar-portal {
+  position: relative;
+  z-index: 10000;
   pointer-events: auto;
 }
-
+.evplug-navbar-portal header.header-section,
+.evplug-navbar-portal .header-section-inner,
 .evplug-navbar-portal nav.navbar {
+  overflow: visible;
+}
+.evplug-navbar-portal .megamenu {
+  position: absolute;
+  z-index: 10001;
+}
+
+.dialog-off-canvas-main-canvas header.header-section nav.navbar {
   background: transparent !important;
 }
 
-.evplug-navbar-portal .header-section-inner {
-  transition: box-shadow 0.25s ease;
+/* Keep navbar background transparent when portaled */
+.evplug-navbar-portal header.header-section nav.navbar {
+  background: transparent !important;
 }
 
+.dialog-off-canvas-main-canvas header.header-section .header-section-inner {
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+/* Match inner transition when portaled */
+.evplug-navbar-portal .header-section-inner {
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.dialog-off-canvas-main-canvas header.header-section.nav-scrolled .header-section-inner {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.22);
+}
+
+/* Scroll shadow when the wrapper toggles nav-scrolled */
 .evplug-navbar-portal.nav-scrolled .header-section-inner {
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.22);
 }
 
-.evplug-navbar-portal,
-.evplug-navbar-portal header.header-section,
-.evplug-navbar-portal nav.navbar,
-.evplug-navbar-portal #mobile-menu-main,
-.evplug-navbar-portal .header-section-inner,
-.evplug-navbar-portal .navbar-collapse,
-.evplug-navbar-portal .navbar-nav,
-.evplug-navbar-portal li.nav-item {
-  overflow: visible !important;
+/* Navbar logo sizing and alignment */
+.dialog-off-canvas-main-canvas header.header-section .logo,
+.evplug-navbar-portal header.header-section .logo {
+  width: 120px; /* mobile default */
+  height: auto;
+  display: flex;
+  align-items: center;
 }
 
-.evplug-navbar-portal .megamenu,
-.evplug-navbar-portal .dropdown-menu {
-  z-index: 10000;
-  pointer-events: auto;
+.dialog-off-canvas-main-canvas header.header-section .logo img,
+.evplug-navbar-portal header.header-section .logo img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .dialog-off-canvas-main-canvas header.header-section .logo,
+  .evplug-navbar-portal header.header-section .logo {
+    width: 160px; /* desktop/tablet */
+  }
 }
 
 .dialog-off-canvas-main-canvas {
   padding-top: var(--evplug-nav-h, 110px);
 }
 
-.evplug-navbar-portal .logo {
-  width: auto !important;
-  height: 44px !important;
-  min-width: 0 !important;
-  max-width: none !important;
-  overflow: visible !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: flex-start !important;
-  flex: 0 0 auto !important;
+/* Add a little breathing room below the navbar so titles aren't cramped */
+.editorial-shell .editorial-main {
+  margin-top: 12px;
 }
 
-.evplug-navbar-portal .logo a,
-.evplug-navbar-portal .logo .region-nav-branding,
-.evplug-navbar-portal .logo .block-system-branding-block {
-  display: flex !important;
-  align-items: center !important;
-  height: 100% !important;
-  width: auto !important;
-}
-
-.evplug-navbar-portal .logo img {
-  width: auto !important;
-  height: 44px !important;
-  max-width: none !important;
-  object-fit: contain !important;
-  object-position: left center !important;
-  display: block !important;
-  transform: none !important;
+.evplug-zapmap-map {
+  height: min(72vh, 680px);
+  min-height: 420px;
+  width: 100%;
 }

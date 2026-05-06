@@ -8,7 +8,7 @@ const services = [
     icon: '2025-10/charger.svg',
     title: 'Etude electrique',
     description:
-      'Dimensionnement optimise selon le flux et la capacite de votre parking. Etude de puissance et plan d\'infrastructure adapte a votre configuration.',
+      'Dimensionnement optimise selon le flux et la capacite de votre parking ou station. Etude de puissance et plan d\'infrastructure adapte a votre configuration.',
   },
   {
     icon: '2025-11/standalone-charger.svg',
@@ -26,7 +26,7 @@ const services = [
     icon: '2025-10/installation.svg',
     title: 'Connectivite plateforme parking',
     description:
-      'Integration API native avec votre systeme de gestion de parking. Synchronisation en temps reel des disponibilites bornes et places libres.',
+      'Integration API native avec votre systeme de gestion de parking ou station. Synchronisation en temps reel des disponibilites bornes et places libres.',
   },
   {
     icon: '2025-11/vehicle.svg',
@@ -36,7 +36,7 @@ const services = [
   },
   {
     icon: '2025-11/Dashboard.svg',
-    title: 'Plateforme Evone Parkings',
+    title: 'Plateforme Evone Parkings & Stations',
     description:
       'Tableau de bord dedie aux gestionnaires : taux d\'occupation des bornes, revenus recharge, alertes techniques et reporting d\'activite complet.',
   },
@@ -54,24 +54,24 @@ const evoneFeatures = [
 
 export default function Parkings() {
   return (
-    <SolutionPageLayout documentTitle="EVplug Parkings | Solutions de recharge pour parkings au Maroc">
+    <SolutionPageLayout documentTitle="EVplug Parkings & Stations | Solutions de recharge au Maroc">
       <SolutionTemplate
-        tag="EV Parking"
-        heroTitle="Transformez vos parkings en infrastructure de mobilite electrique."
-        heroSubtitle="EVplug integre la recharge electrique a votre gestion de parking. Vos clients trouvent une place libre avec borne disponible, rechargent et paient en un seul parcours. Vous monetisez chaque place."
+        tag="EV Parking & Stations"
+        heroTitle="Transformez vos parkings et stations en infrastructure de mobilite electrique."
+        heroSubtitle="EVplug integre la recharge electrique a vos parkings et stations de services. Vos clients trouvent une place libre avec borne disponible, rechargent et paient en un seul parcours. Vous monetisez chaque site."
         heroImage={`${ICONS}/2025-11/CRS09433.jpg`}
         storyImage={`${ICONS}/2025-11/CRS09749_0.jpg`}
         platformImage={`${ICONS}/2025-11/CRS09462.jpg`}
         heroCta="Etudier votre projet"
         services={services}
-        imagePanel1Title="Integration native avec votre systeme de gestion"
-        imagePanel1Body="Evone se connecte a votre plateforme de gestion parking via une API ouverte. La synchronisation en temps reel des disponibilites bornes et places libres est automatique, sans developpement supplementaire de votre cote."
+        imagePanel1Title="Integration native avec vos systemes de gestion"
+        imagePanel1Body="Evone se connecte a votre plateforme de gestion parking ou station via une API ouverte. La synchronisation en temps reel des disponibilites bornes et places libres est automatique, sans developpement supplementaire de votre cote."
         evoneBadge="EVone Site Management"
         evoneTitle="EVone Site Management Service"
         evoneSubtitle="Analysez l’usage, optimisez vos tarifs et planifiez l’extension grace a des tableaux de bord en temps reel et des rapports exploitables."
         evoneFeatures={evoneFeatures}
-        ctaTitle="Modernisez votre parking avec la recharge electrique."
-        ctaBody="Qu'il s'agisse d'un parking public, prive ou en ouvrage, EVplug conçoit la solution adaptee a votre flux et a votre systeme existant."
+        ctaTitle="Modernisez vos parkings et stations avec la recharge electrique."
+        ctaBody="Qu'il s'agisse d'un parking public, prive, en ouvrage ou d'une station de services, EVplug conçoit la solution adaptee a votre flux et a votre systeme existant."
       />
     </SolutionPageLayout>
   )

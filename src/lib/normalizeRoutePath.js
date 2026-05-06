@@ -1,4 +1,7 @@
 const ASSET_PREFIXES = ['/assets/podenergy.com/', '/podenergy.com/']
+const ROUTE_ALIASES = new Map([
+  ['/espace-installateur', '/approved-installer-training'],
+])
 
 export function normalizeRoutePath(pathname) {
   if (!pathname || typeof pathname !== 'string') {
@@ -24,6 +27,10 @@ export function normalizeRoutePath(pathname) {
 
   if (normalized.length > 1 && normalized.endsWith('/')) {
     normalized = normalized.replace(/\/+$/, '')
+  }
+
+  if (ROUTE_ALIASES.has(normalized)) {
+    return ROUTE_ALIASES.get(normalized)
   }
 
   return normalized || '/'
