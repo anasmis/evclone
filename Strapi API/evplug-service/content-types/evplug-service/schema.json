@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "evplug_services",
+  "info": {
+    "singularName": "evplug-service",
+    "pluralName": "evplug-services",
+    "displayName": "EVPlug Service"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "icon": {
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

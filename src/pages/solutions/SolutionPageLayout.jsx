@@ -1,24 +1,23 @@
-import { useLayoutEffect, useMemo } from 'react'
-import HtmlBlock from '../../components/common/HtmlBlock'
-import Footer from '../../components/home/Footer'
-import Navbar from '../../components/home/Navbar'
-import homeBodyRaw from '../../migrated/home-body.html?raw'
-import { adaptCopyForEvplugMorocco, migrateBodyMarkup } from '../../lib/mirrorMarkup'
-import { splitShellBlocks } from '../../lib/mirrorSplit'
+import { useLayoutEffect } from 'react'
+import Footer from '../../components/layout/Footer'
+import Navbar from '../../components/layout/Navbar'
+import Newsletter from '../../components/layout/Newsletter'
+import FloatingCtaForm from '../../components/common/FloatingCtaForm'
+import { adaptCopyForEvplugMorocco } from '../../lib/mirrorMarkup'
 import useInternalRouteNavigation from '../../lib/useInternalRouteNavigation'
-import useNavbarInteractions from '../../lib/useNavbarInteractions'
 
 const PAGE_CLASSES = 'path-node page-node-type-page d-flex flex-column'
 
-export default function SolutionPageLayout({ children, documentTitle }) {
+export default function SolutionPageLayout({
+  children,
+  documentTitle,
+  ctaInterest,
+  ctaButtonLabel,
+  ctaTitle,
+  ctaSubtitle,
+  ctaAccentColor,
+}) {
   useInternalRouteNavigation()
-
-  const shell = useMemo(() => {
-    const migratedShell = migrateBodyMarkup(homeBodyRaw, 'index.html')
-    return splitShellBlocks(migratedShell.html)
-  }, [])
-
-  useNavbarInteractions(shell.navbar)
 
   useLayoutEffect(() => {
     const html = document.documentElement
@@ -41,15 +40,20 @@ export default function SolutionPageLayout({ children, documentTitle }) {
   }, [documentTitle])
 
   return (
-    <>
-      <HtmlBlock html={shell.preRoot} />
-      <div className={shell.rootClassName} data-off-canvas-main-canvas>
-        <Navbar html={shell.navbar} />
-        <main role="main" className="flex-grow">
-          {children}
-        </main>
-        <Footer html={shell.footer} />
-      </div>
-    </>
+    <div className="dialog-off-canvas-main-canvas d-flex flex-column h-100" data-off-canvas-main-canvas>
+      <Navbar />
+      <main role="main" className="flex-grow">
+        {children}
+      </main>
+      <Newsletter />
+      <Footer />
+      <FloatingCtaForm
+        buttonLabel={ctaButtonLabel || 'Etre rappele'}
+        title={ctaTitle || 'Etudions votre projet'}
+        subtitle={ctaSubtitle || 'Decrivez votre besoin, un expert EVplug vous recontacte sous 24h ouvrees.'}
+        defaultInterest={ctaInterest}
+        accentColor={ctaAccentColor}
+      />
+    </div>
   )
 }

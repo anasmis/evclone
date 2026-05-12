@@ -1,0 +1,119 @@
+{
+  "kind": "collectionType",
+  "collectionName": "hospitalite_requests",
+  "info": {
+    "singularName": "hospitalite-request",
+    "pluralName": "hospitalite-requests",
+    "displayName": "Demandes Hospitalité",
+    "description": "Demandes de partenariat pour les établissements hôteliers et touristiques"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "maxLength": 255
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "phone": {
+      "type": "string",
+      "required": true,
+      "maxLength": 20
+    },
+    "hotelName": {
+      "type": "string",
+      "required": true,
+      "maxLength": 255
+    },
+    "hotelCategory": {
+      "type": "enumeration",
+      "enum": [
+        "hotel-cinq-etoiles",
+        "hotel-quatre-etoiles",
+        "hotel-trois-etoiles",
+        "aparthotel",
+        "resort",
+        "riad",
+        "restaurant",
+        "autre"
+      ]
+    },
+    "roomsCount": {
+      "type": "enumeration",
+      "enum": [
+        "Dix à vingt-cinq chambres",
+        "Vingt-six à cinquante chambres",
+        "Cinquante à cent chambres",
+        "Plus de cent chambres"
+      ]
+    },
+    "location": {
+      "type": "string",
+      "maxLength": 255
+    },
+    "message": {
+      "type": "text"
+    },
+    "source": {
+      "type": "string",
+      "default": "Hospitalité Page"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "nouveau",
+        "en-cours",
+        "qualifie",
+        "devis-envoye",
+        "negocie",
+        "signe",
+        "rejete",
+        "archive"
+      ],
+      "default": "nouveau"
+    },
+    "priority": {
+      "type": "enumeration",
+      "enum": [
+        "faible",
+        "normale",
+        "haute",
+        "urgente"
+      ],
+      "default": "normale"
+    },
+    "assignedTo": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "text"
+    },
+    "followUpDate": {
+      "type": "date"
+    },
+    "quoteSent": {
+      "type": "boolean",
+      "default": false
+    },
+    "quoteAmount": {
+      "type": "decimal",
+      "min": 0
+    },
+    "contractValue": {
+      "type": "decimal",
+      "min": 0
+    },
+    "installationDate": {
+      "type": "date"
+    },
+    "tags": {
+      "type": "json",
+      "default": []
+    }
+  }
+}

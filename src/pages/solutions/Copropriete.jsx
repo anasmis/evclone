@@ -1,44 +1,46 @@
 import SolutionPageLayout from './SolutionPageLayout'
 import SolutionTemplate from './SolutionTemplate'
-
-const ICONS = '/assets/podenergy.com/sites/default/files'
+import { icons } from '../../migrated/assets/solutions/shared/icons'
+import heroImage from '../../migrated/assets/solutions/copropriete/hero.jpg'
+import storyImage from '../../migrated/assets/solutions/copropriete/story.jpg'
+import platformImage from '../../migrated/assets/solutions/copropriete/platform.jpg'
 
 const services = [
   {
-    icon: '2025-10/charger.svg',
+    icon: icons.charger,
     title: 'Etude electrique collective',
     description:
-      'Diagnostic de votre tableau commun, analyse de la capacite disponible et plan d\'equipement progressif selon le nombre de residents interesses.',
+      "Diagnostic de votre tableau commun, analyse de la capacite disponible et plan d'equipement progressif selon le nombre de residents interesses.",
   },
   {
-    icon: '2025-11/standalone-charger.svg',
+    icon: icons.standaloneCharger,
     title: 'Bornes AC individuelles',
     description:
       'Bornes dediees par place de parking resident, adaptees a la recharge nocturne. Installation soignee sans travaux lourds sur les parties communes.',
   },
   {
-    icon: '2025-11/Send-feedback.svg',
+    icon: icons.sendFeedback,
     title: 'SAV & Maintenance',
     description:
-      'Suivi technique et interventions rapides pour l\'ensemble de la copropriete. Un seul interlocuteur pour le syndic, une fiabilite maximale pour les residents.',
+      "Suivi technique et interventions rapides pour l'ensemble de la copropriete. Un seul interlocuteur pour le syndic, une fiabilite maximale pour les residents.",
   },
   {
-    icon: '2025-11/Charging Duration.svg',
+    icon: icons.chargingDuration,
     title: 'Facturation individuelle',
     description:
       'Chaque resident est facture a sa consommation reelle. Aucune mutualisation des couts, transparence totale et rapports mensuels par resident.',
   },
   {
-    icon: '2025-10/installation.svg',
+    icon: icons.installation,
     title: 'Accompagnement syndic',
     description:
-      'EVplug accompagne le syndic dans les demarches : aide a la preparation de l\'AG, dossiers techniques et administratifs, coordination avec les prestataires.',
+      "EVplug accompagne le syndic dans les demarches : aide a la preparation de l'AG, dossiers techniques et administratifs, coordination avec les prestataires.",
   },
   {
-    icon: '2025-11/Dashboard.svg',
+    icon: icons.dashboard,
     title: 'Plateforme Evone Copropriete',
     description:
-      'Interface dediee au syndic : etat des bornes, consommations par resident, facturation automatique et historique d\'interventions accessibles a tout moment.',
+      "Interface dediee au syndic : etat des bornes, consommations par resident, facturation automatique et historique d'interventions accessibles a tout moment.",
   },
 ]
 
@@ -47,20 +49,27 @@ const evoneFeatures = [
   'Facturation individuelle automatique par resident chaque mois',
   'Suivi des consommations en kWh et en dirhams par place',
   'Historique complet des sessions de charge et des interventions techniques',
-  'Ajout ou suppression d\'un resident en quelques clics',
-  'Notifications automatiques en cas d\'anomalie ou de panne',
+  "Ajout ou suppression d'un resident en quelques clics",
+  "Notifications automatiques en cas d'anomalie ou de panne",
 ]
 
 export default function Copropriete() {
   return (
-    <SolutionPageLayout documentTitle="EVplug Copropriete | Recharge electrique en residence au Maroc">
+    <SolutionPageLayout
+      documentTitle="EVplug Copropriete | Recharge electrique en residence au Maroc"
+      ctaInterest="Solution copropriete"
+      ctaButtonLabel="Equiper ma copropriete"
+      ctaTitle="Projet de copropriete"
+      ctaSubtitle="Resident ou syndic ? Decrivez votre residence, on vous accompagne de l'AG a la mise en service."
+      ctaAccentColor="#7fd58a"
+    >
       <SolutionTemplate
         tag="EV Copropriete"
         heroTitle="La recharge electrique pour votre residence, simple et equitable."
         heroSubtitle="EVplug equipe votre copropriete de bornes individuelles, gere la facturation par resident et accompagne le syndic de l'etude au quotidien. Sans mutualisation des couts, sans complications."
-        heroImage={`${ICONS}/2025-11/CRS09462.jpg`}
-        storyImage={`${ICONS}/2025-11/CRS09261.jpg`}
-        platformImage={`${ICONS}/2025-11/CRS09749_0.jpg`}
+        heroImage={heroImage}
+        storyImage={storyImage}
+        platformImage={platformImage}
         heroCta="Etudier votre projet"
         services={services}
         imagePanel1Title="Une solution progressive, sans engagement collectif"

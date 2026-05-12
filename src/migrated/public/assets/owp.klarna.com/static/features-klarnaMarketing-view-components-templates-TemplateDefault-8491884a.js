@@ -1,1 +1,0 @@
-"use strict";(self.__LOADABLE_LOADED_CHUNKS__=self.__LOADABLE_LOADED_CHUNKS__||[]).push([["49024"],{71499(_,e,l){l.r(e),l.d(e,{default:()=>a});var s=l(74848),t=l(34227);let a=({children:_})=>(0,s.jsx)(t.H,{webOnlyProps:{className:"template__default"},children:_})}}]);

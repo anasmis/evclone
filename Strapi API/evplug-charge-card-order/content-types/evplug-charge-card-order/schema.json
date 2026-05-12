@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "evplug_charge_card_orders",
+  "info": {
+    "singularName": "evplug-charge-card-order",
+    "pluralName": "evplug-charge-card-orders",
+    "displayName": "EVPlug Charge Card Order"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "cardType": {
+      "type": "string"
+    },
+    "fullName": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "phone": {
+      "type": "string"
+    },
+    "initialAmount": {
+      "type": "decimal"
+    },
+    "address": {
+      "type": "text"
+    },
+    "orderDate": {
+      "type": "datetime"
+    },
+    "orderNumber": {
+      "type": "string",
+      "unique": true
+    }
+  }
+}

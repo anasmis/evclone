@@ -8,7 +8,15 @@
       "Bash(ls src/styles/)",
       "Read(//c/c/Users/LEGION 5/Desktop/EVPLUG/Cloned Podenergy/my-cloned-site/src/**)",
       "Read(//c/c/Users/LEGION 5/Desktop/EVPLUG/Cloned Podenergy/my-cloned-site/**)",
-      "Read(//c/c/Users/LEGION 5/Desktop/EVPLUG/Cloned Podenergy/my-cloned-site/src/migrated/**)"
+      "Read(//c/c/Users/LEGION 5/Desktop/EVPLUG/Cloned Podenergy/my-cloned-site/src/migrated/**)",
+      "Bash(awk 'NR>=1310 && NR<=3124' \"c:/Users/LEGION 5/Desktop/EVPLUG/Cloned Podenergy/my-cloned-site/src/migrated/pages/products/pod-drive.html\")",
+      "Bash(awk 'NR>=1600 && NR<=2100' \"c:/Users/LEGION 5/Desktop/EVPLUG/Cloned Podenergy/my-cloned-site/src/migrated/pages/products/pod-drive.html\")",
+      "Bash(sed -n '1310,2807p' \"src/migrated/pages/products/pod-drive.html\")",
+      "Read(//tmp/**)",
+      "Bash(ls /tmp/podmain.html 2>&1; cp /tmp/podmain.html \"/c/Users/LEGION 5/Desktop/EVPLUG/Cloned Podenergy/my-cloned-site/podmain.tmp.html\" && echo OK)"
+    ],
+    "additionalDirectories": [
+      "\\tmp"
     ]
   }
 }

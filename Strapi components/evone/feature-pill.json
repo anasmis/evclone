@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_evone_feature_pills",
+  "info": {
+    "displayName": "Feature Pill",
+    "description": "Small icon + title + description card (e.g. Sites & Bornes)"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "maxLength": 80
+    },
+    "description": {
+      "type": "text",
+      "required": true,
+      "maxLength": 240
+    },
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}

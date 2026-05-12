@@ -1,8 +1,15 @@
 @import "tailwindcss";
+@import "./styles/theme.css";
+@import "@fortawesome/fontawesome-free/css/all.min.css";
 @import "leaflet/dist/leaflet.css";
+@import "./styles/owl.carousel.css";
+@import "./styles/owl.theme.default.css";
+@import "./styles/aos.css";
+@import "./styles/legacy-base.css";
+@import "./styles/legacy-components.css";
+@import "./styles/legacy-utilities.css";
 @import "./styles/brand-identity.css";
 @import "./styles/editorial-pages.css";
-@config "../tailwind.config.js";
 
 html,
 body,

@@ -1,0 +1,135 @@
+{
+  "kind": "collectionType",
+  "collectionName": "parking_requests",
+  "info": {
+    "singularName": "parking-request",
+    "pluralName": "parking-requests",
+    "displayName": "Parking Requests",
+    "description": "Demandes pour solutions de recharge en parking"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "maxLength": 100
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 150
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "phone": {
+      "type": "string",
+      "required": true,
+      "maxLength": 20
+    },
+    "parkingType": {
+      "type": "enumeration",
+      "enum": [
+        "Parking public",
+        "Parking privé commercial",
+        "Parking centre commercial",
+        "Parking hôtel/restaurant",
+        "Parking aéroport/gare",
+        "Autre"
+      ],
+      "required": true
+    },
+    "location": {
+      "type": "string",
+      "required": true,
+      "maxLength": 200
+    },
+    "parkingSpaces": {
+      "type": "enumeration",
+      "enum": [
+        "Moins de cinquante places",
+        "Cinquante à cent places",
+        "Cent à deux cents places",
+        "Plus de deux cents places"
+      ],
+      "required": true
+    },
+    "desiredStations": {
+      "type": "enumeration",
+      "enum": [
+        "Une à cinq bornes",
+        "Cinq à quinze bornes",
+        "Quinze à trente bornes",
+        "Plus de trente bornes",
+        "Je ne sais pas"
+      ],
+      "required": true
+    },
+    "powerType": {
+      "type": "enumeration",
+      "enum": [
+        "Recharge normale (sept à vingt-deux kW)",
+        "Recharge rapide (cinquante kW et plus)",
+        "Les deux types",
+        "Je ne sais pas"
+      ],
+      "required": true
+    },
+    "timeline": {
+      "type": "enumeration",
+      "enum": [
+        "Dès que possible",
+        "Dans trois mois",
+        "Dans six mois",
+        "Plus tard"
+      ],
+      "required": true
+    },
+    "businessModel": {
+      "type": "enumeration",
+      "enum": [
+        "Gratuit pour clients",
+        "Payant public",
+        "Réservé aux employés",
+        "Mixte",
+        "Non défini"
+      ]
+    },
+    "currentElectricalCapacity": {
+      "type": "enumeration",
+      "enum": [
+        "Suffisante",
+        "Nécessite mise à niveau",
+        "Je ne sais pas"
+      ]
+    },
+    "message": {
+      "type": "text"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "nouveau",
+        "contacté",
+        "visite_programmée",
+        "étude_technique",
+        "devis_envoyé",
+        "client_potentiel",
+        "fermé"
+      ],
+      "default": "nouveau"
+    },
+    "source": {
+      "type": "string",
+      "default": "EvParking Page"
+    },
+    "notes": {
+      "type": "text"
+    },
+    "assignedTo": {
+      "type": "string"
+    }
+  }
+}

@@ -1,59 +1,61 @@
 import SolutionPageLayout from './SolutionPageLayout'
 import SolutionTemplate from './SolutionTemplate'
-
-const ICONS = '/assets/podenergy.com/sites/default/files'
+import { icons } from '../../migrated/assets/solutions/shared/icons'
+import heroImage from '../../migrated/assets/solutions/entreprise/hero.jpg'
+import storyImage from '../../migrated/assets/solutions/entreprise/story.jpg'
+import platformImage from '../../migrated/assets/solutions/entreprise/platform.jpg'
 
 const services = [
   {
-    icon: '2025-10/charger.svg',
+    icon: icons.charger,
     title: 'Etude electrique',
     description:
       'Diagnostic electrique de vos sites, dimensionnement des bornes selon vos besoins de flotte et mise en conformite de votre installation.',
   },
   {
-    icon: '2025-11/standalone-charger.svg',
+    icon: icons.standaloneCharger,
     title: 'Bornes connectees AC et DC',
     description:
       'Bornes professionnelles sur vos sites et locaux pour recharger vos vehicules de fonction, de flotte et les vehicules de vos collaborateurs.',
   },
   {
-    icon: '2025-11/Send-feedback.svg',
+    icon: icons.sendFeedback,
     title: 'SAV & Maintenance',
     description:
       'Support dedie entreprises avec SLA garantis. Interventions prioritaires pour assurer la continuite de recharge de votre flotte.',
   },
   {
-    icon: '2025-11/Smart Charge.svg',
+    icon: icons.smartCharge,
     title: 'Electrification intelligente de flotte',
     description:
-      'Strategie progressive d\'electrification de vos vehicules. Analyse de vos usages, planification des renouvellements et accompagnement au changement.',
+      "Strategie progressive d'electrification de vos vehicules. Analyse de vos usages, planification des renouvellements et accompagnement au changement.",
   },
   {
-    icon: '2025-11/Miles Earned.svg',
+    icon: icons.milesEarned,
     title: 'Etude de rentabilite de flotte',
     description:
       'Modelisation financiere complete : TCO compare essence/electrique, economies sur le carburant, aides disponibles au Maroc et retour sur investissement.',
   },
   {
-    icon: '2025-11/Profile-2.svg',
+    icon: icons.profile,
     title: 'Experience collaborateurs inedite',
     description:
       'Offrez la recharge au bureau ou chez vos collaborateurs. Un avantage concret qui renforce votre marque employeur et fidélise vos equipes.',
   },
   {
-    icon: '2025-11/Charging Duration.svg',
+    icon: icons.chargingDuration,
     title: 'Maitrise des consommations',
     description:
       'Pilotage fin de la recharge par collaborateur : budgets individuels, quotas, suivi de consommation en temps reel et reporting RH integre.',
   },
   {
-    icon: '2025-11/Coins.svg',
-    title: 'Outil d\'avantages collaborateurs',
+    icon: icons.coins,
+    title: "Outil d'avantages collaborateurs",
     description:
-      'Dotez vos equipes d\'un avantage recharge. Attribution de credits, gestion des beneficiaires et reporting des avantages accordes depuis une interface unique.',
+      "Dotez vos equipes d'un avantage recharge. Attribution de credits, gestion des beneficiaires et reporting des avantages accordes depuis une interface unique.",
   },
   {
-    icon: '2025-11/Dashboard.svg',
+    icon: icons.dashboard,
     title: 'Plateforme Evone Entreprise',
     description:
       'Gerez vos bornes, vos collaborateurs et les avantages qui leur sont attribues depuis une seule interface. Facturation, reporting et administration centralises.',
@@ -72,14 +74,21 @@ const evoneFeatures = [
 
 export default function Entreprise() {
   return (
-    <SolutionPageLayout documentTitle="EVplug Entreprise | Electrification de flotte et recharge collaborateurs au Maroc">
+    <SolutionPageLayout
+      documentTitle="EVplug Entreprise | Electrification de flotte et recharge collaborateurs au Maroc"
+      ctaInterest="Solution entreprise"
+      ctaButtonLabel="Electrifier ma flotte"
+      ctaTitle="Electrifions votre flotte"
+      ctaSubtitle="Decrivez votre site et le nombre de vehicules : un expert flotte EVplug vous rappelle sous 24h."
+      ctaAccentColor="#c8d72d"
+    >
       <SolutionTemplate
         tag="EV Entreprise"
         heroTitle="Electrifiez votre flotte et dotez vos collaborateurs d'un avantage recharge."
         heroSubtitle="De l'etude de rentabilite au deploiement des bornes sur site, EVplug vous accompagne dans la transition electrique de votre entreprise. Maitrisez vos couts, valorisez vos equipes."
-        heroImage={`${ICONS}/2025-11/CRS09749.jpg`}
-        storyImage={`${ICONS}/2025-11/CRS09433.jpg`}
-        platformImage={`${ICONS}/2025-11/CRS09261.jpg`}
+        heroImage={heroImage}
+        storyImage={storyImage}
+        platformImage={platformImage}
         heroCta="Etudier votre projet"
         services={services}
         imagePanel1Title="Maitrisez les couts de votre mobilite professionnelle"

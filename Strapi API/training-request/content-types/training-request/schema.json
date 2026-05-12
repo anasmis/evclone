@@ -1,0 +1,118 @@
+{
+  "kind": "collectionType",
+  "collectionName": "training_requests",
+  "info": {
+    "singularName": "training-request",
+    "pluralName": "training-requests",
+    "displayName": "Training Requests",
+    "description": "Demandes de formation EVPLUG"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "maxLength": 100
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "phone": {
+      "type": "string",
+      "required": true,
+      "maxLength": 20
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 150
+    },
+    "position": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "trainingType": {
+      "type": "enumeration",
+      "enum": [
+        "Formation Technique",
+        "Formation Commerciale",
+        "Formation Installation"
+      ],
+      "required": true
+    },
+    "experience": {
+      "type": "enumeration",
+      "enum": [
+        "Débutant",
+        "Intermédiaire",
+        "Avancé"
+      ],
+      "required": true
+    },
+    "preferredFormat": {
+      "type": "enumeration",
+      "enum": [
+        "Présentiel",
+        "En ligne",
+        "Hybride"
+      ],
+      "required": true
+    },
+    "groupSize": {
+      "type": "enumeration",
+      "enum": [
+        "Formation individuelle",
+        "Deux à cinq personnes",
+        "Six à quinze personnes",
+        "Plus de quinze personnes"
+      ],
+      "required": true
+    },
+    "preferredDates": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "specificTopics": {
+      "type": "text"
+    },
+    "message": {
+      "type": "text"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "nouveau",
+        "contacté",
+        "formation_programmée",
+        "formation_réalisée",
+        "certificat_envoyé",
+        "annulé"
+      ],
+      "default": "nouveau"
+    },
+    "trainingDate": {
+      "type": "datetime"
+    },
+    "certificateIssued": {
+      "type": "boolean",
+      "default": false
+    },
+    "satisfaction": {
+      "type": "integer",
+      "min": 1,
+      "max": 5
+    },
+    "source": {
+      "type": "string",
+      "default": "Certification Page"
+    },
+    "notes": {
+      "type": "text"
+    },
+    "assignedTo": {
+      "type": "string"
+    }
+  }
+}

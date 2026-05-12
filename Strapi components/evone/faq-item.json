@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_evone_faq_items",
+  "info": {
+    "displayName": "FAQ Item",
+    "description": "Question + rich-text answer"
+  },
+  "options": {},
+  "attributes": {
+    "question": {
+      "type": "string",
+      "required": true,
+      "maxLength": 200
+    },
+    "answer": {
+      "type": "richtext",
+      "required": true
+    }
+  }
+}

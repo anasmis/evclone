@@ -1,35 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
-
-const ICONS = '/assets/podenergy.com/sites/default/files'
-const ICONS_11 = `${ICONS}/2025-11`
-
-// ---------------------------------------------------------------------------
-// Benefits strip — 4 centered icon/title/description columns (easy-to-setup)
-// ---------------------------------------------------------------------------
-function BenefitsStrip({ items }) {
-  return (
-    <section className="bg-white easy-to-setup relative py-spacing-7xl rounded-b-4xl">
-      <div className="container-max-width-desktop container-max-width-tablet mx-auto container-padding-desktop container-padding-tablet container-padding-mobile">
-        <div className="grid gap-spacing-6xl">
-          <h2 className="text-center tracking-tight m-0">Pourquoi EVplug</h2>
-          <div className="flex mx-auto flex-wrap xl:flex-nowrap xl:gap-spacing-8xl gap-spacing-6xl justify-center items-start">
-            {items.map((item) => (
-              <div key={item.title} className="w-full grid gap-spacing-4xl text-center md:max-w-[276px] mx-auto">
-                <div className="w-16 h-16 bg-lime rounded-full flex items-center justify-center mx-auto p-3">
-                  <img className="mx-auto" src={`${ICONS}/${item.icon}`} alt={item.title} loading="lazy" />
-                </div>
-                <div className="grid gap-spacing-xl">
-                  <div className="title"><h6>{item.title}</h6></div>
-                  <div className="description m-0"><p>{item.description}</p></div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
+import { icons } from '../../migrated/assets/solutions/shared/icons'
+import evoneLaptopImg from '../../migrated/assets/solutions/shared/evone-laptop.webp'
+import evoneInstallImg from '../../migrated/assets/solutions/shared/evone-install.webp'
+import ctaImageSrc from '../../migrated/assets/solutions/shared/cta-image.svg'
+import Hero from '../../components/sections/Hero'
+import BenefitsStrip from '../../components/sections/BenefitsStrip'
+import CtaBanner from '../../components/sections/CtaBanner'
 
 // ---------------------------------------------------------------------------
 // Single image-text row (image left, text right). Reversed via prop.
@@ -152,7 +128,7 @@ function EvoneManagementService({ ctaLabel, ctaHref = '/contact-us' }) {
           <div className="md:w-6/12 w-full">
             <img
               className="w-full rounded-2xl"
-              src={`${ICONS}/styles/b18_image_style/public/2026-02/POD190-Laptop-Mockup%20(2).png992c.webp?h=827069f2&itok=da2rZeb6`}
+              src={evoneLaptopImg}
               alt="Plateforme EVone pour la gestion de site"
               loading="lazy"
             />
@@ -183,7 +159,7 @@ function EvoneManagementService({ ctaLabel, ctaHref = '/contact-us' }) {
           <div className="md:w-6/12 w-full">
             <img
               className="w-full rounded-2xl"
-              src={`${ICONS}/styles/b18_image_style/public/2026-01/Twin%20Install.jpgcba7.webp?h=c74750f6&itok=Gy_Wci2T`}
+              src={evoneInstallImg}
               alt="Accompagnement EVplug pour le financement des bornes"
               loading="lazy"
             />
@@ -216,13 +192,8 @@ function EvoneManagementService({ ctaLabel, ctaHref = '/contact-us' }) {
 function EvonePlatformSection({ title, subtitle, features, badge, platformImage, heroImage, storyImage, heroCta }) {
   const [activeStep, setActiveStep] = useState(0)
   const sectionRef = useRef(null)
-  const topImage =
-    platformImage ||
-    storyImage ||
-    `${ICONS}/styles/b7_top_right/public/2026-01/Solo%203S%20Installation%20-%20Low-res-52.jpgb00f.webp?h=56d0ca2e&itok=FeJRuLCq`
-  const bottomImage =
-    heroImage ||
-    `${ICONS}/styles/b7_mid_left/public/2026-01/LEVC%20-%20Low-res-31.jpg02e2.webp?h=56d0ca2e&itok=0WKjq2ZA`
+  const topImage = platformImage || storyImage || evoneInstallImg
+  const bottomImage = heroImage || evoneLaptopImg
 
   useEffect(() => {
     if (!sectionRef.current || features.length === 0) return
@@ -306,7 +277,7 @@ function EvonePlatformSection({ title, subtitle, features, badge, platformImage,
                   />
                   <div className="oip_img_label oip_img_label_left text-lg">
                     <div className="icon">
-                      <img src={`${ICONS}/2025-11/Charger-sign-guide.svg`} alt="" loading="lazy" />
+                      <img src={icons.chargerSignGuide} alt="" loading="lazy" />
                     </div>
                     <div className="m-0 font-semibold"><p>Pilotage centralise des bornes de la residence</p></div>
                   </div>
@@ -322,7 +293,7 @@ function EvonePlatformSection({ title, subtitle, features, badge, platformImage,
                   />
                   <div className="oip_img_label oip_img_label_left text-lg">
                     <div className="icon">
-                      <img src={`${ICONS}/2025-10/installation.svg`} alt="" loading="lazy" />
+                      <img src={icons.installation} alt="" loading="lazy" />
                     </div>
                     <div className="m-0 font-semibold"><p>Facturation individuelle et suivi technique simplifie</p></div>
                   </div>
@@ -356,50 +327,10 @@ function EvoneInsightsSection() {
   )
 }
 
-// ---------------------------------------------------------------------------
-// CTA banner — full Podenergy layout with decorative right box
-// ---------------------------------------------------------------------------
-function CtaBanner({ title, body }) {
-  return (
-    <section className="relative cta-banner">
-      <div className="container-max-width-desktop container-max-width-tablet container-padding-desktop container-padding-tablet container-padding-mobile relative mx-auto md:py-spacing-7xl pt-spacing-7xl md:!pb-[170px]">
-        <div className="grid md:grid-flow-col gap-spacing-4xl text-white">
-          <div className="bg-blue-dianne md:w-[calc(100%-65px)] xl:w-[calc(100%-178px)] rounded-2xl">
-            <div className="relative z-10 p-spacing-7xl max-w-[762px]">
-              <div className="grid gap-spacing-3xl w-full">
-                <div className="grid gap-spacing-xl">
-                  <h3 className="text-pear uppercase font-PosterCutNeue m-0 font-normal">{title}</h3>
-                  <div className="m-0 link-white">
-                    <p>{body}</p>
-                  </div>
-                </div>
-                <div className="flex gap-spacing-xl flex-wrap">
-                  <a href="/contact-us" className="btn btn-secondary font-base">
-                    Demander un devis
-                  </a>
-                  <a href="/contact-us" className="btn btn-secondary-outline font-base">
-                    Parler a un expert
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            className="p-10 rounded-2xl flex justify-center items-center md:w-[270px] md:h-[270px] xl:w-[379px] xl:h-[379px] md:absolute xl:top-[120px] xl:right-[130px] md:top-[290px] md:right-[30px]"
-            style={{ backgroundColor: '#87b4e1' }}
-          >
-            <img
-              src={`${ICONS_11}/Pod Home Charging.svg`}
-              alt=""
-              className="h-[255px]"
-              loading="lazy"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
+const SOLUTION_CTAS = [
+  { to: '/contact-us', label: 'Demander un devis', variant: 'secondary' },
+  { to: '/contact-us', label: 'Parler a un expert', variant: 'secondary-outline' },
+]
 
 // ---------------------------------------------------------------------------
 // Main template — compose all sections
@@ -431,19 +362,19 @@ export default function SolutionTemplate({
     managementItems ||
     [
       {
-        icon: '2025-11/Dashboard.svg',
+        icon: icons.dashboard,
         title: 'Site management',
         description:
           'Pilotez vos bornes par site, gelez ou activez des points de charge, et suivez la disponibilite en temps reel depuis un tableau de bord unique.',
       },
       {
-        icon: '2025-11/Profile-2.svg',
+        icon: icons.profile,
         title: 'User management',
         description:
           'Administrez les profils utilisateurs, les acces, les droits et les habitudes de charge avec une gouvernance claire par equipe ou par entite.',
       },
       {
-        icon: '2025-11/Coins.svg',
+        icon: icons.coins,
         title: 'Expense and driver management',
         description:
           'Maitrisez les tarifs, remboursements et rapports financiers avec des exports exploitables pour la finance, la paie et le pilotage operationnel.',
@@ -453,46 +384,19 @@ export default function SolutionTemplate({
   return (
     <>
       {/* 1. Hero */}
-      <section className="relative key-page-hero-section bg-white">
-        <div className="container-max-width-desktop container-max-width-tablet container-padding-desktop container-padding-tablet container-padding-mobile mx-auto pt-spacing-3xl lg:pb-spacing-9xl pb-spacing-7xl">
-          <div className="grid xl:grid-cols-2 xl:grid-flow-col items-center justify-between gap-spacing-4xl grid-block">
-            <div className="grid gap-spacing-4xl">
-              <div className="grid gap-spacing-3xl">
-                {tag && (
-                  <span className="inline-flex items-center gap-spacing-sm px-spacing-md py-spacing-sm rounded-full bg-lime text-black text-sm font-semibold w-fit">
-                    {tag}
-                  </span>
-                )}
-                <h1 className="tracking-tight m-0">{heroTitle}</h1>
-                <div className="hero-banner-des">
-                  <p>{heroSubtitle}</p>
-                </div>
-              </div>
-              <div className="flex flex-wrap justify-start gap-spacing-xl">
-                <a href="/contact-us" className="btn btn-primary font-base">
-                  {heroCta || 'Etudier votre projet'}
-                </a>
-                <a href="/contact-us" className="btn btn-secondary-outline font-base">
-                  Parler a un expert
-                </a>
-              </div>
-            </div>
-            <div className="solution-image">
-              {heroImage && (
-                <img
-                  className="mx-auto rounded-2xl object-cover"
-                  src={heroImage}
-                  alt=""
-                  loading="lazy"
-                />
-              )}
-            </div>
-          </div>
-        </div>
-      </section>
+      <Hero
+        tag={tag}
+        title={heroTitle}
+        subtitle={heroSubtitle}
+        image={heroImage}
+        ctas={[
+          { href: '/contact-us', label: heroCta || 'Etudier votre projet', variant: 'primary' },
+          { href: '/contact-us', label: 'Parler a un expert', variant: 'secondary-outline' },
+        ]}
+      />
 
       {/* 2. Benefits strip */}
-      <BenefitsStrip items={benefitsItems} />
+      <BenefitsStrip heading="Pourquoi EVplug" items={benefitsItems} />
 
       {/* 3. Image-text — story panel */}
       <section className="text-left-right-variant relative image-text-section bg-surface top-spacing">
@@ -540,7 +444,7 @@ export default function SolutionTemplate({
       />
 
       {/* 8. CTA banner */}
-      <CtaBanner title={ctaTitle} body={ctaBody} />
+      <CtaBanner title={ctaTitle} body={ctaBody} ctas={SOLUTION_CTAS} decorImage={ctaImageSrc} decorBg="#87b4e1" />
     </>
   )
 }

@@ -1,4 +1,9 @@
 ﻿import { resolveAssetUrl } from './assetResolver'
+import {
+  ALLOWED_EXTERNAL_HOSTS,
+  EXTERNAL_HOST_REDIRECTS,
+  enforceCanonicalRoute,
+} from './allowedRoutes'
 
 const SKIP_URL_PATTERN = /^(?:[a-z][a-z0-9+.-]*:|\/\/|#)/i
 const LOCAL_BASE_ORIGIN = 'https://local.mirror'
@@ -12,6 +17,13 @@ function resolveExternalRelativeHost(rawPath) {
 
   const host = match[1]
   const rest = match[2] || ''
+
+  // Single-segment local files like `../order-now.html` match the host pattern
+  // (name + dot + 4-char TLD-looking suffix). Reject these so they are treated
+  // as relative paths to migrated HTML pages instead of external domains.
+  if (/\.(html?|php|aspx?|jsp)$/i.test(host)) {
+    return null
+  }
 
   return `https://${host}${rest}`
 }
@@ -237,54 +249,85 @@ export function normalizeAssetUrl(url, currentHtmlPath = 'index.html') {
   return resolveAssetUrl(resolvePodenergyPath(trimmed, currentHtmlPath))
 }
 
+function resolveExternalUrlPolicy(rawUrl) {
+  try {
+    const parsed = new URL(rawUrl)
+    const host = parsed.hostname.toLowerCase()
+    if (EXTERNAL_HOST_REDIRECTS.has(host)) {
+      return EXTERNAL_HOST_REDIRECTS.get(host)
+    }
+    if (ALLOWED_EXTERNAL_HOSTS.has(host)) {
+      return parsed.toString()
+    }
+    // Unknown external host: keep it (browsers will leave the site, which is
+    // acceptable for non-pod-point external links such as press partners).
+    return parsed.toString()
+  } catch {
+    return rawUrl
+  }
+}
+
 export function normalizeLinkUrl(url, currentHtmlPath = 'index.html') {
   if (!url) {
     return url
   }
 
   const trimmed = url.trim()
-  if (!trimmed || SKIP_URL_PATTERN.test(trimmed)) {
+  if (!trimmed) {
     return trimmed
   }
 
+  if (/^(?:mailto:|tel:|javascript:)/i.test(trimmed) || trimmed.startsWith('#')) {
+    return trimmed
+  }
+
+  // Cloned site sometimes uses ../host.tld/path as a stand-in for full URLs.
   const externalRelativeHost = resolveExternalRelativeHost(trimmed)
   if (externalRelativeHost) {
-    return externalRelativeHost
+    return resolveExternalUrlPolicy(externalRelativeHost)
   }
+
+  if (/^https?:\/\//i.test(trimmed) || trimmed.startsWith('//')) {
+    const normalizedAbsolute = trimmed.startsWith('//') ? `https:${trimmed}` : trimmed
+    return resolveExternalUrlPolicy(normalizedAbsolute)
+  }
+
+  let routeCandidate = null
+  let assetFallback = null
 
   if (trimmed.startsWith('../') || trimmed.startsWith('./') || !trimmed.startsWith('/')) {
     const asAsset = resolvePodenergyPath(trimmed, currentHtmlPath)
     const htmlAssetMatch = asAsset.match(/^\/assets\/podenergy\.com\/(.*\.html)$/i)
-
     if (htmlAssetMatch) {
-      return htmlPathToRoutePath(htmlAssetMatch[1])
+      routeCandidate = htmlPathToRoutePath(htmlAssetMatch[1])
+    } else {
+      assetFallback = resolveAssetUrl(asAsset)
     }
-    return resolveAssetUrl(asAsset)
-  }
-
-  if (trimmed.startsWith('/assets/')) {
+  } else if (trimmed.startsWith('/assets/')) {
     const htmlAssetMatch = trimmed.match(/^\/assets\/podenergy\.com\/(.*\.html)$/i)
-
     if (htmlAssetMatch) {
-      return htmlPathToRoutePath(htmlAssetMatch[1])
+      routeCandidate = htmlPathToRoutePath(htmlAssetMatch[1])
+    } else {
+      assetFallback = resolveAssetUrl(trimmed)
     }
-
-    return resolveAssetUrl(trimmed)
-  }
-
-  if (trimmed.startsWith('/')) {
+  } else if (trimmed.startsWith('/')) {
     if (trimmed.endsWith('.html')) {
-      return htmlPathToRoutePath(trimmed.slice(1))
+      routeCandidate = htmlPathToRoutePath(trimmed.slice(1))
+    } else {
+      // Treat as a SPA route (not an asset). Strip a trailing slash later
+      // inside enforceCanonicalRoute.
+      routeCandidate = trimmed
     }
-
-    return resolveAssetUrl(`/assets/podenergy.com${trimmed}`)
+  } else if (trimmed.endsWith('.html')) {
+    routeCandidate = htmlPathToRoutePath(trimmed)
+  } else {
+    assetFallback = resolveAssetUrl(resolvePodenergyPath(trimmed, currentHtmlPath))
   }
 
-  if (trimmed.endsWith('.html')) {
-    return htmlPathToRoutePath(trimmed)
+  if (routeCandidate !== null) {
+    return enforceCanonicalRoute(routeCandidate)
   }
-
-  return resolveAssetUrl(resolvePodenergyPath(trimmed, currentHtmlPath))
+  return assetFallback
 }
 
 export function normalizeSrcSet(srcSet, currentHtmlPath = 'index.html') {
