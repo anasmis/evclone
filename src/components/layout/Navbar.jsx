@@ -246,8 +246,7 @@ function Megamenu({ item, onNavigate }) {
   )
 }
 
-export default function Navbar() {
-  const location = useLocation()
+function NavbarInner() {
   const [openIndex, setOpenIndex] = useState(-1)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [mobileSubIndex, setMobileSubIndex] = useState(-1)
@@ -264,11 +263,6 @@ export default function Navbar() {
     else document.body.classList.remove('megamenu-active')
     return () => document.body.classList.remove('megamenu-active')
   }, [openIndex])
-
-  // Close everything on route change.
-  useEffect(() => {
-    closeAll()
-  }, [location.pathname, closeAll])
 
   // ESC closes everything.
   useEffect(() => {
@@ -472,4 +466,9 @@ export default function Navbar() {
       </nav>
     </header>
   )
+}
+
+export default function Navbar() {
+  const location = useLocation()
+  return <NavbarInner key={location.pathname} />
 }

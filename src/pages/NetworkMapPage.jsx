@@ -361,7 +361,7 @@ export default function NetworkMapPage() {
       setTimeout(() => {
         try {
           map.invalidateSize()
-        } catch (error) {
+        } catch {
           // Ignore resize errors from Leaflet during early mount.
         }
       }, 50)
