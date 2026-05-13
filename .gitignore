@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Strapi workspace exports
+Strapi API/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

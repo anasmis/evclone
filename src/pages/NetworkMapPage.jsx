@@ -319,6 +319,7 @@ export default function NetworkMapPage() {
   // Initialise Leaflet
   useEffect(() => {
     let cancelled = false
+    const markers = markersRef.current
 
     async function init() {
       if (!mapContainerRef.current || mapRef.current) return
@@ -352,7 +353,7 @@ export default function NetworkMapPage() {
         marker.bindPopup(buildStationPopupHtml(station), { closeButton: true })
         marker.on('click', () => setActiveId(station.id))
         marker.addTo(map)
-        markersRef.current.set(station.id, marker)
+        markers.set(station.id, marker)
       })
 
       mapRef.current = map
@@ -360,7 +361,9 @@ export default function NetworkMapPage() {
       setTimeout(() => {
         try {
           map.invalidateSize()
-        } catch {}
+        } catch (error) {
+          // Ignore resize errors from Leaflet during early mount.
+        }
       }, 50)
     }
 
@@ -372,7 +375,7 @@ export default function NetworkMapPage() {
         mapRef.current.remove()
         mapRef.current = null
       }
-      markersRef.current.clear()
+      markers.clear()
     }
   }, [])
 

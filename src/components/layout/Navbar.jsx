@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import logo from '../../migrated/assets/layout/logo.webp'
 import iconCompare from '../../migrated/assets/layout/nav/compare.svg'
 import iconStandalone from '../../migrated/assets/layout/nav/standalone-charger.svg'
 import iconInstallation from '../../migrated/assets/layout/nav/installation.svg'
-import iconEnergy from '../../migrated/assets/layout/nav/energy.svg'
 import iconTakeTheLead from '../../migrated/assets/layout/nav/take-the-lead.svg'
 import iconPluggedIn from '../../migrated/assets/layout/nav/plugged-in.svg'
 import iconHome from '../../migrated/assets/layout/nav/home.svg'
@@ -253,6 +252,12 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [mobileSubIndex, setMobileSubIndex] = useState(-1)
 
+  const closeAll = useCallback(() => {
+    setOpenIndex(-1)
+    setMobileOpen(false)
+    setMobileSubIndex(-1)
+  }, [])
+
   // Toggle body.megamenu-active when any desktop megamenu is open.
   useEffect(() => {
     if (openIndex >= 0) document.body.classList.add('megamenu-active')
@@ -262,23 +267,19 @@ export default function Navbar() {
 
   // Close everything on route change.
   useEffect(() => {
-    setOpenIndex(-1)
-    setMobileOpen(false)
-    setMobileSubIndex(-1)
-  }, [location.pathname])
+    closeAll()
+  }, [location.pathname, closeAll])
 
   // ESC closes everything.
   useEffect(() => {
     const onKey = (e) => {
       if (e.key === 'Escape') {
-        setOpenIndex(-1)
-        setMobileOpen(false)
-        setMobileSubIndex(-1)
+        closeAll()
       }
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [])
+  }, [closeAll])
 
   // Lock body scroll while mobile drawer is open.
   useEffect(() => {
@@ -289,12 +290,6 @@ export default function Navbar() {
       document.body.style.overflow = prev
     }
   }, [mobileOpen])
-
-  const closeAll = () => {
-    setOpenIndex(-1)
-    setMobileOpen(false)
-    setMobileSubIndex(-1)
-  }
 
   return (
     <header role="banner" className="header-section z-30 top-0">
