@@ -54,7 +54,7 @@ jobs:
           port: ${{ secrets.VPS_PORT }}
           script: |
             set -e
-            cd /root/evclone
+            cd /home/brahim/evclone
             git fetch origin main
             git checkout main
             git reset --hard origin/main
