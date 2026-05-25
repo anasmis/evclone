@@ -177,10 +177,6 @@
   }
   .horizontal-card {
     min-height: 425px;
-    opacity: 70%;
-  }
-  .horizontal-slider-new .owl-item.active .horizontal-card {
-    opacity: 100%;
   }
   .horizontal_slider .owl-stage {
     display: flex;

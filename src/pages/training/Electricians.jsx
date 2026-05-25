@@ -4,6 +4,7 @@ import Hero from '../../components/sections/Hero'
 import BenefitsStrip from '../../components/sections/BenefitsStrip'
 import CtaBanner from '../../components/sections/CtaBanner'
 import FloatingCtaForm from '../../components/common/FloatingCtaForm'
+import BookingCalendar from '../../components/common/BookingCalendar'
 import { icons } from '../../migrated/assets/solutions/shared/icons'
 import ctaImageSrc from '../../migrated/assets/solutions/shared/cta-image.svg'
 import heroImg from '../../migrated/assets/installation/hero.png'
@@ -13,6 +14,48 @@ import stepImg2 from '../../migrated/assets/installation/step-img-2.webp'
 const openInstallerForm = () => {
   window.dispatchEvent(new CustomEvent('floating-cta-form:open'))
 }
+
+const levels = [
+  {
+    number: '01',
+    name: 'Niveau 1 — Initiation',
+    duration: '2h en ligne',
+    audience: 'Electriciens certifies decouvrant la recharge VE',
+    summary:
+      'Les fondamentaux de la recharge a domicile, la gamme EVplug et le cadre reglementaire au Maroc.',
+    bullets: [
+      'Vocabulaire et bases techniques de la recharge VE',
+      'Tour de la gamme EVplug et compatibilites vehicules',
+      'Securite, normes et points de vigilance chantier',
+    ],
+  },
+  {
+    number: '02',
+    name: 'Niveau 2 — Confirme',
+    duration: '1 journee pratique',
+    audience: 'Installateurs avec premieres poses realisees',
+    summary:
+      "Pose, mise en service et parametrage de la borne EVplug pas a pas avec l'application Installateur.",
+    bullets: [
+      'Dimensionnement et raccordement au tableau',
+      'Mise en service guidee avec l’application EVplug',
+      'Diagnostic des incidents frequents et reprise rapide',
+    ],
+  },
+  {
+    number: '03',
+    name: 'Niveau 3 — Expert',
+    duration: '2 jours avancees',
+    audience: 'Installateurs reguliers souhaitant la certification complete',
+    summary:
+      'Configurations avancees (delestage, supervision, multi-bornes), service apres-vente et garantie 5 ans.',
+    bullets: [
+      'Delestage dynamique et integration energie',
+      'Deploiements multi-bornes en copropriete et entreprise',
+      'SAV, telediagnostic et garantie produit 5 ans*',
+    ],
+  },
+]
 
 const benefits = [
   {
@@ -151,6 +194,78 @@ export default function Electricians() {
                 </div>
               </div>
             </section>
+
+            {/* Niveaux */}
+            <section className="relative bg-white top-spacing" id="niveaux">
+              <div className="container-max-width-desktop container-max-width-tablet container-padding-desktop container-padding-tablet container-padding-mobile mx-auto xl:py-spacing-9xl py-spacing-7xl">
+                <div className="grid gap-spacing-6xl">
+                  <div className="view-header text-center max-w-[720px] mx-auto">
+                    <div className="heading-block grid gap-spacing-3xl">
+                      <span className="inline-flex items-center gap-spacing-sm px-spacing-md py-spacing-sm rounded-full bg-lime text-black text-sm font-semibold w-fit mx-auto">
+                        Parcours en 3 niveaux
+                      </span>
+                      <h2 className="tracking-tight m-0">Les niveaux de certification</h2>
+                      <p>
+                        Progressez a votre rythme : chaque niveau debloque de nouveaux droits, des
+                        outils EVplug supplementaires et, au niveau 3, la garantie produit 5 ans*.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="grid md:grid-cols-3 gap-spacing-4xl">
+                    {levels.map((lvl) => (
+                      <div
+                        key={lvl.number}
+                        className="bg-surface rounded-2xl p-spacing-6xl border border-gray-200 grid gap-spacing-3xl"
+                      >
+                        <div className="flex items-start justify-between gap-spacing-xl">
+                          <span className="font-PosterCutNeue text-5xl leading-none text-black">
+                            {lvl.number}
+                          </span>
+                          <span className="text-xs uppercase tracking-[0.15em] font-semibold bg-lime text-black px-spacing-md py-spacing-xs rounded-full">
+                            {lvl.duration}
+                          </span>
+                        </div>
+                        <div className="grid gap-spacing-sm">
+                          <h3 className="m-0 tracking-tight text-2xl">{lvl.name}</h3>
+                          <p className="uppercase tracking-[0.15em] text-xs font-semibold text-gray-600 m-0">
+                            {lvl.audience}
+                          </p>
+                        </div>
+                        <p className="m-0">{lvl.summary}</p>
+                        <ul className="m-0 p-0 list-none grid gap-spacing-sm">
+                          {lvl.bullets.map((b) => (
+                            <li key={b} className="flex items-start gap-spacing-sm">
+                              <img
+                                src={icons.tick}
+                                alt=""
+                                width={12}
+                                height={12}
+                                className="mt-1 shrink-0"
+                              />
+                              <span>{b}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="flex justify-center pt-spacing-3xl">
+                    <a href="#calendrier" className="btn btn-primary font-base">
+                      Voir le calendrier
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <BookingCalendar
+              formationKey="installer"
+              title="Reservez votre session installateur"
+              subtitle="Choisissez une date pour voir les creneaux de formation disponibles."
+              accentColor="#c8d72d"
+            />
 
             {/* Important info */}
             <section

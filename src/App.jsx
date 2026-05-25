@@ -11,6 +11,7 @@ import Hotels from './pages/solutions/Hotels'
 import StationsService from './pages/solutions/StationsService'
 import EvoneManagementPlatform from './pages/solutions/EvoneManagementPlatform'
 import AboutPage from './pages/AboutPage'
+import ApimePage from './pages/ApimePage'
 import ContactUs from './pages/ContactUs'
 import VehicleGuides from './pages/VehicleGuides'
 import NewsListing from './pages/NewsListing'
@@ -48,6 +49,8 @@ function AppRoutes() {
       <Route path="/solutions/stations-service" element={<StationsService />} />
       <Route path="/solutions/evone-management-platform" element={<EvoneManagementPlatform />} />
       <Route path="/about" element={<AboutPage />} />
+      <Route path="/about/apime" element={<ApimePage />} />
+      <Route path="/about/abime" element={<Navigate to="/about/apime" replace />} />
       <Route path="/contact-us" element={<ContactUs />} />
       <Route path="/vehicle-guides" element={<VehicleGuides />} />
 

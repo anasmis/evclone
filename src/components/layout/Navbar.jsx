@@ -13,6 +13,8 @@ import iconTariff from '../../migrated/assets/layout/nav/tariff.svg'
 import iconVehicle from '../../migrated/assets/layout/nav/vehicle.svg'
 import iconInfo from '../../migrated/assets/layout/nav/info.svg'
 import iconKnowledge from '../../migrated/assets/layout/nav/knowledge.svg'
+import iconProfile from '../../migrated/assets/layout/nav/profile.svg'
+import iconEnergy from '../../migrated/assets/layout/nav/energy.svg'
 
 // Top nav structure:
 // 3 mega-dropdowns + 2 flat links (Notre Reseau, Formation),
@@ -131,12 +133,38 @@ const NAV_ITEMS = [
   },
   // Flat links — no mega-dropdown
   { label: 'Notre Reseau', to: '/reseau' },
-  { label: 'Formation', to: '/approved-installer-training' },
+  {
+    label: 'Formation',
+    children: [
+      {
+        icon: iconInstallation,
+        label: 'Formation installateurs',
+        to: '/training/electricians',
+        description: 'Certification EVplug pour electriciens : niveaux, calendrier et garantie 5 ans.',
+      },
+      {
+        icon: iconProfile,
+        label: 'Formations entreprises',
+        to: '/training/corporate',
+        description: 'Programmes sur mesure pour equipes techniques, HSE et operations.',
+      },
+    ],
+    highlight: {
+      bg: '#0a1f1a',
+      icon: iconEnergy,
+      title: 'APIME.',
+      titleColor: '#ffdc50',
+      textColor: '#ffdc50',
+      ctaColor: '#ffdc50',
+      description: "EVplug, vice-president de l'APIME : decouvrez notre contribution a la mobilite electrique au Maroc.",
+      cta: { label: 'Notre role a l’APIME', to: '/about/apime' },
+    },
+  },
 ]
 
 
 function splitIntoColumns(children) {
-  if (children.length <= 2) return [children]
+  if (children.length <= 1) return [children]
   const mid = Math.ceil(children.length / 2)
   return [children.slice(0, mid), children.slice(mid)]
 }
@@ -191,7 +219,15 @@ function SubmenuLink({ child, onNavigate }) {
 function HighlightBox({ highlight, onNavigate }) {
   return (
     <div className="megamenu-column megamenu-column--image">
-      <div className="megamenu-box" style={{ background: highlight.bg }}>
+      <div
+        className="megamenu-box"
+        style={{
+          background: highlight.bg,
+          '--mm-title': highlight.titleColor || '#c8d72d',
+          '--mm-text': highlight.textColor || '#ffffff',
+          '--mm-cta': highlight.ctaColor || '#ffdc50',
+        }}
+      >
         {highlight.icon && (
           <div className="icon">
             <img loading="lazy" width="960" src={highlight.icon} alt="" className="img-fluid" />
@@ -213,7 +249,11 @@ function HighlightBox({ highlight, onNavigate }) {
           </div>
           {highlight.cta && (
             <div className="flex mega-menu-cta">
-              <Link to={highlight.cta.to} onClick={onNavigate}>
+              <Link
+                to={highlight.cta.to}
+                onClick={onNavigate}
+                style={highlight.ctaColor ? { color: highlight.ctaColor } : undefined}
+              >
                 {highlight.cta.label}
               </Link>
             </div>

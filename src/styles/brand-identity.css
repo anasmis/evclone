@@ -52,10 +52,16 @@
   --spacing: var(--brand-spacing-unit);
 }
 
+html {
+  overflow-x: clip;
+}
+
 body {
   font-family: var(--brand-font-body);
   color: var(--brand-color-text);
   background-color: var(--brand-color-page);
+  overflow-x: clip;
+  max-width: 100vw;
 }
 
 header.header-section {
@@ -113,6 +119,20 @@ header.header-section .header-section-inner .megamenu {
 header.header-section .header-section-inner .megamenu,
 header.header-section .header-section-inner .megamenu * {
   color: var(--brand-color-primary) !important;
+}
+
+/* Highlight cards opt out of the blanket color override: per-card colors come
+   from CSS vars set inline (--mm-title / --mm-text / --mm-cta). */
+header.header-section .header-section-inner .megamenu .megamenu-box h4 {
+  color: var(--mm-title, #c8d72d) !important;
+}
+header.header-section .header-section-inner .megamenu .megamenu-box p,
+header.header-section .header-section-inner .megamenu .megamenu-box .menu-item-description,
+header.header-section .header-section-inner .megamenu .megamenu-box .menu-item-description p {
+  color: var(--mm-text, #ffffff) !important;
+}
+header.header-section .header-section-inner .megamenu .megamenu-box .mega-menu-cta a {
+  color: var(--mm-cta, #ffffff) !important;
 }
 
 header.header-section .header-section-inner .megamenu .nav-link,
@@ -255,6 +275,15 @@ header.header-section .evplug-icon-btn svg {
   pointer-events: none;
 }
 
+/* Hide the white icon buttons in the collapsed/mobile navbar state.
+   The burger appears below the xl breakpoint (1280px). */
+@media (max-width: 1279.98px) {
+  header.header-section .evplug-nav-actions {
+    display: none !important;
+  }
+}
+
+
 header.header-section .sr-only {
   position: absolute;
   width: 1px;
@@ -303,6 +332,123 @@ header.header-section .sr-only {
 }
 
 #mobile-menu .evplug-mobile-btn .label {
+  color: var(--brand-color-primary) !important;
+}
+
+/* ── Make the collapsed/mobile drawer flush with the navbar ──
+   Override the legacy fixed top offset so the drawer attaches directly
+   to the bottom edge of the rounded navbar capsule. */
+#mobile-menu-main {
+  position: relative;
+}
+
+#mobile-menu-main .slide-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  width: auto;
+  height: auto;
+  margin-inline: 0;
+  max-height: calc(100vh - 90px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+#mobile-menu-main .slide-menu .mobile-menu {
+  height: auto;
+  overflow: visible;
+}
+
+/* Tablet & small-desktop collapsed state: render the megamenu as an
+   inline accordion below the parent item. Legacy CSS only handled
+   the mobile slide-in (<=768px) and left this range with display:none. */
+@media (min-width: 769px) and (max-width: 1279.98px) {
+  #mobile-menu .megamenu {
+    display: none;
+    padding: var(--spacing-md) 0 var(--spacing-2xl);
+  }
+  #mobile-menu li.nav-item.open-sidebar .megamenu {
+    display: block;
+  }
+  #mobile-menu .megamenu-columns {
+    display: grid;
+    gap: var(--spacing-xl);
+  }
+}
+
+/* Hover-to-open inside the collapsed drawer (pointer devices only).
+   Mirrors the desktop megamenu behavior so users can browse without
+   clicking each parent item. Touch devices keep the click/tap flow. */
+@media (hover: hover) and (pointer: fine) {
+  @media (min-width: 769px) and (max-width: 1279.98px) {
+    #mobile-menu li.nav-item:hover > .megamenu,
+    #mobile-menu li.nav-item:focus-within > .megamenu {
+      display: block;
+    }
+    #mobile-menu li.nav-item:hover > .nav-link.dropdown-toggle,
+    #mobile-menu li.nav-item:focus-within > .nav-link.dropdown-toggle {
+      background: url(../images/up-icon.svg) no-repeat right 4px;
+    }
+  }
+  @media (max-width: 768px) {
+    #mobile-menu li.nav-item:hover > .megamenu,
+    #mobile-menu li.nav-item:focus-within > .megamenu {
+      transform: translateX(0);
+      margin-right: 0;
+      opacity: 1;
+    }
+  }
+}
+
+.announcement-bar-disable #mobile-menu-main .slide-menu {
+  position: absolute;
+  top: 100%;
+}
+
+#mobile-menu-main .slide-menu .mobile-menu {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+/* ── Mobile drawer text: black & green variations only ──
+   Force every text node inside the collapsed menu to use the
+   primary green (#123d33). Highlight boxes are recolored to a
+   green family so contrast stays readable. */
+#mobile-menu,
+#mobile-menu * {
+  color: var(--brand-color-primary) !important;
+}
+
+#mobile-menu .megamenu-box {
+  background: var(--brand-color-primary) !important;
+}
+
+#mobile-menu .megamenu-box,
+#mobile-menu .megamenu-box * {
+  color: var(--brand-color-accent) !important;
+}
+
+#mobile-menu .megamenu-box h4 {
+  color: var(--brand-color-accent) !important;
+}
+
+#mobile-menu .mega-menu-cta a {
+  color: var(--brand-color-accent) !important;
+}
+
+#mobile-menu .mega-menu-cta a::after {
+  background-color: var(--brand-color-accent) !important;
+}
+
+#mobile-menu .submenu-sublink {
+  background-color: var(--brand-color-primary) !important;
+  color: var(--brand-color-accent) !important;
+}
+
+#mobile-menu .submenu-sublink:hover,
+#mobile-menu .submenu-sublink:focus {
+  background-color: var(--brand-color-accent) !important;
   color: var(--brand-color-primary) !important;
 }
 

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import MirrorShell from './MirrorShell'
 import Breadcrumb from '../components/sections/Breadcrumb'
 import Hero from '../components/sections/Hero'
@@ -39,7 +40,7 @@ export default function AboutPage() {
             <Breadcrumb current="Notre mission" />
 
             <Hero
-              title="Accelerer la mobilite electrique au Maroc"
+              title="Trust and love your charging experience"
               subtitle={<p>La recharge pour VE qui fonctionne pour tous.</p>}
               image={heroImg}
               imageAlt="Accelerer la mobilite electrique au Maroc"
@@ -135,13 +136,64 @@ export default function AboutPage() {
                   <div className="md:w-6/12 w-full">
                     <div className="max-w-[480px] grid gap-spacing-3xl">
                       <div className="grid gap-spacing-3xl">
-                        <h3 className="tracking-tight m-0">L'electromobilite pour tous</h3>
+                        <h3 className="tracking-tight m-0">Trust and love your charging experience</h3>
                         <div className="hero-banner-des">
                           <p>
                             <strong>Accelerer la mobilite electrique au Maroc</strong>
                           </p>
                         </div>
                       </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* APIME */}
+            <section className="relative top-spacing" style={{ backgroundColor: '#123d33' }}>
+              <div className="container-max-width-desktop container-max-width-tablet container-padding-desktop container-padding-tablet container-padding-mobile mx-auto xl:py-spacing-9xl py-spacing-7xl">
+                <div className="grid md:grid-cols-2 gap-spacing-6xl items-center">
+                  <div className="grid gap-spacing-3xl">
+                    <span className="inline-flex items-center gap-spacing-sm px-spacing-md py-spacing-sm rounded-full bg-lime text-black text-sm font-semibold w-fit">
+                      Engagement filiere
+                    </span>
+                    <h2 className="tracking-tight m-0" style={{ color: '#ffffff' }}>
+                      EVplug, vice-president de l'APIME
+                    </h2>
+                    <div className="hero-banner-des" style={{ color: '#ffffff' }}>
+                      <p>
+                        EVplug occupe la vice-presidence de l'APIME, l'association professionnelle
+                        marocaine dediee a la mobilite electrique. A ce titre, nous contribuons a
+                        structurer la filiere, definir des standards techniques et accelerer le
+                        deploiement des infrastructures de recharge au Maroc.
+                      </p>
+                      <p>
+                        Notre experience operationnelle alimente directement les groupes de travail
+                        de l'association : choix techniques, exigences de securite, formation des
+                        installateurs et concertation avec les pouvoirs publics.
+                      </p>
+                    </div>
+                    <div className="flex flex-wrap gap-spacing-xl">
+                      <Link to="/about/APIME" className="btn btn-primary font-base">
+                        Notre role a l'APIME
+                      </Link>
+                    </div>
+                  </div>
+                  <div>
+                    <div
+                      className="rounded-3xl p-spacing-7xl text-center"
+                      style={{ backgroundColor: '#0d2d25' }}
+                    >
+                      <p
+                        className="font-PosterCutNeue text-7xl leading-none m-0"
+                        style={{ color: '#c8d72d' }}
+                      >
+                        APIME.
+                      </p>
+                      <p className="mt-spacing-3xl m-0" style={{ color: '#ffffff' }}>
+                        Association professionnelle intersectorielle pour la mobilite electrique au
+                        Maroc.
+                      </p>
                     </div>
                   </div>
                 </div>

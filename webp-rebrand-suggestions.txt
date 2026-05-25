@@ -1,0 +1,287 @@
+EVplug — WEBP image inventory & rebrand alternatives
+=====================================================
+
+Source of truth: src/migrated/assets/** (build artifacts in /dist excluded).
+Brand cues to weave in: forest green #0a1f1a / #123d33, lime #c8d72d,
+bright yellow #ffdc50, optional EVone orange #c85f14, PosterCutNeue
+display type, the EVplug "plug-arrow" mark, Maroc context (Atlas range,
+Casablanca skyline, Moroccan tile motifs, Arabic/French bilingual cues).
+
+
+/  (project root)
+-----------------
+- Evplug-03.webp
+  Currently: standalone EVplug brand image (likely a logo lockup variant).
+  Alternative: monogram lockup of the EVplug "plug-arrow" mark in lime on
+  forest, with the tagline "Mobilite electrique. Made in Morocco." set in
+  PosterCutNeue underneath. Use as a social/share card.
+
+- logo.webp
+  Currently: top-level EVplug logo copy.
+  Alternative: replace with vectorized SVG version of the same lockup so
+  the lime ages cleanly at any resolution; keep .webp only as a raster
+  fallback for legacy embeds.
+
+
+src/migrated/assets/layout/
+---------------------------
+- logo.webp
+  Currently: navbar logo.
+  Alternative: dual-version export (light + dark variant) with a 4px lime
+  underline accent so the logo always sits on its own visual "rail",
+  reinforcing brand recognition across forest and white headers.
+
+- footer-logo.webp
+  Currently: footer mark.
+  Alternative: muted forest-on-white version with "VP APIME" micro-badge
+  in lime to the right of the wordmark — earns trust at the bottom of
+  every page and reinforces the APIME positioning.
+
+
+src/migrated/assets/home/
+-------------------------
+- hero.webp
+  Currently: homepage hero image (likely a car/charger scene).
+  Alternative: wide-format shot of an EV parked at a branded EVplug
+  bollard in front of a recognizably Moroccan setting (Casablanca
+  corniche, Marrakech medina wall, or Atlas backdrop). EVplug lime cable,
+  lime LED ring on the charger, subtle EVplug mark engraved on the pole.
+  Lower-third overlay-safe (dark gradient) so headline text stays legible.
+
+- carousel-1.webp
+  Currently: home carousel slide 1.
+  Alternative: "Particuliers" scene — family loading kids into an EV at a
+  villa driveway, EVplug home charger visible on the wall with the lime
+  cable coiled. Include a small EVplug card sticker on the charger.
+
+- carousel-2.webp
+  Currently: home carousel slide 2.
+  Alternative: "Professionnels" scene — fleet of branded service vans at
+  an EVplug-equipped depot, with bornes in EVplug forest+lime livery and
+  an EVone tablet visible in the foreground.
+
+- carousel-3.webp
+  Currently: home carousel slide 3.
+  Alternative: "Reseau" scene — overhead/map-style photo of a Moroccan
+  highway rest stop with multiple EVplug DC fast chargers in a row,
+  EVplug yellow accent stripes on the canopy roof.
+
+- duo-1.webp
+  Currently: paired-content image 1.
+  Alternative: tight close-up of the EVplug card being tapped on a
+  charger reader, lime status ring lighting up, hand wearing an EVplug
+  technician wristband.
+
+- duo-2.webp
+  Currently: paired-content image 2.
+  Alternative: EVplug technician (branded polo, lime safety vest)
+  finishing an installation, smiling at a customer; EVplug van in
+  soft focus background.
+
+
+src/migrated/assets/home-charging/
+----------------------------------
+- single-image.webp
+  Currently: hero/feature image for home-charging page.
+  Alternative: Moroccan villa garage at golden hour, EVplug wall-box
+  mounted with lime cable hanging in a soft curve, owner's EV plugged in.
+  EVplug logo etched faintly on the wallbox cover.
+
+- method-img-1.webp
+  Currently: "method" comparison image 1 (tethered? schuko?).
+  Alternative: side-by-side diagram-photo composite — a household socket
+  on the left, an EVplug wallbox on the right, with a lime arrow between
+  them and the wordmark "Passez a EVplug" in PosterCutNeue.
+
+- method-img-2.webp
+  Currently: "method" comparison image 2.
+  Alternative: top-down product shot of the EVplug wallbox on a
+  forest-green background, cable arranged in the shape of the EVplug
+  plug-arrow mark.
+
+
+src/migrated/assets/carte-evplug/
+---------------------------------
+- feature-untethered.webp
+  Currently: untethered charger feature.
+  Alternative: untethered EVplug wallbox with the customer's own cable
+  plugged in, lime LED ring active, EVplug logo plate centered on the
+  unit.
+
+- feature-tethered.webp
+  Currently: tethered charger feature.
+  Alternative: tethered EVplug wallbox with cable holster, lime cable
+  coiled neatly, holster embossed with the EVplug mark.
+
+- feature-app.webp
+  Currently: companion-app feature image.
+  Alternative: phone mockup running the EVplug app, with the in-app
+  branding (forest header, lime CTA buttons, PosterCutNeue section
+  headers) clearly visible. Show a live session card with the EVplug
+  card avatar.
+
+- feature-warranty.webp
+  Currently: warranty/guarantee feature.
+  Alternative: stamped-badge illustration — "Garantie 5 ans EVplug" in
+  PosterCutNeue inside a lime medallion on a forest backdrop, with a
+  Moroccan zellige pattern faintly embossed behind it.
+
+- charger-accordion-1.webp
+- charger-accordion-2.webp
+  Currently: accordion detail shots of the charger.
+  Alternative: paired macro shots — cable port close-up (lime gasket
+  visible) and mounting bracket close-up (EVplug logo etched into the
+  bracket). Same forest backdrop ties them together.
+
+- app-accordion-1.webp
+- app-accordion-2.webp
+  Currently: accordion detail shots of the app.
+  Alternative: pair of app screen mockups — "Session en cours" screen
+  with live kWh counter, and "Historique" screen with monthly summary,
+  both using the EVplug app theme described above.
+
+
+src/migrated/assets/installation/
+---------------------------------
+- step-img-1.webp
+- step-img-2.webp
+  Currently: installation walkthrough steps.
+  Alternative: EVplug-uniformed technician (forest polo + lime cap) at
+  work — one wide shot of a site assessment with a tablet running EVone,
+  one close-up of the wallbox being fixed to the wall with the EVplug
+  template/jig visible.
+
+- standard-img-1.webp
+- standard-img-2.webp
+  Currently: "standard" install reference images.
+  Alternative: clean, finished installs — one residential (Moroccan
+  villa exterior), one underground parking (with EVplug-branded
+  wayfinding decals on the wall). Both feature the lime cable as the
+  signature visual anchor.
+
+
+src/migrated/assets/training/
+-----------------------------
+- step-img-1.webp
+- step-img-2.webp
+  Currently: training program steps.
+  Alternative: classroom and field shots of EVplug-certified trainees —
+  one in a workshop with EVplug-branded training kits on the bench,
+  one outdoors commissioning a real charger. Lanyards in lime with the
+  EVplug mark visible.
+
+
+src/migrated/assets/solutions/shared/
+-------------------------------------
+- evone-laptop.webp
+  Currently: EVone platform on a laptop.
+  Alternative: laptop mockup showing the EVone dashboard with the orange
+  #c85f14 EVone accent header and EVplug parent-brand mark in the
+  top-left corner. Use a real fleet map of Moroccan cities as the
+  background panel.
+
+- evone-install.webp
+  Currently: EVone installation/onboarding image.
+  Alternative: technician scanning a QR code on an EVplug charger with
+  the EVone app, the activation success screen visible. Reinforces the
+  "EVone by EVplug" relationship.
+
+
+src/migrated/assets/about/
+--------------------------
+- about-us.webp
+  Currently: "about us" team/company image.
+  Alternative: group portrait of the EVplug Maroc team on the rooftop of
+  the Casablanca HQ, lime EVplug banner in the background, founders in
+  the center. Caption-safe negative space on the right.
+
+- electromobilite.webp
+  Currently: editorial image for electromobility context.
+  Alternative: stylized map of Morocco with EVplug pins lit in lime
+  along the main corridors (Tanger-Agadir, Casa-Rabat-Fes), with the
+  PosterCutNeue headline "Le Maroc s'electrifie" overlaid.
+
+
+src/migrated/assets/news/
+-------------------------
+These currently look like leftover Pod Point ("pod-*") assets from the
+clone. They are the biggest brand-debt risk — replace before launch.
+
+- pod-power.webp        -> EVplug news hero: launch event photo, lime
+                           step-and-repeat backdrop with the EVplug mark.
+- pod-lifestyle.webp    -> Moroccan lifestyle shot of an EV owner using
+                           the EVplug app at a cafe terrace in Marrakech.
+- pod-drive-promo.webp  -> Promotional banner with the EVplug "card"
+                           product hero and lime CTA strip.
+- pod-uber.webp         -> Partnership-style photo: branded ride-hail EV
+                           charging at an EVplug bollard, both logos
+                           visible (or a generic local mobility partner
+                           if Uber is not actually a partner).
+- pod-home-fleet.webp   -> Small-business owner next to two branded
+                           service vans plugged into EVplug chargers at
+                           their workshop.
+- pod-rewards.webp      -> EVplug-branded loyalty illustration — lime
+                           coin/token motif with the plug-arrow mark.
+- knowles-fleet.webp    -> Replace with a real Moroccan fleet customer
+                           case (anonymized if needed) — branded vans at
+                           an EVplug depot install.
+- salsac.webp           -> Replace with an event/sponsorship photo from
+                           a Moroccan mobility event (Africa EV Mobility
+                           Expo) with EVplug-branded booth.
+- zapmap.webp           -> Replace with a screenshot of the EVplug
+                           network map (or the APIME 2 500-bornes plan
+                           visualization) styled in brand colors.
+
+
+src/migrated/assets/guides/
+---------------------------
+Same brand-debt note — these are mostly inherited editorial photos.
+For each, the alternative is a custom illustration or photo with a
+consistent lime accent strip + small EVplug watermark in the corner.
+
+- evs-heavier.webp        -> Infographic-style image: silhouette of EV
+                             vs ICE car on a forest background, lime
+                             weight-comparison bars and EVplug mark.
+- smart-charging.webp     -> Night-scene of a home with EVplug wallbox
+                             glowing lime, solar panels on the roof,
+                             little data-flow lines to a phone showing
+                             the EVplug app.
+- pod-rewards-works.webp  -> Rename + redo as "evplug-rewards-works":
+                             three-step illustrated explainer using the
+                             lime/forest palette and PosterCutNeue
+                             numerals.
+- couples.webp            -> Moroccan couple charging on a road trip
+                             stop (Atlas backdrop), EVplug bollard in
+                             frame, lime cable as the hero element.
+- pets.webp               -> Owner with dog at an EVplug charger in a
+                             park; lime cable curve mirrors the leash.
+- zero-waste.webp         -> Reusable EVplug-branded tote/coffee cup
+                             next to the charging car — sustainability
+                             vignette in brand palette.
+- festivals.webp          -> Moroccan festival/event setting (Mawazine,
+                             Gnaoua) with an EVplug pop-up charging
+                             station, lime canopy.
+- family-talk.webp        -> Family at home discussing their EV setup,
+                             EVplug wallbox visible through the window
+                             of the garage.
+- no-emissions.webp       -> Skyline shot of Casablanca with clear blue
+                             sky, lime EVplug mark watermark in the
+                             corner and the line "Zero emissions, made
+                             in Morocco" in PosterCutNeue.
+
+
+Consistency notes (apply across all new assets)
+-----------------------------------------------
+1. Anchor every shot with one lime element (cable, LED ring, lanyard,
+   sticker) so the brand reads even without the logo.
+2. Reserve the bright yellow #ffdc50 for accent-only — never as the
+   dominant fill — to stay consistent with the navbar APIME card.
+3. When the EVplug logo appears in-photo, prefer engraved/embossed over
+   printed-flat so it looks native to the hardware.
+4. PosterCutNeue is the only display face. Body overlays should use the
+   site's body font for visual continuity.
+5. Photograph in recognizably Moroccan environments wherever possible —
+   it differentiates EVplug from generic global EV imagery and
+   reinforces the "by Morocco, for Morocco" positioning.
+6. Retire all `pod-*` filenames during the asset swap; rename to
+   `evplug-*` so the inventory itself stops carrying legacy branding.

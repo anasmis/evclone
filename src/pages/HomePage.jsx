@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import MirrorShell from './MirrorShell'
 import CardsCarousel from '../components/common/CardsCarousel'
 import BrandsMarquee from '../components/common/BrandsMarquee'
+import AnimatedSection from '../components/common/AnimatedSection'
 import CtaBanner from '../components/sections/CtaBanner'
 import hero from '../migrated/assets/home/hero.webp'
 import usp1 from '../migrated/assets/home/usp-1.svg'
@@ -149,7 +150,7 @@ export default function HomePage() {
   return (
     <MirrorShell pageClasses={PAGE_CLASSES} documentTitle="EVplug Maroc — Mobilité électrique au Maroc">
       {/* Hero */}
-      <section className="relative header-banner-section bg-white">
+      <AnimatedSection className="relative header-banner-section bg-white" variant="fade" duration={2} amount={0.05}>
         <div className="mx-auto md:py-spacing-7xl py-spacing-4xl">
           <div className="grid md:grid-cols-2 gap-spacing-4xl">
             <div className="grid gap-spacing-4xl ev-charger-content auto-rows-max">
@@ -178,14 +179,14 @@ export default function HomePage() {
               </div>
             </div>
             <div className="ev-charger pl-spacing-4xl md:pl-spacing-none">
-              <img className="rounded-l-2xl" src={hero} alt="Borne EVplug" loading="lazy" decoding="async" />
+              <img className="rounded-l-2xl w-full h-auto" src={hero} alt="Borne EVplug" loading="lazy" decoding="async" />
             </div>
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* USP cards */}
-      <section className="relative bento-box-section bg-white rounded-b-4xl">
+      <AnimatedSection className="relative bento-box-section bg-white rounded-b-4xl">
         <div className="grid container-max-width-desktop container-max-width-tablet container-padding-desktop container-padding-tablet container-padding-mobile mx-auto md:pb-spacing-9xl pb-spacing-7xl md:gap-spacing-4xl bento-box-block">
           <div className="usp-section">
             <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-spacing-4xl justify-center card-usp-row">
@@ -204,10 +205,10 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* Horizontal carousel */}
-      <section className="horizontal-carousel-new-section relative overflow-hidden md:pb-spacing-7xl pb-spacing-4xl">
+      <AnimatedSection className="horizontal-carousel-new-section relative overflow-hidden md:pb-spacing-7xl pb-spacing-4xl">
         <div className="container-max-width-desktop container-max-width-tablet container-padding-desktop container-padding-tablet container-padding-mobile mx-auto grid gap-spacing-7xl w-full md:pt-spacing-7xl md:pb-spacing-6xl py-spacing-4xl">
           <div className="grid gap-spacing-6xl grid-flow-col justify-between items-end">
             <div className="max-w-[480px] grid gap-spacing-3xl relative">
@@ -216,12 +217,12 @@ export default function HomePage() {
           </div>
         </div>
         <div className="horizontal-new-carousel-main container-max-width-tablet mx-auto xl:mx-none container-padding-tablet container-padding-mobile">
-          <CardsCarousel ariaLabel="L'electromobilite au service du Maroc">
+          <CardsCarousel ariaLabel="L'electromobilite au service du Maroc" autoPlay interval={6000}>
             {carousel.map((item) => (
               <div key={item.title} className="item">
                 <div className="flex md:flex-nowrap flex-wrap md:gap-[25px] gap-spacing-xl">
                   <div className="horizontal-slider-new-content md:w-6/12 w-full">
-                    <div className="bg-blue-dianne rounded-2xl grid gap-spacing-4xl text-white p-spacing-6xl horizontal-card auto-rows-max h-full">
+                    <div className="bg-lime rounded-2xl grid gap-spacing-4xl text-blue-dianne p-spacing-6xl horizontal-card auto-rows-max h-full">
                       <div className="grid gap-spacing-2xl">
                         <div className="flex">
                           <span className="pill-custom flex items-center gap-spacing-sm cursor-auto">
@@ -243,7 +244,7 @@ export default function HomePage() {
                       <div className="flex justify-start gap-spacing-xl flex-wrap">
                         <Link
                           to={item.cta.to}
-                          className="btn btn-secondary-outline font-base md:px-spacing-md lg:px-spacing-2xl px-spacing-lg"
+                          className="btn btn-secondary font-base md:px-spacing-md lg:px-spacing-2xl px-spacing-lg"
                         >
                           {item.cta.label}
                         </Link>
@@ -273,10 +274,10 @@ export default function HomePage() {
             ))}
           </CardsCarousel>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* Customer stories */}
-      <section className="customer-stories-carousel-wrapper relative">
+      <AnimatedSection className="customer-stories-carousel-wrapper relative">
         <div className="container-max-width-desktop container-max-width-tablet container-padding-desktop container-padding-tablet container-padding-mobile mx-auto pt-spacing-7xl gap-spacing-4xl">
           <div className="grid gap-spacing-6xl grid-flow-col justify-between items-end mb-spacing-6xl">
             <div className="max-w-[480px] grid gap-spacing-3xl">
@@ -285,54 +286,61 @@ export default function HomePage() {
           </div>
         </div>
         <div className="video-carousel-main xl:pb-spacing-9xl pb-spacing-7xl container-padding-tablet container-padding-mobile">
-          <div className="container-max-width-desktop container-max-width-tablet mx-auto grid md:grid-cols-2 gap-spacing-4xl">
-            {stories.map((s) => (
-              <div key={s.name} className="customer-story-item item">
-                <div className="video-card-wrapper overflow-hidden relative rounded-2xl">
-                  <div className="relative bg-surface" style={{ minHeight: 360, padding: 32 }}>
-                    <div
-                      className="relative flex flex-col justify-between gap-spacing-2xl"
-                      style={{ zIndex: 50, minHeight: 296 }}
-                    >
+          <div className="container-max-width-desktop container-max-width-tablet mx-auto">
+            <CardsCarousel
+              ariaLabel="Ce que disent nos clients au Maroc"
+              autoPlay
+              interval={6000}
+              slideClassName="w-full md:w-1/2 pr-spacing-4xl"
+            >
+              {stories.map((s) => (
+                <div key={s.name} className="customer-story-item item h-full">
+                  <div className="video-card-wrapper overflow-hidden relative rounded-2xl h-full">
+                    <div className="relative bg-surface h-full" style={{ minHeight: 360, padding: 32 }}>
                       <div
-                        aria-hidden="true"
-                        style={{
-                          fontFamily: "Georgia, 'Times New Roman', serif",
-                          fontSize: 72,
-                          lineHeight: 0.6,
-                          color: 'var(--color-lime)',
-                          margin: 0,
-                        }}
+                        className="relative flex flex-col justify-between gap-spacing-2xl h-full"
+                        style={{ zIndex: 50, minHeight: 296 }}
                       >
-                        “
-                      </div>
-                      <p
-                        style={{
-                          color: '#1a1a1a',
-                          fontSize: 17,
-                          lineHeight: 1.55,
-                          margin: 0,
-                          flex: 1,
-                          fontWeight: 600,
-                        }}
-                      >
-                        {s.quote}
-                      </p>
-                      <div style={{ borderTop: '1px solid rgba(0,0,0,0.08)', paddingTop: 16 }}>
-                        <h3 style={{ color: '#1a1a1a', fontSize: 18, fontWeight: 600, margin: 0 }}>{s.name}</h3>
-                        <p style={{ color: 'rgba(0,0,0,0.6)', fontSize: 14, margin: '4px 0 0' }}>{s.role}</p>
+                        <div
+                          aria-hidden="true"
+                          style={{
+                            fontFamily: "Georgia, 'Times New Roman', serif",
+                            fontSize: 72,
+                            lineHeight: 0.6,
+                            color: 'var(--color-lime)',
+                            margin: 0,
+                          }}
+                        >
+                          “
+                        </div>
+                        <p
+                          style={{
+                            color: '#1a1a1a',
+                            fontSize: 17,
+                            lineHeight: 1.55,
+                            margin: 0,
+                            flex: 1,
+                            fontWeight: 600,
+                          }}
+                        >
+                          {s.quote}
+                        </p>
+                        <div style={{ borderTop: '1px solid rgba(0,0,0,0.08)', paddingTop: 16 }}>
+                          <h3 style={{ color: '#1a1a1a', fontSize: 18, fontWeight: 600, margin: 0 }}>{s.name}</h3>
+                          <p style={{ color: 'rgba(0,0,0,0.6)', fontSize: 14, margin: '4px 0 0' }}>{s.role}</p>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </CardsCarousel>
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* Benefits vertical */}
-      <section className="relative benefits-vertical bg-white rounded-t-3xl top-spacing">
+      <AnimatedSection className="relative benefits-vertical bg-white rounded-t-3xl top-spacing">
         <div className="container-max-width-desktop container-max-width-tablet container-padding-desktop container-padding-tablet container-padding-mobile mx-auto xl:pt-spacing-9xl xl:pb-spacing-6xl py-spacing-7xl gap-spacing-4xl vertical-main">
           <div className="grid xl:grid-flow-col justify-between items-start gap-spacing-7xl">
             <div className="max-w-[480px] grid gap-spacing-3xl xl:sticky xl:top-[160px] pr-spacing-xl">
@@ -357,10 +365,10 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* Brand logo strip */}
-      <section className="relative logo-spread-section bg-white rounded-b-4xl xl:pt-spacing-7xl xl:pb-spacing-9xl py-spacing-7xl gap-spacing-4xl">
+      <AnimatedSection className="relative logo-spread-section bg-white rounded-b-4xl xl:pt-spacing-7xl xl:pb-spacing-9xl py-spacing-7xl gap-spacing-4xl">
         <div className="max-w-[590px] mx-auto w-full text-center mb-spacing-6xl px-spacing-xl">
           <h3 className="tracking-tight m-0">Compatible avec les principales marques de vehicules electriques</h3>
         </div>
@@ -370,10 +378,10 @@ export default function HomePage() {
             <BrandsMarquee logos={brands.slice(15)} direction="right" speed={50} />
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* Image with two cards */}
-      <section className="relative image-with-two-cards bg-surface">
+      <AnimatedSection className="relative image-with-two-cards bg-surface">
         <div className="container-max-width-desktop container-max-width-tablet container-padding-desktop container-padding-tablet container-padding-mobile mx-auto xl:py-spacing-7xl md:pt-spacing-7xl py-spacing-4xl">
           <div className="flex gap-spacing-4xl flex-col-reverse xl:flex-row xl:flex-nowrap xl:grid-flow-col">
             <div className="rounded-2xl overflow-hidden xl:w-5/12">
@@ -475,10 +483,10 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* Image duo */}
-      <section className="relative image-duo w-full grid place-items-center md:py-spacing-9xl py-[180px] overflow-hidden">
+      <AnimatedSection className="relative image-duo w-full grid place-items-center md:py-spacing-9xl py-[180px] overflow-hidden">
         <div className="container-max-width-desktop container-max-width-tablet container-padding-desktop container-padding-tablet container-padding-mobile relative w-full mx-auto">
           <div className="absolute bg-blue-dianne w-full h-full rounded-2xl z-0 max-w-[1200px] inset-0 mx-auto bg-custom bg-custom-main" />
           <div className="relative grid grid-cols-2 gap-spacing-3xl max-w-[400px] md:max-w-[960px] mx-auto bg-custom">
@@ -490,7 +498,7 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       <CtaBanner
         title="L'electromobilite pour tous."

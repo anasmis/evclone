@@ -442,7 +442,7 @@
     display: block;
     height: 1px;
     width: 100%;
-    background-color: var(--color-white);
+    background-color: currentColor;
     transition-property: all;
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));

@@ -5,6 +5,7 @@ import Hero from '../../components/sections/Hero'
 import BenefitsStrip from '../../components/sections/BenefitsStrip'
 import CtaBanner from '../../components/sections/CtaBanner'
 import FloatingCtaForm from '../../components/common/FloatingCtaForm'
+import BookingCalendar from '../../components/common/BookingCalendar'
 import { icons } from '../../migrated/assets/solutions/shared/icons'
 import ctaImageSrc from '../../migrated/assets/solutions/shared/cta-image.svg'
 import heroImg from '../../migrated/assets/solutions/entreprise/hero.jpg'
@@ -37,6 +38,48 @@ const benefits = [
     title: 'Format sur mesure',
     description:
       'En ligne ou sur site, inter-entreprises ou intra-entreprise. Nous adaptons le rythme et le contenu.',
+  },
+]
+
+const levels = [
+  {
+    number: '01',
+    name: 'Niveau 1 — Sensibilisation',
+    duration: '2h en ligne',
+    audience: 'Equipes operationnelles et support',
+    summary:
+      'Donnez une base commune sur la recharge VE, les enjeux et les bonnes pratiques de securite.',
+    bullets: [
+      'Vocabulaire et fondamentaux de la recharge VE',
+      'Risques electriques et reflexes HSE',
+      'Roles et responsabilites sur un projet de recharge',
+    ],
+  },
+  {
+    number: '02',
+    name: 'Niveau 2 — Operationnel',
+    duration: '1 a 2 jours sur site',
+    audience: 'Techniciens, chefs de chantier, HSE',
+    summary:
+      'Mise en service, controles de conformite et procedures terrain pour deployer en confiance.',
+    bullets: [
+      'Sequence de mise en service et tests fonctionnels',
+      'Controles de conformite et PV de reception',
+      'Diagnostic, reprise chantier et tracabilite',
+    ],
+  },
+  {
+    number: '03',
+    name: 'Niveau 3 — Referent',
+    duration: '3 jours intra-entreprise',
+    audience: 'Responsables techniques et qualite',
+    summary:
+      "Pilotez votre parc de bornes : qualite, supervision et amelioration continue avec l'ecosysteme EVplug.",
+    bullets: [
+      "Supervision multi-sites et indicateurs cles",
+      "Plan qualite, retours d'experience et formation interne",
+      'Integration avec EVone et roadmap de deploiement',
+    ],
   },
 ]
 
@@ -166,6 +209,78 @@ export default function Corporate() {
                 </div>
               </div>
             </section>
+
+            {/* Niveaux */}
+            <section className="relative bg-white top-spacing" id="niveaux">
+              <div className="container-max-width-desktop container-max-width-tablet container-padding-desktop container-padding-tablet container-padding-mobile mx-auto xl:py-spacing-9xl py-spacing-7xl">
+                <div className="grid gap-spacing-6xl">
+                  <div className="view-header text-center max-w-[720px] mx-auto">
+                    <div className="heading-block grid gap-spacing-3xl">
+                      <span className="inline-flex items-center gap-spacing-sm px-spacing-md py-spacing-sm rounded-full bg-lime text-black text-sm font-semibold w-fit mx-auto">
+                        Parcours en 3 niveaux
+                      </span>
+                      <h2 className="tracking-tight m-0">Les niveaux de formation entreprise</h2>
+                      <p>
+                        Un parcours progressif pour faire monter vos equipes en competence, de la
+                        sensibilisation a la prise en charge de votre parc de bornes.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="grid md:grid-cols-3 gap-spacing-4xl">
+                    {levels.map((lvl) => (
+                      <div
+                        key={lvl.number}
+                        className="bg-surface rounded-2xl p-spacing-6xl border border-gray-200 grid gap-spacing-3xl"
+                      >
+                        <div className="flex items-start justify-between gap-spacing-xl">
+                          <span className="font-PosterCutNeue text-5xl leading-none text-black">
+                            {lvl.number}
+                          </span>
+                          <span className="text-xs uppercase tracking-[0.15em] font-semibold bg-lime text-black px-spacing-md py-spacing-xs rounded-full">
+                            {lvl.duration}
+                          </span>
+                        </div>
+                        <div className="grid gap-spacing-sm">
+                          <h3 className="m-0 tracking-tight text-2xl">{lvl.name}</h3>
+                          <p className="uppercase tracking-[0.15em] text-xs font-semibold text-gray-600 m-0">
+                            {lvl.audience}
+                          </p>
+                        </div>
+                        <p className="m-0">{lvl.summary}</p>
+                        <ul className="m-0 p-0 list-none grid gap-spacing-sm">
+                          {lvl.bullets.map((b) => (
+                            <li key={b} className="flex items-start gap-spacing-sm">
+                              <img
+                                src={icons.tick}
+                                alt=""
+                                width={12}
+                                height={12}
+                                className="mt-1 shrink-0"
+                              />
+                              <span>{b}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="flex justify-center pt-spacing-3xl">
+                    <a href="#calendrier" className="btn btn-primary font-base">
+                      Voir le calendrier
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <BookingCalendar
+              formationKey="corporate"
+              title="Reservez une session entreprise"
+              subtitle="Selectionnez une date pour decouvrir les sessions ouvertes ou demander une session intra-entreprise."
+              accentColor="#c8d72d"
+            />
 
             {/* Ce que nous adaptons */}
             <section className="relative bg-white top-spacing">
