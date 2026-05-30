@@ -8,9 +8,9 @@ import FloatingCtaForm from '../../components/common/FloatingCtaForm'
 import BookingCalendar from '../../components/common/BookingCalendar'
 import { icons } from '../../migrated/assets/solutions/shared/icons'
 import ctaImageSrc from '../../migrated/assets/solutions/shared/cta-image.svg'
-import heroImg from '../../migrated/assets/solutions/entreprise/hero.jpg'
-import storyImg from '../../migrated/assets/solutions/entreprise/story.jpg'
-import platformImg from '../../migrated/assets/solutions/entreprise/platform.jpg'
+import heroImg from '../../migrated/assets/solutions/entreprise/hero.jpeg'
+import storyImg from '../../migrated/assets/solutions/entreprise/story.jpeg'
+import platformImg from '../../migrated/assets/solutions/entreprise/platform.jpeg'
 
 const ADVISOR_EMAIL = 'mailto:contact@evplug.com'
 

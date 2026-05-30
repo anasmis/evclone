@@ -1,8 +1,8 @@
 import SolutionPageLayout from './SolutionPageLayout'
 import SolutionTemplate from './SolutionTemplate'
 import { icons } from '../../migrated/assets/solutions/shared/icons'
-import heroImage from '../../migrated/assets/solutions/parkings/hero.jpg'
-import storyImage from '../../migrated/assets/solutions/parkings/story.jpg'
+import heroImage from '../../migrated/assets/solutions/parkings/hero.jpeg'
+import storyImage from '../../migrated/assets/solutions/parkings/story.jpeg'
 import platformImage from '../../migrated/assets/solutions/parkings/platform.jpg'
 
 const services = [

@@ -1,287 +1,517 @@
-EVplug — WEBP image inventory & rebrand alternatives
-=====================================================
 
-Source of truth: src/migrated/assets/** (build artifacts in /dist excluded).
-Brand cues to weave in: forest green #0a1f1a / #123d33, lime #c8d72d,
-bright yellow #ffdc50, optional EVone orange #c85f14, PosterCutNeue
-display type, the EVplug "plug-arrow" mark, Maroc context (Atlas range,
-Casablanca skyline, Moroccan tile motifs, Arabic/French bilingual cues).
-
-
-/  (project root)
------------------
-- Evplug-03.webp
-  Currently: standalone EVplug brand image (likely a logo lockup variant).
-  Alternative: monogram lockup of the EVplug "plug-arrow" mark in lime on
-  forest, with the tagline "Mobilite electrique. Made in Morocco." set in
-  PosterCutNeue underneath. Use as a social/share card.
-
-- logo.webp
-  Currently: top-level EVplug logo copy.
-  Alternative: replace with vectorized SVG version of the same lockup so
-  the lime ages cleanly at any resolution; keep .webp only as a raster
-  fallback for legacy embeds.
-
-
-src/migrated/assets/layout/
----------------------------
-- logo.webp
-  Currently: navbar logo.
-  Alternative: dual-version export (light + dark variant) with a 4px lime
-  underline accent so the logo always sits on its own visual "rail",
-  reinforcing brand recognition across forest and white headers.
-
-- footer-logo.webp
-  Currently: footer mark.
-  Alternative: muted forest-on-white version with "VP APIME" micro-badge
-  in lime to the right of the wordmark — earns trust at the bottom of
-  every page and reinforces the APIME positioning.
 
 
 src/migrated/assets/home/
 -------------------------
-- hero.webp
-  Currently: homepage hero image (likely a car/charger scene).
-  Alternative: wide-format shot of an EV parked at a branded EVplug
-  bollard in front of a recognizably Moroccan setting (Casablanca
-  corniche, Marrakech medina wall, or Atlas backdrop). EVplug lime cable,
-  lime LED ring on the charger, subtle EVplug mark engraved on the pole.
-  Lower-third overlay-safe (dark gradient) so headline text stays legible.
 
-- carousel-1.webp
-  Currently: home carousel slide 1.
-  Alternative: "Particuliers" scene — family loading kids into an EV at a
-  villa driveway, EVplug home charger visible on the wall with the lime
-  cable coiled. Include a small EVplug card sticker on the charger.
+home/hero.webp
+Currently: homepage hero image.
+Prompt:
+"Wide-format 1920x900 photograph at golden hour on the Casablanca
+corniche. Foreground: a Moroccan woman, late 20s, in a tailored beige
+blazer over a navy dress, smartphone in hand, closing the charge-port
+cover of a metallic-grey EV. The car is parked at a forest-green
+EVplug bollard with a lime #c8d72d LED ring lit around the connector
+and a lime cable looped from bollard to car. Mid-ground: the Hassan
+II Mosque minaret rising from the ocean side, sun raking from
+camera-left. Background: gentle Atlantic swell, two joggers in soft
+focus. Dark gradient across the lower third so headline text stays
+legible. The EVplug plug-arrow mark is engraved on the bollard — use
+the Flow reference logo for that engraving and do not redraw."
 
-- carousel-2.webp
-  Currently: home carousel slide 2.
-  Alternative: "Professionnels" scene — fleet of branded service vans at
-  an EVplug-equipped depot, with bornes in EVplug forest+lime livery and
-  an EVone tablet visible in the foreground.
+home/carousel-1.webp
+Currently: home carousel slide 1 (Particuliers).
+Prompt:
+"Square 1200x1200 photograph, mid-morning, the driveway of a
+Casablanca-Anfa residential villa. A Moroccan family of four: father
+35, light-blue oxford shirt, closing the rear door of a white EV;
+mother 33, cream linen blouse, hair tied back, handing a backpack to
+a 7-year-old daughter in school uniform; 5-year-old son already
+seat-belted. A wall-mounted EVplug wallbox is visible on the ochre
+stucco wall to camera-right with the lime cable coiled on its hook.
+Bougainvillea spilling over a wrought-iron gate, frangipani in a
+terracotta pot. The EVplug mark on the wallbox cover comes from the
+attached Flow reference — do not restyle."
 
-- carousel-3.webp
-  Currently: home carousel slide 3.
-  Alternative: "Reseau" scene — overhead/map-style photo of a Moroccan
-  highway rest stop with multiple EVplug DC fast chargers in a row,
-  EVplug yellow accent stripes on the canopy roof.
+home/carousel-2.webp
+Currently: home carousel slide 2 (Professionnels).
+Prompt:
+"Square 1200x1200 photograph, late morning, a logistics depot in
+Casablanca Sidi Maarouf. A Moroccan fleet manager, 42, navy polo and
+chinos, holds an EVone tablet whose dashboard he reviews with a
+younger operations colleague, 28, in an EVplug forest-green polo with
+lime stripe and the Flow-reference EVplug chest crest. Behind them:
+three forest-green-and-lime liveried EVplug service vans with Arabic
+'إيف بلاغ' and French 'EVplug' on the side panels (use the Flow logo)
+parked beside three EVplug AC bornes with active lime LED rings.
+Overcast soft daylight. Logo lock applies to every visible mark."
 
-- duo-1.webp
-  Currently: paired-content image 1.
-  Alternative: tight close-up of the EVplug card being tapped on a
-  charger reader, lime status ring lighting up, hand wearing an EVplug
-  technician wristband.
+home/carousel-3.webp
+Currently: home carousel slide 3 (Reseau).
+Prompt:
+"Square 1200x1200 wide photograph at a highway rest stop on the A7
+Casablanca–Marrakech motorway, late afternoon. Six EVplug DC fast
+chargers in a row under a forest-green steel canopy with two yellow
+#ffdc50 accent stripes along the roof edge. Two EVs charging: a
+black sedan with a Moroccan family unloading a picnic basket, a white
+SUV with a Moroccan businessman in a light-grey djellaba leaning
+against the door, phone in hand. High Atlas foothills softly visible
+on the horizon, palm groves left of frame. Lime cables curve from
+chargers to cars. Bilingual signage 'بورنات الشحن السريع / Bornes de
+recharge rapide' on the canopy fascia. EVplug mark on canopy and on
+each borne uses the Flow reference — do not redraw."
 
-- duo-2.webp
-  Currently: paired-content image 2.
-  Alternative: EVplug technician (branded polo, lime safety vest)
-  finishing an installation, smiling at a customer; EVplug van in
-  soft focus background.
+home/duo-1.webp
+Currently: paired-content image 1.
+Prompt:
+"Tight macro photograph 1200x900. A Moroccan woman's right hand, late
+20s, light henna pattern on the index finger, tapping a forest-green
+EVplug RFID card (Flow-reference plug-arrow embossed in lime on the
+card face) against the reader of a wallbox. A lime #c8d72d status
+ring is mid-illumination around the reader. Black EVplug technician
+wristband on the wrist. Shallow depth of field — card and ring
+tack-sharp, the wallbox softly blurred. Cool morning light from a
+window off camera-left."
+
+home/duo-2.webp
+Currently: paired-content image 2.
+Prompt:
+"Photograph 1200x900, mid-afternoon, exterior of a Rabat-Souissi
+villa. A Moroccan EVplug technician, woman 30, hair in a low bun,
+forest-green EVplug polo and lime safety vest, EVplug cap with the
+Flow-reference plug-arrow, shaking hands with the customer — a
+Moroccan man, 45, in a light-grey djellaba. Both smiling, handshake
+at frame center. In soft focus behind them: an EVplug van (Flow-
+reference logo on the side, Arabic + French side text) and the newly
+installed wallbox on the villa wall with a lime cable coiled neatly.
+Warm side-lighting. Logo lock applies."
 
 
 src/migrated/assets/home-charging/
 ----------------------------------
-- single-image.webp
-  Currently: hero/feature image for home-charging page.
-  Alternative: Moroccan villa garage at golden hour, EVplug wall-box
-  mounted with lime cable hanging in a soft curve, owner's EV plugged in.
-  EVplug logo etched faintly on the wallbox cover.
 
-- method-img-1.webp
-  Currently: "method" comparison image 1 (tethered? schuko?).
-  Alternative: side-by-side diagram-photo composite — a household socket
-  on the left, an EVplug wallbox on the right, with a lime arrow between
-  them and the wordmark "Passez a EVplug" in PosterCutNeue.
+home-charging/single-image.webp
+Currently: hero/feature image for the home-charging page.
+Prompt:
+"Photograph 1600x900, golden hour, interior of a Marrakech villa
+garage opening onto a tadelakt-walled courtyard. A Moroccan owner,
+man 38, white shirt rolled to the elbows, leans his shoulder on the
+open driver-side door of a dark-blue EV and reviews the EVplug app on
+his phone (lime CTA visible on the screen). On the wall to camera-
+right: an EVplug wallbox with the Flow-reference EVplug mark etched
+faintly on its cover and a lime cable curving down into the car port.
+Zellige tile border at the floor threshold, a small olive tree in the
+courtyard beyond. Warm orange-pink sunlight pooling on the floor.
+Logo lock applies."
 
-- method-img-2.webp
-  Currently: "method" comparison image 2.
-  Alternative: top-down product shot of the EVplug wallbox on a
-  forest-green background, cable arranged in the shape of the EVplug
-  plug-arrow mark.
+home-charging/method-img-1.webp
+Currently: "method" comparison image 1.
+Prompt:
+"Photograph 1200x1200 with even softbox-style studio lighting. Left
+half of frame: a standard Moroccan domestic Schuko wall socket, faint
+dust line visible, on a pale beige plaster wall. Right half: a
+forest-green EVplug wallbox on the same wall, lime LED ring lit, lime
+cable hanging in a soft S-curve. A lime #c8d72d arrow points from the
+socket to the wallbox across the centerline. Set in PosterCutNeue
+across the top in forest green: 'Passez a EVplug'. The EVplug mark on
+the wallbox is from the attached Flow reference — do not redraw."
+
+home-charging/method-img-2.webp
+Currently: "method" comparison image 2.
+Prompt:
+"Top-down product photograph 1200x1200 on a seamless forest-green
+#0a1f1a backdrop. The EVplug wallbox unit centered, the Flow-reference
+EVplug plate visible on its face. The lime #c8d72d cable is arranged
+in a deliberate flowing curve that traces the silhouette of the EVplug
+plug-arrow symbol around the unit. Hard top light, soft side fill,
+slight specular highlight on the cable PVC. No people, no other props.
+Logo lock applies."
 
 
 src/migrated/assets/carte-evplug/
 ---------------------------------
-- feature-untethered.webp
-  Currently: untethered charger feature.
-  Alternative: untethered EVplug wallbox with the customer's own cable
-  plugged in, lime LED ring active, EVplug logo plate centered on the
-  unit.
 
-- feature-tethered.webp
-  Currently: tethered charger feature.
-  Alternative: tethered EVplug wallbox with cable holster, lime cable
-  coiled neatly, holster embossed with the EVplug mark.
+carte-evplug/feature-untethered.webp
+Currently: untethered charger feature image.
+Prompt:
+"Photograph 1200x900, eye level. A forest-green EVplug untethered
+wallbox mounted on a clean white wall in a Casablanca apartment-block
+parking. A Moroccan owner's hand, man late 30s, is plugging the
+customer's own black Type-2 cable into the socket. The lime #c8d72d
+LED ring is just illuminating. The EVplug logo plate centered on the
+unit comes from the attached Flow reference. Soft side daylight from
+a parking-ramp opening. No other text or decals. Logo lock applies."
 
-- feature-app.webp
-  Currently: companion-app feature image.
-  Alternative: phone mockup running the EVplug app, with the in-app
-  branding (forest header, lime CTA buttons, PosterCutNeue section
-  headers) clearly visible. Show a live session card with the EVplug
-  card avatar.
+carte-evplug/feature-tethered.webp
+Currently: tethered charger feature image.
+Prompt:
+"Photograph 1200x900, eye level. A forest-green EVplug tethered
+wallbox mounted in a Rabat villa garage. The lime #c8d72d cable is
+coiled neatly into the holster on the right side of the unit; the
+holster face is embossed with the Flow-reference EVplug plug-arrow
+mark. Connector resting in its cradle. Warm tungsten garage light.
+No people, no clutter. Logo lock applies."
 
-- feature-warranty.webp
-  Currently: warranty/guarantee feature.
-  Alternative: stamped-badge illustration — "Garantie 5 ans EVplug" in
-  PosterCutNeue inside a lime medallion on a forest backdrop, with a
-  Moroccan zellige pattern faintly embossed behind it.
+carte-evplug/feature-app.webp
+Currently: companion-app feature image.
+Prompt:
+"Photograph 900x1200 vertical, studio-style. A modern smartphone (no
+visible brand) held in a Moroccan woman's hand, fingernails neutral.
+The screen displays the EVplug app: forest-green #0a1f1a header bar
+with the Flow-reference EVplug mark on the left, a 'Session en cours'
+card showing 12.4 kWh / 38 min, a lime #c8d72d 'Arreter la session'
+CTA below, and an avatar tile representing the EVplug RFID card with
+the user's first name 'Salma'. Soft overhead light, neutral backdrop.
+Logo lock applies."
 
-- charger-accordion-1.webp
-- charger-accordion-2.webp
-  Currently: accordion detail shots of the charger.
-  Alternative: paired macro shots — cable port close-up (lime gasket
-  visible) and mounting bracket close-up (EVplug logo etched into the
-  bracket). Same forest backdrop ties them together.
+carte-evplug/feature-warranty.webp
+Currently: warranty/guarantee feature image.
+Prompt:
+"Illustrated badge composition 1200x1200 on a deep forest-green
+#0a1f1a backdrop. A circular lime #c8d72d medallion centered, inside
+it the text 'Garantie 5 ans EVplug' set in PosterCutNeue forest-green.
+The Flow-reference plug-arrow mark sits above the wordmark inside the
+medallion. Behind the medallion, a faintly embossed zellige eight-
+point star pattern radiates in a slightly darker forest tone. A 1px
+yellow #ffdc50 hairline circles the medallion. No photography, no
+people. Logo lock applies."
 
-- app-accordion-1.webp
-- app-accordion-2.webp
-  Currently: accordion detail shots of the app.
-  Alternative: pair of app screen mockups — "Session en cours" screen
-  with live kWh counter, and "Historique" screen with monthly summary,
-  both using the EVplug app theme described above.
+carte-evplug/charger-accordion-1.webp
+Currently: accordion detail shot of the charger (cable port).
+Prompt:
+"Macro photograph 1200x900 on a forest-green #0a1f1a seamless
+backdrop. Close-up of the EVplug wallbox cable port, lime #c8d72d
+silicone gasket clearly visible around the socket lip. Shallow depth
+of field — gasket and port tack-sharp, rest of the unit falls gently
+out of focus. Hard rim light from camera-right. No people, no logo
+visible in this crop."
+
+carte-evplug/charger-accordion-2.webp
+Currently: accordion detail shot of the charger (mounting bracket).
+Prompt:
+"Macro photograph 1200x900 on the same forest-green #0a1f1a seamless
+backdrop as the cable-port shot, matched lighting. Close-up of the
+EVplug wall-mounting bracket separated from the unit, the Flow-
+reference EVplug plug-arrow logo etched into the steel of the bracket
+arm. A single mounting bolt sits beside it for scale. Slight specular
+highlight on the brushed steel. No people. Logo lock applies."
+
+carte-evplug/app-accordion-1.webp
+Currently: accordion detail shot of the app (session screen).
+Prompt:
+"Vertical 900x1200 phone mockup screenshot. EVplug app 'Session en
+cours' screen: forest-green header bar with the Flow-reference EVplug
+mark, live kWh counter reading 8.7 kWh, time-charged 24 min, current
+power 7.4 kW, a lime #c8d72d progress arc filling roughly 35%,
+'Arreter la session' CTA in lime at the bottom. Background outside
+the phone is a clean light-grey card. No hand, no environment. Logo
+lock applies."
+
+carte-evplug/app-accordion-2.webp
+Currently: accordion detail shot of the app (history screen).
+Prompt:
+"Vertical 900x1200 phone mockup screenshot. EVplug app 'Historique'
+screen: forest-green header with the Flow-reference EVplug mark, a
+monthly bar chart in lime #c8d72d showing kWh per week, a total card
+reading '142 kWh ce mois — 89 MAD economises', and three transaction
+rows dated in French. Background outside the phone is the same clean
+light-grey card as the session screen so they pair. Logo lock applies."
 
 
 src/migrated/assets/installation/
 ---------------------------------
-- step-img-1.webp
-- step-img-2.webp
-  Currently: installation walkthrough steps.
-  Alternative: EVplug-uniformed technician (forest polo + lime cap) at
-  work — one wide shot of a site assessment with a tablet running EVone,
-  one close-up of the wallbox being fixed to the wall with the EVplug
-  template/jig visible.
 
-- standard-img-1.webp
-- standard-img-2.webp
-  Currently: "standard" install reference images.
-  Alternative: clean, finished installs — one residential (Moroccan
-  villa exterior), one underground parking (with EVplug-branded
-  wayfinding decals on the wall). Both feature the lime cable as the
-  signature visual anchor.
+installation/step-img-1.webp
+Currently: installation walkthrough step 1 (site assessment).
+Prompt:
+"Photograph 1200x900, daylight. A Moroccan EVplug technician, man 32,
+in a forest-green EVplug polo and lime cap with the Flow-reference
+EVplug mark, kneels in the parking spot of a Casablanca apartment
+garage. He holds an EVone tablet showing a site-assessment checklist
+(forest-green header, lime accents). Behind him: the empty wall where
+the wallbox will go, an electrical panel cover open at the top of
+frame, a measuring tape on the floor. Cool overhead fluorescent plus
+warm spill from a doorway. Logo lock applies to cap and tablet header."
+
+installation/step-img-2.webp
+Currently: installation walkthrough step 2 (fixing the wallbox).
+Prompt:
+"Photograph 1200x900, daylight. Close-up of the same technician's
+gloved hands fixing the EVplug wallbox to a tadelakt-finished wall
+using the EVplug cardboard mounting jig (Flow-reference plug-arrow
+visible on the jig). Drill in his right hand, wallbox held against
+the wall with his left, two bolts already driven. Shallow depth of
+field — drill bit and wallbox edge tack-sharp. Warm side light from
+a garage window. Logo lock applies."
+
+installation/standard-img-1.webp
+Currently: "standard" install reference image 1 (residential).
+Prompt:
+"Photograph 1600x900, late afternoon. A clean finished install on the
+exterior wall of a Marrakech villa: a forest-green EVplug wallbox
+mounted beside a wooden door with traditional zouak carving, lime
+cable coiled on its hook, a dark-grey EV parked beneath. Bougainvillea
+climbing the wall above the wallbox. Long warm shadows from a palm
+out of frame. No people. Flow-reference EVplug mark on the wallbox.
+Logo lock applies."
+
+installation/standard-img-2.webp
+Currently: "standard" install reference image 2 (underground parking).
+Prompt:
+"Photograph 1600x900, even fluorescent light. The underground parking
+of a Casablanca-Marina office tower. Three EVplug AC bornes in a row
+in numbered bays B-12, B-13, B-14, each with active lime #c8d72d LED
+rings. An EVplug-branded floor decal at the entrance to the row
+(Flow-reference plug-arrow in lime) and a bilingual wall sign 'Espace
+de recharge / منطقة الشحن' above. One EV plugged in at B-13. No
+people. Logo lock applies."
 
 
 src/migrated/assets/training/
 -----------------------------
-- step-img-1.webp
-- step-img-2.webp
-  Currently: training program steps.
-  Alternative: classroom and field shots of EVplug-certified trainees —
-  one in a workshop with EVplug-branded training kits on the bench,
-  one outdoors commissioning a real charger. Lanyards in lime with the
-  EVplug mark visible.
+
+training/step-img-1.webp
+Currently: training program step 1 (classroom).
+Prompt:
+"Photograph 1200x900, classroom interior at an OFPPT-style training
+center in Tangier. Six Moroccan trainees, mixed gender (three women,
+two in hijab, three men), ages 22 to 34, all in forest-green EVplug
+polos with lime lanyards bearing the Flow-reference EVplug mark on
+their ID cards. They are gathered around a workbench holding a
+disassembled EVplug wallbox; a trainer — Moroccan woman, 40, lime
+safety vest — points at an internal component. A wall map of Morocco
+behind them shows EVplug rollout corridors as lime dots. Even
+daylight from large windows. Logo lock applies."
+
+training/step-img-2.webp
+Currently: training program step 2 (field commissioning).
+Prompt:
+"Photograph 1200x900, exterior, late morning. Two of the same trainees
+outdoors in Agadir at a commissioning bay: a man 27 holding a
+multimeter against a freshly installed EVplug borne, a woman 25 in
+hijab reading a tablet running EVone. Both in EVplug polos and
+lanyards (Flow-reference logo). The lime LED ring on the borne is
+just illuminating. Atlantic horizon in soft focus behind them. Warm
+coastal light. Logo lock applies."
 
 
 src/migrated/assets/solutions/shared/
 -------------------------------------
-- evone-laptop.webp
-  Currently: EVone platform on a laptop.
-  Alternative: laptop mockup showing the EVone dashboard with the orange
-  #c85f14 EVone accent header and EVplug parent-brand mark in the
-  top-left corner. Use a real fleet map of Moroccan cities as the
-  background panel.
 
-- evone-install.webp
-  Currently: EVone installation/onboarding image.
-  Alternative: technician scanning a QR code on an EVplug charger with
-  the EVone app, the activation success screen visible. Reinforces the
-  "EVone by EVplug" relationship.
+solutions/shared/evone-laptop.webp
+Currently: EVone platform on a laptop.
+Prompt:
+"Studio photograph 1600x900 on a neutral light-grey backdrop. A slim
+modern laptop (no visible brand) open, screen displaying the EVone
+dashboard: a header strip in EVone orange #c85f14 with the Flow-
+reference EVplug parent-brand mark in the top-left corner, a left
+rail of fleet metrics, and a main panel showing a real map of Morocco
+(Casablanca, Rabat, Tanger, Marrakech, Agadir labeled) with lime
+#c8d72d charge-point pins. One selected pin opens a session card on
+the map. Subtle reflection on the desk surface. No people. Logo lock
+applies."
+
+solutions/shared/evone-install.webp
+Currently: EVone installation/onboarding image.
+Prompt:
+"Photograph 1200x900, daylight. A Moroccan EVplug technician, man 30,
+forest-green polo, scans the QR code on the side of a newly installed
+EVplug DC borne with his phone running the EVone app (Flow-reference
+EVplug mark in the app header, EVone orange #c85f14 accent below).
+The phone screen shows the activation success state: a green check
+and 'Borne activee — Rabat-Hay Riad'. The lime LED ring on the borne
+is fully lit. Shallow depth of field — phone screen and borne face
+tack-sharp. Logo lock applies."
 
 
 src/migrated/assets/about/
 --------------------------
-- about-us.webp
-  Currently: "about us" team/company image.
-  Alternative: group portrait of the EVplug Maroc team on the rooftop of
-  the Casablanca HQ, lime EVplug banner in the background, founders in
-  the center. Caption-safe negative space on the right.
 
-- electromobilite.webp
-  Currently: editorial image for electromobility context.
-  Alternative: stylized map of Morocco with EVplug pins lit in lime
-  along the main corridors (Tanger-Agadir, Casa-Rabat-Fes), with the
-  PosterCutNeue headline "Le Maroc s'electrifie" overlaid.
+about/about-us.webp
+Currently: "about us" team/company image.
+Prompt:
+"Photograph 1600x900, sunset, rooftop of the EVplug HQ in Casablanca-
+Anfa. Group portrait of fifteen Moroccan team members, mixed gender
+and age (mid-20s to mid-50s), mixed dress (business casual, two women
+in hijab, one man in a light djellaba), arranged in two casual rows.
+Two founders at the center in lime-pinned forest-green blazers.
+Behind them: the Casablanca twin towers and the Hassan II minaret on
+the horizon. A lime EVplug banner on the rooftop railing carries the
+Flow-reference EVplug lockup. Caption-safe negative space along the
+right third of the frame. Warm rim light from the setting sun. Logo
+lock applies."
 
-
-src/migrated/assets/news/
--------------------------
-These currently look like leftover Pod Point ("pod-*") assets from the
-clone. They are the biggest brand-debt risk — replace before launch.
-
-- pod-power.webp        -> EVplug news hero: launch event photo, lime
-                           step-and-repeat backdrop with the EVplug mark.
-- pod-lifestyle.webp    -> Moroccan lifestyle shot of an EV owner using
-                           the EVplug app at a cafe terrace in Marrakech.
-- pod-drive-promo.webp  -> Promotional banner with the EVplug "card"
-                           product hero and lime CTA strip.
-- pod-uber.webp         -> Partnership-style photo: branded ride-hail EV
-                           charging at an EVplug bollard, both logos
-                           visible (or a generic local mobility partner
-                           if Uber is not actually a partner).
-- pod-home-fleet.webp   -> Small-business owner next to two branded
-                           service vans plugged into EVplug chargers at
-                           their workshop.
-- pod-rewards.webp      -> EVplug-branded loyalty illustration — lime
-                           coin/token motif with the plug-arrow mark.
-- knowles-fleet.webp    -> Replace with a real Moroccan fleet customer
-                           case (anonymized if needed) — branded vans at
-                           an EVplug depot install.
-- salsac.webp           -> Replace with an event/sponsorship photo from
-                           a Moroccan mobility event (Africa EV Mobility
-                           Expo) with EVplug-branded booth.
-- zapmap.webp           -> Replace with a screenshot of the EVplug
-                           network map (or the APIME 2 500-bornes plan
-                           visualization) styled in brand colors.
+about/electromobilite.webp
+Currently: editorial image for electromobility context.
+Prompt:
+"Editorial illustration 1600x900. A stylized topographic map of
+Morocco rendered in two forest-green tones, the Atlas ridge and
+Sahara dune contours subtly textured. Lime #c8d72d EVplug location
+pins (Flow-reference plug-arrow as the pin head) lit along the main
+corridors: Tanger – Rabat – Casablanca – Marrakech – Agadir, and
+Casablanca – Fes. A connecting lime route line glows softly between
+pins. PosterCutNeue headline overlaid at upper-left: 'Le Maroc
+s'electrifie'
+in the same lime. No photography, no people. Logo lock applies."
 
 
-src/migrated/assets/guides/
----------------------------
-Same brand-debt note — these are mostly inherited editorial photos.
-For each, the alternative is a custom illustration or photo with a
-consistent lime accent strip + small EVplug watermark in the corner.
+src/migrated/assets/solutions/
+------------------------------
+Each solutions sub-page (Entreprise, Copropriete, Parkings, Hotels,
+StationsService) pulls three images from its own folder: hero, story,
+platform. Today these are `.jpg`, not `.webp` — keep the extension or
+swap to `.webp` during the asset refresh, but match whatever the
+pages import. Shared EVone assets follow at the end of this section.
 
-- evs-heavier.webp        -> Infographic-style image: silhouette of EV
-                             vs ICE car on a forest background, lime
-                             weight-comparison bars and EVplug mark.
-- smart-charging.webp     -> Night-scene of a home with EVplug wallbox
-                             glowing lime, solar panels on the roof,
-                             little data-flow lines to a phone showing
-                             the EVplug app.
-- pod-rewards-works.webp  -> Rename + redo as "evplug-rewards-works":
-                             three-step illustrated explainer using the
-                             lime/forest palette and PosterCutNeue
-                             numerals.
-- couples.webp            -> Moroccan couple charging on a road trip
-                             stop (Atlas backdrop), EVplug bollard in
-                             frame, lime cable as the hero element.
-- pets.webp               -> Owner with dog at an EVplug charger in a
-                             park; lime cable curve mirrors the leash.
-- zero-waste.webp         -> Reusable EVplug-branded tote/coffee cup
-                             next to the charging car — sustainability
-                             vignette in brand palette.
-- festivals.webp          -> Moroccan festival/event setting (Mawazine,
-                             Gnaoua) with an EVplug pop-up charging
-                             station, lime canopy.
-- family-talk.webp        -> Family at home discussing their EV setup,
-                             EVplug wallbox visible through the window
-                             of the garage.
-- no-emissions.webp       -> Skyline shot of Casablanca with clear blue
-                             sky, lime EVplug mark watermark in the
-                             corner and the line "Zero emissions, made
-                             in Morocco" in PosterCutNeue.
+solutions/entreprise/hero.jpg
+Currently: hero image for the Entreprise (fleet + workplace) page.
+Prompt:
+"Wide-format 1920x900 photograph, mid-morning, the entrance plaza of
+a modern corporate headquarters in Casablanca Marina or Casa-Anfa
+Park. A row of six identical company sedans (white EVs, discreet
+navy fleet number on the rear quarter) parked in marked employee
+bays; three are plugged into forest-green EVplug AC bornes with
+lime #c8d72d LED rings active. A Moroccan fleet manager — woman 38
+in a charcoal blazer with an EVplug visitor lanyard (Flow-reference
+mark on the badge) — walks the row holding an EVone tablet. Glass
+office facade reflecting the morning sky behind. Dark gradient
+across the lower third for headline legibility. Logo lock applies
+to bornes and badge."
+
+solutions/entreprise/story.jpg
+Currently: story/panel image for the Entreprise page.
+Prompt:
+"Photograph 1200x900, midday, the indoor lobby of a Casablanca
+office tower (twin-towers style). Three Moroccan colleagues — woman
+30 in business casual with hijab, man 45 in a navy suit, woman 28
+in a tailored blouse — stand around a touch-screen kiosk that
+displays the EVone Entreprise dashboard (forest-green header with
+the Flow-reference EVplug mark, lime metric cards). Through the
+glass partition behind them, a wall-mounted EVplug wallbox is
+visible in the parking area with the lime cable hanging in a soft
+curve. Cool daylight plus warm interior fill. Logo lock applies."
+
+solutions/entreprise/platform.jpg
+Currently: platform/Evone image for the Entreprise page.
+Prompt:
+"Studio photograph 1600x900 on a neutral light-grey backdrop. A
+slim modern laptop angled three-quarters, screen displaying the
+EVone Entreprise dashboard: forest-green header strip with the
+Flow-reference EVplug mark, left rail listing 'Sites',
+'Collaborateurs', 'Avantages', 'Reporting RH'; main panel shows a
+Casablanca-area site map with three building pins and lime #c8d72d
+usage charts beside each. A smaller overlay card shows a per-
+employee monthly charging summary in MAD. Subtle desk reflection.
+No people. Logo lock applies."
+
+solutions/copropriete/hero.jpg
+Currently: hero image for the Copropriete page.
+Prompt:
+"Wide-format 1920x900 photograph, late afternoon, the entrance gate
+of a modern residential apartment building in Rabat-Agdal or
+Casablanca-Maarif. A Moroccan syndic representative — woman 50,
+hair tied back under an ivory hijab, navy cardigan, holding a
+clipboard — stands chatting with a Moroccan EVplug technician (man
+32, forest-green polo and lime safety vest, EVplug cap with Flow-
+reference mark). Behind them in the shared underground-parking
+ramp, two EVplug AC bornes mounted to a forest-green-painted
+concrete column have lime LED rings active and one EV is plugged
+in. Warm low sun on the building facade. Dark gradient across the
+lower third. Logo lock applies."
+
+solutions/copropriete/story.jpg
+Currently: story/panel image for the Copropriete page.
+Prompt:
+"Photograph 1200x900, daylight, the shared underground parking of a
+Moroccan condo (ten to twelve numbered bays visible). A Moroccan
+resident — man 42 in a polo, two grocery bags in his left hand —
+plugs his white EV into an EVplug AC borne mounted on the bay
+column. The adjacent bay shows a different resident's car already
+charging with a calm lime LED ring. Bilingual bay signage
+'Residents — Espace partage / مساحة مشتركة' painted on the column.
+Logo lock applies to the bornes."
 
 
-Consistency notes (apply across all new assets)
------------------------------------------------
-1. Anchor every shot with one lime element (cable, LED ring, lanyard,
-   sticker) so the brand reads even without the logo.
-2. Reserve the bright yellow #ffdc50 for accent-only — never as the
-   dominant fill — to stay consistent with the navbar APIME card.
-3. When the EVplug logo appears in-photo, prefer engraved/embossed over
-   printed-flat so it looks native to the hardware.
-4. PosterCutNeue is the only display face. Body overlays should use the
-   site's body font for visual continuity.
-5. Photograph in recognizably Moroccan environments wherever possible —
-   it differentiates EVplug from generic global EV imagery and
-   reinforces the "by Morocco, for Morocco" positioning.
-6. Retire all `pod-*` filenames during the asset swap; rename to
-   `evplug-*` so the inventory itself stops carrying legacy branding.
+solutions/parkings/hero.jpg
+Currently: hero image for the Parkings page.
+Prompt:
+"Wide-format 1920x900 photograph, midday, a public parking lot in
+Marrakech beside the Carre Eden or Menara mall, or a Casablanca
+shopping-center surface lot. Four EVplug AC bornes line a forest-
+green painted curb under a slim lime-canopy structure; two cars are
+charging (a beige hatchback and a black SUV) with lime cables
+curving from borne to car. A Moroccan parking attendant — man 40,
+in a forest-green-and-lime EVplug-branded operator polo (Flow-
+reference plug-arrow on the chest) — scans a QR sticker on one of
+the bornes with the EVone app on his phone. Palm shadows across the
+asphalt. Logo lock applies."
+
+solutions/parkings/story.jpg
+Currently: story/panel image for the Parkings page.
+Prompt:
+"Photograph 1200x900, late afternoon, the entry kiosk of a paying
+parking lot in Casablanca-Marina. A Moroccan driver — woman 33 in a
+sand-coloured trench coat — taps her EVplug RFID card (Flow-
+reference plug-arrow embossed in lime on the card face) on the
+kiosk reader; the kiosk screen briefly displays the Flow-reference
+EVplug mark and a 'Session demarree' lime confirmation. Behind her,
+the gantry sign reads 'Recharge electrique / شحن كهربائي'. Warm
+side light. Logo lock applies."
+
+
+solutions/hotels/hero.jpg
+Currently: hero image for the Hotels page.
+Prompt:
+"Wide-format 1920x900 photograph, golden hour, the front-of-house
+arrival lane of a Moroccan resort hotel (Marrakech La Mamounia
+style ochre walls and palm-lined driveway, or an Essaouira riad-
+hotel exterior). A valet in a beige uniform hands keys to a
+Moroccan family arriving in a dark-green EV; the EV is parked at a
+discreet forest-green EVplug AC borne tucked between two olive
+trees beside the driveway, lime LED ring lit, lime cable connected.
+Bougainvillea above the entrance arch. Dark gradient across the
+lower third. Logo lock applies to the borne."
+
+solutions/hotels/story.jpg
+Currently: story/panel image for the Hotels page.
+Prompt:
+"Photograph 1200x900, evening, a Moroccan boutique-hotel courtyard
+with a zellige fountain and lantern light. A Moroccan hotel manager
+— woman 45, in a tailored navy djellaba-cut blazer — walks a guest
+(man 38, business traveller with a tablet) past a row of two EVplug
+AC bornes recessed into the courtyard's perimeter wall, lime cables
+coiled neatly. Both gesturing toward the bornes in conversation.
+Warm lantern light, candle reflections in the fountain water. Logo
+lock applies."
+
+
+solutions/stations-service/hero.jpg
+Currently: hero image for the StationsService page.
+Prompt:
+"Wide-format 1920x900 photograph, late afternoon, a Moroccan
+service-station forecourt on the A1 motorway near Kenitra or the
+A7 near Settat. The existing canopy is retained but its brand mark
+is replaced by neutral signage. Two EVplug DC fast chargers (tall,
+forest-green with a yellow #ffdc50 accent stripe) stand at the edge
+of the forecourt next to the conventional pumps. A Moroccan driver
+— man 36 in a polo — leans against his car charging at one of the
+DC units, lime cable connected, lime LED ring active. A second EV
+is pulling in behind. Bilingual ground decal 'Recharge rapide DC /
+شحن سريع' painted on the asphalt of the bay. Dark gradient across
+the lower third. Logo lock applies."
+
+solutions/stations-service/story.jpg
+Currently: story/panel image for the StationsService page.
+Prompt:
+"Photograph 1200x900, daylight, the back-of-house area of the same
+service station. A Moroccan station manager — man 52, in a clean
+station uniform with an EVplug partner pin (Flow-reference mark on
+the pin) — reviews power-distribution equipment with an EVplug
+technician (woman 31, forest-green polo, lime safety vest, EVplug
+hard-hat with the Flow-reference mark). A medium-voltage transformer
+cabinet on the wall behind them carries EVplug-branded warning
+labels in French + Arabic. Cool daylight. Logo lock applies."
+
+
+
+

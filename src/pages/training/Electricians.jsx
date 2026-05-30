@@ -7,9 +7,9 @@ import FloatingCtaForm from '../../components/common/FloatingCtaForm'
 import BookingCalendar from '../../components/common/BookingCalendar'
 import { icons } from '../../migrated/assets/solutions/shared/icons'
 import ctaImageSrc from '../../migrated/assets/solutions/shared/cta-image.svg'
-import heroImg from '../../migrated/assets/installation/hero.png'
-import stepImg1 from '../../migrated/assets/installation/step-img-1.webp'
-import stepImg2 from '../../migrated/assets/installation/step-img-2.webp'
+import heroImg from '../../migrated/assets/installation/hero.webp'
+import stepImg1 from '../../migrated/assets/installation/step-img-1.jpeg'
+import stepImg2 from '../../migrated/assets/installation/step-img-2.jpeg'
 
 const openInstallerForm = () => {
   window.dispatchEvent(new CustomEvent('floating-cta-form:open'))

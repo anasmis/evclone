@@ -25,3 +25,6 @@ Strapi API/
 *.njsproj
 *.sln
 *.sw?
+
+# Flow image-gen working folder (raw sources; copies live in src/migrated/assets/)
+genIMG/

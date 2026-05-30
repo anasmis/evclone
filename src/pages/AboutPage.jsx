@@ -6,8 +6,8 @@ import heroImg from '../migrated/assets/about/hero.svg'
 import iconSchedule from '../migrated/assets/about/icon-schedule.svg'
 import iconVehicle from '../migrated/assets/about/icon-vehicle.svg'
 import iconLocation from '../migrated/assets/about/icon-location.svg'
-import aboutUsImg from '../migrated/assets/about/about-us.webp'
-import electromobiliteImg from '../migrated/assets/about/electromobilite.webp'
+import aboutUsImg from '../migrated/assets/about/about-us.jpeg'
+import electromobiliteImg from '../migrated/assets/about/electromobilite.jpeg'
 import teamLogo from '../migrated/assets/layout/logo.webp'
 
 const keyPoints = [

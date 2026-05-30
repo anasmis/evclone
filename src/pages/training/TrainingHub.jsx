@@ -7,9 +7,9 @@ import CtaBanner from '../../components/sections/CtaBanner'
 import FloatingCtaForm from '../../components/common/FloatingCtaForm'
 import { icons } from '../../migrated/assets/solutions/shared/icons'
 import ctaImageSrc from '../../migrated/assets/solutions/shared/cta-image.svg'
-import heroImg from '../../migrated/assets/installation/hero.png'
-import electriciansImg from '../../migrated/assets/solutions/hotels/story.jpg'
-import corporateImg from '../../migrated/assets/solutions/entreprise/story.jpg'
+import heroImg from '../../migrated/assets/installation/hero.webp'
+import electriciansImg from '../../migrated/assets/solutions/hotels/story.jpeg'
+import corporateImg from '../../migrated/assets/solutions/entreprise/story.jpeg'
 
 const benefits = [
   {
