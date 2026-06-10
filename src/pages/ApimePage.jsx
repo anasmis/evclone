@@ -11,78 +11,78 @@ const FOREST_SOFT = '#123d33'
 const LIME = '#c8d72d'
 
 const stats = [
-  { value: '2023', label: 'Fondation de l’APIME a Casablanca' },
-  { value: '14', label: 'Membres au conseil d’administration' },
-  { value: '2 500+', label: 'Bornes de recharge projetees sur 3 ans' },
-  { value: 'VP', label: 'Role d’EVplug au sein du bureau' },
+  { value: '2023', label: "Fondation de l'APIME à Casablanca" },
+  { value: '14', label: "Membres au conseil d'administration" },
+  { value: '2 500+', label: 'Bornes de recharge projetées sur 3 ans' },
+  { value: 'VP', label: "Rôle d'EVplug au sein du bureau" },
 ]
 
 const pillars = [
   {
     icon: icons.profile,
-    title: 'Federer la filiere',
+    title: 'Fédérer la filière',
     description:
-      "Rassembler energie, automobile, infrastructure et services autour d'une voix commune et d'une feuille de route partagee.",
+      "Rassembler énergie, automobile, infrastructure et services autour d'une voix commune et d'une feuille de route partagée.",
   },
   {
     icon: icons.installation,
-    title: 'Deployer les bornes',
+    title: 'Déployer les bornes',
     description:
-      "Accelerer le maillage du territoire marocain en bornes AC et DC, avec des standards de fiabilite eleves.",
+      "Accélérer le maillage du territoire marocain en bornes AC et DC, avec des standards de fiabilité élevés.",
   },
   {
     icon: icons.tick,
-    title: 'Promouvoir la qualite',
+    title: 'Promouvoir la qualité',
     description:
-      'Definir des referentiels techniques, des normes d’installation et la certification des professionnels.',
+      "Définir des référentiels techniques, des normes d'installation et la certification des professionnels.",
   },
   {
     icon: icons.dashboard,
-    title: 'Dialoguer avec l’Etat',
+    title: "Dialoguer avec l'État",
     description:
-      "Porter les besoins du secteur prive aupres des pouvoirs publics et co-construire un cadre reglementaire adapte.",
+      "Porter les besoins du secteur privé auprès des pouvoirs publics et co-construire un cadre réglementaire adapté.",
   },
 ]
 
 const timeline = [
   {
     date: 'Janvier 2023',
-    title: 'Naissance de l’APIME',
-    body: 'Assemblee generale constitutive a Casablanca. Election du premier bureau et adoption des statuts.',
+    title: "Naissance de l'APIME",
+    body: "Assemblée générale constitutive à Casablanca. Élection du premier bureau et adoption des statuts.",
   },
   {
-    date: 'Fevrier 2023',
-    title: 'Reception par la CGEM',
-    body: 'Le bureau de l’APIME est recu par la Confederation Generale des Entreprises du Maroc pour formaliser sa place dans l’ecosysteme.',
+    date: 'Février 2023',
+    title: 'Réception par la CGEM',
+    body: "Le bureau de l'APIME est reçu par la Confédération Générale des Entreprises du Maroc pour formaliser sa place dans l'écosystème.",
   },
   {
     date: '2024',
     title: 'Roadmap infrastructure',
-    body: 'Annonce d’un plan de deploiement de plus de 2 500 bornes de recharge sur trois ans, en coordination avec les acteurs publics et prives.',
+    body: "Annonce d'un plan de déploiement de plus de 2 500 bornes de recharge sur trois ans, en coordination avec les acteurs publics et privés.",
   },
   {
     date: '2025',
-    title: 'EVplug a la vice-presidence',
-    body: 'EVplug rejoint le bureau de l’APIME et prend la vice-presidence, mobilisant son experience operationnelle au service de la filiere.',
+    title: 'EVplug à la vice-présidence',
+    body: "EVplug rejoint le bureau de l'APIME et prend la vice-présidence, mobilisant son expérience opérationnelle au service de la filière.",
   },
 ]
 
 const contributions = [
   {
     tag: 'Gouvernance',
-    title: 'Vice-presidence',
+    title: 'Vice-présidence',
     body:
-      "EVplug participe activement au pilotage de l'association, a la coordination des groupes de travail et a la representation publique de la filiere.",
+      "EVplug participe activement au pilotage de l'association, à la coordination des groupes de travail et à la représentation publique de la filière.",
   },
   {
     tag: 'Technique',
-    title: 'Standards & referentiels',
+    title: 'Standards & référentiels',
     body:
-      "Nous contribuons aux specifications techniques, aux exigences de securite et aux retours terrain issus de milliers d'installations.",
+      "Nous contribuons aux spécifications techniques, aux exigences de sécurité et aux retours terrain issus de milliers d'installations.",
   },
   {
     tag: 'Formation',
-    title: 'Montee en competence',
+    title: 'Montée en compétence',
     body:
       "Le programme de certification installateurs et les formations entreprises EVplug nourrissent la professionnalisation du secteur.",
   },
@@ -90,25 +90,25 @@ const contributions = [
     tag: 'Plaidoyer',
     title: 'Dialogue institutionnel',
     body:
-      "Nous defendons aupres des pouvoirs publics les enjeux operationnels du deploiement : foncier, raccordement, fiscalite et incitations.",
+      "Nous défendons auprès des pouvoirs publics les enjeux opérationnels du déploiement : foncier, raccordement, fiscalité et incitations.",
   },
 ]
 
 const publications = [
   {
-    type: 'Communique',
+    type: 'Communiqué',
     date: 'Janvier 2025',
-    title: 'Plan national de deploiement des bornes de recharge',
+    title: 'Plan national de déploiement des bornes de recharge',
     excerpt:
-      "L'APIME presente sa feuille de route pour porter le maillage des bornes a un niveau competitif a l'echelle regionale.",
+      "L'APIME présente sa feuille de route pour porter le maillage des bornes à un niveau compétitif à l'échelle régionale.",
     href: '#',
   },
   {
-    type: 'Etude',
+    type: 'Étude',
     date: 'Novembre 2024',
-    title: 'Etat des lieux de la mobilite electrique au Maroc',
+    title: 'État des lieux de la mobilité électrique au Maroc',
     excerpt:
-      'Cartographie des usages, des operateurs et des freins au passage a l’electrique : un document de reference pour la filiere.',
+      "Cartographie des usages, des opérateurs et des freins au passage à l'électrique : un document de référence pour la filière.",
     href: '#',
   },
   {
@@ -116,23 +116,23 @@ const publications = [
     date: 'Septembre 2024',
     title: 'Pour un cadre fiscal incitatif des bornes VE',
     excerpt:
-      "L'association formule des propositions concretes pour aligner la fiscalite marocaine sur les meilleurs standards internationaux.",
+      "L'association formule des propositions concrètes pour aligner la fiscalité marocaine sur les meilleurs standards internationaux.",
     href: '#',
   },
   {
-    type: 'Evenement',
+    type: 'Événement',
     date: 'Juin 2024',
-    title: 'Africa EV Mobility Expo : retour sur l’edition',
+    title: "Africa EV Mobility Expo : retour sur l'édition",
     excerpt:
-      'Synthese des temps forts, des annonces et des intervenants de l’edition annuelle organisee a Casablanca.',
+      "Synthèse des temps forts, des annonces et des intervenants de l'édition annuelle organisée à Casablanca.",
     href: '#',
   },
   {
-    type: 'Communique',
+    type: 'Communiqué',
     date: 'Mars 2024',
     title: 'Partenariat APIME — CGEM sur la formation',
     excerpt:
-      'Lancement d’un programme conjoint pour structurer la formation des installateurs et techniciens de la recharge VE.',
+      "Lancement d'un programme conjoint pour structurer la formation des installateurs et techniciens de la recharge VE.",
     href: '#',
   },
 ]
@@ -175,13 +175,13 @@ function PublicationCard({ pub }) {
 
 export default function ApimePage() {
   return (
-    <MirrorShell documentTitle="APIME | Le role d'EVplug a la vice-presidence">
+    <MirrorShell documentTitle="APIME | Le rôle d'EVplug à la vice-présidence">
       <div className="region region-content">
         <article className="node node--type-page">
           <div className="node__content">
             <Breadcrumb
               current="APIME"
-              trail={[{ to: '/about', label: 'A propos' }]}
+              trail={[{ to: '/about', label: 'À propos' }]}
             />
 
             {/* Hero — bold, asymmetric, dark canvas */}
@@ -206,24 +206,24 @@ export default function ApimePage() {
                       className="inline-flex items-center gap-spacing-sm px-spacing-md py-spacing-sm rounded-full w-fit text-xs font-semibold uppercase tracking-[0.2em]"
                       style={{ backgroundColor: LIME, color: FOREST }}
                     >
-                      Engagement filiere
+                      Engagement filière
                     </span>
                     <h1 className="font-PosterCutNeue tracking-tight m-0 text-white text-5xl xl:text-7xl leading-[1.05]">
-                      EVplug a la vice-presidence
-                      <span style={{ color: LIME }}> de l’APIME.</span>
+                      EVplug à la vice-présidence
+                      <span style={{ color: LIME }}> de l&rsquo;APIME.</span>
                     </h1>
                     <p className="m-0 max-w-[640px] text-white/85 text-lg">
-                      L’APIME — Association Professionnelle Intersectorielle pour la Mobilite
-                      Electrique — federe les acteurs prives qui construisent le Maroc electrique
-                      de demain. En tant que vice-president, EVplug pilote la transformation aux
-                      cotes des operateurs, des constructeurs et des pouvoirs publics.
+                      L&rsquo;APIME — Association Professionnelle Intersectorielle pour la Mobilité
+                      Électrique — fédère les acteurs privés qui construisent le Maroc électrique
+                      de demain. En tant que vice-président, EVplug pilote la transformation aux
+                      côtés des opérateurs, des constructeurs et des pouvoirs publics.
                     </p>
                     <div className="flex flex-wrap gap-spacing-xl">
                       <a href="#publications" className="btn btn-primary font-base">
                         Voir les publications
                       </a>
                       <Link to="/about" className="btn btn-primary-outline font-base">
-                        Retour A propos
+                        Retour À propos
                       </Link>
                     </div>
                   </div>
@@ -254,15 +254,15 @@ export default function ApimePage() {
                   <div className="grid xl:grid-cols-12 gap-spacing-4xl items-end">
                     <div className="xl:col-span-7">
                       <span className="inline-flex items-center px-spacing-md py-spacing-sm rounded-full bg-lime text-black text-xs font-semibold uppercase tracking-[0.2em] w-fit">
-                        Les piliers de l’APIME
+                        Les piliers de l&rsquo;APIME
                       </span>
                       <h2 className="tracking-tight m-0 mt-spacing-3xl">
-                        Une association batie sur quatre engagements.
+                        Une association bâtie sur quatre engagements.
                       </h2>
                     </div>
                     <p className="xl:col-span-5 m-0 text-gray-600">
-                      L’APIME concentre l’action collective des acteurs prives autour de quatre
-                      axes structurants pour le marche marocain.
+                      L&rsquo;APIME concentre l&rsquo;action collective des acteurs privés autour de quatre
+                      axes structurants pour le marché marocain.
                     </p>
                   </div>
 
@@ -304,10 +304,10 @@ export default function ApimePage() {
                       className="inline-flex items-center px-spacing-md py-spacing-sm rounded-full text-xs font-semibold uppercase tracking-[0.2em] w-fit mx-auto"
                       style={{ backgroundColor: FOREST, color: LIME }}
                     >
-                      Reperes
+                      Repères
                     </span>
                     <h2 className="tracking-tight m-0">
-                      Une jeune association, des etapes deja marquantes.
+                      Une jeune association, des étapes déjà marquantes.
                     </h2>
                   </div>
 
@@ -351,15 +351,15 @@ export default function ApimePage() {
                       className="inline-flex items-center px-spacing-md py-spacing-sm rounded-full text-xs font-semibold uppercase tracking-[0.2em] w-fit"
                       style={{ backgroundColor: LIME, color: FOREST }}
                     >
-                      Le role d’EVplug
+                      Le rôle d&rsquo;EVplug
                     </span>
                     <h2 className="tracking-tight m-0 text-white">
-                      Quatre contributions concretes a la filiere.
+                      Quatre contributions concrètes à la filière.
                     </h2>
                     <p className="m-0 text-white/80">
-                      EVplug met son experience operationnelle, ses outils et son reseau au service
-                      du collectif APIME. Voici, concretement, comment nous faisons avancer la
-                      mobilite electrique au Maroc.
+                      EVplug met son expérience opérationnelle, ses outils et son réseau au service
+                      du collectif APIME. Voici, concrètement, comment nous faisons avancer la
+                      mobilité électrique au Maroc.
                     </p>
                   </div>
 
@@ -398,17 +398,17 @@ export default function ApimePage() {
                         Publications APIME
                       </span>
                       <h2 className="tracking-tight m-0">
-                        Suivez les prises de parole et les travaux de l’association.
+                        Suivez les prises de parole et les travaux de l&rsquo;association.
                       </h2>
                     </div>
                     <p className="xl:col-span-5 m-0 text-gray-600">
-                      Communiques, etudes, positions, evenements : retrouvez les publications de
-                      l’APIME et les contributions auxquelles EVplug participe.
+                      Communiqués, études, positions, événements : retrouvez les publications de
+                      l&rsquo;APIME et les contributions auxquelles EVplug participe.
                     </p>
                   </div>
 
                   <CardsCarousel
-                    ariaLabel="Publications de l’APIME"
+                    ariaLabel="Publications de l'APIME"
                     slideClassName="basis-full md:basis-1/2 xl:basis-1/3"
                     autoPlay
                     interval={6000}
@@ -422,11 +422,11 @@ export default function ApimePage() {
             </section>
 
             <CtaBanner
-              title="Construisons ensemble la mobilite electrique du Maroc."
-              body="Vous etes installateur, entreprise, collectivite ou acteur de la filiere ? Echangeons sur vos projets et sur la maniere dont EVplug et l'APIME peuvent vous accompagner."
+              title="Construisons ensemble la mobilité électrique du Maroc."
+              body="Vous êtes installateur, entreprise, collectivité ou acteur de la filière ? Échangeons sur vos projets et sur la manière dont EVplug et l'APIME peuvent vous accompagner."
               ctas={[
                 { to: '/contact-us', label: 'Nous contacter', variant: 'secondary' },
-                { to: '/training', label: 'Decouvrir nos formations', variant: 'secondary-outline' },
+                { to: '/training', label: 'Découvrir nos formations', variant: 'secondary-outline' },
               ]}
               decorImage={ctaImageSrc}
               decorBg={LIME}

@@ -1,4 +1,4 @@
-﻿import { useState } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import MirrorShell from '../MirrorShell'
 import BrandsMarquee from '../../components/common/BrandsMarquee'
@@ -39,39 +39,39 @@ import landRover from '../../migrated/assets/home-charging/brands/land-rover.svg
 import toyota from '../../migrated/assets/home-charging/brands/toyota.svg'
 
 const intro = [
-  { icon: iconOffers, title: 'Deux offres claires', body: 'Choisissez le mode qui correspond a votre budget et votre usage : Installation EVplug ou Carte EVplug.' },
-  { icon: iconInstall, title: 'Installation certifiee a domicile', body: 'Audit electrique, pose, tests et mise en service realises par les techniciens qualifies EVplug.' },
-  { icon: iconCard, title: 'Carte EVplug + pilotage intelligent', body: 'Recharge publique avec la carte EVplug et suivi des sessions domicile/public depuis l\'application.' },
+  { icon: iconOffers, title: 'Deux offres claires', body: 'Choisissez le mode qui correspond à votre budget et votre usage : Installation EVplug ou Carte EVplug.' },
+  { icon: iconInstall, title: 'Installation certifiée à domicile', body: 'Audit électrique, pose, tests et mise en service réalisés par les techniciens qualifiés EVplug.' },
+  { icon: iconCard, title: 'Carte EVplug + pilotage intelligent', body: "Recharge publique avec la carte EVplug et suivi des sessions domicile/public depuis l'application." },
 ]
 
 const compareFeatures = [
   { label: 'Vitesse de recharge', card: '7.4kW', install: '7.4kW' },
-  { label: 'Type de cable', card: 'Avec cable inclus', install: 'Avec ou sans cable (+490 MAD)' },
+  { label: 'Type de câble', card: 'Avec câble inclus', install: 'Avec ou sans câble (+490 MAD)' },
   { label: 'Compatible solaire', card: 'Oui', install: 'Oui' },
-  { label: 'Recharge publique', card: 'Acces inclus au reseau de bornes EVplug Maroc', install: 'Carte EVplug en option' },
+  { label: 'Recharge publique', card: 'Accès inclus au réseau de bornes EVplug Maroc', install: 'Carte EVplug en option' },
   { label: 'Garantie', card: "Pendant tout l'abonnement", install: '5 ans' },
   { label: 'Protection contre les surtensions', card: 'Incluse', install: '+990 MAD' },
 ]
 
 const steps = [
   { n: 1, title: 'Choisir votre formule', img: step1 },
-  { n: 2, title: 'Etude technique a domicile', img: step2 },
-  { n: 3, title: 'Pose par un technicien certifie', img: step3 },
+  { n: 2, title: 'Étude technique à domicile', img: step2 },
+  { n: 3, title: 'Pose par un technicien certifié', img: step3 },
   { n: 4, title: 'Rechargez sereinement', img: step4 },
 ]
 
 const methodSteps = [
   {
-    title: 'Demande et etude technique',
-    body: "Un conseiller EVplug etudie votre installation electrique, votre place de stationnement et vos usages de recharge afin de selectionner la borne et la pose les plus adaptees a votre logement.",
+    title: 'Demande et étude technique',
+    body: "Un conseiller EVplug étudie votre installation électrique, votre place de stationnement et vos usages de recharge afin de sélectionner la borne et la pose les plus adaptées à votre logement.",
   },
   {
     title: 'Devis et planification',
-    body: "Apres etude, nous confirmons votre eligibilite au forfait standard. Plus de 90 % des clients en beneficient. Si votre installation necessite des travaux complementaires, nous vous remettons un devis ferme avant tout engagement, puis planifions l'intervention a la date qui vous convient.",
+    body: "Après l'étude, nous confirmons votre éligibilité au forfait standard. Plus de 90 % des clients en bénéficient. Si votre installation nécessite des travaux complémentaires, nous vous remettons un devis ferme avant tout engagement, puis planifions l'intervention à la date qui vous convient.",
   },
   {
     title: 'Installation',
-    body: "Un technicien certifie EVplug realise la pose de votre borne dans le respect des normes en vigueur. L'intervention dure generalement entre 2 et 4 heures. Apres mise en service, il vous accompagne sur l'utilisation de la borne et sur l'application EVplug avant de quitter votre domicile.",
+    body: "Un technicien certifié EVplug réalise la pose de votre borne dans le respect des normes en vigueur. L'intervention dure généralement entre 2 et 4 heures. Après mise en service, il vous accompagne sur l'utilisation de la borne et sur l'application EVplug avant de quitter votre domicile.",
   },
 ]
 
@@ -80,46 +80,46 @@ const brands = [ford, bmw, jeep, audi, fiat, kia, landRover, toyota]
 const faqInstallation = [
   {
     q: 'Quel est le meilleur emplacement pour installer une borne ?',
-    a: "L'emplacement ideal est un mur exterieur ou interieur de garage, a proximite de votre stationnement habituel. La borne doit etre installee dans un endroit sec, ventile et accessible pour que la recharge soit a la fois sure et confortable. Verifiez la longueur du cable necessaire entre la borne et la prise de votre vehicule. Au Maroc, les configurations de villas, riads et copropriete varient beaucoup : notre conseiller EVplug etudie chaque cas pour vous proposer la longueur de cable et le positionnement adaptes. La distance entre votre tableau electrique et l'emplacement souhaite joue un role important : plus elle est courte, plus l'installation est economique. Notre etude technique gratuite cadre ces points avant intervention.",
+    a: "L'emplacement idéal est un mur extérieur ou intérieur de garage, à proximité de votre stationnement habituel. La borne doit être installée dans un endroit sec, ventilé et accessible pour que la recharge soit à la fois sûre et confortable. Vérifiez la longueur du câble nécessaire entre la borne et la prise de votre véhicule. Au Maroc, les configurations de villas, riads et copropriété varient beaucoup : notre conseiller EVplug étudie chaque cas pour vous proposer la longueur de câble et le positionnement adaptés. La distance entre votre tableau électrique et l'emplacement souhaité joue un rôle important : plus elle est courte, plus l'installation est économique. Notre étude technique gratuite cadre ces points avant intervention.",
   },
 ]
 
 const faqGeneral = [
   {
-    q: 'Tout electricien peut-il installer une borne de recharge ?',
-    a: "Seul un electricien qualifie peut installer une borne de recharge en respectant les normes en vigueur. Au Maroc, les techniciens EVplug sont formes specifiquement aux normes IEC 61851 et aux exigences de securite des installations de recharge electrique. Tous nos partenaires installateurs disposent des qualifications electriques requises et d'une experience confirmee en pose de bornes. EVplug propose l'installation comme prestation integree a l'achat de votre borne via notre marketplace. Si vous preferez confier l'installation a votre propre electricien, contactez nos equipes pour obtenir les specifications techniques et les recommandations de pose adaptees au modele de borne choisi.",
+    q: 'Tout électricien peut-il installer une borne de recharge ?',
+    a: "Seul un électricien qualifié peut installer une borne de recharge en respectant les normes en vigueur. Au Maroc, les techniciens EVplug sont formés spécifiquement aux normes IEC 61851 et aux exigences de sécurité des installations de recharge électrique. Tous nos partenaires installateurs disposent des qualifications électriques requises et d'une expérience confirmée en pose de bornes. EVplug propose l'installation comme prestation intégrée à l'achat de votre borne via notre marketplace. Si vous préférez confier l'installation à votre propre électricien, contactez nos équipes pour obtenir les spécifications techniques et les recommandations de pose adaptées au modèle de borne choisi.",
   },
   {
     q: 'Faut-il une autorisation pour installer une borne ?',
-    a: "Si vous etes proprietaire d'une villa avec parking prive, aucune autorisation specifique n'est necessaire. Si vous etes locataire ou proprietaire dans une copropriete, vous devez obtenir l'accord du syndic ou du proprietaire avant l'installation. EVplug propose une solution dediee aux copropriete : etude electrique du parking, installation mutualisee avec refacturation individualisee via la plateforme EVone, et gestion administrative simplifiee. Notre equipe accompagne les syndics dans la presentation du projet en assemblee generale.",
+    a: "Si vous êtes propriétaire d'une villa avec parking privé, aucune autorisation spécifique n'est nécessaire. Si vous êtes locataire ou propriétaire dans une copropriété, vous devez obtenir l'accord du syndic ou du propriétaire avant l'installation. EVplug propose une solution dédiée aux copropriétés : étude électrique du parking, installation mutualisée avec refacturation individualisée via la plateforme EVone, et gestion administrative simplifiée. Notre équipe accompagne les syndics dans la présentation du projet en assemblée générale.",
   },
   {
     q: 'Une borne EVplug est-elle compatible avec des panneaux solaires ?',
-    a: "Oui. Le Maroc beneficie d'un ensoleillement exceptionnel et plusieurs bornes du catalogue EVplug integrent la compatibilite solaire native. Vous pouvez recharger votre vehicule avec votre installation photovoltaique, le reseau ONEE, ou un mix des deux selon vos preferences. Mode solaire pur : recharge uniquement via l'energie solaire excedentaire, ideal pour les longues journees ensoleillees frequentes au Maroc. Mode mixte solaire et reseau : combine l'energie solaire et un complement reseau pour assurer une vitesse de recharge constante. Notre conseiller EVplug vous oriente vers le modele de borne le plus adapte a votre configuration solaire.",
+    a: "Oui. Le Maroc bénéficie d'un ensoleillement exceptionnel et plusieurs bornes du catalogue EVplug intègrent la compatibilité solaire native. Vous pouvez recharger votre véhicule avec votre installation photovoltaïque, le réseau ONEE, ou un mix des deux selon vos préférences. Mode solaire pur : recharge uniquement via l'énergie solaire excédentaire, idéal pour les longues journées ensoleillées fréquentes au Maroc. Mode mixte solaire et réseau : combine l'énergie solaire et un complément réseau pour assurer une vitesse de recharge constante. Notre conseiller EVplug vous oriente vers le modèle de borne le plus adapté à votre configuration solaire.",
   },
   {
-    q: 'Ma borne EVplug peut-elle se connecter a mes autres equipements connectes ?',
-    a: "Les bornes connectees du catalogue EVplug s'utilisent via l'application mobile EVplug. Connectez votre borne au Wi-Fi de votre domicile et pilotez-la a distance : programmation des sessions de recharge, verrouillage de la borne, choix du mode de charge, suivi de consommation et historique des sessions. Selon le modele de borne choisi, des integrations supplementaires (assistants vocaux, domotique) peuvent etre disponibles.",
+    q: 'Ma borne EVplug peut-elle se connecter à mes autres équipements connectés ?',
+    a: "Les bornes connectées du catalogue EVplug s'utilisent via l'application mobile EVplug. Connectez votre borne au Wi-Fi de votre domicile et pilotez-la à distance : programmation des sessions de recharge, verrouillage de la borne, choix du mode de charge, suivi de consommation et historique des sessions. Selon le modèle de borne choisi, des intégrations supplémentaires (assistants vocaux, domotique) peuvent être disponibles.",
   },
   {
     q: 'EVplug fonctionne-t-il avec mon abonnement ONEE ?',
-    a: "Oui. Les bornes du catalogue EVplug fonctionnent avec votre abonnement ONEE ou regie locale, sans modification d'abonnement. Si votre tarification comporte des plages horaires distinctes, programmez la recharge sur les heures les plus avantageuses depuis l'application EVplug pour optimiser le cout de chaque session.",
+    a: "Oui. Les bornes du catalogue EVplug fonctionnent avec votre abonnement ONEE ou régie locale, sans modification d'abonnement. Si votre tarification comporte des plages horaires distinctes, programmez la recharge sur les heures les plus avantageuses depuis l'application EVplug pour optimiser le coût de chaque session.",
   },
   {
-    q: 'Puis-je rouler en electrique sans place de parking privee ?',
-    a: "Si vous ne disposez pas d'un parking prive, plusieurs solutions s'offrent a vous au Maroc : utilisez la carte EVplug pour acceder au reseau de bornes publiques EVplug et de nos partenaires d'itinerance, ou rechargez sur les bornes en entreprise lorsque c'est possible. EVplug developpe progressivement son maillage public sur Casablanca, Rabat, Marrakech et Tanger. Pour les logements en copropriete sans place attribuee, contactez-nous : nous accompagnons votre syndic dans la mise en place d'une infrastructure mutualisee pour l'ensemble des residents.",
+    q: 'Puis-je rouler en électrique sans place de parking privée ?',
+    a: "Si vous ne disposez pas d'un parking privé, plusieurs solutions s'offrent à vous au Maroc : utilisez la carte EVplug pour accéder au réseau de bornes publiques EVplug et de nos partenaires d'itinérance, ou rechargez sur les bornes en entreprise lorsque c'est possible. EVplug développe progressivement son maillage public sur Casablanca, Rabat, Marrakech et Tanger. Pour les logements en copropriété sans place attribuée, contactez-nous : nous accompagnons votre syndic dans la mise en place d'une infrastructure mutualisée pour l'ensemble des résidents.",
   },
   {
     q: "Que se passe-t-il si mon installation n'est pas standard ?",
-    a: "Les installations specifiques (longues distances de cable, travaux de genie civil, mise a niveau du tableau electrique, raccordement triphase) peuvent generer un cout additionnel. A la suite de votre demande, nos techniciens realisent une etude detaillee et vous remettent un devis ferme sans engagement. Si vous ne souhaitez pas donner suite, aucun frais ne vous est facture pour cette etude.",
+    a: "Les installations spécifiques (longues distances de câble, travaux de génie civil, mise à niveau du tableau électrique, raccordement triphasé) peuvent générer un coût additionnel. À la suite de votre demande, nos techniciens réalisent une étude détaillée et vous remettent un devis ferme sans engagement. Si vous ne souhaitez pas donner suite, aucun frais ne vous est facturé pour cette étude.",
   },
   {
     q: 'Ma borne a-t-elle besoin du Wi-Fi pour fonctionner ?',
-    a: "Nous recommandons de connecter votre borne au Wi-Fi de votre domicile pour profiter pleinement des fonctionnalites intelligentes : programmation des sessions, verrouillage a distance, suivi de consommation, et mises a jour logicielles automatiques. En cas de coupure du Wi-Fi, votre vehicule continue a se recharger normalement. Seules les fonctions connectees sont temporairement indisponibles pendant la coupure. L'abonnement EVplug Card necessite une connexion Wi-Fi stable, indispensable au pilotage intelligent de la recharge et a la maintenance proactive de votre borne.",
+    a: "Nous recommandons de connecter votre borne au Wi-Fi de votre domicile pour profiter pleinement des fonctionnalités intelligentes : programmation des sessions, verrouillage à distance, suivi de consommation, et mises à jour logicielles automatiques. En cas de coupure du Wi-Fi, votre véhicule continue à se recharger normalement. Seules les fonctions connectées sont temporairement indisponibles pendant la coupure. L'abonnement EVplug Card nécessite une connexion Wi-Fi stable, indispensable au pilotage intelligent de la recharge et à la maintenance proactive de votre borne.",
   },
   {
-    q: "Combien de temps faut-il pour installer une borne EVplug a domicile ?",
-    a: "Une installation standard est realisee en 2 a 4 heures sur site. Pour les configurations specifiques (genie civil, mise a niveau electrique), notre equipe vous communique le delai estime apres etude technique.",
+    q: "Combien de temps faut-il pour installer une borne EVplug à domicile ?",
+    a: "Une installation standard est réalisée en 2 à 4 heures sur site. Pour les configurations spécifiques (génie civil, mise à niveau électrique), notre équipe vous communique le délai estimé après étude technique.",
   },
 ]
 
@@ -144,7 +144,7 @@ function ComparisonColumn({ title, priceLabel, monthlyValue, monthlyNote, cta, c
               <path d="M2.41304 12H21.587" stroke="black" strokeWidth="1.2" />
             </svg>
             <div className="grid gap-spacing-xl">
-              <div className="font-base text-black m-0">Mensualite</div>
+              <div className="font-base text-black m-0">Mensualité</div>
               <div className="flex text-start items-end gap-2">
                 <div className="font-bold text-[40px] text-[#163e4c] m-0">{monthlyValue}</div>
                 <div className="xl:font-base font-xs text-black h-[17px]">{monthlyNote}</div>
@@ -186,9 +186,9 @@ function ComparisonTable() {
             <h3 className="m-0">Comparez vos options</h3>
             <div className="m-0">
               <p>
-                Deux facons de passer a l'electrique avec EVplug : <strong>installez votre propre borne</strong> a
-                domicile pour une recharge dediee, ou <strong>prenez la Carte EVplug</strong> pour acceder a notre
-                reseau public de bornes au Maroc â€” egalement disponible pour les{' '}
+                Deux façons de passer à l'électrique avec EVplug : <strong>installez votre propre borne</strong> à
+                domicile pour une recharge dédiée, ou <strong>prenez la Carte EVplug</strong> pour accéder à notre
+                réseau public de bornes au Maroc — également disponible pour les{' '}
                 <Link to="/solutions/entreprise" className="underline">
                   infrastructures d'entreprise
                 </Link>
@@ -208,7 +208,7 @@ function ComparisonTable() {
               ctaTo="/contact-us"
               footerNote={
                 <>
-                  Carte aussi emise pour les{' '}
+                  Carte aussi émise pour les{' '}
                   <Link to="/solutions/entreprise" className="underline">
                     infrastructures d'entreprise
                   </Link>
@@ -263,7 +263,7 @@ function ComparisonTable() {
                   ctaTo="/contact-us"
                   footerNote={
                     <>
-                      Carte aussi emise pour les{' '}
+                      Carte aussi émise pour les{' '}
                       <Link to="/solutions/entreprise" className="underline">
                         infrastructures d'entreprise
                       </Link>
@@ -301,11 +301,11 @@ export default function HomeCharging() {
             <Breadcrumb current="Comparer nos offres de recharge" />
 
             <Hero
-              title="Deux offres EVplug pour demarrer facilement"
-              subtitle="Choisissez entre l'offre Installation EVplug (achat unique) et la Carte EVplug (abonnement). Dans les deux cas, vous beneficiez d'une installation certifiee et d'un accompagnement complet."
+              title="Deux offres EVplug pour démarrer facilement"
+              subtitle="Choisissez entre l'offre Installation EVplug (achat unique) et la Carte EVplug (abonnement). Dans les deux cas, vous bénéficiez d'une installation certifiée et d'un accompagnement complet."
               ctas={[
                 { to: '/installation', label: "Voir l'offre Installation", variant: 'primary' },
-                { to: '/products/carte-evplug', label: 'Decouvrir la Carte EVplug', variant: 'primary-outline' },
+                { to: '/products/carte-evplug', label: 'Découvrir la Carte EVplug', variant: 'primary-outline' },
               ]}
               footnote="Installation EVplug : achat unique. Carte EVplug : formule avec abonnement mensuel et services inclus."
               image={hero}
@@ -313,7 +313,7 @@ export default function HomeCharging() {
             />
 
             <BenefitsStrip
-              heading="Rejoignez l'ecosysteme EVplug au Maroc"
+              heading="Rejoignez l'écosystème EVplug au Maroc"
               items={intro.map((item) => ({ icon: item.icon, title: item.title, description: item.body }))}
             />
 
@@ -333,7 +333,7 @@ export default function HomeCharging() {
                       <h3 className="tracking-tight m-0">Deux options simples pour commencer la recharge</h3>
                       <div className="m-0">
                         <p>
-                          Choisissez l'option qui vous convient le mieux. Les deux incluent l'installation EVplug a
+                          Choisissez l'option qui vous convient le mieux. Les deux incluent l'installation EVplug à
                           domicile et l'accompagnement de mise en service.
                         </p>
                       </div>
@@ -341,11 +341,11 @@ export default function HomeCharging() {
                     <div className="grid gap-spacing-4xl md:grid-flow-col two-cards-column md:grid-cols-2">
                       <div className="bg-blue-dianne col text-white rounded-2xl p-spacing-3xl gap-spacing-4xl relative">
                         <span className="absolute -top-[24px] right-4 text-black font-semibold py-spacing-sm px-spacing-md rounded-md text-lg text-center bg-pear">
-                          Jusqu'a 12 000 MAD economises a l'achat
+                          Jusqu'à 12 000 MAD économisés à l'achat
                         </span>
                         <div className="gap-spacing-2xl h-full justify-between flex flex-col">
                           <div className="grid gap-spacing-xl">
-                            <h6 className="text-white">Etudier votre projet</h6>
+                            <h6 className="text-white">Étudier votre projet</h6>
                             <div className="text-white image-two-card-des m-0">
                               <p>Abonnement mensuel avec services EVplug inclus</p>
                             </div>
@@ -356,9 +356,9 @@ export default function HomeCharging() {
                                 <img src={iconSubscription} alt="" className="w-6 h-6 object-contain" />
                               </span>
                               <div>
-                                <p className="font-semibold mb-1">Sans cout initial eleve</p>
+                                <p className="font-semibold mb-1">Sans coût initial élevé</p>
                                 <div className="text-white">
-                                  <p>Etalez le cout avec une mensualite simple et fixe.</p>
+                                  <p>Étalez le coût avec une mensualité simple et fixe.</p>
                                 </div>
                               </div>
                             </div>
@@ -367,16 +367,16 @@ export default function HomeCharging() {
                                 <img src={iconSmartCharge} alt="" className="w-6 h-6 object-contain" />
                               </span>
                               <div>
-                                <p className="font-semibold mb-1">Recharge intelligente qui vous recompense</p>
+                                <p className="font-semibold mb-1">Recharge intelligente qui vous récompense</p>
                                 <div className="text-white">
-                                  <p>Gagnez jusqu'a 2 000 MAD/an en recompenses selon vos usages.</p>
+                                  <p>Gagnez jusqu'à 2 000 MAD/an en récompenses selon vos usages.</p>
                                 </div>
                               </div>
                             </div>
                           </div>
                           <div className="flex mt-auto">
                             <Link to="/products/carte-evplug" className="font-base btn-secondary w-full">
-                              Decouvrir la Carte EVplug
+                              Découvrir la Carte EVplug
                             </Link>
                           </div>
                         </div>
@@ -384,13 +384,13 @@ export default function HomeCharging() {
 
                       <div className="bg-blue-dianne col text-white rounded-2xl p-spacing-3xl gap-spacing-4xl relative">
                         <span className="absolute -top-[24px] right-4 text-black font-semibold py-spacing-sm px-spacing-md rounded-md text-lg text-center bg-pear">
-                          A partir de 11 990 MAD
+                          À partir de 11 990 MAD
                         </span>
                         <div className="gap-spacing-2xl h-full justify-between flex flex-col">
                           <div className="grid gap-spacing-xl">
                             <h6 className="text-white">Installer une borne EVplug</h6>
                             <div className="text-white image-two-card-des m-0">
-                              <p>Recharge a domicile a partir de 11 990 MAD</p>
+                              <p>Recharge à domicile à partir de 11 990 MAD</p>
                             </div>
                           </div>
                           <div className="space-y-4 text-sm">
@@ -399,7 +399,7 @@ export default function HomeCharging() {
                                 <img src={iconStarWhite} alt="" className="w-6 h-6 object-contain" />
                               </span>
                               <div>
-                                <p className="font-semibold mb-1">Un achat unique, une fiabilite au quotidien.</p>
+                                <p className="font-semibold mb-1">Un achat unique, une fiabilité au quotidien.</p>
                                 <div className="text-white">
                                   <p>
                                     Technologie de recharge fiable pour votre domicile avec installation et garantie
@@ -411,7 +411,7 @@ export default function HomeCharging() {
                           </div>
                           <div className="flex mt-auto">
                             <Link to="/contact-us" className="font-base btn-secondary w-full">
-                              Parler a un expert
+                              Parler à un expert
                             </Link>
                           </div>
                         </div>
@@ -430,9 +430,9 @@ export default function HomeCharging() {
               <div className="container-max-width-desktop container-max-width-tablet mx-auto container-padding-desktop container-padding-tablet container-padding-mobile how-it-work-block">
                 <div className="grid gap-spacing-6xl">
                   <div className="grid gap-spacing-3xl text-center max-w-[788px] mx-auto pr-spacing-2xl md:pr-spacing-4xl xl:pr-spacing-none">
-                    <h3 className="text-center tracking-tight m-0">Comment ca marche</h3>
+                    <h3 className="text-center tracking-tight m-0">Comment ça marche</h3>
                     <div className="m-0">
-                      <p>Un accompagnement complet, du choix de la borne a la mise en service.</p>
+                      <p>Un accompagnement complet, du choix de la borne à la mise en service.</p>
                     </div>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-spacing-4xl justify-center">
@@ -464,7 +464,7 @@ export default function HomeCharging() {
             {/* Brand logos */}
             <section className="relative logo-spread-section bg-white rounded-b-4xl xl:pt-spacing-7xl xl:pb-spacing-9xl py-spacing-7xl gap-spacing-4xl">
               <div className="max-w-[590px] mx-auto w-full text-center mb-spacing-6xl px-spacing-xl">
-                <h3 className="tracking-tight m-0">Compatibles avec toutes les marques de vehicules electriques</h3>
+                <h3 className="tracking-tight m-0">Compatibles avec toutes les marques de véhicules électriques</h3>
               </div>
               <div className="container-max-width-desktop container-max-width-tablet mx-auto">
                 <div className="grid gap-spacing-3xl">
@@ -480,9 +480,9 @@ export default function HomeCharging() {
                 <div className="grid gap-spacing-6xl">
                   <div className="view-header text-center">
                     <div className="heading-block grid gap-spacing-3xl">
-                      <h2 className="tracking-tight m-0">Notre methode d'installation</h2>
+                      <h2 className="tracking-tight m-0">Notre méthode d'installation</h2>
                       <div>
-                        <p>Plus de 90 % de nos clients beneficient de notre forfait d'installation standard EVplug.</p>
+                        <p>Plus de 90 % de nos clients bénéficient de notre forfait d'installation standard EVplug.</p>
                       </div>
                     </div>
                   </div>
@@ -500,7 +500,7 @@ export default function HomeCharging() {
                             </div>
                             <div className="m-0 font-semibold">
                               <p>
-                                Un reseau d'installateurs partenaires sur Casablanca, Rabat, Marrakech et Tanger
+                                Un réseau d'installateurs partenaires sur Casablanca, Rabat, Marrakech et Tanger
                               </p>
                             </div>
                           </div>
@@ -514,7 +514,7 @@ export default function HomeCharging() {
                               <img src={iconInstallation} alt="" />
                             </div>
                             <div className="m-0 font-semibold">
-                              <p>Pose realisee par des techniciens qualifies EVplug</p>
+                              <p>Pose réalisée par des techniciens qualifiés EVplug</p>
                             </div>
                           </div>
                         </div>
@@ -542,7 +542,7 @@ export default function HomeCharging() {
               <div className="container-max-width-desktop container-max-width-tablet container-padding-desktop container-padding-tablet container-padding-mobile mx-auto xl:py-spacing-9xl py-spacing-7xl">
                 <div className="view-header text-center">
                   <div className="heading-block pb-12 grid gap-spacing-sm">
-                    <h4 className="tracking-tight m-0">Questions frequentes</h4>
+                    <h4 className="tracking-tight m-0">Questions fréquentes</h4>
                   </div>
                 </div>
                 <div className="grid sm:gap-spacing-7xl gap-spacing-5xl">
@@ -557,7 +557,7 @@ export default function HomeCharging() {
 
             <HelpBand
               icon={helpIcon}
-              title="Notre equipe support est joignable 24h/24, 7j/7."
+              title="Notre équipe support est joignable 24h/24, 7j/7."
               body={
                 <>
                   Besoin d'aide ?{' '}
@@ -571,9 +571,9 @@ export default function HomeCharging() {
             />
 
             <CtaBanner
-              title="Une technologie eprouvee."
-              body="Des bornes selectionnees pour la fiabilite, posees par des techniciens certifies, avec un suivi continu via l'application EVplug."
-              ctas={[{ to: '/contact-us', label: 'Decouvrir notre offre', variant: 'secondary' }]}
+              title="Une technologie éprouvée."
+              body="Des bornes sélectionnées pour la fiabilité, posées par des techniciens certifiés, avec un suivi continu via l'application EVplug."
+              ctas={[{ to: '/contact-us', label: 'Découvrir notre offre', variant: 'secondary' }]}
               decorImage={ctaImage}
             />
           </div>
@@ -581,9 +581,9 @@ export default function HomeCharging() {
       </div>
       <FloatingCtaForm
         buttonLabel="Recharger chez moi"
-        title="Recharge a domicile"
+        title="Recharge à domicile"
         subtitle="Installation EVplug ou Carte EVplug : indiquez votre besoin, un conseiller vous recontacte sous 24h."
-        defaultInterest="Installation a domicile"
+        defaultInterest="Installation à domicile"
         accentColor="#c8d72d"
       />
     </MirrorShell>

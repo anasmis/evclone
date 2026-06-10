@@ -24,18 +24,11 @@ export const ALLOWED_EXACT_ROUTES = new Set([
   // Contact
   '/contact-us',
   // Footer
-  '/offers/discounts',
-  '/reports',
-  '/technical/hardware',
-  '/technical/installation',
-  '/products/domestic-installer-guidance',
   '/sitemap',
   '/security',
   '/general-terms-and-conditions',
   '/legal/privacy-and-cookies-policy',
   '/legal/cookies-policy',
-  '/legal/modern-slavery-statement',
-  '/legal/policies',
   '/legal/returns-and-refunds',
 ])
 

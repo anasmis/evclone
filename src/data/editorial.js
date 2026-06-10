@@ -13,16 +13,16 @@
 import podPower from '../migrated/assets/news/pod-power.webp'
 import evsHeavier from '../migrated/assets/guides/evs-heavier.webp'
 
-export const GUIDE_CATEGORIES = ['Tous', 'Actualites', 'Vivre avec un VE', 'Couts', 'Entreprise', 'Recharge']
+export const GUIDE_CATEGORIES = ['Tous', 'Actualités', 'Vivre avec un VE', 'Coûts', 'Entreprise', 'Recharge']
 
 const placeholderBody = (title) => [
   {
     type: 'paragraph',
-    text: `Cet article ("${title}") est en cours de redaction. Le contenu detaille sera publie prochainement.`,
+    text: `Cet article ("${title}") est en cours de rédaction. Le contenu détaillé sera publié prochainement.`,
   },
   {
     type: 'paragraph',
-    text: "En attendant, n'hesitez pas a parcourir nos autres guides et actualites pour decouvrir tout ce qu'EVplug peut vous apporter au quotidien.",
+    text: "En attendant, n'hésitez pas à parcourir nos autres guides et actualités pour découvrir tout ce qu'EVplug peut vous apporter au quotidien.",
   },
 ]
 
@@ -43,8 +43,8 @@ export const guideArticles = [
   {
     slug: 'are-evs-heavier-traditional-ice-vehicles',
     image: evsHeavier,
-    title: 'Les VE sont-ils plus lourds que les vehicules thermiques traditionnels ?',
-    description: "Oui, ils le sont. Mais voici pourquoi c'est moins preoccupant qu'on pourrait le penser.",
+    title: 'Les VE sont-ils plus lourds que les véhicules thermiques traditionnels ?',
+    description: "Oui, ils le sont. Mais voici pourquoi c'est moins préoccupant qu'on pourrait le penser.",
     date: 'April 2026',
     readTime: 4,
     categories: ['Vivre avec un VE'],

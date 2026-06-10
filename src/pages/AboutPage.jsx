@@ -11,9 +11,9 @@ import electromobiliteImg from '../migrated/assets/about/electromobilite.jpeg'
 import teamLogo from '../migrated/assets/layout/logo.webp'
 
 const keyPoints = [
-  { icon: iconSchedule, alt: 'Fonde en 2021', title: 'Fonde en 2021' },
-  { icon: iconVehicle, alt: '6 000 alimentes... et ca continue', title: '6 000 alimentes... et ca continue' },
-  { icon: iconLocation, alt: 'Plus de 2 500 bornes VE installees', title: 'Plus de 2 500 bornes VE installees' },
+  { icon: iconSchedule, alt: 'Fondé en 2021', title: 'Fondé en 2021' },
+  { icon: iconVehicle, alt: '6 000 alimentés... et ça continue', title: '6 000 alimentés... et ça continue' },
+  { icon: iconLocation, alt: 'Plus de 2 500 bornes VE installées', title: 'Plus de 2 500 bornes VE installées' },
 ]
 
 const leaders = [
@@ -43,14 +43,14 @@ export default function AboutPage() {
               title="Trust and love your charging experience"
               subtitle={<p>La recharge pour VE qui fonctionne pour tous.</p>}
               image={heroImg}
-              imageAlt="Accelerer la mobilite electrique au Maroc"
+              imageAlt="Accélérer la mobilité électrique au Maroc"
             />
 
-            {/* Key points (Points cles) */}
+            {/* Key points (Points clés) */}
             <section className="bg-white easy-to-setup relative py-spacing-7xl rounded-b-4xl">
               <div className="container-max-width-desktop container-max-width-tablet mx-auto container-padding-desktop container-padding-tablet container-padding-mobile">
                 <div className="grid gap-spacing-6xl">
-                  <h3 className="text-center tracking-tight m-0">Points cles</h3>
+                  <h3 className="text-center tracking-tight m-0">Points clés</h3>
                   <div className="flex mx-auto flex-wrap xl:flex-nowrap xl:gap-spacing-8xl gap-spacing-6xl justify-center items-start">
                     {keyPoints.map((p) => (
                       <div key={p.title} className="w-full grid gap-spacing-4xl text-center md:max-w-[276px] mx-auto">
@@ -69,43 +69,43 @@ export default function AboutPage() {
               </div>
             </section>
 
-            {/* A propos de nous */}
+            {/* À propos de nous */}
             <section className="text-left-right-variant relative image-text-section bg-surface top-spacing">
               <div className="grid container-max-width-desktop container-max-width-tablet mx-auto container-padding-desktop container-padding-tablet container-padding-mobile gap-spacing-4xl image-text-block">
                 <div className="flex flex-col md:flex-row py-spacing-7xl items-center justify-between xl:gap-spacing-9xl gap-spacing-7xl grid-block">
                   <div className="md:w-6/12 w-full">
-                    <img className="w-full rounded-2xl" src={aboutUsImg} alt="A propos de nous" />
+                    <img className="w-full rounded-2xl" src={aboutUsImg} alt="À propos de nous" />
                   </div>
                   <div className="md:w-6/12 w-full">
                     <div className="max-w-[480px] grid gap-spacing-3xl">
                       <div className="grid gap-spacing-3xl">
-                        <h3 className="tracking-tight m-0">A propos de nous</h3>
+                        <h3 className="tracking-tight m-0">À propos de nous</h3>
                         <div className="hero-banner-des">
                           <p>
-                            Nous sommes EVplug — l'un des principaux fournisseurs de recharge pour vehicules
-                            electriques au Maroc, de confiance pour plus d'un quart de mille de clients et alimentant
-                            chaque jour des millions de kilometres.
+                            Nous sommes EVplug — l'un des principaux fournisseurs de recharge pour véhicules
+                            électriques au Maroc, de confiance pour plus d'un quart de mille de clients et alimentant
+                            chaque jour des millions de kilomètres.
                           </p>
                           <p>
-                            Crees en 2021 sous le nom d'EVplug, nous avons aide les automobilistes a passer a
-                            l'electrique des les premieres annees de deploiement des vehicules electriques.
-                            Aujourd'hui, nous accompagnons la transition vers un avenir energetique plus intelligent
-                            grace a notre experience technique et notre reseau d'infrastructures.
+                            Créés en 2021 sous le nom d'EVplug, nous avons aidé les automobilistes à passer à
+                            l'électrique dès les premières années de déploiement des véhicules électriques.
+                            Aujourd'hui, nous accompagnons la transition vers un avenir énergétique plus intelligent
+                            grâce à notre expérience technique et notre réseau d'infrastructures.
                           </p>
                           <p>
-                            Notre taille et notre presence nous permettent de gerer la demande de maniere a beneficier
-                            a la fois au reseau electrique et a nos clients. Cette combinaison d'expertise,
-                            d'infrastructures et de connaissance client fait de nous un acteur pret et adapte a la
-                            transition energetique.
+                            Notre taille et notre présence nous permettent de gérer la demande de manière à bénéficier
+                            à la fois au réseau électrique et à nos clients. Cette combinaison d'expertise,
+                            d'infrastructures et de connaissance client fait de nous un acteur prêt et adapté à la
+                            transition énergétique.
                           </p>
                           <p>
-                            Alors que le Maroc progresse vers un systeme energetique plus propre et plus flexible,
-                            EVplug est pret a repondre aux besoins en recharge intelligente, a reduire les couts et a
-                            rendre l'energie propre accessible a tous.
+                            Alors que le Maroc progresse vers un système énergétique plus propre et plus flexible,
+                            EVplug est prêt à répondre aux besoins en recharge intelligente, à réduire les coûts et à
+                            rendre l'énergie propre accessible à tous.
                           </p>
                           <p>
-                            Nous donnons aux particuliers et aux collectivites les moyens de se lancer dans
-                            l'electrification en toute confiance.
+                            Nous donnons aux particuliers et aux collectivités les moyens de se lancer dans
+                            l'électrification en toute confiance.
                           </p>
                           <hr />
                           <p>
@@ -131,7 +131,7 @@ export default function AboutPage() {
 
                 <div className="flex flex-col md:flex-row py-spacing-7xl items-center justify-between xl:gap-spacing-9xl gap-spacing-7xl grid-block md:flex-row-reverse">
                   <div className="md:w-6/12 w-full">
-                    <img className="w-full rounded-2xl" src={electromobiliteImg} alt="L'electromobilite pour tous" />
+                    <img className="w-full rounded-2xl" src={electromobiliteImg} alt="L'électromobilité pour tous" />
                   </div>
                   <div className="md:w-6/12 w-full">
                     <div className="max-w-[480px] grid gap-spacing-3xl">
@@ -139,7 +139,7 @@ export default function AboutPage() {
                         <h3 className="tracking-tight m-0">Trust and love your charging experience</h3>
                         <div className="hero-banner-des">
                           <p>
-                            <strong>Accelerer la mobilite electrique au Maroc</strong>
+                            <strong>Accélérer la mobilité électrique au Maroc</strong>
                           </p>
                         </div>
                       </div>
@@ -155,27 +155,27 @@ export default function AboutPage() {
                 <div className="grid md:grid-cols-2 gap-spacing-6xl items-center">
                   <div className="grid gap-spacing-3xl">
                     <span className="inline-flex items-center gap-spacing-sm px-spacing-md py-spacing-sm rounded-full bg-lime text-black text-sm font-semibold w-fit">
-                      Engagement filiere
+                      Engagement filière
                     </span>
                     <h2 className="tracking-tight m-0" style={{ color: '#ffffff' }}>
-                      EVplug, vice-president de l'APIME
+                      EVplug, vice-président de l'APIME
                     </h2>
                     <div className="hero-banner-des" style={{ color: '#ffffff' }}>
                       <p>
-                        EVplug occupe la vice-presidence de l'APIME, l'association professionnelle
-                        marocaine dediee a la mobilite electrique. A ce titre, nous contribuons a
-                        structurer la filiere, definir des standards techniques et accelerer le
-                        deploiement des infrastructures de recharge au Maroc.
+                        EVplug occupe la vice-présidence de l'APIME, l'association professionnelle
+                        marocaine dédiée à la mobilité électrique. À ce titre, nous contribuons à
+                        structurer la filière, définir des standards techniques et accélérer le
+                        déploiement des infrastructures de recharge au Maroc.
                       </p>
                       <p>
-                        Notre experience operationnelle alimente directement les groupes de travail
-                        de l'association : choix techniques, exigences de securite, formation des
+                        Notre expérience opérationnelle alimente directement les groupes de travail
+                        de l'association : choix techniques, exigences de sécurité, formation des
                         installateurs et concertation avec les pouvoirs publics.
                       </p>
                     </div>
                     <div className="flex flex-wrap gap-spacing-xl">
                       <Link to="/about/APIME" className="btn btn-primary font-base">
-                        Notre role a l'APIME
+                        Notre rôle à l'APIME
                       </Link>
                     </div>
                   </div>
@@ -191,7 +191,7 @@ export default function AboutPage() {
                         APIME.
                       </p>
                       <p className="mt-spacing-3xl m-0" style={{ color: '#ffffff' }}>
-                        Association professionnelle intersectorielle pour la mobilite electrique au
+                        Association professionnelle intersectorielle pour la mobilité électrique au
                         Maroc.
                       </p>
                     </div>
@@ -200,14 +200,14 @@ export default function AboutPage() {
               </div>
             </section>
 
-            {/* Notre equipe */}
+            {/* Notre équipe */}
             <section className="bg-white relative py-spacing-7xl">
               <div className="container-max-width-desktop container-max-width-tablet mx-auto container-padding-desktop container-padding-tablet container-padding-mobile">
                 <div className="grid gap-spacing-6xl">
                   <div className="grid gap-spacing-2xl text-center">
-                    <h3 className="tracking-tight m-0">Notre equipe</h3>
+                    <h3 className="tracking-tight m-0">Notre équipe</h3>
                     <p className="hero-banner-des max-w-[640px] mx-auto">
-                      Une equipe engagee pour accelerer la mobilite electrique au Maroc.
+                      Une équipe engagée pour accélérer la mobilité électrique au Maroc.
                     </p>
                   </div>
 
@@ -226,7 +226,7 @@ export default function AboutPage() {
                   </div>
 
                   <div className="grid gap-spacing-3xl mt-spacing-4xl">
-                    <h4 className="tracking-tight m-0 text-center">Les equipes</h4>
+                    <h4 className="tracking-tight m-0 text-center">Les équipes</h4>
                     <div className="flex flex-wrap justify-center gap-spacing-2xl">
                       {teams.map((team) => (
                         <span

@@ -35,10 +35,10 @@ export default function Newsletter() {
               Newsletter EVplug
             </span>
             <h3 className="m-0 text-pear font-PosterCutNeue uppercase font-normal font-4xl xl:font-6xl tracking-tight">
-              Restez branche sur la mobilite electrique.
+              Restez branché sur la mobilité électrique.
             </h3>
             <p className="m-0 font-lg text-white/85">
-              Conseils pratiques, nouveautes produits et actualites du reseau EVplug au Maroc.
+              Conseils pratiques, nouveautés produits et actualités du réseau EVplug au Maroc.
               Un e-mail par mois, jamais plus.
             </p>
           </div>
@@ -84,13 +84,13 @@ export default function Newsletter() {
             )}
             {status === 'success' && (
               <p className="font-sm text-pear m-0" role="status">
-                Merci ! Votre inscription a bien ete enregistree.
+                Merci ! Votre inscription a bien été enregistrée.
               </p>
             )}
 
             <p className="font-xs text-white/70 m-0">
               En vous inscrivant, vous acceptez de recevoir des communications d&apos;EVplug.
-              Vous pouvez vous desinscrire a tout moment.
+              Vous pouvez vous désinscrire à tout moment.
             </p>
           </form>
         </div>

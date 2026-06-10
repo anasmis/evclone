@@ -20,6 +20,12 @@ import ArticlePage from './pages/ArticlePage'
 import TrainingHub from './pages/training/TrainingHub'
 import Electricians from './pages/training/Electricians'
 import Corporate from './pages/training/Corporate'
+import PrivacyPolicy from './pages/legal/Confidentialite'
+import TermsAndConditions from './pages/legal/TermsAndConditions'
+import Cookies from './pages/legal/Cookies'
+import RetoursRemboursements from './pages/legal/RetoursRemboursements'
+import Securite from './pages/legal/Securite'
+import PlanDuSite from './pages/PlanDuSite'
 import NotFoundPage from './pages/NotFoundPage'
 import { homeRoute } from './lib/routes'
 import useAnimationHandling from './lib/useAnimationHandling'
@@ -58,6 +64,13 @@ function AppRoutes() {
       <Route path="/training/electricians" element={<Electricians />} />
       <Route path="/training/corporate" element={<Corporate />} />
       <Route path="/approved-installer-training" element={<Navigate to="/training" replace />} />
+
+      <Route path="/general-terms-and-conditions" element={<TermsAndConditions />} />
+      <Route path="/legal/privacy-and-cookies-policy" element={<PrivacyPolicy />} />
+      <Route path="/legal/cookies-policy" element={<Cookies />} />
+      <Route path="/legal/returns-and-refunds" element={<RetoursRemboursements />} />
+      <Route path="/security" element={<Securite />} />
+      <Route path="/sitemap" element={<PlanDuSite />} />
 
       <Route path="*" element={<NotFoundPage />} />
     </Routes>

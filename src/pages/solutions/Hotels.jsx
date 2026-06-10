@@ -8,78 +8,78 @@ import platformImage from '../../migrated/assets/solutions/hotels/platform.jpg'
 const services = [
   {
     icon: icons.charger,
-    title: 'Etude electrique',
+    title: 'Étude électrique',
     description:
-      "Audit complet de votre installation electrique et dimensionnement adapte au flux de vos clients et a l'infrastructure de votre etablissement.",
+      "Audit complet de votre installation électrique et dimensionnement adapté au flux de vos clients et à l'infrastructure de votre établissement.",
   },
   {
     icon: icons.standaloneCharger,
-    title: 'Bornes connectees AC et DC',
+    title: 'Bornes connectées AC et DC',
     description:
-      "Bornes AC pour les recharges nocturnes et DC pour les recharges rapides a l'arrivee. Compatibles tous vehicules, design discret et professionnel.",
+      "Bornes AC pour les recharges nocturnes et DC pour les recharges rapides à l'arrivée. Compatibles tous véhicules, design discret et professionnel.",
   },
   {
     icon: icons.sendFeedback,
     title: 'SAV & Maintenance',
     description:
-      'Support technique reactif et interventions de maintenance preventive pour garantir la disponibilite de vos bornes 365 jours par an.',
+      'Support technique réactif et interventions de maintenance préventive pour garantir la disponibilité de vos bornes 365 jours par an.',
   },
   {
     icon: icons.dashboard,
-    title: 'Plateforme Evone Hotels',
+    title: 'Plateforme Evone Hôtels',
     description:
-      'Interface de gestion dediee aux hoteliers : supervision en temps reel, facturation automatique et reporting de consommation par borne.',
+      'Interface de gestion dédiée aux hôteliers : supervision en temps réel, facturation automatique et reporting de consommation par borne.',
   },
   {
     icon: icons.tick,
-    title: 'Gestion tierce complete',
+    title: 'Gestion tierce complète',
     description:
-      "Nous prenons en charge l'integralite de l'exploitation. Votre seul objectif : bien servir vos clients. Nous nous occupons de tout le reste.",
+      "Nous prenons en charge l'intégralité de l'exploitation. Votre seul objectif : bien servir vos clients. Nous nous occupons de tout le reste.",
   },
   {
     icon: icons.quotes,
-    title: 'Experience client premium',
+    title: 'Expérience client premium',
     description:
-      'Vos clients rechargent pendant leur sejour, sans friction. Un service differenciant qui valorise votre etablissement aupres des voyageurs electriques.',
+      'Vos clients rechargent pendant leur séjour, sans friction. Un service différenciant qui valorise votre établissement auprès des voyageurs électriques.',
   },
 ]
 
 const evoneFeatures = [
-  'Tableau de bord en temps reel : etat des bornes, sessions actives, alertes',
+  'Tableau de bord en temps réel : état des bornes, sessions actives, alertes',
   'Facturation automatique par chambre ou carte client',
   "Reporting mensuel de consommation et de chiffre d'affaires recharge",
-  'Acces multi-sites pour les groupes hoteliers',
-  'Integration avec les systemes PMS existants',
-  'Notifications techniques automatiques vers vos equipes',
+  'Accès multi-sites pour les groupes hôteliers',
+  'Intégration avec les systèmes PMS existants',
+  'Notifications techniques automatiques vers vos équipes',
 ]
 
 export default function Hotels() {
   return (
     <SolutionPageLayout
-      documentTitle="EVplug Hotels | Recharge electrique pour l'hotellerie au Maroc"
-      ctaInterest="Solution hotel"
+      documentTitle="EVplug Hôtels | Recharge électrique pour l'hôtellerie au Maroc"
+      ctaInterest="Solution hôtel"
       ctaButtonLabel="Recharger mes clients"
-      ctaTitle="Recharge pour votre hotel"
-      ctaSubtitle="Offrez la recharge a vos clients. Decrivez votre etablissement, on vous propose une solution sur-mesure."
+      ctaTitle="Recharge pour votre hôtel"
+      ctaSubtitle="Offrez la recharge à vos clients. Décrivez votre établissement, on vous propose une solution sur-mesure."
       ctaAccentColor="#e8b04e"
     >
       <SolutionTemplate
-        tag="Hotellerie & Hospitality"
-        heroTitle="Recharge electrique pour vos clients, zero souci pour vous."
-        heroSubtitle="EVplug equipe votre hotel de bornes connectees AC et DC, gere l'exploitation et vous laisse vous concentrer sur ce qui compte : offrir la meilleure experience a vos clients."
+        tag="Hôtellerie & Hospitality"
+        heroTitle="Recharge électrique pour vos clients, zéro souci pour vous."
+        heroSubtitle="EVplug équipe votre hôtel de bornes connectées AC et DC, gère l'exploitation et vous laisse vous concentrer sur ce qui compte : offrir la meilleure expérience à vos clients."
         heroImage={heroImage}
         storyImage={storyImage}
         platformImage={platformImage}
-        heroCta="Etudier votre projet"
+        heroCta="Étudier votre projet"
         services={services}
-        imagePanel1Title="Une installation sans interruption pour votre activite"
-        imagePanel1Body="Nos techniciens interviennent selon votre calendrier. L'installation se deroule sans impact sur vos clients ni votre personnel, quelle que soit la taille ou la configuration de votre etablissement."
-        evoneBadge="Plateforme Evone Hotels"
+        imagePanel1Title="Une installation sans interruption pour votre activité"
+        imagePanel1Body="Nos techniciens interviennent selon votre calendrier. L'installation se déroule sans impact sur vos clients ni votre personnel, quelle que soit la taille ou la configuration de votre établissement."
+        evoneBadge="Plateforme Evone Hôtels"
         evoneTitle="Pilotez votre infrastructure de recharge."
-        evoneSubtitle="La plateforme Evone est concue pour les hoteliers. Une interface intuitive pour superviser, facturer et optimiser chaque borne de votre etablissement, sans competences techniques requises."
+        evoneSubtitle="La plateforme Evone est conçue pour les hôteliers. Une interface intuitive pour superviser, facturer et optimiser chaque borne de votre établissement, sans compétences techniques requises."
         evoneFeatures={evoneFeatures}
-        ctaTitle="Equipez votre hotel en recharge electrique."
-        ctaBody="De l'etude electrique a l'exploitation quotidienne, EVplug vous accompagne a chaque etape. Un interlocuteur unique, une solution cle en main."
+        ctaTitle="Équipez votre hôtel en recharge électrique."
+        ctaBody="De l'étude électrique à l'exploitation quotidienne, EVplug vous accompagne à chaque étape. Un interlocuteur unique, une solution clé en main."
       />
     </SolutionPageLayout>
   )

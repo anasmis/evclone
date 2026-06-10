@@ -8,78 +8,78 @@ import platformImage from '../../migrated/assets/solutions/copropriete/platform.
 const services = [
   {
     icon: icons.charger,
-    title: 'Etude electrique collective',
+    title: 'Étude électrique collective',
     description:
-      "Diagnostic de votre tableau commun, analyse de la capacite disponible et plan d'equipement progressif selon le nombre de residents interesses.",
+      "Diagnostic de votre tableau commun, analyse de la capacité disponible et plan d'équipement progressif selon le nombre de résidents intéressés.",
   },
   {
     icon: icons.standaloneCharger,
     title: 'Bornes AC individuelles',
     description:
-      'Bornes dediees par place de parking resident, adaptees a la recharge nocturne. Installation soignee sans travaux lourds sur les parties communes.',
+      'Bornes dédiées par place de parking résident, adaptées à la recharge nocturne. Installation soignée sans travaux lourds sur les parties communes.',
   },
   {
     icon: icons.sendFeedback,
     title: 'SAV & Maintenance',
     description:
-      "Suivi technique et interventions rapides pour l'ensemble de la copropriete. Un seul interlocuteur pour le syndic, une fiabilite maximale pour les residents.",
+      "Suivi technique et interventions rapides pour l'ensemble de la copropriété. Un seul interlocuteur pour le syndic, une fiabilité maximale pour les résidents.",
   },
   {
     icon: icons.chargingDuration,
     title: 'Facturation individuelle',
     description:
-      'Chaque resident est facture a sa consommation reelle. Aucune mutualisation des couts, transparence totale et rapports mensuels par resident.',
+      'Chaque résident est facturé à sa consommation réelle. Aucune mutualisation des coûts, transparence totale et rapports mensuels par résident.',
   },
   {
     icon: icons.installation,
     title: 'Accompagnement syndic',
     description:
-      "EVplug accompagne le syndic dans les demarches : aide a la preparation de l'AG, dossiers techniques et administratifs, coordination avec les prestataires.",
+      "EVplug accompagne le syndic dans les démarches : aide à la préparation de l'AG, dossiers techniques et administratifs, coordination avec les prestataires.",
   },
   {
     icon: icons.dashboard,
-    title: 'Plateforme Evone Copropriete',
+    title: 'Plateforme Evone Copropriété',
     description:
-      "Interface dediee au syndic : etat des bornes, consommations par resident, facturation automatique et historique d'interventions accessibles a tout moment.",
+      "Interface dédiée au syndic : état des bornes, consommations par résident, facturation automatique et historique d'interventions accessibles à tout moment.",
   },
 ]
 
 const evoneFeatures = [
-  'Tableau de bord syndic : etat global de toutes les bornes de la copropriete',
-  'Facturation individuelle automatique par resident chaque mois',
+  'Tableau de bord syndic : état global de toutes les bornes de la copropriété',
+  'Facturation individuelle automatique par résident chaque mois',
   'Suivi des consommations en kWh et en dirhams par place',
   'Historique complet des sessions de charge et des interventions techniques',
-  "Ajout ou suppression d'un resident en quelques clics",
+  "Ajout ou suppression d'un résident en quelques clics",
   "Notifications automatiques en cas d'anomalie ou de panne",
 ]
 
 export default function Copropriete() {
   return (
     <SolutionPageLayout
-      documentTitle="EVplug Copropriete | Recharge electrique en residence au Maroc"
-      ctaInterest="Solution copropriete"
-      ctaButtonLabel="Equiper ma copropriete"
-      ctaTitle="Projet de copropriete"
-      ctaSubtitle="Resident ou syndic ? Decrivez votre residence, on vous accompagne de l'AG a la mise en service."
+      documentTitle="EVplug Copropriété | Recharge électrique en résidence au Maroc"
+      ctaInterest="Solution copropriété"
+      ctaButtonLabel="Équiper ma copropriété"
+      ctaTitle="Projet de copropriété"
+      ctaSubtitle="Résident ou syndic ? Décrivez votre résidence, on vous accompagne de l'AG à la mise en service."
       ctaAccentColor="#7fd58a"
     >
       <SolutionTemplate
-        tag="EV Copropriete"
-        heroTitle="La recharge electrique pour votre residence, simple et equitable."
-        heroSubtitle="EVplug equipe votre copropriete de bornes individuelles, gere la facturation par resident et accompagne le syndic de l'etude au quotidien. Sans mutualisation des couts, sans complications."
+        tag="EV Copropriété"
+        heroTitle="La recharge électrique pour votre résidence, simple et équitable."
+        heroSubtitle="EVplug équipe votre copropriété de bornes individuelles, gère la facturation par résident et accompagne le syndic de l'étude au quotidien. Sans mutualisation des coûts, sans complications."
         heroImage={heroImage}
         storyImage={storyImage}
         platformImage={platformImage}
-        heroCta="Etudier votre projet"
+        heroCta="Étudier votre projet"
         services={services}
         imagePanel1Title="Une solution progressive, sans engagement collectif"
-        imagePanel1Body="L'installation commence avec les residents interesses et s'etend au rythme des adhesions. Chaque borne est independante, la facturation est individuelle. La copropriete n'est jamais exposee a des frais collectifs non prevus."
-        evoneBadge="Plateforme Evone Copropriete"
-        evoneTitle="Le syndic gere tout depuis une seule interface."
-        evoneSubtitle="Evone Copropriete donne au syndic la visibilite et les outils pour administrer l'ensemble des bornes de la residence : consommations, facturation individuelle et suivi technique, sans competences particulieres."
+        imagePanel1Body="L'installation commence avec les résidents intéressés et s'étend au rythme des adhésions. Chaque borne est indépendante, la facturation est individuelle. La copropriété n'est jamais exposée à des frais collectifs non prévus."
+        evoneBadge="Plateforme Evone Copropriété"
+        evoneTitle="Le syndic gère tout depuis une seule interface."
+        evoneSubtitle="Evone Copropriété donne au syndic la visibilité et les outils pour administrer l'ensemble des bornes de la résidence : consommations, facturation individuelle et suivi technique, sans compétences particulières."
         evoneFeatures={evoneFeatures}
-        ctaTitle="Equipez votre copropriete en recharge electrique."
-        ctaBody="De l'etude de faisabilite electrique au vote en AG, en passant par l'installation et l'exploitation, EVplug gere l'integralite du projet pour votre copropriete."
+        ctaTitle="Équipez votre copropriété en recharge électrique."
+        ctaBody="De l'étude de faisabilité électrique au vote en AG, en passant par l'installation et l'exploitation, EVplug gère l'intégralité du projet pour votre copropriété."
       />
     </SolutionPageLayout>
   )

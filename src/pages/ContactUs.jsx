@@ -142,7 +142,7 @@ export default function ContactUs() {
                             <i className="fa-solid fa-phone" />
                           </span>
                           <div className="contact-info-body">
-                            <span className="contact-info-label">Telephone</span>
+                            <span className="contact-info-label">Téléphone</span>
                             <a className="contact-info-value contact-info-link" href="tel:+212661116626">
                               +212 661 11 66 26
                             </a>
@@ -177,7 +177,7 @@ export default function ContactUs() {
                       </h3>
                     </div>
                     <p className="m-0" style={{ color: '#f5f1eb' }}>
-                      Pour toute action de support, merci d'appeler ce numero dedie :
+                      Pour toute action de support, merci d'appeler ce numéro dédié :
                     </p>
                     <a
                       href="tel:+212521335075"
@@ -226,7 +226,7 @@ export default function ContactUs() {
                   <header className="contact-form-card__header">
                     <h2 className="contact-form-card__title">Envoyez-nous un message</h2>
                     <p className="contact-form-card__subtitle">
-                      Remplissez ce formulaire et notre equipe vous recontactera sous 24 a 48 heures ouvrees.
+                      Remplissez ce formulaire et notre équipe vous recontactera sous 24 à 48 heures ouvrées.
                     </p>
                   </header>
 
@@ -235,9 +235,9 @@ export default function ContactUs() {
                       <div className="contact-form-success-icon">
                         <i className="fa-solid fa-check" />
                       </div>
-                      <h3 className="m-0">Merci, votre message est bien envoye.</h3>
+                      <h3 className="m-0">Merci, votre message est bien envoyé.</h3>
                       <p className="m-0">
-                        Notre equipe vous recontactera sous 24 a 48 heures ouvrees.
+                        Notre équipe vous recontactera sous 24 à 48 heures ouvrées.
                       </p>
                       <button
                         type="button"
@@ -293,7 +293,7 @@ export default function ContactUs() {
                           )}
                         </div>
                         <div className="contact-form-field">
-                          <label htmlFor="contact-phone">Telephone</label>
+                          <label htmlFor="contact-phone">Téléphone</label>
                           <input
                             id="contact-phone"
                             type="tel"
@@ -346,7 +346,7 @@ export default function ContactUs() {
                           required
                           value={values.message}
                           onChange={(e) => update('message', e.target.value)}
-                          placeholder="Decrivez votre besoin"
+                          placeholder="Décrivez votre besoin"
                         />
                         {errors.message && (
                           <span className="contact-form-error">{errors.message}</span>
@@ -357,7 +357,7 @@ export default function ContactUs() {
                         <button type="submit" disabled={loading} className="contact-form-submit">
                           {loading ? 'Envoi en cours…' : 'Envoyer le message'}
                         </button>
-                        <p className="contact-form-foot">Nous repondons du lundi au vendredi.</p>
+                        <p className="contact-form-foot">Nous répondons du lundi au vendredi.</p>
                       </div>
                     </form>
                   )}

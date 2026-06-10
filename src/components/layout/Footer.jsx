@@ -3,34 +3,27 @@ import logo from '../../migrated/assets/layout/footer-logo.webp'
 
 const COLUMNS = [
   {
-    title: 'A propos',
+    title: 'À propos',
     links: [
-      { label: "A propos d'EVplug", to: '/about' },
+      { label: "À propos d'EVplug", to: '/about' },
       { label: 'News', to: '/news' },
-      { label: 'Pod offers', to: '/offers/discounts' },
-      { label: 'Reports', to: '/reports' },
     ],
   },
   {
     title: 'Assistance',
     links: [
       { label: 'Contactez-nous', to: '/contact-us' },
-      { label: 'Notre reseau', to: '/reseau' },
-      { label: 'Documents techniques', to: '/technical/hardware' },
-      { label: "Documents d'installation", to: '/technical/installation' },
-      { label: 'Guide installateur domestique', to: '/products/domestic-installer-guidance' },
+      { label: 'Notre réseau', to: '/reseau' },
       { label: 'Plan du site', to: '/sitemap' },
-      { label: 'Securite', to: '/security' },
+      { label: 'Sécurité', to: '/security' },
     ],
   },
   {
-    title: 'Informations legales',
+    title: 'Informations légales',
     links: [
-      { label: 'Conditions generales', to: '/general-terms-and-conditions' },
-      { label: 'Politique de confidentialite', to: '/legal/privacy-and-cookies-policy' },
+      { label: 'Conditions générales', to: '/general-terms-and-conditions' },
+      { label: 'Politique de confidentialité', to: '/legal/privacy-and-cookies-policy' },
       { label: 'Cookies', to: '/legal/cookies-policy' },
-      { label: 'Esclavage moderne', to: '/legal/modern-slavery-statement' },
-      { label: 'Politiques', to: '/legal/policies' },
       { label: 'Retours et remboursements', to: '/legal/returns-and-refunds' },
     ],
   },
@@ -66,8 +59,11 @@ const SOCIAL_LINKS = [
   },
 ]
 
-const PHONE_LABEL = '05 21 33 50 75'
-const PHONE_HREF = 'tel:+212521335075'
+const PHONES = [
+  { label: '05 21 33 50 75', href: 'tel:+212521335075' },
+  { label: '+212 661 11 66 26', href: 'tel:+212661116626' },
+  { label: '+212 661 22 80 10', href: 'tel:+212661228010' },
+]
 
 function FooterColumn({ column }) {
   return (
@@ -118,21 +114,27 @@ export default function Footer() {
             <div className="w-full social-icons pt-spacing-5xl xl:pt-0">
               <div className="footer-menu grid xl:justify-end xl:gap-spacing-6xl gap-spacing-4xl">
                 <div className="grid gap-spacing-xl grid-flow-row">
-                  <h6 className="text-white font-semibold font-lg">Numero dedie</h6>
-                  <a
-                    href={PHONE_HREF}
-                    className="text-white hover:text-white inline-flex items-center gap-2"
-                    style={{
-                      fontFamily: 'var(--brand-font-heading)',
-                      fontSize: 'clamp(1.25rem, 2vw, 1.6rem)',
-                      letterSpacing: '0.02em',
-                    }}
-                  >
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                      <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.24 1.02l-2.21 2.2z" />
-                    </svg>
-                    {PHONE_LABEL}
-                  </a>
+                  <h6 className="text-white font-semibold font-lg">Numéros dédiés</h6>
+                  <ul className="grid gap-2">
+                    {PHONES.map((phone) => (
+                      <li key={phone.href}>
+                        <a
+                          href={phone.href}
+                          className="text-white hover:text-white inline-flex items-center gap-2"
+                          style={{
+                            fontFamily: 'var(--brand-font-heading)',
+                            fontSize: 'clamp(1.25rem, 2vw, 1.6rem)',
+                            letterSpacing: '0.02em',
+                          }}
+                        >
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.24 1.02l-2.21 2.2z" />
+                          </svg>
+                          {phone.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
                 <div className="grid gap-spacing-3xl grid-flow-row">
                   <h6 className="text-white font-semibold font-lg">Suivez-nous</h6>
@@ -170,15 +172,15 @@ export default function Footer() {
               <div className="copyright text-white/60">&copy; EVplug Maroc 2026</div>
               <div className="text-white md:flex xl:justify-end">
                 <span className="font-semibold">EVplug Maroc</span>
-                &nbsp;Siege : Casablanca, Maroc &nbsp;|&nbsp; Interventions : Casablanca, Rabat, Marrakech, Tanger
+                &nbsp;Siège : Casablanca, Maroc &nbsp;|&nbsp; Interventions : Casablanca, Rabat, Marrakech, Tanger
               </div>
             </div>
             <div className="pt-6 copyright-bottom font-xs text-start text-white/60">
               <p>
-                EVplug Maroc accompagne la transition vers la mobilite electrique avec des solutions de recharge pour
-                particuliers et professionnels. Les offres, delais et conditions de service peuvent varier selon la
-                ville, la configuration electrique du site et la disponibilite des equipes techniques. Pour un cadrage
-                precis de votre projet, merci de contacter notre equipe commerciale.&nbsp;
+                EVplug Maroc accompagne la transition vers la mobilité électrique avec des solutions de recharge pour
+                particuliers et professionnels. Les offres, délais et conditions de service peuvent varier selon la
+                ville, la configuration électrique du site et la disponibilité des équipes techniques. Pour un cadrage
+                précis de votre projet, merci de contacter notre équipe commerciale.&nbsp;
               </p>
             </div>
           </div>

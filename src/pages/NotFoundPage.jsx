@@ -52,8 +52,8 @@ export default function NotFoundPage() {
                 opacity: 0.85,
               }}
             >
-              Le lien que vous avez suivi n&apos;existe plus ou n&apos;a pas encore ete
-              migre. Revenez a l&apos;accueil ou explorez nos sections principales.
+              Le lien que vous avez suivi n&apos;existe plus ou n&apos;a pas encore été
+              migré. Revenez à l&apos;accueil ou explorez nos sections principales.
             </p>
             <span
               style={{
@@ -90,7 +90,7 @@ export default function NotFoundPage() {
                   fontWeight: 600,
                 }}
               >
-                Retour a l&apos;accueil
+                Retour à l&apos;accueil
               </Link>
               <Link
                 to="/contact-us"

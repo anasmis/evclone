@@ -22,127 +22,127 @@ import chatIcon from '../../migrated/assets/carte-evplug/chat-icon.svg'
 
 const carouselItems = [
   {
-    title: 'Cout initial reduit, services inclus',
+    title: 'Coût initial réduit, services inclus',
     description:
-      "Votre formule peut inclure une borne partenaire, l'installation domicile, la carte EVplug et un package de credits de recharge selon le profil d'usage.",
+      "Votre formule peut inclure une borne partenaire, l'installation domicile, la carte EVplug et un package de crédits de recharge selon le profil d'usage.",
     image: featureUntethered,
-    tag: { icon: tickIcon, label: "Economisez jusqu'a 12 000 MAD a l'achat" },
-    cta: { href: 'https://www.maborneelectrique.ma/connexion', label: 'Verifier mon eligibilite', external: true },
+    tag: { icon: tickIcon, label: "Économisez jusqu'à 12 000 MAD à l'achat" },
+    cta: { href: 'https://www.maborneelectrique.ma/connexion', label: "Vérifier mon éligibilité", external: true },
   },
   {
-    title: 'Recharge intelligente, maitrisez vos couts',
+    title: 'Recharge intelligente, maîtrisez vos coûts',
     description:
-      "La recharge intelligente optimise automatiquement vos sessions selon les plages horaires les plus avantageuses. Indiquez simplement l'heure a laquelle votre vehicule doit etre pret, et notre application s'occupe du reste pour minimiser votre facture d'electricite.",
+      "La recharge intelligente optimise automatiquement vos sessions selon les plages horaires les plus avantageuses. Indiquez simplement l'heure à laquelle votre véhicule doit être prêt, et notre application s'occupe du reste pour minimiser votre facture d'électricité.",
     image: featureApp,
     tag: { icon: coinsIcon, label: "Pilotage intelligent de votre recharge via l'application" },
-    cta: { href: 'https://www.maborneelectrique.ma/connexion', label: 'Verifier mon eligibilite', external: true },
+    cta: { href: 'https://www.maborneelectrique.ma/connexion', label: "Vérifier mon éligibilité", external: true },
   },
   {
     title: 'Maintenance et support inclus',
     description:
-      'Votre abonnement Carte EVplug inclut un suivi technique, un support reactif et une garantie sur la borne pendant toute la duree de l\'abonnement. Notre equipe reste disponible pour vous accompagner en cas de besoin.',
+      "Votre abonnement Carte EVplug inclut un suivi technique, un support réactif et une garantie sur la borne pendant toute la durée de l'abonnement. Notre équipe reste disponible pour vous accompagner en cas de besoin.",
     image: featureTethered,
-    cta: { href: 'https://www.maborneelectrique.ma/connexion', label: 'Verifier mon eligibilite', external: true },
+    cta: { href: 'https://www.maborneelectrique.ma/connexion', label: "Vérifier mon éligibilité", external: true },
   },
   {
     title: 'La borne reste chez vous',
     description:
-      'Des le premier jour, la borne est a vous. Au terme de votre abonnement, nous vous contactons pour discuter de la meilleure facon de continuer a profiter des services Carte EVplug.',
+      "Dès le premier jour, la borne est à vous. Au terme de votre abonnement, nous vous contactons pour discuter de la meilleure façon de continuer à profiter des services Carte EVplug.",
     image: featureWarranty,
-    cta: { href: '/contact-us', label: 'Verifier mon eligibilite', external: false },
+    cta: { href: '/contact-us', label: "Vérifier mon éligibilité", external: false },
   },
 ]
 
 const cardAccordionItems = [
   {
-    title: 'Acces a tout notre reseau',
+    title: 'Accès à tout notre réseau',
     body: "Des milliers de points de charge ouverts et partenaires partout au Maroc. Trouvez, lancez et suivez vos sessions depuis l'application EVplug.",
   },
   {
-    title: 'Carte RFID securisee',
-    body: 'Paiement sans contact, assignation par utilisateur ou vehicule et revocation instantanee en cas de perte.',
+    title: 'Carte RFID sécurisée',
+    body: "Paiement sans contact, assignation par utilisateur ou véhicule et révocation instantanée en cas de perte.",
   },
   {
-    title: 'Suivi en temps reel',
-    body: "Visualisez vos sessions, l'energie consommee et les couts en direct. Exportez vos rapports mensuels en un clic.",
+    title: 'Suivi en temps réel',
+    body: "Visualisez vos sessions, l'énergie consommée et les coûts en direct. Exportez vos rapports mensuels en un clic.",
   },
   {
     title: 'Pour les entreprises',
-    body: 'Emettez des cartes a vos equipes, definissez des plafonds de depenses, liez des centres de cout et centralisez la facturation.',
+    body: "Émettez des cartes à vos équipes, définissez des plafonds de dépenses, liez des centres de coût et centralisez la facturation.",
   },
   {
-    title: 'Acces a vos bornes privees',
-    body: "Utilisez la carte EVplug comme controle d'acces RFID sur vos sites et suivez l'usage prive/pro pour une refacturation simplifiee.",
+    title: 'Accès à vos bornes privées',
+    body: "Utilisez la carte EVplug comme contrôle d'accès RFID sur vos sites et suivez l'usage privé/pro pour une refacturation simplifiée.",
   },
 ]
 
 const appAccordionItems = [
   {
     title: 'Pilotez votre recharge intelligente',
-    body: "Indiquez simplement votre objectif de charge et l'heure a laquelle votre vehicule doit etre pret – par exemple 80 % a 7h – et l'application programme automatiquement votre session pour optimiser votre consommation d'electricite.",
+    body: "Indiquez simplement votre objectif de charge et l'heure à laquelle votre véhicule doit être prêt — par exemple 80 % à 7h — et l'application programme automatiquement votre session pour optimiser votre consommation d'électricité.",
   },
   {
     title: 'Suivez vos sessions de recharge',
-    body: "Consultez l'historique complet de vos sessions de recharge : date, duree, energie consommee et couts associes.",
+    body: "Consultez l'historique complet de vos sessions de recharge : date, durée, énergie consommée et coûts associés.",
   },
   {
-    title: 'Acces a la recharge publique avec la Carte EVplug',
-    body: 'Votre abonnement inclut la Carte EVplug pour acceder au reseau de bornes publiques EVplug Maroc et aux bornes partenaires en itinerance. Une seule carte pour recharger partout.',
+    title: 'Accès à la recharge publique avec la Carte EVplug',
+    body: "Votre abonnement inclut la Carte EVplug pour accéder au réseau de bornes publiques EVplug Maroc et aux bornes partenaires en itinérance. Une seule carte pour recharger partout.",
   },
   {
-    title: 'Gestion multi-vehicules',
-    body: 'Connectez et gerez plusieurs vehicules electriques depuis la meme application. Un invite peut egalement recharger son vehicule via votre borne.',
+    title: 'Gestion multi-véhicules',
+    body: "Connectez et gérez plusieurs véhicules électriques depuis la même application. Un invité peut également recharger son véhicule via votre borne.",
   },
   {
-    title: 'Mode « Boost » pour recharger immediatement',
-    body: 'Besoin de recharger immediatement ? Activez le mode Boost pour demarrer la recharge sans attendre la plage horaire optimale.',
+    title: 'Mode « Boost » pour recharger immédiatement',
+    body: "Besoin de recharger immédiatement ? Activez le mode Boost pour démarrer la recharge sans attendre la plage horaire optimale.",
   },
   {
-    title: 'Tableau de bord de votre activite',
-    body: "Consultez une synthese detaillee de votre activite de recharge : duree des sessions, energie consommee et evolution de vos usages, en un seul coup d'oeil.",
+    title: 'Tableau de bord de votre activité',
+    body: "Consultez une synthèse détaillée de votre activité de recharge : durée des sessions, énergie consommée et évolution de vos usages, en un seul coup d'œil.",
   },
 ]
 
 const faqItems = [
   {
-    q: 'Qu’est-ce que la Carte EVplug ?',
-    a: "La Carte EVplug est une carte RFID securisee qui vous permet de demarrer et payer vos recharges sur le reseau public EVplug Maroc ainsi que sur les bornes partenaires en itinerance. Elle peut etre liee a un utilisateur ou a un vehicule et se gere depuis l'application EVplug ou le portail entreprise.",
+    q: "Qu'est-ce que la Carte EVplug ?",
+    a: "La Carte EVplug est une carte RFID sécurisée qui vous permet de démarrer et payer vos recharges sur le réseau public EVplug Maroc ainsi que sur les bornes partenaires en itinérance. Elle peut être liée à un utilisateur ou à un véhicule et se gère depuis l'application EVplug ou le portail entreprise.",
   },
   {
-    q: 'Ou puis-je utiliser la Carte EVplug ?',
-    a: "Vous pouvez utiliser la carte sur les bornes EVplug Maroc et sur un large reseau de partenaires interoperables. Les points de charge compatibles apparaissent dans la carte interactive de l'application EVplug, avec les tarifs et disponibilites en temps reel lorsque ceux-ci sont fournis par l'operateur.",
+    q: 'Où puis-je utiliser la Carte EVplug ?',
+    a: "Vous pouvez utiliser la carte sur les bornes EVplug Maroc et sur un large réseau de partenaires interopérables. Les points de charge compatibles apparaissent dans la carte interactive de l'application EVplug, avec les tarifs et disponibilités en temps réel lorsque ceux-ci sont fournis par l'opérateur.",
   },
   {
-    q: 'Comment activer ma carte ?',
-    a: "Apres reception, ajoutez la carte depuis l'application EVplug (section Portefeuille/Cartes) ou depuis le portail entreprise. Associez-la a un utilisateur ou un vehicule et, si necessaire, definissez un code PIN. La carte est alors prete a l'emploi.",
+    q: 'Comment activer ma carte ?',
+    a: "Après réception, ajoutez la carte depuis l'application EVplug (section Portefeuille/Cartes) ou depuis le portail entreprise. Associez-la à un utilisateur ou un véhicule et, si nécessaire, définissez un code PIN. La carte est alors prête à l'emploi.",
   },
   {
-    q: 'Comment suis-je facture(e) ?',
-    a: "Les tarifs sont affiches avant demarrage lorsque disponibles. Vous recevez un releve detaille de vos sessions dans l'application et des factures periodiques (mensuelles) recapitulatives. Pour les entreprises, la facturation peut etre centralisee par site, centre de cout ou vehicule.",
+    q: 'Comment suis-je facturé(e) ?',
+    a: "Les tarifs sont affichés avant démarrage lorsque disponibles. Vous recevez un relevé détaillé de vos sessions dans l'application et des factures périodiques (mensuelles) récapitulatives. Pour les entreprises, la facturation peut être centralisée par site, centre de coût ou véhicule.",
   },
   {
-    q: 'Que faire en cas de perte ou de vol ?',
-    a: "Desactivez immediatement la carte depuis l'application ou le portail pour empecher toute utilisation. Vous pouvez demander l'emission d'une nouvelle carte. Des frais de remplacement peuvent s'appliquer.",
+    q: 'Que faire en cas de perte ou de vol ?',
+    a: "Désactivez immédiatement la carte depuis l'application ou le portail pour empêcher toute utilisation. Vous pouvez demander l'émission d'une nouvelle carte. Des frais de remplacement peuvent s'appliquer.",
   },
   {
-    q: 'Puis-je gerer plusieurs cartes et utilisateurs ?',
-    a: 'Oui. Les particuliers peuvent associer plusieurs vehicules a un meme compte. Les entreprises peuvent emettre et gerer un parc de cartes, attribuer des droits, fixer des plafonds et suivre les depenses par utilisateur, site ou vehicule.',
+    q: 'Puis-je gérer plusieurs cartes et utilisateurs ?',
+    a: "Oui. Les particuliers peuvent associer plusieurs véhicules à un même compte. Les entreprises peuvent émettre et gérer un parc de cartes, attribuer des droits, fixer des plafonds et suivre les dépenses par utilisateur, site ou véhicule.",
   },
   {
-    q: 'La carte peut-elle controler l’acces a mes bornes privees ?',
-    a: "Oui, si vos bornes privees sont compatibles avec le controle d'acces RFID. La Carte EVplug peut alors servir de badge d'acces et vous permettre de distinguer les recharges privees et professionnelles pour une refacturation simplifiee.",
+    q: "La carte peut-elle contrôler l'accès à mes bornes privées ?",
+    a: "Oui, si vos bornes privées sont compatibles avec le contrôle d'accès RFID. La Carte EVplug peut alors servir de badge d'accès et vous permettre de distinguer les recharges privées et professionnelles pour une refacturation simplifiée.",
   },
   {
-    q: 'Ai-je besoin d’une connexion Internet ?',
-    a: "Une connexion est necessaire pour activer la carte et consulter l'historique dans l'application. Sur les bornes publiques, la recharge via RFID fonctionne sans connexion de votre telephone. Certaines fonctions avancees (statuts en temps reel, mises a jour) requierent l'acces Internet.",
+    q: "Ai-je besoin d'une connexion Internet ?",
+    a: "Une connexion est nécessaire pour activer la carte et consulter l'historique dans l'application. Sur les bornes publiques, la recharge via RFID fonctionne sans connexion de votre téléphone. Certaines fonctions avancées (statuts en temps réel, mises à jour) requièrent l'accès Internet.",
   },
   {
-    q: 'Y a-t-il des frais associes a la carte ?',
-    a: "Des frais d'emission ou de remplacement peuvent s'appliquer. Les tarifs de recharge dependent du point de charge et de l'operateur. Le detail des prix est indique avant demarrage lorsqu'il est fourni par l'operateur.",
+    q: 'Y a-t-il des frais associés à la carte ?',
+    a: "Des frais d'émission ou de remplacement peuvent s'appliquer. Les tarifs de recharge dépendent du point de charge et de l'opérateur. Le détail des prix est indiqué avant démarrage lorsqu'il est fourni par l'opérateur.",
   },
   {
-    q: 'Proposez-vous des cartes pour les entreprises ?',
-    a: "Oui. La Carte EVplug Entreprise permet d'emettre des cartes a vos equipes, de fixer des limites de depenses, de centraliser la facturation et d'acceder a des rapports detailles par site, vehicule ou collaborateur.",
+    q: 'Proposez-vous des cartes pour les entreprises ?',
+    a: "Oui. La Carte EVplug Entreprise permet d'émettre des cartes à vos équipes, de fixer des limites de dépenses, de centraliser la facturation et d'accéder à des rapports détaillés par site, véhicule ou collaborateur.",
   },
 ]
 
@@ -243,7 +243,7 @@ function StickyTabs() {
       <section className="w-full z-50 tab-section tab-section-mobile accordion-block sticky top-0 md:hidden">
         <div className="tab-block-mobile container-max-width-desktop container-max-width-tablet container-padding-desktop container-padding-tablet container-padding-mobile mx-auto">
           <div className="grid grid-flow-col items-center justify-between w-full gap-spacing-4xl bg-surface rounded-b-2xl shadow py-spacing-sm md:px-spacing-4xl px-spacing-xl">
-            <div className="title font-semibold whitespace-nowrap">Aller a :</div>
+            <div className="title font-semibold whitespace-nowrap">Aller à :</div>
             <div className="relative w-full custom-dropdown col-span-2">
               <div
                 onClick={() => setOpen((v) => !v)}
@@ -287,9 +287,9 @@ export default function CarteEvplug() {
 
             <Hero
               title="Carte EVplug"
-              subtitle="Une carte unique pour recharger partout sur notre reseau et chez nos partenaires. Pour les particuliers et les entreprises, gerez l'emission de cartes, l'acces a vos bornes locales et le suivi des depenses depuis un seul espace."
+              subtitle="Une carte unique pour recharger partout sur notre réseau et chez nos partenaires. Pour les particuliers et les entreprises, gérez l'émission de cartes, l'accès à vos bornes locales et le suivi des dépenses depuis un seul espace."
               ctas={[{ to: '/contact-us', label: 'Obtenir ma carte', variant: 'primary' }]}
-              footnote="Sous reserve d'eligibilite. Conditions generales applicables."
+              footnote="Sous réserve d'éligibilité. Conditions générales applicables."
               image={heroImg}
               imageAlt="Carte EVplug"
             />
@@ -331,9 +331,9 @@ export default function CarteEvplug() {
                             <h2 className="tracking-tight m-0 pr-spacing-3xl">Votre carte EVplug</h2>
                             <div className="m-0 pr-spacing-3xl">
                               <p>
-                                Rechargez sur l'ensemble de notre reseau public et partenaires avec une seule carte
-                                RFID securisee. Associez-la a un utilisateur ou a un vehicule et maitrisez vos
-                                depenses.
+                                Rechargez sur l&rsquo;ensemble de notre réseau public et partenaires avec une seule carte
+                                RFID sécurisée. Associez-la à un utilisateur ou à un véhicule et maîtrisez vos
+                                dépenses.
                               </p>
                             </div>
                           </div>
@@ -371,10 +371,10 @@ export default function CarteEvplug() {
                       <div className="grid gap-spacing-6xl">
                         <div className="view-header">
                           <div className="grid gap-spacing-3xl">
-                            <h3 className="tracking-tight m-0 pr-spacing-3xl">L'application EVplug</h3>
+                            <h3 className="tracking-tight m-0 pr-spacing-3xl">L&rsquo;application EVplug</h3>
                             <div className="m-0 pr-spacing-3xl">
                               <p>
-                                L'application EVplug centralise tout ce dont vous avez besoin pour piloter, suivre et
+                                L&rsquo;application EVplug centralise tout ce dont vous avez besoin pour piloter, suivre et
                                 optimiser votre recharge depuis votre smartphone.
                               </p>
                             </div>
@@ -409,7 +409,7 @@ export default function CarteEvplug() {
               <div className="container-max-width-desktop container-max-width-tablet container-padding-desktop container-padding-tablet container-padding-mobile mx-auto xl:py-spacing-9xl py-spacing-7xl">
                 <div className="view-header text-center">
                   <div className="heading-block pb-12 grid gap-spacing-sm">
-                    <h4 className="tracking-tight m-0">Questions frequentes</h4>
+                    <h4 className="tracking-tight m-0">Questions fréquentes</h4>
                   </div>
                 </div>
                 <Accordion variant="faq" items={faqAccordionItems} defaultOpen={-1} />
@@ -418,7 +418,7 @@ export default function CarteEvplug() {
 
             <HelpBand
               icon={chatIcon}
-              body="Notre equipe support est disponible 24/7. Contactez-nous depuis votre espace client ou via la page de contact."
+              body="Notre équipe support est disponible 24/7. Contactez-nous depuis votre espace client ou via la page de contact."
             />
           </div>
         </article>

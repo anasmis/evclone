@@ -8,49 +8,49 @@ import platformImage from '../../migrated/assets/solutions/stations-service/plat
 const services = [
   {
     icon: icons.charger,
-    title: 'Etude electrique & raccordement',
+    title: 'Étude électrique & raccordement',
     description:
-      'Audit de votre station, plan de raccordement haute puissance et coordination complete avec les fournisseurs reseau pour un raccordement sans accroc.',
+      'Audit de votre station, plan de raccordement haute puissance et coordination complète avec les fournisseurs réseau pour un raccordement sans accroc.',
   },
   {
     icon: icons.standaloneCharger,
     title: 'Bornes DC haute puissance',
     description:
-      'Recharge rapide de 50 kW a 300 kW. Vos clients rechargent en 15 a 45 minutes pendant leur pause. Formats compatibles CCS2, CHAdeMO et AC Type 2.',
+      'Recharge rapide de 50 kW à 300 kW. Vos clients rechargent en 15 à 45 minutes pendant leur pause. Formats compatibles CCS2, CHAdeMO et AC Type 2.',
   },
   {
     icon: icons.sendFeedback,
     title: 'SAV 24h/24 et 7j/7',
     description:
-      'Supervision a distance en continu, teleassistance immediate et interventions terrain prioritaires pour minimiser toute immobilisation commerciale.',
+      'Supervision à distance en continu, téléassistance immédiate et interventions terrain prioritaires pour minimiser toute immobilisation commerciale.',
   },
   {
     icon: icons.tariff,
-    title: 'Interoperabilite & paiement',
+    title: 'Interopérabilité & paiement',
     description:
-      "Compatible paiement CB sans contact, badge RFID, application mobile et roaming avec les grands reseaux de recharge. Aucune exclusion d'utilisateur.",
+      "Compatible paiement CB sans contact, badge RFID, application mobile et roaming avec les grands réseaux de recharge. Aucune exclusion d'utilisateur.",
   },
   {
     icon: icons.dashboard,
     title: 'Plateforme Evone Station',
     description:
-      "Gestion tarifaire en temps reel, monitoring des bornes, reporting chiffre d'affaires recharge, analyse du flux clients et alertes techniques automatiques.",
+      "Gestion tarifaire en temps réel, monitoring des bornes, reporting chiffre d'affaires recharge, analyse du flux clients et alertes techniques automatiques.",
   },
   {
     icon: icons.tick,
-    title: 'Gestion tierce complete',
+    title: 'Gestion tierce complète',
     description:
-      'Exploitation totale de votre infrastructure de recharge : supervision, maintenance et relation clients recharge. Vous vous concentrez sur votre coeur de metier.',
+      "Exploitation totale de votre infrastructure de recharge : supervision, maintenance et relation clients recharge. Vous vous concentrez sur votre cœur de métier.",
   },
 ]
 
 const evoneFeatures = [
-  'Monitoring en temps reel : etat de chaque borne DC, sessions actives, alertes',
-  'Gestion tarifaire dynamique : tarifs heures pleines, heures creuses, abonnes',
-  "Reporting financier : chiffre d'affaires recharge par periode et par borne",
-  'Compatibilite roaming OCPI avec les grands reseaux nationaux et africains',
+  'Monitoring en temps réel : état de chaque borne DC, sessions actives, alertes',
+  'Gestion tarifaire dynamique : tarifs heures pleines, heures creuses, abonnés',
+  "Reporting financier : chiffre d'affaires recharge par période et par borne",
+  'Compatibilité roaming OCPI avec les grands réseaux nationaux et africains',
   "Tableau de bord flux clients : temps de charge moyen, taux d'occupation, heures de pointe",
-  'Integration OCPP 1.6 et 2.0 pour tous les equipements',
+  'Intégration OCPP 1.6 et 2.0 pour tous les équipements',
 ]
 
 const managementItems = [
@@ -58,19 +58,19 @@ const managementItems = [
     icon: icons.dashboard,
     title: 'Site management',
     description:
-      'Supervisez toutes vos bornes DC en direct, pilotez leur disponibilite et appliquez des regles de fonctionnement par station, axe routier ou zone.',
+      'Supervisez toutes vos bornes DC en direct, pilotez leur disponibilité et appliquez des règles de fonctionnement par station, axe routier ou zone.',
   },
   {
     icon: icons.profile,
     title: 'User management',
     description:
-      "Gerez les acces par type d'utilisateur (grand public, flottes, partenaires), les droits d'usage et les parcours de recharge depuis une seule console.",
+      "Gérez les accès par type d'utilisateur (grand public, flottes, partenaires), les droits d'usage et les parcours de recharge depuis une seule console.",
   },
   {
     icon: icons.coins,
     title: 'Expense and driver management',
     description:
-      "Controlez les tarifs, le chiffre d'affaires recharge, les reversements et les historiques de sessions pour une exploitation rentable et tracable.",
+      "Contrôlez les tarifs, le chiffre d'affaires recharge, les reversements et les historiques de sessions pour une exploitation rentable et traçable.",
   },
 ]
 
@@ -86,25 +86,25 @@ export default function StationsService() {
     >
       <SolutionTemplate
         tag="EV Station de services"
-        heroTitle="Faites de votre station un hub de mobilite electrique."
-        heroSubtitle="EVplug installe et exploite des bornes DC haute puissance sur votre station. Vos clients rechargent en moins de 45 minutes, vous generez de nouveaux revenus et renforcez votre attractivite."
+        heroTitle="Faites de votre station un hub de mobilité électrique."
+        heroSubtitle="EVplug installe et exploite des bornes DC haute puissance sur votre station. Vos clients rechargent en moins de 45 minutes, vous générez de nouveaux revenus et renforcez votre attractivité."
         heroImage={heroImage}
         storyImage={storyImage}
         platformImage={platformImage}
-        heroCta="Etudier votre projet"
+        heroCta="Étudier votre projet"
         services={services}
         imagePanel1Title="Raccordement haute puissance, expertise incluse"
-        imagePanel1Body="Nos equipes coordonnent le raccordement electrique haute puissance avec les fournisseurs de reseau. Vous n'avez pas a gerer les demarches techniques : EVplug prend tout en charge, du dossier de raccordement a la mise en service commerciale."
+        imagePanel1Body="Nos équipes coordonnent le raccordement électrique haute puissance avec les fournisseurs de réseau. Vous n'avez pas à gérer les démarches techniques : EVplug prend tout en charge, du dossier de raccordement à la mise en service commerciale."
         managementTitle="Notre EVone Management Service pour stations"
-        managementSubtitle="Inspire du modele workplace-charging de Podenergy, ce service EVone unifie la gestion de site, des utilisateurs et des revenus de recharge dans une plateforme unique."
+        managementSubtitle="Inspiré du modèle workplace-charging de Podenergy, ce service EVone unifie la gestion de site, des utilisateurs et des revenus de recharge dans une plateforme unique."
         managementItems={managementItems}
         managementCta="Voir EVone Management Service"
         evoneBadge="Plateforme Evone Stations"
-        evoneTitle="Supervisez et monetisez votre infrastructure de recharge rapide."
-        evoneSubtitle="Evone Station vous donne le controle total de vos bornes DC : tarification, monitoring, reporting financier et compatibilite avec les grands reseaux de roaming. Une plateforme pensee pour maximiser vos revenus recharge."
+        evoneTitle="Supervisez et monétisez votre infrastructure de recharge rapide."
+        evoneSubtitle="Evone Station vous donne le contrôle total de vos bornes DC : tarification, monitoring, reporting financier et compatibilité avec les grands réseaux de roaming. Une plateforme pensée pour maximiser vos revenus recharge."
         evoneFeatures={evoneFeatures}
-        ctaTitle="Devenez un acteur de la mobilite electrique au Maroc."
-        ctaBody="Que vous exploitiez une station de services, une aire d'autoroute ou un hub logistique, EVplug concoit et deploie votre infrastructure de recharge rapide de A a Z."
+        ctaTitle="Devenez un acteur de la mobilité électrique au Maroc."
+        ctaBody="Que vous exploitiez une station de services, une aire d'autoroute ou un hub logistique, EVplug conçoit et déploie votre infrastructure de recharge rapide de A à Z."
       />
     </SolutionPageLayout>
   )

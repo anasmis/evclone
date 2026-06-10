@@ -34,11 +34,11 @@ function ArticleCard({ a }) {
 
 export default function NewsListing() {
   return (
-    <MirrorShell documentTitle="Actualites | EVplug">
+    <MirrorShell documentTitle="Actualités | EVplug">
       <div className="region region-content">
         <article className="node node--type-page">
           <div className="node__content">
-            <Breadcrumb current="Actualites" />
+            <Breadcrumb current="Actualités" />
 
             {/* Hero */}
             <section className="two-card-layout">
@@ -50,10 +50,10 @@ export default function NewsListing() {
                   >
                     <div className="grid gap-spacing-xl auto-rows-max">
                       <h1 className="font-TTCommons mb-0" style={{ color: '#000000' }}>
-                        Actualites
+                        Actualités
                       </h1>
                       <h4 className="m-0" style={{ color: '#000000' }}>
-                        Decouvrez les dernieres actualites d'EVplug
+                        Découvrez les dernières actualités d&rsquo;EVplug
                       </h4>
                     </div>
                   </div>

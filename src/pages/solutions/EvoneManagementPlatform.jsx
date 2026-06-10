@@ -18,8 +18,8 @@ const FALLBACK = {
   heroTag: 'Plateforme Evone',
   heroTitle: 'Plateforme Evone',
   heroSubtitle:
-    'Pilotez, monetisez et optimisez vos sites de recharge avec Evone, la plateforme EVplug concue pour les operateurs au Maroc.',
-  heroCtaLabel: 'Demander une demo',
+    'Pilotez, monétisez et optimisez vos sites de recharge avec Evone, la plateforme EVplug conçue pour les opérateurs au Maroc.',
+  heroCtaLabel: 'Demander une démo',
   heroCtaHref: '/contact-us',
   heroImage: evoneLaptopImg,
   featurePills: [
@@ -31,53 +31,53 @@ const FALLBACK = {
     {
       icon: icons.coins,
       title: 'Utilisateurs & Tarification',
-      description: "Configurez des regles tarifaires et des droits d'acces par groupe.",
+      description: "Configurez des règles tarifaires et des droits d'accès par groupe.",
     },
     {
       icon: icons.tick,
       title: 'Analyses & Reporting',
-      description: "Suivez l'utilisation, les revenus et l'energie delivree en temps reel.",
+      description: "Suivez l'utilisation, les revenus et l'énergie délivrée en temps réel.",
     },
   ],
   detailRows: [
     {
       image: evoneLaptopImg,
       title: 'Sites et bornes',
-      lead: 'Obtenez une vue globale de votre reseau de recharge.',
-      intro: "Evone unifie la mise en service, la connectivite et l'exploitation pour vous permettre de :",
+      lead: 'Obtenez une vue globale de votre réseau de recharge.',
+      intro: "Evone unifie la mise en service, la connectivité et l'exploitation pour vous permettre de :",
       bullets: [
-        "Centraliser l'etat des sites, bornes et connecteurs.",
-        'Suivre les sessions, la disponibilite et les alertes sur tout le parc.',
-        'Appliquer des regles par site, region ou segment client.',
+        "Centraliser l'état des sites, bornes et connecteurs.",
+        'Suivre les sessions, la disponibilité et les alertes sur tout le parc.',
+        'Appliquer des règles par site, région ou segment client.',
       ],
     },
     {
       image: evoneInstallImg,
       title: 'Utilisateurs et tarification',
-      lead: 'Concevez une tarification adaptee a votre activite au Maroc.',
-      intro: 'Evone vous aide a configurer le modele commercial dont vous avez besoin :',
+      lead: 'Concevez une tarification adaptée à votre activité au Maroc.',
+      intro: 'Evone vous aide à configurer le modèle commercial dont vous avez besoin :',
       bullets: [
         'Tarification au kWh, au temps ou hybride par tranche horaire.',
-        'Grilles tarifaires pour flottes, residences, collaborateurs ou grand public.',
-        'Gestion des acces via roles, groupes RFID et partenaires.',
+        'Grilles tarifaires pour flottes, résidences, collaborateurs ou grand public.',
+        'Gestion des accès via rôles, groupes RFID et partenaires.',
       ],
       reversed: true,
     },
     {
       image: evoneLaptopImg,
       title: 'Analyses et reporting',
-      lead: 'Transformez les donnees de recharge en decisions operationnelles.',
+      lead: 'Transformez les données de recharge en décisions opérationnelles.',
       intro: 'Evone fournit des rapports exploitables pour :',
       bullets: [
-        "Suivre l'utilisation, les revenus et la disponibilite par site.",
-        'Comparer les performances et identifier les opportunites de croissance.',
-        "Reporter l'impact CO2 et l'energie delivree pour vos bilans ESG.",
+        "Suivre l'utilisation, les revenus et la disponibilité par site.",
+        'Comparer les performances et identifier les opportunités de croissance.',
+        "Reporter l'impact CO2 et l'énergie délivrée pour vos bilans ESG.",
       ],
     },
   ],
-  midCtaTitle: 'Pilotez, gerez & optimisez.',
-  midCtaBody: 'Evone vous donne une vision complete de votre reseau de recharge au Maroc.',
-  midCtaLabel: 'Demander une demo',
+  midCtaTitle: 'Pilotez, gérez & optimisez.',
+  midCtaBody: 'Evone vous donne une vision complète de votre réseau de recharge au Maroc.',
+  midCtaLabel: 'Demander une démo',
   midCtaHref: '/contact-us',
   midCtaDecorImage: ctaImage,
   midCtaDecorBg: '#87b4e1',
@@ -85,58 +85,58 @@ const FALLBACK = {
     {
       image: evoneInstallImg,
       title: 'Exploitation multi-sites',
-      lead: "Passez d'un site a un reseau national.",
-      intro: 'Evone vous aide a exploiter plusieurs sites au Maroc avec serenite :',
+      lead: "Passez d'un site à un réseau national.",
+      intro: 'Evone vous aide à exploiter plusieurs sites au Maroc avec sérénité :',
       bullets: [
-        'Appliquer des regles et un branding coherents entre sites.',
-        'Donner des acces locaux tout en gardant le controle central.',
-        'Reconcilier revenus et usage par site, region ou client.',
+        'Appliquer des règles et un branding cohérents entre sites.',
+        'Donner des accès locaux tout en gardant le contrôle central.',
+        'Réconcilier revenus et usage par site, région ou client.',
       ],
     },
     {
       image: evoneLaptopImg,
       title: 'Programmes flottes et entreprises',
-      lead: 'Donnez aux flottes la visibilite dont elles ont besoin.',
+      lead: 'Donnez aux flottes la visibilité dont elles ont besoin.',
       bullets: [
-        'Separez les sessions collaborateurs et flotte via des groupes intelligents.',
-        'Centralisez les donnees domicile, entreprise et public dans un seul rapport.',
-        "Partagez l'impact CO2 et les couts pour les equipes durabilite.",
+        'Séparez les sessions collaborateurs et flotte via des groupes intelligents.',
+        'Centralisez les données domicile, entreprise et public dans un seul rapport.',
+        "Partagez l'impact CO2 et les coûts pour les équipes durabilité.",
       ],
       reversed: true,
     },
   ],
   faqItems: [
     {
-      question: 'Mon equipe doit-elle etre formee pour Evone ?',
+      question: 'Mon équipe doit-elle être formée pour Evone ?',
       answer:
-        '<p>Evone est intuitive et facile a prendre en main. Nous proposons aussi des parcours guides et un accompagnement au demarrage.</p>',
+        '<p>Evone est intuitive et facile à prendre en main. Nous proposons aussi des parcours guidés et un accompagnement au démarrage.</p>',
     },
     {
-      question: 'Quelle est la flexibilite des tarifs sur Evone ?',
+      question: 'Quelle est la flexibilité des tarifs sur Evone ?',
       answer:
-        "<p>Votre modele tarifaire peut etre simple ou dynamique. Configurez des tarifs au kWh, au temps ou hybrides, par tranche horaire et par groupe d'utilisateurs.</p><p>Les promotions, frais minimums et penalites d'occupation sont egalement disponibles.</p>",
+        "<p>Votre modèle tarifaire peut être simple ou dynamique. Configurez des tarifs au kWh, au temps ou hybrides, par tranche horaire et par groupe d'utilisateurs.</p><p>Les promotions, frais minimums et pénalités d'occupation sont également disponibles.</p>",
     },
     {
-      question: 'Comment EVplug securise-t-elle vos donnees ?',
+      question: 'Comment EVplug sécurise-t-elle vos données ?',
       answer:
-        '<p>EVplug prend la securite des donnees au serieux.</p><ul><li>Les donnees transitent via https avec TLS 1.2.</li><li>Nos systemes sont heberges sur une infrastructure cloud securisee.</li><li>Nous effectuons des audits reguliers de securite.</li></ul>',
+        '<p>EVplug prend la sécurité des données au sérieux.</p><ul><li>Les données transitent via https avec TLS 1.2.</li><li>Nos systèmes sont hébergés sur une infrastructure cloud sécurisée.</li><li>Nous effectuons des audits réguliers de sécurité.</li></ul>',
     },
     {
       question: 'Comment configurer Evone ?',
       answer:
-        "<p>Une fois vos bornes installees et connectees, l'equipe EVplug configure votre espace Evone et partage des acces securises pour vos administrateurs.</p>",
+        "<p>Une fois vos bornes installées et connectées, l'équipe EVplug configure votre espace Evone et partage des accès sécurisés pour vos administrateurs.</p>",
     },
     {
-      question: "Ai-je besoin d'equipements ou de logiciels supplementaires ?",
+      question: "Ai-je besoin d'équipements ou de logiciels supplémentaires ?",
       answer:
         "<p>Non. Evone est une plateforme web accessible depuis un navigateur moderne sur ordinateur, tablette ou mobile. Vos bornes doivent simplement disposer d'une connexion data stable.</p>",
     },
   ],
   ctaInterest: 'Plateforme Evone',
-  ctaButtonLabel: 'Demander une demo',
-  ctaTitle: 'Demander une demo Evone',
+  ctaButtonLabel: 'Demander une démo',
+  ctaTitle: 'Demander une démo Evone',
   ctaSubtitle:
-    'Decrivez votre reseau et vos objectifs : un expert EVplug vous propose une demonstration personnalisee.',
+    'Décrivez votre réseau et vos objectifs : un expert EVplug vous propose une démonstration personnalisée.',
   ctaAccentColor: '#87b4e1',
 }
 

@@ -17,21 +17,21 @@ const ADVISOR_EMAIL = 'mailto:contact@evplug.com'
 const benefits = [
   {
     icon: icons.profile,
-    title: 'Equipes autonomes',
+    title: 'Équipes autonomes',
     description:
-      'Des equipes plus autonomes sur la mise en service, le suivi et les bonnes pratiques de recharge EV.',
+      'Des équipes plus autonomes sur la mise en service, le suivi et les bonnes pratiques de recharge EV.',
   },
   {
     icon: icons.chargingDuration,
-    title: 'Deploiements plus rapides',
+    title: 'Déploiements plus rapides',
     description:
-      'Des techniciens formes qui livrent plus vite, avec moins de retours chantier et moins de blocages.',
+      'Des techniciens formés qui livrent plus vite, avec moins de retours chantier et moins de blocages.',
   },
   {
     icon: icons.tick,
-    title: 'Qualite et securite',
+    title: 'Qualité et sécurité',
     description:
-      'Des equipes alignees avec vos exigences de qualite et de securite, pour des installations conformes.',
+      'Des équipes alignées avec vos exigences de qualité et de sécurité, pour des installations conformes.',
   },
   {
     icon: icons.dashboard,
@@ -46,39 +46,39 @@ const levels = [
     number: '01',
     name: 'Niveau 1 — Sensibilisation',
     duration: '2h en ligne',
-    audience: 'Equipes operationnelles et support',
+    audience: 'Équipes opérationnelles et support',
     summary:
-      'Donnez une base commune sur la recharge VE, les enjeux et les bonnes pratiques de securite.',
+      'Donnez une base commune sur la recharge VE, les enjeux et les bonnes pratiques de sécurité.',
     bullets: [
       'Vocabulaire et fondamentaux de la recharge VE',
-      'Risques electriques et reflexes HSE',
-      'Roles et responsabilites sur un projet de recharge',
+      'Risques électriques et réflexes HSE',
+      'Rôles et responsabilités sur un projet de recharge',
     ],
   },
   {
     number: '02',
-    name: 'Niveau 2 — Operationnel',
-    duration: '1 a 2 jours sur site',
+    name: 'Niveau 2 — Opérationnel',
+    duration: '1 à 2 jours sur site',
     audience: 'Techniciens, chefs de chantier, HSE',
     summary:
-      'Mise en service, controles de conformite et procedures terrain pour deployer en confiance.',
+      'Mise en service, contrôles de conformité et procédures terrain pour déployer en confiance.',
     bullets: [
-      'Sequence de mise en service et tests fonctionnels',
-      'Controles de conformite et PV de reception',
-      'Diagnostic, reprise chantier et tracabilite',
+      'Séquence de mise en service et tests fonctionnels',
+      'Contrôles de conformité et PV de réception',
+      'Diagnostic, reprise chantier et traçabilité',
     ],
   },
   {
     number: '03',
-    name: 'Niveau 3 — Referent',
+    name: 'Niveau 3 — Référent',
     duration: '3 jours intra-entreprise',
-    audience: 'Responsables techniques et qualite',
+    audience: 'Responsables techniques et qualité',
     summary:
-      "Pilotez votre parc de bornes : qualite, supervision et amelioration continue avec l'ecosysteme EVplug.",
+      "Pilotez votre parc de bornes : qualité, supervision et amélioration continue avec l'écosystème EVplug.",
     bullets: [
-      "Supervision multi-sites et indicateurs cles",
-      "Plan qualite, retours d'experience et formation interne",
-      'Integration avec EVone et roadmap de deploiement',
+      "Supervision multi-sites et indicateurs clés",
+      "Plan qualité, retours d'expérience et formation interne",
+      "Intégration avec EVone et roadmap de déploiement",
     ],
   },
 ]
@@ -87,13 +87,13 @@ const adaptedModules = [
   {
     icon: icons.tick,
     audience: 'HSE & techniciens',
-    title: 'Securite',
+    title: 'Sécurité',
     description:
-      "Bonnes pratiques HSE specifiques aux installations de recharge, pour proteger vos equipes et vos chantiers.",
+      "Bonnes pratiques HSE spécifiques aux installations de recharge, pour protéger vos équipes et vos chantiers.",
     bullets: [
-      'Habilitations electriques et EPI adaptes',
+      'Habilitations électriques et EPI adaptés',
       'Consignation et gestion des risques sur site',
-      'Lecture des schemas et reperage des dangers',
+      'Lecture des schémas et repérage des dangers',
     ],
   },
   {
@@ -101,35 +101,35 @@ const adaptedModules = [
     audience: 'Techniciens & chefs de chantier',
     title: 'Mise en service',
     description:
-      "Procedures guidees pour livrer une installation prete a charger, du premier test au PV de reception.",
+      "Procédures guidées pour livrer une installation prête à charger, du premier test au PV de réception.",
     bullets: [
-      'Sequence de mise sous tension et tests fonctionnels',
-      'Controles de conformite et validation client',
-      'Documentation et tracabilite de la mise en service',
+      'Séquence de mise sous tension et tests fonctionnels',
+      'Contrôles de conformité et validation client',
+      'Documentation et traçabilité de la mise en service',
     ],
   },
   {
     icon: icons.smartCharge,
-    audience: 'Equipes terrain',
+    audience: 'Équipes terrain',
     title: 'Bonnes pratiques',
     description:
-      "Methodes eprouvees pour cabler, dimensionner et integrer la borne au tableau electrique sans surprise.",
+      "Méthodes éprouvées pour câbler, dimensionner et intégrer la borne au tableau électrique sans surprise.",
     bullets: [
-      'Dimensionnement et choix du materiel',
-      'Integration au tableau et protections',
-      'Anticipation des contraintes specifiques au site',
+      'Dimensionnement et choix du matériel',
+      'Intégration au tableau et protections',
+      'Anticipation des contraintes spécifiques au site',
     ],
   },
   {
     icon: icons.dashboard,
-    audience: 'Operations & qualite',
+    audience: 'Opérations & qualité',
     title: 'Suivi des installations',
     description:
-      "Suivi qualite et amelioration continue de votre parc, pour faire monter en competence l'ensemble de l'equipe.",
+      "Suivi qualité et amélioration continue de votre parc, pour faire monter en compétence l'ensemble de l'équipe.",
     bullets: [
-      "Suivi qualite et retours d'experience",
+      "Suivi qualité et retours d'expérience",
       'Gestion des incidents et reprise de chantier',
-      'Indicateurs et boucle d\'amelioration continue',
+      "Indicateurs et boucle d'amélioration continue",
     ],
   },
 ]
@@ -142,7 +142,7 @@ export default function Corporate() {
   }
 
   return (
-    <MirrorShell documentTitle="Formations Professionnelles EVplug | Qualifier vos equipes a la recharge EV">
+    <MirrorShell documentTitle="Formations Professionnelles EVplug | Qualifier vos équipes à la recharge EV">
       <div className="region region-content">
         <article className="node node--type-page">
           <div className="node__content">
@@ -158,19 +158,19 @@ export default function Corporate() {
                 <>
                   <p>
                     <strong>
-                      Qualifiez vos equipes a la recharge EV, a votre rythme et selon votre contexte terrain.
+                      Qualifiez vos équipes à la recharge EV, à votre rythme et selon votre contexte terrain.
                     </strong>
                   </p>
                   <p>
-                    EVplug accompagne les entreprises avec des formations sur mesure pour les equipes techniques, HSE
-                    et operations. Nous adaptons chaque parcours a votre contexte terrain, a votre rythme et a vos
-                    contraintes de deploiement.
+                    EVplug accompagne les entreprises avec des formations sur mesure pour les équipes techniques, HSE
+                    et opérations. Nous adaptons chaque parcours à votre contexte terrain, à votre rythme et à vos
+                    contraintes de déploiement.
                   </p>
                 </>
               }
               ctas={[
                 { to: '/contact-us', label: 'Demander un devis entreprise', variant: 'primary' },
-                { href: ADVISOR_EMAIL, label: 'Parler a un conseiller', variant: 'primary-outline' },
+                { href: ADVISOR_EMAIL, label: 'Parler à un conseiller', variant: 'primary-outline' },
               ]}
               image={heroImg}
               imageAlt="Formations Professionnelles EVplug"
@@ -187,16 +187,16 @@ export default function Corporate() {
                   </div>
                   <div className="md:w-6/12 w-full">
                     <div className="max-w-[480px] grid gap-spacing-3xl">
-                      <h3 className="tracking-tight m-0">Des equipes plus autonomes, plus rapides, mieux alignees</h3>
+                      <h3 className="tracking-tight m-0">Des équipes plus autonomes, plus rapides, mieux alignées</h3>
                       <div className="hero-banner-des">
                         <p>
-                          EVplug accompagne les entreprises avec des formations sur mesure pour les equipes techniques,
-                          HSE et operations. Nous adaptons chaque parcours a votre contexte terrain, a votre rythme et
-                          a vos contraintes de deploiement.
+                          EVplug accompagne les entreprises avec des formations sur mesure pour les équipes techniques,
+                          HSE et opérations. Nous adaptons chaque parcours à votre contexte terrain, à votre rythme et
+                          à vos contraintes de déploiement.
                         </p>
                         <p>
-                          Objectif : des equipes plus autonomes, plus rapides et mieux alignees avec vos exigences de
-                          qualite et de securite.
+                          Objectif : des équipes plus autonomes, plus rapides et mieux alignées avec vos exigences de
+                          qualité et de sécurité.
                         </p>
                       </div>
                       <div className="flex flex-wrap justify-start gap-spacing-xl">
@@ -221,8 +221,8 @@ export default function Corporate() {
                       </span>
                       <h2 className="tracking-tight m-0">Les niveaux de formation entreprise</h2>
                       <p>
-                        Un parcours progressif pour faire monter vos equipes en competence, de la
-                        sensibilisation a la prise en charge de votre parc de bornes.
+                        Un parcours progressif pour faire monter vos équipes en compétence, de la
+                        sensibilisation à la prise en charge de votre parc de bornes.
                       </p>
                     </div>
                   </div>
@@ -277,8 +277,8 @@ export default function Corporate() {
 
             <BookingCalendar
               formationKey="corporate"
-              title="Reservez une session entreprise"
-              subtitle="Selectionnez une date pour decouvrir les sessions ouvertes ou demander une session intra-entreprise."
+              title="Réservez une session entreprise"
+              subtitle="Sélectionnez une date pour découvrir les sessions ouvertes ou demander une session intra-entreprise."
               accentColor="#c8d72d"
             />
 
@@ -294,8 +294,8 @@ export default function Corporate() {
                       <h2 className="tracking-tight m-0">Ce que nous adaptons</h2>
                       <div>
                         <p>
-                          Quatre modules combines a la carte, selon le profil de vos equipes et la phase de votre
-                          deploiement. Chaque module est ajustable en duree, en profondeur et en exemples terrain.
+                          Quatre modules combinés à la carte, selon le profil de vos équipes et la phase de votre
+                          déploiement. Chaque module est ajustable en durée, en profondeur et en exemples terrain.
                         </p>
                       </div>
                     </div>
@@ -404,12 +404,12 @@ export default function Corporate() {
                       <div className="hero-banner-des">
                         <p>
                           Sessions en ligne ou sur site, inter-entreprises ou intra-entreprise, selon vos besoins
-                          operationnels.
+                          opérationnels.
                         </p>
                         <ul>
                           <li>En ligne ou sur site</li>
                           <li>Inter-entreprises (sessions ouvertes) ou intra-entreprise (sur mesure)</li>
-                          <li>Rythme et contenu adaptes a vos contraintes de deploiement</li>
+                          <li>Rythme et contenu adaptés à vos contraintes de déploiement</li>
                         </ul>
                       </div>
                       <div className="flex flex-wrap justify-start gap-spacing-xl">
@@ -417,7 +417,7 @@ export default function Corporate() {
                           Demander un devis entreprise
                         </a>
                         <a href={ADVISOR_EMAIL} className="btn btn-secondary font-base">
-                          Parler a un conseiller
+                          Parler à un conseiller
                         </a>
                       </div>
                     </div>
@@ -428,10 +428,10 @@ export default function Corporate() {
 
             <CtaBanner
               title="Construisons votre programme de formation"
-              body="Decrivez vos equipes, vos sites et vos objectifs de deploiement : un conseiller EVplug vous propose un parcours sur mesure."
+              body="Décrivez vos équipes, vos sites et vos objectifs de déploiement : un conseiller EVplug vous propose un parcours sur mesure."
               ctas={[
                 { to: '/contact-us', label: 'Demander un devis entreprise', variant: 'secondary' },
-                { href: ADVISOR_EMAIL, label: 'Parler a un conseiller', variant: 'secondary-outline' },
+                { href: ADVISOR_EMAIL, label: 'Parler à un conseiller', variant: 'secondary-outline' },
               ]}
               decorImage={ctaImageSrc}
               decorBg="#c8d72d"
@@ -442,9 +442,9 @@ export default function Corporate() {
       <FloatingCtaForm
         buttonLabel="Devis entreprise"
         title="Construisons votre programme"
-        subtitle="Decrivez vos equipes, vos sites et vos objectifs : un conseiller EVplug vous recontacte sous 24h."
+        subtitle="Décrivez vos équipes, vos sites et vos objectifs : un conseiller EVplug vous recontacte sous 24h."
         interestOptions={[
-          'Formation HSE & securite',
+          'Formation HSE & sécurité',
           'Mise en service',
           'Bonnes pratiques terrain',
           'Suivi des installations',

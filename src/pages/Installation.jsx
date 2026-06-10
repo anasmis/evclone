@@ -15,19 +15,19 @@ import spanner from '../migrated/assets/installation/spanner.svg'
 
 const steps = [
   {
-    title: 'Demande et etude technique',
+    title: 'Demande et étude technique',
     body:
-      "Apres votre demande en ligne, un conseiller EVplug analyse votre configuration electrique, votre emplacement de stationnement et vos usages afin de determiner la borne et le type de pose les plus adaptes a votre domicile.",
+      "Après votre demande en ligne, un conseiller EVplug analyse votre configuration électrique, votre emplacement de stationnement et vos usages afin de déterminer la borne et le type de pose les plus adaptés à votre domicile.",
   },
   {
     title: 'Devis et planification',
     body:
-      "Apres etude, nous confirmons votre eligibilite au forfait standard. Plus de 90 % des clients en beneficient. Si votre configuration necessite des travaux supplementaires, nous vous remettons un devis transparent et sans engagement. Une fois valide, nous planifions l'intervention a la date qui vous convient.",
+      "Après l'étude, nous confirmons votre éligibilité au forfait standard. Plus de 90 % des clients en bénéficient. Si votre configuration nécessite des travaux supplémentaires, nous vous remettons un devis transparent et sans engagement. Une fois validé, nous planifions l'intervention à la date qui vous convient.",
   },
   {
     title: 'Installation',
     body:
-      "A la date convenue, un technicien certifie EVplug se deplace a votre domicile pour poser et raccorder votre borne selon les normes en vigueur. L'intervention dure generalement entre 2 et 4 heures. Avant de partir, le technicien vous explique le fonctionnement de la borne et vous accompagne sur l'application EVplug.",
+      "À la date convenue, un technicien certifié EVplug se déplace à votre domicile pour poser et raccorder votre borne selon les normes en vigueur. L'intervention dure généralement entre 2 et 4 heures. Avant de partir, le technicien vous explique le fonctionnement de la borne et vous accompagne sur l'application EVplug.",
   },
 ]
 
@@ -35,46 +35,46 @@ const standardItems = [
   {
     title: 'Fixation de la borne',
     body:
-      "Nous determinons ensemble l'emplacement le plus pratique, puis fixons la borne sur un support permanent adequat (mur en briques, paroi de garage, etc.) en respectant vos contraintes et les normes de securite electrique.",
+      "Nous déterminons ensemble l'emplacement le plus pratique, puis fixons la borne sur un support permanent adéquat (mur en briques, paroi de garage, etc.) en respectant vos contraintes et les normes de sécurité électrique.",
   },
   {
-    title: 'Cablage',
+    title: 'Câblage',
     body:
-      "Jusqu'a 15 metres de cable de qualite pour relier votre borne a l'alimentation electrique principale.",
+      "Jusqu'à 15 mètres de câble de qualité pour relier votre borne à l'alimentation électrique principale.",
   },
   {
     title: 'Goulotte de protection',
     body:
-      "Jusqu'a 3 metres de goulotte entre votre compteur electrique et la paroi exterieure, pour un passage de cable propre et discret a l'interieur de votre logement.",
+      "Jusqu'à 3 mètres de goulotte entre votre compteur électrique et la paroi extérieure, pour un passage de câble propre et discret à l'intérieur de votre logement.",
   },
   {
-    title: 'Protection electrique',
+    title: 'Protection électrique',
     body:
-      "Pose d'un tableau de protection supplementaire si necessaire, avec disjoncteur de type B ou C et differentiel de type A (ou RCBO equivalent), conformement aux normes electriques en vigueur.",
+      "Pose d'un tableau de protection supplémentaire si nécessaire, avec disjoncteur de type B ou C et différentiel de type A (ou RCBO équivalent), conformément aux normes électriques en vigueur.",
   },
   {
     title: 'Clients avec Carte EVplug',
     body:
-      "Pour beneficier des fonctionnalites de la Carte EVplug, une connexion Wi-Fi stable est requise a l'emplacement d'installation. Elle permet la programmation intelligente des sessions de recharge, la supervision a distance et la reception automatique des mises a jour logicielles.",
+      "Pour bénéficier des fonctionnalités de la Carte EVplug, une connexion Wi-Fi stable est requise à l'emplacement d'installation. Elle permet la programmation intelligente des sessions de recharge, la supervision à distance et la réception automatique des mises à jour logicielles.",
   },
 ]
 
 const faqItems = [
   {
     q: "Que se passe-t-il si mon installation n'est pas standard ?",
-    a: "Si votre configuration necessite des travaux au-dela du forfait standard (par exemple plus de 15 m de cable, genie civil ou mise a niveau du tableau electrique), nous vous remettons un devis clair et sans engagement pour les couts additionnels. Si vous ne souhaitez pas donner suite, aucun frais ne vous est facture pour l'etude.",
+    a: "Si votre configuration nécessite des travaux au-delà du forfait standard (par exemple plus de 15 m de câble, génie civil ou mise à niveau du tableau électrique), nous vous remettons un devis clair et sans engagement pour les coûts additionnels. Si vous ne souhaitez pas donner suite, aucun frais ne vous est facturé pour l'étude.",
   },
   {
     q: 'Peut-on brancher la borne EVplug sur une prise domestique ordinaire ?',
-    a: "Non. Une borne de recharge EVplug doit etre raccordee directement au tableau electrique pour delivrer jusqu'a 7,4 kW. Brancher une borne sur une prise domestique standard n'est pas adapte et peut etre dangereux. Notre technicien vous conseille sur le raccordement optimal lors de la visite technique.",
+    a: "Non. Une borne de recharge EVplug doit être raccordée directement au tableau électrique pour délivrer jusqu'à 7,4 kW. Brancher une borne sur une prise domestique standard n'est pas adapté et peut être dangereux. Notre technicien vous conseille sur le raccordement optimal lors de la visite technique.",
   },
   {
-    q: "Conditions generales d'installation",
-    a: "Pour consulter les conditions generales de l'installation standard, rendez-vous sur notre page des conditions de vente de borne a domicile.",
+    q: "Conditions générales d'installation",
+    a: "Pour consulter les conditions générales de l'installation standard, rendez-vous sur notre page des conditions de vente de borne à domicile.",
   },
   {
-    q: "Combien de temps dure l'installation d'une borne EVplug a domicile ?",
-    a: "Une installation standard est realisee en 2 a 4 heures. Pour les configurations specifiques, notre equipe vous communique le delai estime apres etude technique, avant tout engagement.",
+    q: "Combien de temps dure l'installation d'une borne EVplug à domicile ?",
+    a: "Une installation standard est réalisée en 2 à 4 heures. Pour les configurations spécifiques, notre équipe vous communique le délai estimé après étude technique, avant tout engagement.",
   },
 ]
 
@@ -93,17 +93,17 @@ export default function Installation() {
               subtitle={
                 <>
                   <p>
-                    <strong>Installation de borne EVplug, realisee par des techniciens certifies.</strong>
+                    <strong>Installation de borne EVplug, réalisée par des techniciens certifiés.</strong>
                   </p>
                   <p>
-                    Notre reseau de partenaires installateurs intervient partout au Maroc pour poser votre borne dans
-                    les regles de l'art. Le forfait standard EVplug couvre plus de 90 % des configurations et est
-                    concu pour etre simple, rapide et fiable, sans mauvaise surprise.&nbsp;
+                    Notre réseau de partenaires installateurs intervient partout au Maroc pour poser votre borne dans
+                    les règles de l'art. Le forfait standard EVplug couvre plus de 90 % des configurations et est
+                    conçu pour être simple, rapide et fiable, sans mauvaise surprise.&nbsp;
                   </p>
                 </>
               }
               ctas={[
-                { to: '/home/home-charging', label: 'Decouvrir la recharge a domicile', variant: 'primary' },
+                { to: '/home/home-charging', label: 'Découvrir la recharge à domicile', variant: 'primary' },
                 { href: 'https://www.maborneelectrique.ma/', label: 'Voir le catalogue', variant: 'primary-outline', external: true },
               ]}
               image={heroImg}
@@ -118,7 +118,7 @@ export default function Installation() {
                     <div className="heading-block grid gap-spacing-3xl">
                       <h3 className="tracking-tight m-0">Processus d'installation</h3>
                       <div>
-                        <p>Une demarche claire et sans stress, de la demande a la mise en service.</p>
+                        <p>Une démarche claire et sans stress, de la demande à la mise en service.</p>
                       </div>
                     </div>
                   </div>
@@ -140,7 +140,7 @@ export default function Installation() {
                               <img src={iconHome} alt="" />
                             </div>
                             <div className="m-0 font-semibold">
-                              <p>Techniciens certifies presents dans toutes les grandes villes du Maroc</p>
+                              <p>Techniciens certifiés présents dans toutes les grandes villes du Maroc</p>
                             </div>
                           </div>
                         </div>
@@ -157,7 +157,7 @@ export default function Installation() {
                               <img src={iconInstallation} alt="" />
                             </div>
                             <div className="m-0 font-semibold">
-                              <p>Pose realisee dans le respect des normes electriques marocaines</p>
+                              <p>Pose réalisée dans le respect des normes électriques marocaines</p>
                             </div>
                           </div>
                         </div>
@@ -182,8 +182,8 @@ export default function Installation() {
                             </h3>
                             <div className="m-0 pr-spacing-3xl">
                               <p>
-                                Le forfait standard couvre plus de 90 % des clients, sans supplement de prix, a
-                                condition de disposer d'un parking prive et des autorisations necessaires. Il
+                                Le forfait standard couvre plus de 90 % des clients, sans supplément de prix, à
+                                condition de disposer d'un parking privé et des autorisations nécessaires. Il
                                 comprend :
                               </p>
                             </div>
@@ -242,7 +242,7 @@ export default function Installation() {
                         Installer une borne EVplug
                       </Link>
                       <Link to="/contact-us" className="text-white btn btn-tertiary">
-                        Etudier votre projet
+                        Étudier votre projet
                         <i className="fa-solid fa-angle-right ms-3 text-white relative" />
                       </Link>
                     </div>
@@ -261,7 +261,7 @@ export default function Installation() {
               <div className="container-max-width-desktop container-max-width-tablet container-padding-desktop container-padding-tablet container-padding-mobile mx-auto xl:py-spacing-9xl py-spacing-7xl">
                 <div className="view-header text-center">
                   <div className="heading-block pb-12 grid gap-spacing-sm">
-                    <h4 className="tracking-tight m-0">Questions frequentes</h4>
+                    <h4 className="tracking-tight m-0">Questions fréquentes</h4>
                   </div>
                 </div>
                 <Accordion variant="faq" items={faqAccordionItems} defaultOpen={-1} />

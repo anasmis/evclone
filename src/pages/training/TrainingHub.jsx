@@ -16,7 +16,7 @@ const benefits = [
     icon: icons.installation,
     title: 'Formation pratique',
     description:
-      "Concue par des installateurs, pour des installateurs. Pratique, mise en service guidee et outils EVplug pour gagner du temps sur chaque chantier.",
+      "Conçue par des installateurs, pour des installateurs. Pratique, mise en service guidée et outils EVplug pour gagner du temps sur chaque chantier.",
   },
   {
     icon: icons.charger,
@@ -26,15 +26,15 @@ const benefits = [
   },
   {
     icon: icons.profile,
-    title: 'Modele partenaire',
+    title: 'Modèle partenaire',
     description:
-      "Vous gardez la relation client et votre pricing. EVplug vous apporte certification, outils, support et visibilite.",
+      "Vous gardez la relation client et votre pricing. EVplug vous apporte certification, outils, support et visibilité.",
   },
   {
     icon: icons.tick,
     title: 'Garantie 5 ans*',
     description:
-      "En terminant la formation, vous debloquez une garantie produit de 5 ans et l'acces aux ressources d'installateur certifie EVplug.",
+      "En terminant la formation, vous débloquez une garantie produit de 5 ans et l'accès aux ressources d'installateur certifié EVplug.",
   },
 ]
 
@@ -84,9 +84,9 @@ export default function TrainingHub() {
                     </strong>
                   </p>
                   <p>
-                    EVplug forme et certifie les installateurs pour la recharge a domicile, et propose des Formations
-                    Professionnelles aux entreprises qui veulent qualifier leurs equipes. Notre modele partenaire vous
-                    aide a livrer des installations fiables, avec des outils, un accompagnement et une mise en service
+                    EVplug forme et certifie les installateurs pour la recharge à domicile, et propose des Formations
+                    Professionnelles aux entreprises qui veulent qualifier leurs équipes. Notre modèle partenaire vous
+                    aide à livrer des installations fiables, avec des outils, un accompagnement et une mise en service
                     simples.
                   </p>
                 </>
@@ -124,12 +124,12 @@ export default function TrainingHub() {
 
                 <div id="installateurs">
                   <PathCard
-                    tag="Pour les electriciens"
-                    title="Parcours installateurs certifies EVplug"
-                    body="Certification, outils et support pour installer, mettre en service et depanner plus vite. Ouvert a tous les electriciens certifies. Formation pratique, mise en service guidee, et outils EVplug pour gagner du temps sur chaque chantier."
+                    tag="Pour les électriciens"
+                    title="Parcours installateurs certifiés EVplug"
+                    body="Certification, outils et support pour installer, mettre en service et dépanner plus vite. Ouvert à tous les électriciens certifiés. Formation pratique, mise en service guidée, et outils EVplug pour gagner du temps sur chaque chantier."
                     image={electriciansImg}
                     ctaTo="/training/electricians"
-                    ctaLabel="Decouvrir le parcours installateur"
+                    ctaLabel="Découvrir le parcours installateur"
                   />
                 </div>
 
@@ -137,10 +137,10 @@ export default function TrainingHub() {
                   <PathCard
                     tag="Service Entreprise"
                     title="Formations Professionnelles pour entreprises"
-                    body="EVplug accompagne les entreprises avec des formations sur mesure pour les equipes techniques, HSE et operations. Modules sur la securite, la mise en service, les bonnes pratiques et le suivi des installations. Formats en ligne ou sur site, inter-entreprises ou intra-entreprise."
+                    body="EVplug accompagne les entreprises avec des formations sur mesure pour les équipes techniques, HSE et opérations. Modules sur la sécurité, la mise en service, les bonnes pratiques et le suivi des installations. Formats en ligne ou sur site, inter-entreprises ou intra-entreprise."
                     image={corporateImg}
                     ctaTo="/training/corporate"
-                    ctaLabel="Decouvrir Formations Pro"
+                    ctaLabel="Découvrir Formations Pro"
                   />
                 </div>
               </div>
@@ -156,13 +156,13 @@ export default function TrainingHub() {
                   <h3 className="tracking-tight m-0">Informations importantes</h3>
                   <div className="hero-banner-des">
                     <p>
-                      *La garantie de 5 ans est disponible pour les electriciens certifies verifies par EVplug et ayant
-                      termine la formation complete en ligne de 2 heures.
+                      *La garantie de 5 ans est disponible pour les électriciens certifiés vérifiés par EVplug et ayant
+                      terminé la formation complète en ligne de 2 heures.
                     </p>
                     <p>
-                      <strong>Modele EVplug</strong> : certification, outils et support pour les installateurs, et{' '}
+                      <strong>Modèle EVplug</strong> : certification, outils et support pour les installateurs, et{' '}
                       <strong>Formations Professionnelles</strong> pour les entreprises qui souhaitent qualifier leurs
-                      equipes a la recharge EV.
+                      équipes à la recharge EV.
                     </p>
                   </div>
                 </div>
@@ -171,10 +171,10 @@ export default function TrainingHub() {
 
             <CtaBanner
               title="Commencez votre parcours EVplug"
-              body="Que vous soyez electricien certifie ou responsable d'equipe en entreprise, EVplug vous accompagne avec un parcours adapte. Choisissez celui qui vous correspond."
+              body="Que vous soyez électricien certifié ou responsable d'équipe en entreprise, EVplug vous accompagne avec un parcours adapté. Choisissez celui qui vous correspond."
               ctas={[
-                { to: '/training/electricians', label: 'Je suis electricien', variant: 'secondary' },
-                { to: '/training/corporate', label: 'Je represente une entreprise', variant: 'secondary-outline' },
+                { to: '/training/electricians', label: 'Je suis électricien', variant: 'secondary' },
+                { to: '/training/corporate', label: 'Je représente une entreprise', variant: 'secondary-outline' },
               ]}
               decorImage={ctaImageSrc}
               decorBg="#87b4e1"
@@ -183,7 +183,7 @@ export default function TrainingHub() {
         </article>
       </div>
       <FloatingCtaForm
-        buttonLabel="Etre rappele"
+        buttonLabel="Être rappelé"
         title="Parlons de votre projet de formation"
         subtitle="Indiquez-nous votre profil et vos besoins, un conseiller EVplug vous recontacte sous 24h."
         interestOptions={[

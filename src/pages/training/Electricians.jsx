@@ -20,39 +20,39 @@ const levels = [
     number: '01',
     name: 'Niveau 1 — Initiation',
     duration: '2h en ligne',
-    audience: 'Electriciens certifies decouvrant la recharge VE',
+    audience: 'Électriciens certifiés découvrant la recharge VE',
     summary:
-      'Les fondamentaux de la recharge a domicile, la gamme EVplug et le cadre reglementaire au Maroc.',
+      'Les fondamentaux de la recharge à domicile, la gamme EVplug et le cadre réglementaire au Maroc.',
     bullets: [
       'Vocabulaire et bases techniques de la recharge VE',
-      'Tour de la gamme EVplug et compatibilites vehicules',
-      'Securite, normes et points de vigilance chantier',
+      'Tour de la gamme EVplug et compatibilités véhicules',
+      'Sécurité, normes et points de vigilance chantier',
     ],
   },
   {
     number: '02',
-    name: 'Niveau 2 — Confirme',
-    duration: '1 journee pratique',
-    audience: 'Installateurs avec premieres poses realisees',
+    name: 'Niveau 2 — Confirmé',
+    duration: '1 journée pratique',
+    audience: 'Installateurs avec premières poses réalisées',
     summary:
-      "Pose, mise en service et parametrage de la borne EVplug pas a pas avec l'application Installateur.",
+      "Pose, mise en service et paramétrage de la borne EVplug pas à pas avec l'application Installateur.",
     bullets: [
       'Dimensionnement et raccordement au tableau',
-      'Mise en service guidee avec l’application EVplug',
-      'Diagnostic des incidents frequents et reprise rapide',
+      "Mise en service guidée avec l'application EVplug",
+      'Diagnostic des incidents fréquents et reprise rapide',
     ],
   },
   {
     number: '03',
     name: 'Niveau 3 — Expert',
-    duration: '2 jours avancees',
-    audience: 'Installateurs reguliers souhaitant la certification complete',
+    duration: '2 jours avancées',
+    audience: 'Installateurs réguliers souhaitant la certification complète',
     summary:
-      'Configurations avancees (delestage, supervision, multi-bornes), service apres-vente et garantie 5 ans.',
+      'Configurations avancées (délestage, supervision, multi-bornes), service après-vente et garantie 5 ans.',
     bullets: [
-      'Delestage dynamique et integration energie',
-      'Deploiements multi-bornes en copropriete et entreprise',
-      'SAV, telediagnostic et garantie produit 5 ans*',
+      'Délestage dynamique et intégration énergie',
+      'Déploiements multi-bornes en copropriété et entreprise',
+      'SAV, télé-diagnostic et garantie produit 5 ans*',
     ],
   },
 ]
@@ -62,31 +62,31 @@ const benefits = [
     icon: icons.installation,
     title: 'Formation pratique',
     description:
-      "Concue par des installateurs, pour des installateurs. Pratique, mise en service guidee et outils EVplug pour gagner du temps.",
+      "Conçue par des installateurs, pour des installateurs. Pratique, mise en service guidée et outils EVplug pour gagner du temps.",
   },
   {
     icon: icons.profile,
     title: 'Vous gardez vos clients',
     description:
-      'Vous gardez la relation client et votre pricing. EVplug apporte outils, support et visibilite.',
+      'Vous gardez la relation client et votre pricing. EVplug apporte outils, support et visibilité.',
   },
   {
     icon: icons.tick,
     title: 'Garantie produit 5 ans*',
     description:
-      "En terminant la formation, vous debloquez une garantie produit de 5 ans pour vos clients.",
+      "En terminant la formation, vous débloquez une garantie produit de 5 ans pour vos clients.",
   },
   {
     icon: icons.sendFeedback,
     title: 'Ressources marketing',
     description:
-      "Acces aux ressources marketing d'installateur certifie EVplug pour developper votre activite.",
+      "Accès aux ressources marketing d'installateur certifié EVplug pour développer votre activité.",
   },
 ]
 
 export default function Electricians() {
   return (
-    <MirrorShell documentTitle="Devenir installateur certifie EVplug | Formation electriciens">
+    <MirrorShell documentTitle="Devenir installateur certifié EVplug | Formation électriciens">
       <div className="region region-content">
         <article className="node node--type-page">
           <div className="node__content">
@@ -96,39 +96,39 @@ export default function Electricians() {
             />
 
             <Hero
-              tag="Pour les electriciens"
-              title="Devenez installateur certifie EVplug"
+              tag="Pour les électriciens"
+              title="Devenez installateur certifié EVplug"
               subtitle={
                 <>
                   <p>
                     <strong>
-                      Proposez a vos clients une solution de recharge a domicile fiable, installee sans prise de tete.
+                      Proposez à vos clients une solution de recharge à domicile fiable, installée sans prise de tête.
                     </strong>
                   </p>
                   <p>
-                    La formation EVplug pour installateurs domestiques est concue par des installateurs, pour des
-                    installateurs, et elle est ouverte a tous les electriciens certifies.
+                    La formation EVplug pour installateurs domestiques est conçue par des installateurs, pour des
+                    installateurs, et elle est ouverte à tous les électriciens certifiés.
                   </p>
                 </>
               }
               ctas={[
-                { onClick: openInstallerForm, label: 'Reserver une session installateur', variant: 'primary' },
+                { onClick: openInstallerForm, label: 'Réserver une session installateur', variant: 'primary' },
                 { to: '/training', label: 'Voir les deux parcours', variant: 'primary-outline' },
               ]}
               image={heroImg}
-              imageAlt="Devenir installateur certifie EVplug"
+              imageAlt="Devenir installateur certifié EVplug"
             />
 
             <BenefitsStrip heading="Ce que vous obtenez" items={benefits} />
 
-            {/* Inscriptions ouvertes + Modele partenaire */}
+            {/* Inscriptions ouvertes + Modèle partenaire */}
             <section className="text-left-right-variant relative image-text-section bg-surface top-spacing">
               <div className="grid container-max-width-desktop container-max-width-tablet mx-auto container-padding-desktop container-padding-tablet container-padding-mobile gap-spacing-4xl image-text-block">
                 <div className="w-full">
                   <div className="grid gap-spacing-3xl py-spacing-5xl">
-                    <h2 className="tracking-tight m-0">Parcours installateurs certifies EVplug</h2>
+                    <h2 className="tracking-tight m-0">Parcours installateurs certifiés EVplug</h2>
                     <p className="m-0">
-                      Certification, outils et support pour installer, mettre en service et depanner plus vite.
+                      Certification, outils et support pour installer, mettre en service et dépanner plus vite.
                     </p>
                   </div>
                 </div>
@@ -142,15 +142,15 @@ export default function Electricians() {
                       <h3 className="tracking-tight m-0">Inscriptions ouvertes</h3>
                       <div className="hero-banner-des">
                         <p>
-                          Vous voulez proposer a vos clients une solution de recharge a domicile fiable, et l&rsquo;installer
-                          sans prise de tete ?
+                          Vous voulez proposer à vos clients une solution de recharge à domicile fiable, et l&rsquo;installer
+                          sans prise de tête ?
                         </p>
                         <p>
-                          La formation EVplug pour installateurs domestiques est concue par des installateurs, pour des
-                          installateurs, et elle est ouverte a tous les electriciens certifies.
+                          La formation EVplug pour installateurs domestiques est conçue par des installateurs, pour des
+                          installateurs, et elle est ouverte à tous les électriciens certifiés.
                         </p>
                         <p>
-                          Au programme : formation pratique, mise en service guidee, et outils EVplug pour gagner du
+                          Au programme : formation pratique, mise en service guidée, et outils EVplug pour gagner du
                           temps sur chaque chantier.
                         </p>
                       </div>
@@ -160,7 +160,7 @@ export default function Electricians() {
                           onClick={openInstallerForm}
                           className="btn btn-primary font-base"
                         >
-                          Reserver une session
+                          Réserver une session
                         </button>
                       </div>
                     </div>
@@ -169,23 +169,23 @@ export default function Electricians() {
 
                 <div className="flex flex-col md:flex-row py-spacing-7xl items-center justify-between xl:gap-spacing-9xl gap-spacing-7xl grid-block md:flex-row-reverse rounded-3xl bg-white border border-gray-200 p-spacing-7xl">
                   <div className="md:w-6/12 w-full">
-                    <img className="w-full rounded-2xl object-cover" src={stepImg2} alt="Modele partenaire EVplug" loading="lazy" />
+                    <img className="w-full rounded-2xl object-cover" src={stepImg2} alt="Modèle partenaire EVplug" loading="lazy" />
                   </div>
                   <div className="md:w-6/12 w-full">
                     <div className="max-w-[480px] grid gap-spacing-3xl">
-                      <h3 className="tracking-tight m-0">Le modele partenaire EVplug</h3>
+                      <h3 className="tracking-tight m-0">Le modèle partenaire EVplug</h3>
                       <div className="hero-banner-des">
                         <ul>
                           <li>
-                            EVplug vous forme, certifie et vous equipe pour des installations conformes et rapides.
+                            EVplug vous forme, certifie et vous équipe pour des installations conformes et rapides.
                           </li>
                           <li>
                             Vous gardez la relation client et votre pricing, EVplug vous apporte outils, support et
-                            visibilite.
+                            visibilité.
                           </li>
                           <li>
-                            En terminant la formation, vous debloquez une <strong>garantie produit de 5 ans</strong> et
-                            l&rsquo;acces aux <strong>ressources marketing d&rsquo;installateur certifie EVplug</strong>.
+                            En terminant la formation, vous débloquez une <strong>garantie produit de 5 ans</strong> et
+                            l&rsquo;accès aux <strong>ressources marketing d&rsquo;installateur certifié EVplug</strong>.
                           </li>
                         </ul>
                       </div>
@@ -206,8 +206,8 @@ export default function Electricians() {
                       </span>
                       <h2 className="tracking-tight m-0">Les niveaux de certification</h2>
                       <p>
-                        Progressez a votre rythme : chaque niveau debloque de nouveaux droits, des
-                        outils EVplug supplementaires et, au niveau 3, la garantie produit 5 ans*.
+                        Progressez à votre rythme : chaque niveau débloque de nouveaux droits, des
+                        outils EVplug supplémentaires et, au niveau 3, la garantie produit 5 ans*.
                       </p>
                     </div>
                   </div>
@@ -262,8 +262,8 @@ export default function Electricians() {
 
             <BookingCalendar
               formationKey="installer"
-              title="Reservez votre session installateur"
-              subtitle="Choisissez une date pour voir les creneaux de formation disponibles."
+              title="Réservez votre session installateur"
+              subtitle="Choisissez une date pour voir les créneaux de formation disponibles."
               accentColor="#c8d72d"
             />
 
@@ -277,8 +277,8 @@ export default function Electricians() {
                   <h3 className="tracking-tight m-0">Informations importantes</h3>
                   <div className="hero-banner-des">
                     <p>
-                      *La garantie de 5 ans est disponible pour les electriciens certifies verifies par EVplug et ayant
-                      termine la formation complete en ligne de 2 heures. Conditions generales applicables.
+                      *La garantie de 5 ans est disponible pour les électriciens certifiés vérifiés par EVplug et ayant
+                      terminé la formation complète en ligne de 2 heures. Conditions générales applicables.
                     </p>
                   </div>
                 </div>
@@ -286,10 +286,10 @@ export default function Electricians() {
             </section>
 
             <CtaBanner
-              title="Pret a devenir installateur certifie ?"
-              body="Reservez votre session de formation EVplug. Notre equipe vous accompagne, de la certification a vos premiers chantiers."
+              title="Prêt à devenir installateur certifié ?"
+              body="Réservez votre session de formation EVplug. Notre équipe vous accompagne, de la certification à vos premiers chantiers."
               ctas={[
-                { onClick: openInstallerForm, label: 'Reserver une session', variant: 'secondary' },
+                { onClick: openInstallerForm, label: 'Réserver une session', variant: 'secondary' },
                 { to: '/contact-us', label: 'Poser une question', variant: 'secondary-outline' },
               ]}
               decorImage={ctaImageSrc}
@@ -301,14 +301,14 @@ export default function Electricians() {
       <FloatingCtaForm
         buttonLabel="Devenir installateur"
         title="Certification installateur EVplug"
-        subtitle="Reservez une session ou posez votre question : un conseiller EVplug vous recontacte sous 24h."
+        subtitle="Réservez une session ou posez votre question : un conseiller EVplug vous recontacte sous 24h."
         interestOptions={[
-          'Reserver une session installateur',
+          'Réserver une session installateur',
           'Garantie produit 5 ans',
           'Ressources marketing',
           'Autre',
         ]}
-        defaultInterest="Reserver une session installateur"
+        defaultInterest="Réserver une session installateur"
         accentColor="#c8d72d"
       />
     </MirrorShell>

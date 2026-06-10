@@ -452,6 +452,105 @@ header.header-section .sr-only {
   color: var(--brand-color-primary) !important;
 }
 
+.legal-page p {
+  margin: 0 0 1rem;
+  line-height: 1.7;
+}
+
+.legal-page ul {
+  margin: 0 0 1rem;
+  padding-left: 1.25rem;
+  line-height: 1.7;
+}
+
+.legal-page li {
+  margin-bottom: 0.5rem;
+}
+
+.legal-page a {
+  color: var(--brand-color-primary);
+  text-decoration: underline;
+}
+
+.legal-page a:hover,
+.legal-page a:focus {
+  text-decoration: none;
+}
+
+.legal-subheading {
+  margin: 1.25rem 0 0.5rem;
+  font-family: var(--brand-font-heading);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #000000;
+}
+
+.legal-table-wrap {
+  overflow-x: auto;
+  margin: 0.5rem 0 0;
+}
+
+.legal-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.legal-table th,
+.legal-table td {
+  text-align: left;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid rgba(18, 61, 51, 0.18);
+  vertical-align: top;
+  line-height: 1.55;
+}
+
+.legal-table th {
+  background-color: rgba(18, 61, 51, 0.08);
+  font-weight: 600;
+  color: #123d33;
+}
+
+/* Plan du site */
+.sitemap-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.sitemap-group {
+  background-color: #f5f1eb;
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+
+.sitemap-group__title {
+  font-family: var(--brand-font-heading);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #123d33;
+  margin: 0 0 0.75rem;
+}
+
+.sitemap-group__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.sitemap-link {
+  color: #333333;
+  text-decoration: none;
+}
+
+.sitemap-link:hover,
+.sitemap-link:focus {
+  color: var(--brand-color-primary);
+  text-decoration: underline;
+}
+
 .contact-info-list {
   list-style: none;
   padding: 0;

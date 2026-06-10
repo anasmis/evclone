@@ -61,10 +61,10 @@ import toyota from '../migrated/assets/home/brands/toyota.svg'
 const PAGE_CLASSES = 'path-frontpage page-node-type-page d-flex flex-column'
 
 const usps = [
-  { icon: usp1, label: 'Plus de 200 projets accompagnes au Maroc' },
+  { icon: usp1, label: 'Plus de 200 projets accompagnés au Maroc' },
   { icon: usp2, label: 'Accompagnement de flottes et de sites multi-usages' },
-  { icon: usp3, label: 'Expertise locale en deploiement et maintenance' },
-  { icon: usp4, label: 'Solutions adaptees aux usages reels' },
+  { icon: usp3, label: 'Expertise locale en déploiement et maintenance' },
+  { icon: usp4, label: 'Solutions adaptées aux usages réels' },
 ]
 
 const carousel = [
@@ -76,30 +76,30 @@ const carousel = [
     description: "Commandez votre borne partenaire sur la marketplace EVplug et profitez d'une recharge simple au quotidien.",
     image: carousel1,
     tagIcon: iconAward,
-    tag: 'Solutions appreciees par les conducteurs EV au Maroc',
+    tag: 'Solutions appréciées par les conducteurs EV au Maroc',
     cta: { to: '/home/home-charging', label: 'En savoir plus' },
   },
   {
     pillIcon: iconHome,
     pillLabel: 'Entreprises',
     title: 'Recharge EVplug pour entreprises',
-    lead: 'Solutions de recharge sur site pour vos equipes et visiteurs.',
-    description: "EVplug accompagne votre entreprise de l'etude a l'exploitation avec supervision, maintenance et gestion intelligente des usages.",
+    lead: 'Solutions de recharge sur site pour vos équipes et visiteurs.',
+    description: "EVplug accompagne votre entreprise de l'étude à l'exploitation avec supervision, maintenance et gestion intelligente des usages.",
     image: carousel2,
     tagIcon: iconTick,
-    tag: 'Infrastructure dimensionnee pour votre activite',
+    tag: 'Infrastructure dimensionnée pour votre activité',
     cta: { to: '/solutions/entreprise', label: 'En savoir plus' },
   },
   {
     pillIcon: iconInstallation,
     pillLabel: 'Installation',
-    title: 'Fiabilite et support, inclus des le depart',
+    title: 'Fiabilité et support, inclus dès le départ',
     description:
-      "Une installation EVplug qualifiee rend la mise en service simple, et avec 90 % des clients eligibles a l'installation standard, vous commencez a recharger sans surprise.",
+      "Une installation EVplug qualifiée rend la mise en service simple, et avec 90 % des clients éligibles à l'installation standard, vous commencez à recharger sans surprise.",
     image: carousel3,
     tagIcon: iconAward,
     tag: 'Installation professionnelle EVplug',
-    cta: { to: '/installation', label: "Decouvrir le service d'installation" },
+    cta: { to: '/installation', label: "Découvrir le service d'installation" },
   },
 ]
 
@@ -131,12 +131,12 @@ const stories = [
 ]
 
 const benefits = [
-  { icon: benefit1, label: 'Des puissances adaptees a la majorite des habitations au Maroc' },
+  { icon: benefit1, label: 'Des puissances adaptées à la majorité des habitations au Maroc' },
   { icon: iconInstallation, label: 'Installation standard EVplug incluse' },
-  { icon: benefitWarranty, label: 'Garantie complete sur toutes les bornes' },
-  { icon: benefitVehicle, label: 'Compatibilite garantie avec toutes les marques de vehicules electriques' },
-  { icon: benefitFeedback, label: "Compatible avec tous les fournisseurs d'energie" },
-  { icon: usp2, label: 'Tranquillite assuree avec un support 24/7' },
+  { icon: benefitWarranty, label: 'Garantie complète sur toutes les bornes' },
+  { icon: benefitVehicle, label: 'Compatibilité garantie avec toutes les marques de véhicules électriques' },
+  { icon: benefitFeedback, label: "Compatible avec tous les fournisseurs d'énergie" },
+  { icon: usp2, label: 'Tranquillité assurée avec un support 24/7' },
 ]
 
 const brands = [
@@ -212,12 +212,12 @@ export default function HomePage() {
         <div className="container-max-width-desktop container-max-width-tablet container-padding-desktop container-padding-tablet container-padding-mobile mx-auto grid gap-spacing-7xl w-full md:pt-spacing-7xl md:pb-spacing-6xl py-spacing-4xl">
           <div className="grid gap-spacing-6xl grid-flow-col justify-between items-end">
             <div className="max-w-[480px] grid gap-spacing-3xl relative">
-              <h3 className="tracking-tight m-0">L'electromobilite au service du Maroc.</h3>
+              <h3 className="tracking-tight m-0">L'électromobilité au service du Maroc.</h3>
             </div>
           </div>
         </div>
         <div className="horizontal-new-carousel-main container-max-width-tablet mx-auto xl:mx-none container-padding-tablet container-padding-mobile">
-          <CardsCarousel ariaLabel="L'electromobilite au service du Maroc" autoPlay interval={6000}>
+          <CardsCarousel ariaLabel="L'électromobilité au service du Maroc" autoPlay interval={6000}>
             {carousel.map((item) => (
               <div key={item.title} className="item">
                 <div className="flex md:flex-nowrap flex-wrap md:gap-[25px] gap-spacing-xl">
@@ -311,7 +311,7 @@ export default function HomePage() {
                             margin: 0,
                           }}
                         >
-                          “
+                          "
                         </div>
                         <p
                           style={{
@@ -346,7 +346,7 @@ export default function HomePage() {
             <div className="max-w-[480px] grid gap-spacing-3xl xl:sticky xl:top-[160px] pr-spacing-xl">
               <h3 className="tracking-tight m-0">Notre engagement EVplug</h3>
               <div className="hero-banner-des m-0">
-                <p>Notre promesse : un accompagnement clair et fiable, du premier contact a la mise en service.</p>
+                <p>Notre promesse : un accompagnement clair et fiable, du premier contact à la mise en service.</p>
               </div>
             </div>
             <div className="benefit-vertical-desktop grid grid-cols-2 gap-spacing-3xl w-full xl:max-w-[640px]">
@@ -370,7 +370,7 @@ export default function HomePage() {
       {/* Brand logo strip */}
       <AnimatedSection className="relative logo-spread-section bg-white rounded-b-4xl xl:pt-spacing-7xl xl:pb-spacing-9xl py-spacing-7xl gap-spacing-4xl">
         <div className="max-w-[590px] mx-auto w-full text-center mb-spacing-6xl px-spacing-xl">
-          <h3 className="tracking-tight m-0">Compatible avec les principales marques de vehicules electriques</h3>
+          <h3 className="tracking-tight m-0">Compatible avec les principales marques de véhicules électriques</h3>
         </div>
         <div className="container-max-width-desktop container-max-width-tablet mx-auto">
           <div className="grid gap-spacing-3xl">
@@ -396,15 +396,15 @@ export default function HomePage() {
                 <h3 className="tracking-tight m-0">Deux options simples pour commencer la recharge</h3>
                 <div className="m-0">
                   <p>
-                    Choisissez la solution adaptee a votre usage : installation a domicile ou carte EV rechargeable
-                    pour acceder a notre reseau de bornes.
+                    Choisissez la solution adaptée à votre usage : installation à domicile ou carte EV rechargeable
+                    pour accéder à notre réseau de bornes.
                   </p>
                 </div>
               </div>
               <div className="grid gap-spacing-4xl md:grid-flow-col two-cards-column md:grid-cols-2">
                 <div className="bg-blue-dianne col text-white rounded-2xl p-spacing-3xl gap-spacing-4xl relative">
                   <span className="absolute -top-[24px] right-4 text-black font-semibold py-spacing-sm px-spacing-md rounded-md text-lg text-center bg-pear">
-                    Installation a domicile
+                    Installation à domicile
                   </span>
                   <div className="gap-spacing-2xl h-full justify-between flex flex-col">
                     <div className="grid gap-spacing-xl">
@@ -419,7 +419,7 @@ export default function HomePage() {
                           <img src={iconStarWhite} alt="" className="w-6 h-6 object-contain" />
                         </span>
                         <div>
-                          <p className="font-semibold mb-1">Un achat unique, une fiabilite au quotidien.</p>
+                          <p className="font-semibold mb-1">Un achat unique, une fiabilité au quotidien.</p>
                           <div className="text-white">
                             <p>
                               Technologie de recharge fiable pour votre domicile avec garantie selon la borne
@@ -445,7 +445,7 @@ export default function HomePage() {
                     <div className="grid gap-spacing-xl">
                       <h6 className="text-white">Carte EVplug</h6>
                       <div className="text-white image-two-card-des m-0">
-                        <p>Rechargez votre carte EV et chargez facilement sur notre reseau de bornes partenaires.</p>
+                        <p>Rechargez votre carte EV et chargez facilement sur notre réseau de bornes partenaires.</p>
                       </div>
                     </div>
                     <div className="space-y-4 text-sm">
@@ -456,7 +456,7 @@ export default function HomePage() {
                         <div>
                           <p className="font-semibold mb-1">Recharge flexible selon vos besoins</p>
                           <div className="text-white">
-                            <p>Ajoutez du credit a votre rythme et utilisez votre carte quand vous en avez besoin.</p>
+                            <p>Ajoutez du crédit à votre rythme et utilisez votre carte quand vous en avez besoin.</p>
                           </div>
                         </div>
                       </div>
@@ -465,9 +465,9 @@ export default function HomePage() {
                           <img src={iconChargeWhite} alt="" className="w-6 h-6 object-contain" />
                         </span>
                         <div>
-                          <p className="font-semibold mb-1">Recharge intelligente qui vous recompense</p>
+                          <p className="font-semibold mb-1">Recharge intelligente qui vous récompense</p>
                           <div className="text-white">
-                            <p>Accedez a notre reseau de bornes et suivez facilement vos sessions de recharge.</p>
+                            <p>Accédez à notre réseau de bornes et suivez facilement vos sessions de recharge.</p>
                           </div>
                         </div>
                       </div>
@@ -501,8 +501,8 @@ export default function HomePage() {
       </AnimatedSection>
 
       <CtaBanner
-        title="L'electromobilite pour tous."
-        ctas={[{ to: '/about', label: 'Decouvrir notre mission', variant: 'secondary' }]}
+        title="L'électromobilité pour tous."
+        ctas={[{ to: '/about', label: 'Découvrir notre mission', variant: 'secondary' }]}
       />
     </MirrorShell>
   )

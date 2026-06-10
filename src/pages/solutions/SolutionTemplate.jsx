@@ -55,7 +55,7 @@ function ServicesAccordion({ services, topImage, bottomImage }) {
                   <div className="grid gap-spacing-3xl">
                     <h3 className="tracking-tight m-0 pr-spacing-3xl">Nos services inclus</h3>
                     <div className="m-0 pr-spacing-3xl">
-                      <p>Une offre complete de l&rsquo;etude a l&rsquo;exploitation, avec un interlocuteur unique EVplug.</p>
+                      <p>Une offre complète de l&rsquo;étude à l&rsquo;exploitation, avec un interlocuteur unique EVplug.</p>
                     </div>
                   </div>
                 </div>
@@ -138,9 +138,9 @@ function EvoneManagementService({ ctaLabel, ctaHref = '/contact-us' }) {
               <div className="grid gap-spacing-3xl">
                 <h3 className="tracking-tight m-0">EVone, la plateforme de gestion intelligente</h3>
                 <div className="hero-banner-des">
-                  <p>Que vous equipiez un seul site ou un reseau national, EVplug centralise le pilotage de vos bornes depuis EVone pour simplifier l&apos;exploitation au quotidien.</p>
+                  <p>Que vous équipiiez un seul site ou un réseau national, EVplug centralise le pilotage de vos bornes depuis EVone pour simplifier l&apos;exploitation au quotidien.</p>
                   <ul>
-                    <li>Gerer les acces, les tarifs et les droits utilisateurs en quelques clics</li>
+                    <li>Gérer les accès, les tarifs et les droits utilisateurs en quelques clics</li>
                     <li>Suivre les usages, les revenus et les remboursements par site</li>
                     <li>Mesurer la performance et l&apos;impact CO2 de votre infrastructure</li>
                   </ul>
@@ -167,15 +167,15 @@ function EvoneManagementService({ ctaLabel, ctaHref = '/contact-us' }) {
           <div className="md:w-6/12 w-full">
             <div className="max-w-[480px] grid gap-spacing-3xl">
               <div className="grid gap-spacing-3xl">
-                <h3 className="tracking-tight m-0">Financement et deploiement maitrises au Maroc</h3>
+                <h3 className="tracking-tight m-0">Financement et déploiement maîtrisés au Maroc</h3>
                 <div className="hero-banner-des">
-                  <p>EVplug vous accompagne pour structurer votre projet de recharge en entreprise, en copropriete ou en hôtellerie, avec une approche adaptee aux contraintes locales a Casablanca, Rabat, Marrakech et Tanger.</p>
-                  <p>De l&apos;etude technique a la mise en service, nos experts vous aident a optimiser les couts, planifier les travaux et choisir le bon modele d&apos;exploitation sur EVone.</p>
+                  <p>EVplug vous accompagne pour structurer votre projet de recharge en entreprise, en copropriété ou en hôtellerie, avec une approche adaptée aux contraintes locales à Casablanca, Rabat, Marrakech et Tanger.</p>
+                  <p>De l&apos;étude technique à la mise en service, nos experts vous aident à optimiser les coûts, planifier les travaux et choisir le bon modèle d&apos;exploitation sur EVone.</p>
                 </div>
               </div>
               <div className="flex justify-start gap-spacing-xl">
                 <a href={ctaHref} className="btn btn-primary font-base">
-                  {ctaLabel || 'Parler a un expert'}
+                  {ctaLabel || 'Parler à un expert'}
                 </a>
               </div>
             </div>
@@ -257,7 +257,7 @@ function EvonePlatformSection({ title, subtitle, features, badge, platformImage,
                       </h6>
                       {idx === activeStep && (
                         <div className="step_content_dec">
-                          <p>EVone simplifie cette etape avec un suivi clair pour le syndic, des donnees fiables en temps reel et l&apos;accompagnement EVplug de l&apos;etude a l&apos;exploitation.</p>
+                          <p>EVone simplifie cette étape avec un suivi clair pour le syndic, des données fiables en temps réel et l&apos;accompagnement EVplug de l&apos;étude à l&apos;exploitation.</p>
                         </div>
                       )}
                     </div>
@@ -279,7 +279,7 @@ function EvonePlatformSection({ title, subtitle, features, badge, platformImage,
                     <div className="icon">
                       <img src={icons.chargerSignGuide} alt="" loading="lazy" />
                     </div>
-                    <div className="m-0 font-semibold"><p>Pilotage centralise des bornes de la residence</p></div>
+                    <div className="m-0 font-semibold"><p>Pilotage centralisé des bornes de la résidence</p></div>
                   </div>
                 </div>
               </div>
@@ -295,7 +295,7 @@ function EvonePlatformSection({ title, subtitle, features, badge, platformImage,
                     <div className="icon">
                       <img src={icons.installation} alt="" loading="lazy" />
                     </div>
-                    <div className="m-0 font-semibold"><p>Facturation individuelle et suivi technique simplifie</p></div>
+                    <div className="m-0 font-semibold"><p>Facturation individuelle et suivi technique simplifié</p></div>
                   </div>
                 </div>
               </div>
@@ -304,7 +304,7 @@ function EvonePlatformSection({ title, subtitle, features, badge, platformImage,
 
           <div className="flex gap-spacing-xl flex-wrap justify-center pt-spacing-5xl">
             <a href="/contact-us" className="btn btn-primary font-base">
-              {heroCta || 'Etudier votre projet'}
+              {heroCta || 'Étudier votre projet'}
             </a>
           </div>
         </div>
@@ -329,7 +329,7 @@ function EvoneInsightsSection() {
 
 const SOLUTION_CTAS = [
   { to: '/contact-us', label: 'Demander un devis', variant: 'secondary' },
-  { to: '/contact-us', label: 'Parler a un expert', variant: 'secondary-outline' },
+  { to: '/contact-us', label: 'Parler à un expert', variant: 'secondary-outline' },
 ]
 
 // ---------------------------------------------------------------------------
@@ -365,19 +365,19 @@ export default function SolutionTemplate({
         icon: icons.dashboard,
         title: 'Site management',
         description:
-          'Pilotez vos bornes par site, gelez ou activez des points de charge, et suivez la disponibilite en temps reel depuis un tableau de bord unique.',
+          'Pilotez vos bornes par site, gelez ou activez des points de charge, et suivez la disponibilité en temps réel depuis un tableau de bord unique.',
       },
       {
         icon: icons.profile,
         title: 'User management',
         description:
-          'Administrez les profils utilisateurs, les acces, les droits et les habitudes de charge avec une gouvernance claire par equipe ou par entite.',
+          "Administrez les profils utilisateurs, les accès, les droits et les habitudes de charge avec une gouvernance claire par équipe ou par entité.",
       },
       {
         icon: icons.coins,
         title: 'Expense and driver management',
         description:
-          'Maitrisez les tarifs, remboursements et rapports financiers avec des exports exploitables pour la finance, la paie et le pilotage operationnel.',
+          'Maîtrisez les tarifs, remboursements et rapports financiers avec des exports exploitables pour la finance, la paie et le pilotage opérationnel.',
       },
     ]
 
@@ -390,8 +390,8 @@ export default function SolutionTemplate({
         subtitle={heroSubtitle}
         image={heroImage}
         ctas={[
-          { href: '/contact-us', label: heroCta || 'Etudier votre projet', variant: 'primary' },
-          { href: '/contact-us', label: 'Parler a un expert', variant: 'secondary-outline' },
+          { href: '/contact-us', label: heroCta || 'Étudier votre projet', variant: 'primary' },
+          { href: '/contact-us', label: 'Parler à un expert', variant: 'secondary-outline' },
         ]}
       />
 
@@ -425,10 +425,10 @@ export default function SolutionTemplate({
         title={managementTitle || 'Notre EVone Management Service'}
         subtitle={
           managementSubtitle ||
-          'Comme sur les pages business Podenergy, EVplug centralise l\'exploitation dans un service de gestion connecte pour piloter acces, tarification et performance.'
+          "Comme sur les pages business Podenergy, EVplug centralise l'exploitation dans un service de gestion connecté pour piloter accès, tarification et performance."
         }
         items={managementSectionItems}
-        ctaLabel={managementCta || 'Decouvrir EVone Management Service'}
+        ctaLabel={managementCta || 'Découvrir EVone Management Service'}
       />
 
       {/* 7. Evone platform */}

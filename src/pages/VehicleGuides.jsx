@@ -6,11 +6,11 @@ const EXTERNAL_GUIDE_URL = 'https://www.maborneelectrique.ma/vehicules-electriqu
 
 export default function VehicleGuides() {
   return (
-    <MirrorShell documentTitle="Guides des vehicules electriques | EVplug">
+    <MirrorShell documentTitle="Guides des véhicules électriques | EVplug">
       <div className="region region-content">
         <article className="node node--type-page">
           <div className="node__content">
-            <Breadcrumb current="Guides des vehicules" />
+            <Breadcrumb current="Guides des véhicules" />
 
             {/* Hero */}
             <section className="two-card-layout">
@@ -21,11 +21,11 @@ export default function VehicleGuides() {
                     style={{ backgroundColor: '#F5F1EB' }}
                   >
                     <div className="grid gap-spacing-xl auto-rows-max">
-                      <h1 className="font-TTCommons mb-0">Guides des vehicules electriques</h1>
+                      <h1 className="font-TTCommons mb-0">Guides des véhicules électriques</h1>
                       <div className="m-0">
                         <p>
-                          Decouvrez les guides complets des vehicules electriques disponibles au Maroc — recharge,
-                          performances, couts et bien plus.
+                          Découvrez les guides complets des véhicules électriques disponibles au Maroc — recharge,
+                          performances, coûts et bien plus.
                         </p>
                       </div>
                     </div>
@@ -53,10 +53,10 @@ export default function VehicleGuides() {
                   style={{ backgroundColor: '#F5F1EB' }}
                 >
                   <h2 className="font-TTCommons mb-0">
-                    Parcourez tous les vehicules electriques disponibles au Maroc
+                    Parcourez tous les véhicules électriques disponibles au Maroc
                   </h2>
                   <p className="font-lg m-0 max-w-3xl mx-auto">
-                    Retrouvez le catalogue complet, mis a jour en continu, des vehicules electriques
+                    Retrouvez le catalogue complet, mis à jour en continu, des véhicules électriques
                     et hybrides rechargeables sur MaBorneElectrique.
                   </p>
                   <div>
@@ -73,7 +73,7 @@ export default function VehicleGuides() {
                         borderRadius: '9999px',
                       }}
                     >
-                      Voir tous les vehicules electriques
+                      Voir tous les véhicules électriques
                       <i className="fa-solid fa-arrow-right ms-2" />
                     </a>
                   </div>
