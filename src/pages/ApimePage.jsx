@@ -105,8 +105,6 @@ const board = [
   { name: 'Karim BOUKAA', role: 'Administrateur', org: 'Directeur Général, VSONIC', img: boukaaImg },
 ]
 
-const members = ['EDEEP', 'VSONIC', 'EVTRICITY', 'CONSULT']
-
 const publications = [
   {
     type: 'Communiqué',

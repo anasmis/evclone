@@ -125,36 +125,23 @@ export default function ArticlePage({ familyKey }) {
   const family = FAMILIES[familyKey]
   const { slug } = useParams()
 
-  // Seed from bundled editorial data for an instant first paint, then refresh
-  // from Strapi. `status` distinguishes "still loading" from "definitely 404".
-  const [article, setArticle] = useState(() => family?.getArticle(slug) ?? null)
-  const [status, setStatus] = useState('loading')
+  // Bundled editorial data gives an instant first paint; Strapi then refreshes
+  // it. `remote` is tagged with the slug it was fetched for, so a slug change
+  // immediately stops showing the previous article without a sync setState.
+  const fallback = family ? family.getArticle(slug) : null
+  const [remote, setRemote] = useState({ slug: null, article: null, resolved: false })
   const [related, setRelated] = useState(() => family?.fallbackList ?? [])
 
   useEffect(() => {
-    if (!family) {
-      setStatus('notfound')
-      return undefined
-    }
-
+    if (!family) return undefined
     let cancelled = false
-    const fallback = family.getArticle(slug)
-    setArticle(fallback ?? null)
-    setStatus('loading')
 
     fetchArticleBySlug(family.kind, slug)
       .then((found) => {
-        if (cancelled) return
-        if (found) {
-          setArticle(found)
-          setStatus('ready')
-        } else {
-          setStatus(fallback ? 'ready' : 'notfound')
-        }
+        if (!cancelled) setRemote({ slug, article: found ?? null, resolved: true })
       })
       .catch(() => {
-        if (cancelled) return
-        setStatus(fallback ? 'ready' : 'notfound')
+        if (!cancelled) setRemote({ slug, article: null, resolved: true })
       })
 
     family
@@ -170,17 +157,24 @@ export default function ArticlePage({ familyKey }) {
   }, [family, slug])
 
   if (!family) return <NotFoundPage />
+
+  const resolved = remote.slug === slug ? remote : null
+  const article = resolved?.article ?? fallback
+
   if (!article) {
-    if (status === 'notfound') return <NotFoundPage />
-    return (
-      <MirrorShell documentTitle="Chargement… | EVplug">
-        <div className="region region-content">
-          <div className="container-max-width-desktop container-max-width-tablet mx-auto container-padding-desktop container-padding-tablet container-padding-mobile py-spacing-9xl text-center opacity-70">
-            Chargement de l&rsquo;article…
+    // No bundled fallback and the fetch hasn't resolved for this slug yet.
+    if (!resolved) {
+      return (
+        <MirrorShell documentTitle="Chargement… | EVplug">
+          <div className="region region-content">
+            <div className="container-max-width-desktop container-max-width-tablet mx-auto container-padding-desktop container-padding-tablet container-padding-mobile py-spacing-9xl text-center opacity-70">
+              Chargement de l&rsquo;article…
+            </div>
           </div>
-        </div>
-      </MirrorShell>
-    )
+        </MirrorShell>
+      )
+    }
+    return <NotFoundPage />
   }
 
   return (

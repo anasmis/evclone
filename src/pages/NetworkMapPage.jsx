@@ -439,6 +439,7 @@ export default function NetworkMapPage() {
   // they can rebuild when stations arrive from Strapi.
   useEffect(() => {
     let cancelled = false
+    const markers = markersRef.current
 
     async function init() {
       if (!mapContainerRef.current || mapRef.current) return
@@ -480,7 +481,7 @@ export default function NetworkMapPage() {
         mapRef.current.remove()
         mapRef.current = null
       }
-      markersRef.current.clear()
+      markers.clear()
       setMapReady(false)
     }
   }, [])
