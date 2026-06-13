@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { submitLead } from '../../lib/api/strapi'
+import { submitPartnerRequest } from '../../lib/api/strapi'
 
 const INITIAL_FORM = {
   name: '',
@@ -26,6 +26,9 @@ export default function FloatingCtaForm({
   defaultInterest = '',
   accentColor = '#c8d72d',
   icon = null,
+  // Each page passes the helper for its own Strapi collection. Falls back to
+  // the generic partner-request bucket if a caller forgets to set it.
+  submitFn = submitPartnerRequest,
 }) {
   const [open, setOpen] = useState(false)
   const [status, setStatus] = useState('idle')
@@ -100,7 +103,7 @@ export default function FloatingCtaForm({
     }
     setStatus('submitting')
     try {
-      await submitLead({
+      await submitFn({
         ...form,
         pageUrl: typeof window !== 'undefined' ? window.location.href : '',
         submittedAt: new Date().toISOString(),

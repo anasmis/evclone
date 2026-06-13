@@ -119,6 +119,24 @@ async function findEntry(plural, id, query) {
 // Form-submission endpoints (writes)
 // -------------------------------------------------------------------
 
+// Common fields every "request" collection shares. The simple FloatingCtaForm
+// only collects name/email/phone/interest/message; each page routes to its own
+// dedicated collection (the generic `evplug-leads` bucket was removed).
+function commonRequestFields(values, defaultSource) {
+  return {
+    name: values.name ?? values.fullName ?? '',
+    email: values.email ?? '',
+    phone: values.phone ?? '',
+    interest: values.interest ?? '',
+    message: values.message ?? '',
+    pageUrl:
+      values.pageUrl ??
+      (typeof window !== 'undefined' ? window.location.href : ''),
+    submittedAt: values.submittedAt ?? new Date().toISOString(),
+    source: values.source ?? defaultSource,
+  }
+}
+
 // ContactUs.jsx form
 export function submitContactSubmission(values) {
   const payload = {
@@ -133,23 +151,6 @@ export function submitContactSubmission(values) {
     orderType: values.orderType ?? 'contact',
   }
   return createEntry('evplug-contact-submissions', payload)
-}
-
-// FloatingCtaForm.jsx (used on solutions/training/home pages)
-export function submitLead(values) {
-  const payload = {
-    name: values.name ?? values.fullName ?? '',
-    email: values.email ?? '',
-    phone: values.phone ?? '',
-    interest: values.interest ?? '',
-    message: values.message ?? '',
-    pageUrl:
-      values.pageUrl ??
-      (typeof window !== 'undefined' ? window.location.href : ''),
-    submittedAt: values.submittedAt ?? new Date().toISOString(),
-    source: values.source ?? 'FloatingCtaForm',
-  }
-  return createEntry('evplug-leads', payload)
 }
 
 // Newsletter.jsx
@@ -176,59 +177,150 @@ export function submitChargeCardOrder(values) {
   })
 }
 
-// Sector-specific detailed forms (schemas defined in /Strapi API; UI may evolve)
+// Sector-specific request collections. Each solution/training/home page submits
+// to its own collection so leads land in clearly-labelled buckets in Strapi.
 export function submitCoproprieteRequest(values) {
-  return createEntry('copropriete-requests', values)
+  return createEntry('copropriete-requests', commonRequestFields(values, 'EvCopropriete Page'))
 }
 
 export function submitEnterpriseRequest(values) {
-  return createEntry('enterprise-requests', values)
+  return createEntry('enterprise-requests', commonRequestFields(values, 'EvEntreprise Page'))
 }
 
 export function submitParkingRequest(values) {
-  return createEntry('parking-requests', values)
+  return createEntry('parking-requests', commonRequestFields(values, 'EvParking Page'))
 }
 
 export function submitHospitaliteRequest(values) {
-  return createEntry('hospitalite-requests', values)
+  return createEntry('hospitalite-requests', commonRequestFields(values, 'Hospitalité Page'))
 }
 
 export function submitTrainingRequest(values) {
-  return createEntry('training-requests', values)
+  return createEntry('training-requests', commonRequestFields(values, 'Certification Page'))
 }
 
 export function submitPlatformDemoRequest(values) {
-  return createEntry('platform-demo-requests', values)
+  return createEntry('platform-demo-requests', commonRequestFields(values, 'Platform Page'))
+}
+
+export function submitStationServiceRequest(values) {
+  return createEntry('station-service-requests', commonRequestFields(values, 'EvStationService Page'))
+}
+
+export function submitHomeChargingRequest(values) {
+  return createEntry('home-charging-requests', commonRequestFields(values, 'HomeCharging Page'))
+}
+
+export function submitPartnerRequest(values) {
+  return createEntry('partner-requests', commonRequestFields(values, 'Network Map Page'))
+}
+
+export function submitCarteRequest(values) {
+  return createEntry('carte-evplug-requests', commonRequestFields(values, 'Carte EVplug Page'))
 }
 
 // -------------------------------------------------------------------
-// Content reads
+// Content reads — articles (News & Guides share one collection,
+// distinguished by `kind`: "news" | "guide").
 // -------------------------------------------------------------------
 
-export function fetchBlogPosts(query = {}) {
-  return listEntries('evplug-blog-posts', {
+// Normalize a Strapi blog-post entry into the shape the listing cards and
+// ArticlePage block renderer expect.
+export function normalizeArticle(entry) {
+  if (!entry) return null
+  return {
+    id: entry.id,
+    slug: entry.slug,
+    kind: entry.kind ?? 'news',
+    title: entry.title ?? '',
+    description: entry.description ?? '',
+    image: strapiMediaUrl(entry.image) || '',
+    date: entry.date ?? '',
+    readTime: entry.readTime ?? null,
+    tag: entry.tag ?? '',
+    categories: Array.isArray(entry.categories) ? entry.categories : [],
+    body: Array.isArray(entry.body) ? entry.body : [],
+    featured: entry.featured ?? false,
+    author: entry.author ?? null,
+  }
+}
+
+async function fetchArticlesByKind(kind, query = {}) {
+  const items = await listEntries('evplug-blog-posts', {
+    'filters[kind][$eq]': kind,
+    'populate[image]': '*',
     'populate[author]': '*',
     sort: 'createdAt:desc',
+    'pagination[pageSize]': 100,
     ...query,
   })
+  return items.map(normalizeArticle)
 }
 
-export function fetchBlogPost(idOrSlug, query = {}) {
-  return findEntry('evplug-blog-posts', idOrSlug, {
+export function fetchNewsArticles(query = {}) {
+  return fetchArticlesByKind('news', query)
+}
+
+export function fetchGuideArticles(query = {}) {
+  return fetchArticlesByKind('guide', query)
+}
+
+// Find a single article by slug (Strapi's findOne expects an id/documentId,
+// not a slug, so we filter instead).
+export async function fetchArticleBySlug(kind, slug, query = {}) {
+  const items = await listEntries('evplug-blog-posts', {
+    'filters[slug][$eq]': slug,
+    'filters[kind][$eq]': kind,
+    'populate[image]': '*',
     'populate[author]': '*',
+    'pagination[pageSize]': 1,
     ...query,
   })
+  return items.length ? normalizeArticle(items[0]) : null
 }
 
 export function fetchServices(query = {}) {
   return listEntries('evplug-services', { 'populate[icon]': '*', ...query })
 }
 
-export function fetchChargingStations(query = {}) {
-  return listEntries('evplug-charging-stations', {
+// -------------------------------------------------------------------
+// Content reads — charging stations
+// -------------------------------------------------------------------
+
+const STATION_STATUS_MAP = {
+  Available: 'available',
+  Occupied: 'busy',
+  Maintenance: 'maintenance',
+}
+
+// Map the Strapi station shape (latitude/longitude/stationStatus/chargerType/
+// connectorTypes) onto the shape NetworkMapPage renders.
+export function normalizeStation(entry) {
+  if (!entry) return null
+  const lat = Number(entry.latitude)
+  const lng = Number(entry.longitude)
+  if (Number.isNaN(lat) || Number.isNaN(lng)) return null
+  return {
+    id: entry.documentId || String(entry.id),
+    name: entry.name ?? '',
+    city: entry.city ?? '',
+    address: entry.address ?? '',
+    lat,
+    lng,
+    type: entry.chargerType === 'DC' ? 'DC' : 'AC',
+    power: entry.power ?? null,
+    connectors: Array.isArray(entry.connectorTypes) ? entry.connectorTypes : [],
+    status: STATION_STATUS_MAP[entry.stationStatus] || 'available',
+    hours: entry.hours ?? '',
+  }
+}
+
+export async function fetchChargingStations(query = {}) {
+  const items = await listEntries('evplug-charging-stations', {
     'pagination[pageSize]': 100,
     ...query,
   })
+  return items.map(normalizeStation).filter(Boolean)
 }
 
 // Single-type: CMS-managed copy for /solutions/evone-management-platform.

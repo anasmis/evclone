@@ -106,7 +106,7 @@ export default function Installation() {
                 { to: '/home/home-charging', label: 'Découvrir la recharge à domicile', variant: 'primary' },
                 { href: 'https://www.maborneelectrique.ma/', label: 'Voir le catalogue', variant: 'primary-outline', external: true },
               ]}
-              image={heroImg}
+              image={stepImg2}
               imageAlt="Installation EVplug"
             />
 
@@ -141,23 +141,6 @@ export default function Installation() {
                             </div>
                             <div className="m-0 font-semibold">
                               <p>Techniciens certifiés présents dans toutes les grandes villes du Maroc</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="oip_img flex relative w-full max-w-[551px] mr-auto">
-                        <div>
-                          <img
-                            src={stepImg2}
-                            className="w-[275px] object-cover rounded-2xl"
-                            alt="Installation EVplug"
-                          />
-                          <div className="oip_img_label oip_img_label_left text-lg">
-                            <div className="icon">
-                              <img src={iconInstallation} alt="" />
-                            </div>
-                            <div className="m-0 font-semibold">
-                              <p>Pose réalisée dans le respect des normes électriques marocaines</p>
                             </div>
                           </div>
                         </div>

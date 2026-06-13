@@ -16,6 +16,7 @@ export default function SolutionPageLayout({
   ctaTitle,
   ctaSubtitle,
   ctaAccentColor,
+  ctaSubmitFn,
 }) {
   useInternalRouteNavigation()
 
@@ -53,6 +54,7 @@ export default function SolutionPageLayout({
         subtitle={ctaSubtitle || 'Decrivez votre besoin, un expert EVplug vous recontacte sous 24h ouvrees.'}
         defaultInterest={ctaInterest}
         accentColor={ctaAccentColor}
+        submitFn={ctaSubmitFn}
       />
     </div>
   )

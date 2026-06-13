@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import MirrorShell from './MirrorShell'
 import NotFoundPage from './NotFoundPage'
@@ -8,23 +9,32 @@ import {
   guideArticles,
   newsArticles,
 } from '../data/editorial'
+import {
+  fetchArticleBySlug,
+  fetchGuideArticles,
+  fetchNewsArticles,
+} from '../lib/api/strapi'
 
 const FAMILIES = {
   news: {
     key: 'news',
+    kind: 'news',
     label: 'Actualites',
     rootRoute: '/news',
     docTitleSuffix: 'Actualites | EVplug',
     getArticle: getNewsArticle,
-    list: newsArticles,
+    fetchList: fetchNewsArticles,
+    fallbackList: newsArticles,
   },
   guides: {
     key: 'guides',
+    kind: 'guide',
     label: 'Guides',
     rootRoute: '/guides',
     docTitleSuffix: 'Guides | EVplug',
     getArticle: getGuideArticle,
-    list: guideArticles,
+    fetchList: fetchGuideArticles,
+    fallbackList: guideArticles,
   },
 }
 
@@ -68,8 +78,8 @@ function Block({ block }) {
   }
 }
 
-function RelatedArticles({ family, currentSlug }) {
-  const related = family.list.filter((a) => a.slug !== currentSlug).slice(0, 3)
+function RelatedArticles({ family, articles, currentSlug }) {
+  const related = articles.filter((a) => a.slug !== currentSlug).slice(0, 3)
   if (related.length === 0) return null
 
   return (
@@ -114,10 +124,63 @@ function RelatedArticles({ family, currentSlug }) {
 export default function ArticlePage({ familyKey }) {
   const family = FAMILIES[familyKey]
   const { slug } = useParams()
-  const article = family?.getArticle(slug)
 
-  if (!family || !article) {
-    return <NotFoundPage />
+  // Seed from bundled editorial data for an instant first paint, then refresh
+  // from Strapi. `status` distinguishes "still loading" from "definitely 404".
+  const [article, setArticle] = useState(() => family?.getArticle(slug) ?? null)
+  const [status, setStatus] = useState('loading')
+  const [related, setRelated] = useState(() => family?.fallbackList ?? [])
+
+  useEffect(() => {
+    if (!family) {
+      setStatus('notfound')
+      return undefined
+    }
+
+    let cancelled = false
+    const fallback = family.getArticle(slug)
+    setArticle(fallback ?? null)
+    setStatus('loading')
+
+    fetchArticleBySlug(family.kind, slug)
+      .then((found) => {
+        if (cancelled) return
+        if (found) {
+          setArticle(found)
+          setStatus('ready')
+        } else {
+          setStatus(fallback ? 'ready' : 'notfound')
+        }
+      })
+      .catch(() => {
+        if (cancelled) return
+        setStatus(fallback ? 'ready' : 'notfound')
+      })
+
+    family
+      .fetchList()
+      .then((rows) => {
+        if (!cancelled && Array.isArray(rows) && rows.length) setRelated(rows)
+      })
+      .catch(() => {})
+
+    return () => {
+      cancelled = true
+    }
+  }, [family, slug])
+
+  if (!family) return <NotFoundPage />
+  if (!article) {
+    if (status === 'notfound') return <NotFoundPage />
+    return (
+      <MirrorShell documentTitle="Chargement… | EVplug">
+        <div className="region region-content">
+          <div className="container-max-width-desktop container-max-width-tablet mx-auto container-padding-desktop container-padding-tablet container-padding-mobile py-spacing-9xl text-center opacity-70">
+            Chargement de l&rsquo;article…
+          </div>
+        </div>
+      </MirrorShell>
+    )
   }
 
   return (
@@ -171,7 +234,7 @@ export default function ArticlePage({ familyKey }) {
               </div>
             </section>
 
-            <RelatedArticles family={family} currentSlug={article.slug} />
+            <RelatedArticles family={family} articles={related} currentSlug={article.slug} />
           </div>
         </article>
       </div>

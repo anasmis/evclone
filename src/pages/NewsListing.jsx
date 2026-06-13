@@ -1,8 +1,10 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import MirrorShell from './MirrorShell'
 import Breadcrumb from '../components/sections/Breadcrumb'
 import heroIcon from '../migrated/assets/news/hero.svg'
 import { newsArticles } from '../data/editorial'
+import { fetchNewsArticles } from '../lib/api/strapi'
 
 function ArticleCard({ a }) {
   return (
@@ -33,6 +35,22 @@ function ArticleCard({ a }) {
 }
 
 export default function NewsListing() {
+  const [articles, setArticles] = useState(newsArticles)
+
+  useEffect(() => {
+    let cancelled = false
+    fetchNewsArticles()
+      .then((rows) => {
+        if (!cancelled && Array.isArray(rows) && rows.length) setArticles(rows)
+      })
+      .catch(() => {
+        // Strapi unreachable / empty — keep the bundled fallback articles.
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
   return (
     <MirrorShell documentTitle="Actualités | EVplug">
       <div className="region region-content">
@@ -77,7 +95,7 @@ export default function NewsListing() {
 
                 <div className="view-content">
                   <div className="grid xl:grid-cols-3 sm:grid-cols-1 md:grid-cols-2 gap-spacing-4xl">
-                    {newsArticles.map((a) => (
+                    {articles.map((a) => (
                       <ArticleCard key={a.slug} a={a} />
                     ))}
                   </div>

@@ -1,5 +1,6 @@
 import SolutionPageLayout from './SolutionPageLayout'
 import SolutionTemplate from './SolutionTemplate'
+import { submitParkingRequest } from '../../lib/api/strapi'
 import { icons } from '../../migrated/assets/solutions/shared/icons'
 import heroImage from '../../migrated/assets/solutions/parkings/hero.jpeg'
 import storyImage from '../../migrated/assets/solutions/parkings/story.jpeg'
@@ -62,6 +63,7 @@ export default function Parkings() {
       ctaTitle="Équipons votre parking"
       ctaSubtitle="Nombre de places, type d'usage, contraintes électriques : on dimensionne votre projet."
       ctaAccentColor="#5cc0e8"
+      ctaSubmitFn={submitParkingRequest}
     >
       <SolutionTemplate
         tag="EV Parking & Stations"

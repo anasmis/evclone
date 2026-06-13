@@ -7,7 +7,7 @@ import { icons } from '../../migrated/assets/solutions/shared/icons'
 import evoneLaptopImg from '../../migrated/assets/solutions/shared/evone-laptop.jpeg'
 import evoneInstallImg from '../../migrated/assets/solutions/shared/evone-install.jpeg'
 import ctaImage from '../../migrated/assets/solutions/shared/cta-image.svg'
-import { fetchEvonePage, strapiMediaUrl } from '../../lib/api/strapi'
+import { fetchEvonePage, strapiMediaUrl, submitPlatformDemoRequest } from '../../lib/api/strapi'
 
 // ---------------------------------------------------------------------------
 // Fallback content — used when Strapi is unreachable or the page hasn't been
@@ -262,6 +262,7 @@ export default function EvoneManagementPlatform() {
       ctaTitle={data.ctaTitle}
       ctaSubtitle={data.ctaSubtitle}
       ctaAccentColor={data.ctaAccentColor}
+      ctaSubmitFn={submitPlatformDemoRequest}
     >
       <Hero
         tag={data.heroTag}

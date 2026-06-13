@@ -1,5 +1,6 @@
 import SolutionPageLayout from './SolutionPageLayout'
 import SolutionTemplate from './SolutionTemplate'
+import { submitEnterpriseRequest } from '../../lib/api/strapi'
 import { icons } from '../../migrated/assets/solutions/shared/icons'
 import heroImage from '../../migrated/assets/solutions/entreprise/hero.jpeg'
 import storyImage from '../../migrated/assets/solutions/entreprise/story.jpeg'
@@ -81,6 +82,7 @@ export default function Entreprise() {
       ctaTitle="Électrifions votre flotte"
       ctaSubtitle="Décrivez votre site et le nombre de véhicules : un expert flotte EVplug vous rappelle sous 24h."
       ctaAccentColor="#c8d72d"
+      ctaSubmitFn={submitEnterpriseRequest}
     >
       <SolutionTemplate
         tag="EV Entreprise"

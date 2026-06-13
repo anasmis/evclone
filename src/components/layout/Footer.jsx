@@ -59,8 +59,9 @@ const SOCIAL_LINKS = [
   },
 ]
 
-const PHONES = [
-  { label: '05 21 33 50 75', href: 'tel:+212521335075' },
+const SUPPORT_PHONE = { label: '05 21 33 50 75', href: 'tel:+212521335075' }
+
+const DIRECT_PHONES = [
   { label: '+212 661 11 66 26', href: 'tel:+212661116626' },
   { label: '+212 661 22 80 10', href: 'tel:+212661228010' },
 ]
@@ -115,19 +116,49 @@ export default function Footer() {
               <div className="footer-menu grid xl:justify-end xl:gap-spacing-6xl gap-spacing-4xl">
                 <div className="grid gap-spacing-xl grid-flow-row">
                   <h6 className="text-white font-semibold font-lg">Numéros dédiés</h6>
-                  <ul className="grid gap-2">
-                    {PHONES.map((phone) => (
+                  <a
+                    href={SUPPORT_PHONE.href}
+                    className="block w-full"
+                    style={{
+                      width: '100%',
+                      maxWidth: '320px',
+                      borderRadius: '16px',
+                      border: '1px solid rgba(255,255,255,0.18)',
+                      background: 'linear-gradient(160deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03))',
+                      padding: '18px 20px',
+                    }}
+                  >
+                    <span
+                      className="flex items-center gap-3 text-white/60 font-xs uppercase"
+                      style={{ letterSpacing: '0.12em', whiteSpace: 'nowrap' }}
+                    >
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.24 1.02l-2.21 2.2z" />
+                      </svg>
+                      Support client
+                    </span>
+                    <span
+                      className="block text-white mt-2"
+                      style={{
+                        fontFamily: 'var(--brand-font-heading)',
+                        fontSize: 'clamp(1.5rem, 2.4vw, 2rem)',
+                        letterSpacing: '0.02em',
+                        lineHeight: 1.1,
+                        whiteSpace: 'nowrap',
+                      }}
+                    >
+                      {SUPPORT_PHONE.label}
+                    </span>
+                  </a>
+                  <ul className="grid gap-1 mt-spacing-xl">
+                    {DIRECT_PHONES.map((phone) => (
                       <li key={phone.href}>
                         <a
                           href={phone.href}
-                          className="text-white hover:text-white inline-flex items-center gap-2"
-                          style={{
-                            fontFamily: 'var(--brand-font-heading)',
-                            fontSize: 'clamp(1.25rem, 2vw, 1.6rem)',
-                            letterSpacing: '0.02em',
-                          }}
+                          className="text-white/70 hover:text-white inline-flex items-center gap-2 font-sm"
+                          style={{ letterSpacing: '0.02em' }}
                         >
-                          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                             <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.24 1.02l-2.21 2.2z" />
                           </svg>
                           {phone.label}

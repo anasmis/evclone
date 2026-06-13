@@ -1,5 +1,6 @@
 import SolutionPageLayout from './SolutionPageLayout'
 import SolutionTemplate from './SolutionTemplate'
+import { submitCoproprieteRequest } from '../../lib/api/strapi'
 import { icons } from '../../migrated/assets/solutions/shared/icons'
 import heroImage from '../../migrated/assets/solutions/copropriete/hero.jpeg'
 import storyImage from '../../migrated/assets/solutions/copropriete/story.jpeg'
@@ -62,6 +63,7 @@ export default function Copropriete() {
       ctaTitle="Projet de copropriété"
       ctaSubtitle="Résident ou syndic ? Décrivez votre résidence, on vous accompagne de l'AG à la mise en service."
       ctaAccentColor="#7fd58a"
+      ctaSubmitFn={submitCoproprieteRequest}
     >
       <SolutionTemplate
         tag="EV Copropriété"

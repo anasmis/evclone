@@ -1,5 +1,6 @@
 import SolutionPageLayout from './SolutionPageLayout'
 import SolutionTemplate from './SolutionTemplate'
+import { submitStationServiceRequest } from '../../lib/api/strapi'
 import { icons } from '../../migrated/assets/solutions/shared/icons'
 import heroImage from '../../migrated/assets/solutions/stations-service/hero.jpeg'
 import storyImage from '../../migrated/assets/solutions/stations-service/story.jpeg'
@@ -83,6 +84,7 @@ export default function StationsService() {
       ctaTitle="Station-service & recharge rapide"
       ctaSubtitle="Localisation, trafic, puissance disponible : on cadre votre projet de borne rapide DC."
       ctaAccentColor="#fe5716"
+      ctaSubmitFn={submitStationServiceRequest}
     >
       <SolutionTemplate
         tag="EV Station de services"

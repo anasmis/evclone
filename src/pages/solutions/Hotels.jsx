@@ -1,5 +1,6 @@
 import SolutionPageLayout from './SolutionPageLayout'
 import SolutionTemplate from './SolutionTemplate'
+import { submitHospitaliteRequest } from '../../lib/api/strapi'
 import { icons } from '../../migrated/assets/solutions/shared/icons'
 import heroImage from '../../migrated/assets/solutions/hotels/hero.jpeg'
 import storyImage from '../../migrated/assets/solutions/hotels/story.jpeg'
@@ -62,6 +63,7 @@ export default function Hotels() {
       ctaTitle="Recharge pour votre hôtel"
       ctaSubtitle="Offrez la recharge à vos clients. Décrivez votre établissement, on vous propose une solution sur-mesure."
       ctaAccentColor="#e8b04e"
+      ctaSubmitFn={submitHospitaliteRequest}
     >
       <SolutionTemplate
         tag="Hôtellerie & Hospitality"

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import MirrorShell from '../MirrorShell'
 import BrandsMarquee from '../../components/common/BrandsMarquee'
 import FloatingCtaForm from '../../components/common/FloatingCtaForm'
+import { submitHomeChargingRequest } from '../../lib/api/strapi'
 import Breadcrumb from '../../components/sections/Breadcrumb'
 import Hero from '../../components/sections/Hero'
 import Accordion from '../../components/sections/Accordion'
@@ -10,7 +11,7 @@ import StepsList from '../../components/sections/StepsList'
 import HelpBand from '../../components/sections/HelpBand'
 import CtaBanner from '../../components/sections/CtaBanner'
 import BenefitsStrip from '../../components/sections/BenefitsStrip'
-import hero from '../../migrated/assets/home-charging/hero.svg'
+import hero from '../../migrated/assets/installation/standard-img-1.jpeg'
 import iconOffers from '../../migrated/assets/home-charging/icon-offers.svg'
 import iconInstall from '../../migrated/assets/home-charging/icon-install.svg'
 import iconCard from '../../migrated/assets/home-charging/icon-card.svg'
@@ -309,7 +310,7 @@ export default function HomeCharging() {
               ]}
               footnote="Installation EVplug : achat unique. Carte EVplug : formule avec abonnement mensuel et services inclus."
               image={hero}
-              imageAlt="Offres EVplug"
+              imageAlt="Borne de recharge EVplug installée à domicile au Maroc"
             />
 
             <BenefitsStrip
@@ -494,16 +495,7 @@ export default function HomeCharging() {
                       <div className="oip_img flex justify-end relative w-full max-w-[553px] ml-auto">
                         <div>
                           <img src={methodImg1} className="w-[276px] object-cover rounded-2xl" alt="Installation" />
-                          <div className="oip_img_label oip_img_label_left text-lg">
-                            <div className="icon">
-                              <img src={iconCharger} alt="" />
-                            </div>
-                            <div className="m-0 font-semibold">
-                              <p>
-                                Un réseau d'installateurs partenaires sur Casablanca, Rabat, Marrakech et Tanger
-                              </p>
-                            </div>
-                          </div>
+
                         </div>
                       </div>
                       <div className="oip_img flex relative w-full max-w-[551px] mr-auto">
@@ -585,6 +577,7 @@ export default function HomeCharging() {
         subtitle="Installation EVplug ou Carte EVplug : indiquez votre besoin, un conseiller vous recontacte sous 24h."
         defaultInterest="Installation à domicile"
         accentColor="#c8d72d"
+        submitFn={submitHomeChargingRequest}
       />
     </MirrorShell>
   )

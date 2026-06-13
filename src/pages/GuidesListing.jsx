@@ -1,12 +1,10 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import MirrorShell from './MirrorShell'
 import Breadcrumb from '../components/sections/Breadcrumb'
 import heroIcon from '../migrated/assets/guides/hero.svg'
 import { GUIDE_CATEGORIES, guideArticles } from '../data/editorial'
-
-const featured = guideArticles.filter((a) => a.featured)
-const allGuides = guideArticles.filter((a) => !a.featured)
+import { fetchGuideArticles } from '../lib/api/strapi'
 
 function articleHref(a) {
   return `/guides/${a.slug}`
@@ -167,19 +165,37 @@ function CategoryFilter({ value, onChange, idPrefix }) {
 }
 
 export default function GuidesListing() {
+  const [articles, setArticles] = useState(guideArticles)
   const [featCategory, setFeatCategory] = useState('Tous')
   const [allCategory, setAllCategory] = useState('Tous')
   const [showMobileFilter, setShowMobileFilter] = useState(false)
 
+  useEffect(() => {
+    let cancelled = false
+    fetchGuideArticles()
+      .then((rows) => {
+        if (!cancelled && Array.isArray(rows) && rows.length) setArticles(rows)
+      })
+      .catch(() => {
+        // Strapi unreachable / empty — keep the bundled fallback guides.
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
+  const featured = useMemo(() => articles.filter((a) => a.featured), [articles])
+  const allGuides = useMemo(() => articles.filter((a) => !a.featured), [articles])
+
   const filteredFeatured = useMemo(() => {
     if (featCategory === 'Tous') return featured
-    return featured.filter((a) => a.categories.includes(featCategory))
-  }, [featCategory])
+    return featured.filter((a) => (a.categories || []).includes(featCategory))
+  }, [featured, featCategory])
 
   const filteredAll = useMemo(() => {
     if (allCategory === 'Tous') return allGuides
-    return allGuides.filter((a) => a.categories.includes(allCategory))
-  }, [allCategory])
+    return allGuides.filter((a) => (a.categories || []).includes(allCategory))
+  }, [allGuides, allCategory])
 
   return (
     <MirrorShell documentTitle="Guides | EVplug">

@@ -127,6 +127,7 @@ const NAV_ITEMS = [
       title: 'Qui sommes-nous ?',
       titleColor: '#123d33',
       textColor: '#123d33',
+      ctaColor: '#0a1f1a',
       cta: { label: 'À propos', to: '/about' },
       description: "Découvrez la mission, l’équipe et la vision EVplug Maroc.",
     },
@@ -156,8 +157,8 @@ const NAV_ITEMS = [
       titleColor: '#ffdc50',
       textColor: '#ffdc50',
       ctaColor: '#ffdc50',
-      description: "EVplug, vice-président de l’APIME : découvrez notre contribution à la mobilité électrique au Maroc.",
-      cta: { label: "Notre rôle à l’APIME", to: "/about/apime" },
+      description: "L’association qui fédère la filière de la mobilité électrique au Maroc.",
+      cta: { label: "Découvrir l’APIME", to: "/about/apime" },
     },
   },
 ]

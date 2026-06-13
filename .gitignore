@@ -15,6 +15,9 @@ dist-ssr
 # Strapi workspace exports
 Strapi API/
 
+# Cloned Strapi backend repo (its own git repo: EVPlug-ma/SiteWeb-Backend)
+SiteWeb-Backend/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

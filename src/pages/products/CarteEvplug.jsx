@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import MirrorShell from '../MirrorShell'
 import CardsCarousel from '../../components/common/CardsCarousel'
+import FloatingCtaForm from '../../components/common/FloatingCtaForm'
+import { submitCarteRequest } from '../../lib/api/strapi'
 import Breadcrumb from '../../components/sections/Breadcrumb'
 import Hero from '../../components/sections/Hero'
 import Accordion from '../../components/sections/Accordion'
@@ -423,6 +425,20 @@ export default function CarteEvplug() {
           </div>
         </article>
       </div>
+      <FloatingCtaForm
+        buttonLabel="Obtenir ma carte"
+        title="Obtenir votre Carte EVplug"
+        subtitle="Particulier ou entreprise : indiquez votre besoin, un conseiller EVplug vous recontacte sous 24h."
+        interestOptions={[
+          'Carte EVplug Particulier',
+          'Carte EVplug Entreprise',
+          'Recharge publique & itinérance',
+          'Autre',
+        ]}
+        defaultInterest="Carte EVplug Particulier"
+        accentColor="#c8d72d"
+        submitFn={submitCarteRequest}
+      />
     </MirrorShell>
   )
 }

@@ -5,6 +5,7 @@ import Hero from '../../components/sections/Hero'
 import BenefitsStrip from '../../components/sections/BenefitsStrip'
 import CtaBanner from '../../components/sections/CtaBanner'
 import FloatingCtaForm from '../../components/common/FloatingCtaForm'
+import { submitTrainingRequest } from '../../lib/api/strapi'
 import { icons } from '../../migrated/assets/solutions/shared/icons'
 import ctaImageSrc from '../../migrated/assets/solutions/shared/cta-image.svg'
 import heroImg from '../../migrated/assets/installation/hero.webp'
@@ -193,6 +194,7 @@ export default function TrainingHub() {
           'Autre',
         ]}
         accentColor="#c8d72d"
+        submitFn={submitTrainingRequest}
       />
     </MirrorShell>
   )

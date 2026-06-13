@@ -6,29 +6,11 @@ import heroImg from '../migrated/assets/about/hero.svg'
 import iconSchedule from '../migrated/assets/about/icon-schedule.svg'
 import iconVehicle from '../migrated/assets/about/icon-vehicle.svg'
 import iconLocation from '../migrated/assets/about/icon-location.svg'
-import aboutUsImg from '../migrated/assets/about/about-us.jpeg'
-import electromobiliteImg from '../migrated/assets/about/electromobilite.jpeg'
-import teamLogo from '../migrated/assets/layout/logo.webp'
 
 const keyPoints = [
   { icon: iconSchedule, alt: 'Fondé en 2021', title: 'Fondé en 2021' },
   { icon: iconVehicle, alt: '6 000 alimentés... et ça continue', title: '6 000 alimentés... et ça continue' },
   { icon: iconLocation, alt: 'Plus de 2 500 bornes VE installées', title: 'Plus de 2 500 bornes VE installées' },
-]
-
-const leaders = [
-  { name: 'Walid Ansrah', bio: 'bio', image: teamLogo },
-  { name: 'Mohamed Oukheyi', bio: 'bio', image: teamLogo },
-  { name: 'Said Oukheyi', bio: 'bio', image: teamLogo },
-]
-
-const teams = [
-  'Commerciales',
-  'Marketing',
-  'Coordinations',
-  'Techniques',
-  'Supports',
-  'Administratifs',
 ]
 
 export default function AboutPage() {
@@ -73,11 +55,8 @@ export default function AboutPage() {
             <section className="text-left-right-variant relative image-text-section bg-surface top-spacing">
               <div className="grid container-max-width-desktop container-max-width-tablet mx-auto container-padding-desktop container-padding-tablet container-padding-mobile gap-spacing-4xl image-text-block">
                 <div className="flex flex-col md:flex-row py-spacing-7xl items-center justify-between xl:gap-spacing-9xl gap-spacing-7xl grid-block">
-                  <div className="md:w-6/12 w-full">
-                    <img className="w-full rounded-2xl" src={aboutUsImg} alt="À propos de nous" />
-                  </div>
-                  <div className="md:w-6/12 w-full">
-                    <div className="max-w-[480px] grid gap-spacing-3xl">
+                  <div className="w-full">
+                    <div className="max-w-190 grid gap-spacing-3xl">
                       <div className="grid gap-spacing-3xl">
                         <h3 className="tracking-tight m-0">À propos de nous</h3>
                         <div className="hero-banner-des">
@@ -129,12 +108,9 @@ export default function AboutPage() {
                   </div>
                 </div>
 
-                <div className="flex flex-col md:flex-row py-spacing-7xl items-center justify-between xl:gap-spacing-9xl gap-spacing-7xl grid-block md:flex-row-reverse">
-                  <div className="md:w-6/12 w-full">
-                    <img className="w-full rounded-2xl" src={electromobiliteImg} alt="L'électromobilité pour tous" />
-                  </div>
-                  <div className="md:w-6/12 w-full">
-                    <div className="max-w-[480px] grid gap-spacing-3xl">
+                <div className="flex flex-col md:flex-row py-spacing-7xl items-center justify-between xl:gap-spacing-9xl gap-spacing-7xl grid-block">
+                  <div className="w-full">
+                    <div className="max-w-190 grid gap-spacing-3xl">
                       <div className="grid gap-spacing-3xl">
                         <h3 className="tracking-tight m-0">Trust and love your charging experience</h3>
                         <div className="hero-banner-des">
@@ -194,48 +170,6 @@ export default function AboutPage() {
                         Association professionnelle intersectorielle pour la mobilité électrique au
                         Maroc.
                       </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            {/* Notre équipe */}
-            <section className="bg-white relative py-spacing-7xl">
-              <div className="container-max-width-desktop container-max-width-tablet mx-auto container-padding-desktop container-padding-tablet container-padding-mobile">
-                <div className="grid gap-spacing-6xl">
-                  <div className="grid gap-spacing-2xl text-center">
-                    <h3 className="tracking-tight m-0">Notre équipe</h3>
-                    <p className="hero-banner-des max-w-[640px] mx-auto">
-                      Une équipe engagée pour accélérer la mobilité électrique au Maroc.
-                    </p>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-spacing-6xl">
-                    {leaders.map((member) => (
-                      <div key={member.name} className="grid gap-spacing-3xl text-center">
-                        <div className="w-40 h-40 rounded-full bg-surface mx-auto flex items-center justify-center overflow-hidden p-spacing-3xl">
-                          <img className="w-full h-full object-contain" src={member.image} alt={member.name} />
-                        </div>
-                        <div className="grid gap-spacing-xs">
-                          <h5 className="m-0">{member.name}</h5>
-                          <p className="hero-banner-des m-0">{member.bio}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="grid gap-spacing-3xl mt-spacing-4xl">
-                    <h4 className="tracking-tight m-0 text-center">Les équipes</h4>
-                    <div className="flex flex-wrap justify-center gap-spacing-2xl">
-                      {teams.map((team) => (
-                        <span
-                          key={team}
-                          className="px-spacing-2xl py-spacing-md rounded-full bg-lime text-foreground font-medium"
-                        >
-                          {team}
-                        </span>
-                      ))}
                     </div>
                   </div>
                 </div>

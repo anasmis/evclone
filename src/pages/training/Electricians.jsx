@@ -4,6 +4,7 @@ import Hero from '../../components/sections/Hero'
 import BenefitsStrip from '../../components/sections/BenefitsStrip'
 import CtaBanner from '../../components/sections/CtaBanner'
 import FloatingCtaForm from '../../components/common/FloatingCtaForm'
+import { submitTrainingRequest } from '../../lib/api/strapi'
 import BookingCalendar from '../../components/common/BookingCalendar'
 import { icons } from '../../migrated/assets/solutions/shared/icons'
 import ctaImageSrc from '../../migrated/assets/solutions/shared/cta-image.svg'
@@ -310,6 +311,7 @@ export default function Electricians() {
         ]}
         defaultInterest="Réserver une session installateur"
         accentColor="#c8d72d"
+        submitFn={submitTrainingRequest}
       />
     </MirrorShell>
   )

@@ -1,10 +1,11 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import SolutionPageLayout from './solutions/SolutionPageLayout'
+import { fetchChargingStations, submitPartnerRequest } from '../lib/api/strapi'
 
 const MOROCCO_CENTER = [32.4279, -6.0]
 const DEFAULT_ZOOM = 6
 
-const STATIONS = [
+const FALLBACK_STATIONS = [
   {
     id: 'evp-cas-marina',
     name: 'EVplug Casablanca Marina',
@@ -251,12 +252,106 @@ function buildStationPopupHtml(station) {
         <span style="display:inline-flex; align-items:center; gap:6px; background:rgba(18,61,51,0.08); color:#123d33; font-size:11px; font-weight:600; padding:3px 8px; border-radius:9999px;">
           <span style="width:7px; height:7px; border-radius:9999px; background:${meta.dot};"></span>${meta.label}
         </span>
-        <span style="background:#c8d72d; color:#123d33; font-size:11px; font-weight:700; padding:3px 8px; border-radius:9999px;">${station.type} &middot; ${station.power} kW</span>
+        <span style="background:#c8d72d; color:#123d33; font-size:11px; font-weight:700; padding:3px 8px; border-radius:9999px;">${station.power ? `${station.type} &middot; ${station.power} kW` : station.type}</span>
       </div>
-      <p style="margin: 0; font-size: 12px;"><strong>Connecteurs :</strong> ${station.connectors.join(', ')}</p>
-      <p style="margin: 4px 0 0; font-size: 12px;"><strong>Horaires :</strong> ${station.hours}</p>
+      ${station.connectors && station.connectors.length ? `<p style="margin: 0; font-size: 12px;"><strong>Connecteurs :</strong> ${station.connectors.join(', ')}</p>` : ''}
+      ${station.hours ? `<p style="margin: 4px 0 0; font-size: 12px;"><strong>Horaires :</strong> ${station.hours}</p>` : ''}
     </div>
   `
+}
+
+function FilterChip({ label, count, active, onClick }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-pressed={active}
+      className={[
+        'group inline-flex items-center gap-spacing-sm rounded-full border px-spacing-lg py-spacing-sm font-base transition',
+        active
+          ? 'bg-blue-dianne text-white border-blue-dianne shadow-[0_12px_24px_rgba(18,61,51,0.22)]'
+          : 'bg-white text-blue-dianne border-blue-dianne/15 hover:border-blue-dianne/45 hover:-translate-y-0.5',
+      ].join(' ')}
+    >
+      <span className="font-semibold whitespace-nowrap">{label}</span>
+      <span
+        className={[
+          'inline-flex items-center justify-center min-w-[1.4rem] h-[1.4rem] px-1 rounded-full font-xs font-bold',
+          active ? 'bg-white/20 text-white' : 'bg-blue-dianne/10 text-blue-dianne/70',
+        ].join(' ')}
+      >
+        {count}
+      </span>
+    </button>
+  )
+}
+
+function CityCombobox({ cities, counts, value, onSelect }) {
+  const [query, setQuery] = useState('')
+  const [open, setOpen] = useState(false)
+
+  const matches = cities.filter((c) => c.toLowerCase().includes(query.trim().toLowerCase()))
+
+  return (
+    <div className="relative w-full" style={{ maxWidth: '22rem' }}>
+      <div className="relative">
+        <svg
+          className="pointer-events-none absolute left-spacing-md top-1/2 -translate-y-1/2 text-blue-dianne/40"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          aria-hidden="true"
+        >
+          <circle cx="11" cy="11" r="7" />
+          <path d="m21 21-4.3-4.3" strokeLinecap="round" />
+        </svg>
+        <input
+          type="text"
+          value={query}
+          placeholder="Rechercher une ville…"
+          onChange={(e) => {
+            setQuery(e.target.value)
+            setOpen(true)
+          }}
+          onFocus={() => setOpen(true)}
+          onBlur={() => setTimeout(() => setOpen(false), 120)}
+          className="w-full rounded-full border border-blue-dianne/15 bg-white pl-9 pr-spacing-lg py-spacing-sm font-base text-blue-dianne placeholder:text-blue-dianne/40 focus:border-blue-dianne focus:outline-none"
+        />
+      </div>
+      {open && matches.length > 0 && (
+        <ul
+          className="absolute left-0 right-0 mt-spacing-xs rounded-2xl border border-blue-dianne/10 bg-white overflow-hidden overflow-y-auto"
+          style={{ zIndex: 1000, maxHeight: '16rem', boxShadow: '0 18px 40px rgba(18,61,51,0.18)' }}
+        >
+          {matches.map((city) => (
+            <li key={city}>
+              <button
+                type="button"
+                onMouseDown={(e) => e.preventDefault()}
+                onClick={() => {
+                  onSelect(city)
+                  setQuery('')
+                  setOpen(false)
+                }}
+                className={[
+                  'flex w-full items-center justify-between gap-spacing-md px-spacing-lg py-spacing-sm text-left font-base transition',
+                  value === city ? 'bg-blue-dianne text-white' : 'text-blue-dianne hover:bg-blue-dianne/5',
+                ].join(' ')}
+              >
+                <span className="font-semibold">{city}</span>
+                <span className={value === city ? 'font-sm text-white/70' : 'font-sm text-blue-dianne/50'}>
+                  {counts[city]}
+                </span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  )
 }
 
 function StationCard({ station, isActive, onSelect }) {
@@ -281,7 +376,7 @@ function StationCard({ station, isActive, onSelect }) {
 
       <div className="flex flex-wrap items-center gap-spacing-sm">
         <span className="pill-custom inline-flex items-center cursor-auto whitespace-nowrap font-sm py-spacing-xs px-spacing-md">
-          {station.type} &middot; {station.power} kW
+          {station.power ? `${station.type} · ${station.power} kW` : station.type}
         </span>
         <span className="inline-flex items-center gap-2 font-sm font-semibold text-blue-dianne">
           <span className="inline-block h-2 w-2 rounded-full" style={{ background: meta.dot }} />
@@ -302,24 +397,48 @@ export default function NetworkMapPage() {
   const markersRef = useRef(new Map())
   const leafletRef = useRef(null)
 
+  const [stations, setStations] = useState(FALLBACK_STATIONS)
+  const [mapReady, setMapReady] = useState(false)
   const [activeId, setActiveId] = useState(null)
   const [cityFilter, setCityFilter] = useState('all')
   const [typeFilter, setTypeFilter] = useState('all')
 
-  const cities = useMemo(() => Array.from(new Set(STATIONS.map((s) => s.city))).sort(), [])
+  // Load live stations from Strapi; keep the bundled fallback if empty/unreachable.
+  useEffect(() => {
+    let cancelled = false
+    fetchChargingStations()
+      .then((rows) => {
+        if (!cancelled && Array.isArray(rows) && rows.length) setStations(rows)
+      })
+      .catch(() => {
+        // Strapi unreachable / not configured — keep fallback stations.
+      })
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
+  const cities = useMemo(() => Array.from(new Set(stations.map((s) => s.city))).sort(), [stations])
+
+  const cityCounts = useMemo(() => {
+    return stations.reduce((acc, s) => {
+      acc[s.city] = (acc[s.city] || 0) + 1
+      return acc
+    }, {})
+  }, [stations])
 
   const filteredStations = useMemo(() => {
-    return STATIONS.filter((station) => {
+    return stations.filter((station) => {
       if (cityFilter !== 'all' && station.city !== cityFilter) return false
       if (typeFilter !== 'all' && station.type !== typeFilter) return false
       return true
     })
-  }, [cityFilter, typeFilter])
+  }, [stations, cityFilter, typeFilter])
 
-  // Initialise Leaflet
+  // Initialise Leaflet (map only). Markers are built in a separate effect so
+  // they can rebuild when stations arrive from Strapi.
   useEffect(() => {
     let cancelled = false
-    const markers = markersRef.current
 
     async function init() {
       if (!mapContainerRef.current || mapRef.current) return
@@ -341,22 +460,8 @@ export default function NetworkMapPage() {
         maxZoom: 18,
       }).addTo(map)
 
-      STATIONS.forEach((station) => {
-        const icon = L.divIcon({
-          html: buildMarkerIconHtml(station),
-          className: 'evplug-leaflet-divicon',
-          iconSize: [34, 40],
-          iconAnchor: [17, 40],
-          popupAnchor: [0, -38],
-        })
-        const marker = L.marker([station.lat, station.lng], { icon })
-        marker.bindPopup(buildStationPopupHtml(station), { closeButton: true })
-        marker.on('click', () => setActiveId(station.id))
-        marker.addTo(map)
-        markers.set(station.id, marker)
-      })
-
       mapRef.current = map
+      setMapReady(true)
 
       setTimeout(() => {
         try {
@@ -375,9 +480,38 @@ export default function NetworkMapPage() {
         mapRef.current.remove()
         mapRef.current = null
       }
-      markers.clear()
+      markersRef.current.clear()
+      setMapReady(false)
     }
   }, [])
+
+  // (Re)build markers whenever the station list changes.
+  useEffect(() => {
+    const L = leafletRef.current
+    const map = mapRef.current
+    if (!L || !map || !mapReady) return
+
+    const markers = markersRef.current
+    markers.forEach((marker) => {
+      if (map.hasLayer(marker)) map.removeLayer(marker)
+    })
+    markers.clear()
+
+    stations.forEach((station) => {
+      const icon = L.divIcon({
+        html: buildMarkerIconHtml(station),
+        className: 'evplug-leaflet-divicon',
+        iconSize: [34, 40],
+        iconAnchor: [17, 40],
+        popupAnchor: [0, -38],
+      })
+      const marker = L.marker([station.lat, station.lng], { icon })
+      marker.bindPopup(buildStationPopupHtml(station), { closeButton: true })
+      marker.on('click', () => setActiveId(station.id))
+      marker.addTo(map)
+      markers.set(station.id, marker)
+    })
+  }, [stations, mapReady])
 
   useEffect(() => {
     const map = mapRef.current
@@ -397,14 +531,21 @@ export default function NetworkMapPage() {
     const map = mapRef.current
     const marker = markersRef.current.get(activeId)
     if (!map || !marker) return
-    const station = STATIONS.find((s) => s.id === activeId)
+    const station = stations.find((s) => s.id === activeId)
     if (!station) return
     map.flyTo([station.lat, station.lng], Math.max(map.getZoom(), 11), { duration: 0.8 })
     marker.openPopup()
-  }, [activeId])
+  }, [activeId, stations])
 
   return (
-    <SolutionPageLayout documentTitle="Notre Reseau | EVplug">
+    <SolutionPageLayout
+      documentTitle="Notre Reseau | EVplug"
+      ctaInterest="Devenir partenaire"
+      ctaButtonLabel="Devenir partenaire"
+      ctaTitle="Accueillir une station EVplug"
+      ctaSubtitle="Décrivez votre site : on étudie l'implantation d'une station EVplug chez vous."
+      ctaSubmitFn={submitPartnerRequest}
+    >
       {/* Map + list */}
       <section
         id="carte-reseau"
@@ -412,67 +553,63 @@ export default function NetworkMapPage() {
         style={{ scrollMarginTop: 96 }}
       >
         <div className="container-max-width-desktop container-max-width-tablet container-padding-desktop container-padding-tablet container-padding-mobile mx-auto md:py-spacing-9xl py-spacing-7xl">
-          <div className="grid gap-spacing-2xl mb-spacing-6xl">
-            <span className="pill-custom flex items-center gap-spacing-sm cursor-auto w-max">
+          <div className="mb-spacing-6xl">
+            <span className="pill-custom inline-flex items-center gap-spacing-sm cursor-auto">
               Carte interactive
             </span>
-            <h2 className="m-0 font-PosterCutNeue uppercase font-4xl md:font-5xl xl:font-6xl text-blue-dianne tracking-tight leading-none">
+            <h2
+              className="m-0 mt-spacing-2xl font-PosterCutNeue uppercase font-4xl md:font-5xl xl:font-6xl text-blue-dianne tracking-tight leading-none"
+              style={{ maxWidth: '60rem' }}
+            >
               Trouvez la station EVplug la plus proche.
             </h2>
           </div>
 
           {/* Filters */}
           <div className="bg-surface rounded-2xl p-spacing-2xl mb-spacing-4xl grid gap-spacing-4xl xl:grid-cols-[1fr_auto] xl:items-start">
-            <div className="grid gap-spacing-sm">
-              <span className="font-sm font-bold uppercase tracking-wide text-blue-dianne/70">Ville</span>
+            <div className="grid gap-spacing-md">
+              <span className="font-sm font-bold uppercase tracking-wide text-blue-dianne/70">
+                Choisissez votre ville
+              </span>
+              <CityCombobox
+                cities={cities}
+                counts={cityCounts}
+                value={cityFilter}
+                onSelect={(city) => setCityFilter(city === cityFilter ? 'all' : city)}
+              />
               <div className="flex flex-wrap gap-spacing-sm">
-                <button
-                  type="button"
+                <FilterChip
+                  label="Toutes"
+                  count={stations.length}
+                  active={cityFilter === 'all'}
                   onClick={() => setCityFilter('all')}
-                  className={[
-                    'btn',
-                    cityFilter === 'all' ? 'btn-secondary' : 'btn-secondary-outline',
-                    'font-base px-spacing-lg',
-                  ].join(' ')}
-                >
-                  Toutes
-                </button>
+                />
                 {cities.map((city) => (
-                  <button
-                    type="button"
+                  <FilterChip
                     key={city}
+                    label={city}
+                    count={cityCounts[city]}
+                    active={cityFilter === city}
                     onClick={() => setCityFilter(city === cityFilter ? 'all' : city)}
-                    className={[
-                      'btn',
-                      cityFilter === city ? 'btn-secondary' : 'btn-secondary-outline',
-                      'font-base px-spacing-lg',
-                    ].join(' ')}
-                  >
-                    {city}
-                  </button>
+                  />
                 ))}
               </div>
             </div>
-            <div className="grid gap-spacing-sm">
+            <div className="grid gap-spacing-md">
               <span className="font-sm font-bold uppercase tracking-wide text-blue-dianne/70">Type</span>
               <div className="flex flex-wrap gap-spacing-sm">
                 {[
-                  { value: 'all', label: 'Tous' },
-                  { value: 'DC', label: 'Rapide DC' },
-                  { value: 'AC', label: 'Standard AC' },
+                  { value: 'all', label: 'Tous', count: stations.length },
+                  { value: 'DC', label: 'Rapide DC', count: stations.filter((s) => s.type === 'DC').length },
+                  { value: 'AC', label: 'Standard AC', count: stations.filter((s) => s.type === 'AC').length },
                 ].map((opt) => (
-                  <button
-                    type="button"
+                  <FilterChip
                     key={opt.value}
+                    label={opt.label}
+                    count={opt.count}
+                    active={typeFilter === opt.value}
                     onClick={() => setTypeFilter(opt.value)}
-                    className={[
-                      'btn',
-                      typeFilter === opt.value ? 'btn-secondary' : 'btn-secondary-outline',
-                      'font-base px-spacing-lg',
-                    ].join(' ')}
-                  >
-                    {opt.label}
-                  </button>
+                  />
                 ))}
               </div>
             </div>

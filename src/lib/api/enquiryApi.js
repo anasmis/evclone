@@ -1,11 +1,7 @@
 // Thin wrapper around the Strapi client to keep existing call sites working.
 // Use the named helpers in ./strapi.js for new code.
 
-import {
-  submitContactSubmission,
-  submitLead,
-  subscribeNewsletter,
-} from './strapi'
+import { submitContactSubmission, subscribeNewsletter } from './strapi'
 
 export async function submitEnquiry(type, payload) {
   if (payload && typeof payload === 'object' && payload.honeypot) {
@@ -13,17 +9,14 @@ export async function submitEnquiry(type, payload) {
   }
 
   switch (type) {
-    case 'contact':
-      return submitContactSubmission(payload)
-    case 'lead':
-      return submitLead(payload)
     case 'newsletter':
       return subscribeNewsletter(payload?.email ?? payload)
+    case 'contact':
     default:
-      // Unknown types fall through to the lead pipeline with the type
-      // recorded as the source for future segmentation.
-      return submitLead({ ...payload, source: type })
+      // The generic lead bucket was removed; anything that isn't a newsletter
+      // signup is recorded as a contact submission.
+      return submitContactSubmission(payload)
   }
 }
 
-export { submitContactSubmission, submitLead, subscribeNewsletter }
+export { submitContactSubmission, subscribeNewsletter }
