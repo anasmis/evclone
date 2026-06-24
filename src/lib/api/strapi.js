@@ -312,6 +312,8 @@ export function normalizeStation(entry) {
     connectors: Array.isArray(entry.connectorTypes) ? entry.connectorTypes : [],
     status: STATION_STATUS_MAP[entry.stationStatus] || 'available',
     hours: entry.hours ?? '',
+    operator: entry.operator ?? '',
+    points: entry.points ?? entry.nombrePoints ?? null,
   }
 }
 

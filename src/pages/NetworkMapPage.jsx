@@ -1,225 +1,42 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import SolutionPageLayout from './solutions/SolutionPageLayout'
 import { fetchChargingStations, submitPartnerRequest } from '../lib/api/strapi'
+import { MOROCCO_CHARGING_STATIONS } from '../data/moroccoChargingStations'
 
 const MOROCCO_CENTER = [32.4279, -6.0]
 const DEFAULT_ZOOM = 6
 
-const FALLBACK_STATIONS = [
-  {
-    id: 'evp-cas-marina',
-    name: 'EVplug Casablanca Marina',
-    city: 'Casablanca',
-    address: 'Casablanca Marina, Boulevard des Almohades',
-    lat: 33.6028,
-    lng: -7.6178,
-    type: 'DC',
-    power: 150,
-    connectors: ['CCS2', 'CHAdeMO', 'Type 2'],
-    status: 'available',
-    hours: '24/7',
-  },
-  {
-    id: 'evp-cas-anfaplace',
-    name: 'EVplug Anfa Place',
-    city: 'Casablanca',
-    address: 'Anfa Place Living Resort, Boulevard de la Corniche',
-    lat: 33.5849,
-    lng: -7.6708,
-    type: 'AC',
-    power: 22,
-    connectors: ['Type 2'],
-    status: 'available',
-    hours: '08:00 - 23:00',
-  },
-  {
-    id: 'evp-cas-moroccomall',
-    name: 'EVplug Morocco Mall',
-    city: 'Casablanca',
-    address: 'Morocco Mall, Boulevard de la Corniche',
-    lat: 33.5731,
-    lng: -7.7012,
-    type: 'DC',
-    power: 120,
-    connectors: ['CCS2', 'CHAdeMO'],
-    status: 'busy',
-    hours: '10:00 - 22:00',
-  },
-  {
-    id: 'evp-cas-sidimaarouf',
-    name: 'EVplug Sidi Maarouf',
-    city: 'Casablanca',
-    address: 'Parc Casa Nearshore, Sidi Maarouf',
-    lat: 33.5345,
-    lng: -7.6334,
-    type: 'AC',
-    power: 22,
-    connectors: ['Type 2'],
-    status: 'available',
-    hours: '24/7',
-  },
-  {
-    id: 'evp-rab-megamall',
-    name: 'EVplug Mega Mall Rabat',
-    city: 'Rabat',
-    address: 'Mega Mall, Avenue Imam Malik',
-    lat: 33.9595,
-    lng: -6.8498,
-    type: 'DC',
-    power: 150,
-    connectors: ['CCS2', 'CHAdeMO', 'Type 2'],
-    status: 'available',
-    hours: '24/7',
-  },
-  {
-    id: 'evp-rab-hayriad',
-    name: 'EVplug Hay Riad',
-    city: 'Rabat',
-    address: 'Avenue Annakhil, Hay Riad',
-    lat: 33.9716,
-    lng: -6.8498,
-    type: 'AC',
-    power: 22,
-    connectors: ['Type 2'],
-    status: 'available',
-    hours: '07:00 - 23:00',
-  },
-  {
-    id: 'evp-rab-agdal',
-    name: 'EVplug Agdal',
-    city: 'Rabat',
-    address: 'Avenue Fal Ould Oumeir, Agdal',
-    lat: 34.0042,
-    lng: -6.8489,
-    type: 'AC',
-    power: 11,
-    connectors: ['Type 2'],
-    status: 'maintenance',
-    hours: '08:00 - 22:00',
-  },
-  {
-    id: 'evp-mar-menaramall',
-    name: 'EVplug Menara Mall',
-    city: 'Marrakech',
-    address: 'Menara Mall, Avenue Mohammed VI',
-    lat: 31.6261,
-    lng: -8.0265,
-    type: 'DC',
-    power: 120,
-    connectors: ['CCS2', 'CHAdeMO'],
-    status: 'available',
-    hours: '10:00 - 23:00',
-  },
-  {
-    id: 'evp-mar-gueliz',
-    name: 'EVplug Gueliz',
-    city: 'Marrakech',
-    address: 'Avenue Mohammed V, Gueliz',
-    lat: 31.6378,
-    lng: -8.0103,
-    type: 'AC',
-    power: 22,
-    connectors: ['Type 2'],
-    status: 'busy',
-    hours: '24/7',
-  },
-  {
-    id: 'evp-mar-hivernage',
-    name: 'EVplug Hivernage',
-    city: 'Marrakech',
-    address: 'Avenue Echouhada, Hivernage',
-    lat: 31.6244,
-    lng: -8.0167,
-    type: 'AC',
-    power: 22,
-    connectors: ['Type 2'],
-    status: 'available',
-    hours: '06:00 - 00:00',
-  },
-  {
-    id: 'evp-tng-citymall',
-    name: 'EVplug Tanger City Mall',
-    city: 'Tanger',
-    address: 'Tanger City Mall, Avenue Mohammed VI',
-    lat: 35.7421,
-    lng: -5.8338,
-    type: 'DC',
-    power: 150,
-    connectors: ['CCS2', 'CHAdeMO', 'Type 2'],
-    status: 'available',
-    hours: '24/7',
-  },
-  {
-    id: 'evp-tng-marinabay',
-    name: 'EVplug Tanger Marina Bay',
-    city: 'Tanger',
-    address: 'Marina Bay, Port de Tanger',
-    lat: 35.7813,
-    lng: -5.8047,
-    type: 'AC',
-    power: 22,
-    connectors: ['Type 2'],
-    status: 'available',
-    hours: '08:00 - 23:00',
-  },
-  {
-    id: 'evp-aga-marinaplaza',
-    name: 'EVplug Agadir Marina',
-    city: 'Agadir',
-    address: 'Marina d\'Agadir, Boulevard Mohammed V',
-    lat: 30.4194,
-    lng: -9.6079,
-    type: 'AC',
-    power: 22,
-    connectors: ['Type 2'],
-    status: 'available',
-    hours: '24/7',
-  },
-  {
-    id: 'evp-fes-borjfez',
-    name: 'EVplug Fes Borj Fez',
-    city: 'Fes',
-    address: 'Borj Fez Mall, Avenue Allal Ben Abdellah',
-    lat: 34.0331,
-    lng: -5.0003,
-    type: 'DC',
-    power: 120,
-    connectors: ['CCS2', 'CHAdeMO'],
-    status: 'available',
-    hours: '10:00 - 23:00',
-  },
-  {
-    id: 'evp-mek-meknescity',
-    name: 'EVplug Meknes',
-    city: 'Meknes',
-    address: 'Avenue des FAR, Hamria',
-    lat: 33.8946,
-    lng: -5.5473,
-    type: 'AC',
-    power: 22,
-    connectors: ['Type 2'],
-    status: 'available',
-    hours: '07:00 - 22:00',
-  },
-  {
-    id: 'evp-eljadida-mazagan',
-    name: 'EVplug Mazagan El Jadida',
-    city: 'El Jadida',
-    address: 'Mazagan Beach Resort',
-    lat: 33.1958,
-    lng: -8.4934,
-    type: 'DC',
-    power: 150,
-    connectors: ['CCS2', 'CHAdeMO', 'Type 2'],
-    status: 'available',
-    hours: '24/7',
-  },
-]
+// Real Moroccan charging points (OpenChargeMap, CC BY 4.0). Used when the live
+// Strapi feed is empty or unreachable so the map always reflects real stations.
+const FALLBACK_STATIONS = MOROCCO_CHARGING_STATIONS
 
 const STATUS_META = {
   available: { label: 'Disponible', dot: '#16a34a' },
   busy: { label: 'Occupee', dot: '#fe5716' },
   maintenance: { label: 'Maintenance', dot: '#94a3b8' },
+}
+
+// External navigation deep-links so a driver can route straight to the station.
+function googleMapsUrl(station) {
+  return `https://www.google.com/maps/dir/?api=1&destination=${station.lat},${station.lng}`
+}
+
+function powerLabel(station) {
+  return station.power ? `${station.type} · ${station.power} kW` : station.type
+}
+
+// Guard against duplicate ids (e.g. a CMS that still holds re-imported rows):
+// duplicate React keys / marker-map keys silently break list + pin updates.
+function uniqueById(list) {
+  return Array.from(new Map(list.map((s) => [s.id, s])).values())
+}
+
+// Free-text match across the fields a driver is likely to type.
+function stationMatchesQuery(station, query) {
+  if (!query) return true
+  return `${station.name} ${station.city} ${station.address} ${station.operator || ''} ${(station.connectors || []).join(' ')}`
+    .toLowerCase()
+    .includes(query)
 }
 
 function buildMarkerIconHtml(station) {
@@ -229,7 +46,6 @@ function buildMarkerIconHtml(station) {
   return `
     <div style="
       width: 34px; height: 40px;
-      transform: translate(-50%, -100%);
       filter: drop-shadow(0 6px 14px rgba(7,62,40,0.32));
       ">
       <svg viewBox="0 0 32 40" width="34" height="40" xmlns="http://www.w3.org/2000/svg">
@@ -244,150 +60,276 @@ function buildMarkerIconHtml(station) {
 
 function buildStationPopupHtml(station) {
   const meta = STATUS_META[station.status] || STATUS_META.available
+  const operator = station.operator
+    ? `<p style="margin:0 0 4px;font-size:11px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:#fe5716;">${station.operator}</p>`
+    : ''
+  const connectors =
+    station.connectors && station.connectors.length
+      ? `<p style="margin:6px 0 0;font-size:12px;"><strong>Connecteurs :</strong> ${station.connectors.join(', ')}</p>`
+      : ''
+  const points =
+    station.points > 1
+      ? `<p style="margin:4px 0 0;font-size:12px;"><strong>Points de charge :</strong> ${station.points}</p>`
+      : ''
+  const power = station.power ? `${station.type} &middot; ${station.power} kW` : station.type
   return `
-    <div style="font-family: 'TT Commons Pro', sans-serif; min-width: 220px; color: #163e4c;">
-      <h3 style="margin: 0 0 6px; font-size: 15px; font-family: 'Poster Cut Neue', sans-serif; color: #123d33; text-transform: uppercase;">${station.name}</h3>
+    <div style="font-family: 'TT Commons Pro', sans-serif; min-width: 230px; max-width: 262px; color: #163e4c;">
+      ${operator}
+      <h3 style="margin: 0 0 4px; font-size: 15px; font-family: 'Poster Cut Neue', sans-serif; color: #123d33; text-transform: uppercase; line-height: 1.15;">${station.name}</h3>
       <p style="margin: 0 0 8px; font-size: 12px; color: #4b6470;">${station.address}</p>
       <div style="display:flex; gap:6px; flex-wrap:wrap; margin: 0 0 8px;">
         <span style="display:inline-flex; align-items:center; gap:6px; background:rgba(18,61,51,0.08); color:#123d33; font-size:11px; font-weight:600; padding:3px 8px; border-radius:9999px;">
           <span style="width:7px; height:7px; border-radius:9999px; background:${meta.dot};"></span>${meta.label}
         </span>
-        <span style="background:#c8d72d; color:#123d33; font-size:11px; font-weight:700; padding:3px 8px; border-radius:9999px;">${station.power ? `${station.type} &middot; ${station.power} kW` : station.type}</span>
+        <span style="background:#c8d72d; color:#123d33; font-size:11px; font-weight:700; padding:3px 8px; border-radius:9999px;">${power}</span>
       </div>
-      ${station.connectors && station.connectors.length ? `<p style="margin: 0; font-size: 12px;"><strong>Connecteurs :</strong> ${station.connectors.join(', ')}</p>` : ''}
-      ${station.hours ? `<p style="margin: 4px 0 0; font-size: 12px;"><strong>Horaires :</strong> ${station.hours}</p>` : ''}
+      ${connectors}
+      ${points}
+      <div style="margin-top:12px;">
+        <a href="${googleMapsUrl(station)}" target="_blank" rel="noopener noreferrer" style="display:block; text-align:center; background:#fe5716; color:#fff; font-size:12px; font-weight:700; padding:8px 10px; border-radius:9999px; text-decoration:none;">Itinéraire Google Maps</a>
+      </div>
     </div>
   `
 }
 
-function FilterChip({ label, count, active, onClick }) {
+function SearchField({ value, onChange }) {
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      aria-pressed={active}
-      className={[
-        'group inline-flex items-center gap-spacing-sm rounded-full border px-spacing-lg py-spacing-sm font-base transition',
-        active
-          ? 'bg-blue-dianne text-white border-blue-dianne shadow-[0_12px_24px_rgba(18,61,51,0.22)]'
-          : 'bg-white text-blue-dianne border-blue-dianne/15 hover:border-blue-dianne/45 hover:-translate-y-0.5',
-      ].join(' ')}
-    >
-      <span className="font-semibold whitespace-nowrap">{label}</span>
-      <span
-        className={[
-          'inline-flex items-center justify-center min-w-[1.4rem] h-[1.4rem] px-1 rounded-full font-xs font-bold',
-          active ? 'bg-white/20 text-white' : 'bg-blue-dianne/10 text-blue-dianne/70',
-        ].join(' ')}
+    <div className="relative w-full">
+      <svg
+        className="pointer-events-none absolute left-spacing-lg top-1/2 -translate-y-1/2 text-blue-dianne/40"
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        aria-hidden="true"
       >
-        {count}
-      </span>
-    </button>
+        <circle cx="11" cy="11" r="7" />
+        <path d="m21 21-4.3-4.3" strokeLinecap="round" />
+      </svg>
+      <input
+        type="search"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder="Rechercher une station, une ville, un opérateur…"
+        aria-label="Rechercher une station"
+        className="w-full rounded-full border border-blue-dianne/15 bg-white pl-11 pr-11 py-spacing-md font-base text-blue-dianne placeholder:text-blue-dianne/40 focus:border-blue-dianne focus:outline-none focus:ring-2 focus:ring-blue-dianne/15"
+      />
+      {value && (
+        <button
+          type="button"
+          onClick={() => onChange('')}
+          aria-label="Effacer la recherche"
+          className="absolute right-spacing-md top-1/2 -translate-y-1/2 flex h-6 w-6 items-center justify-center rounded-full bg-blue-dianne/10 text-blue-dianne hover:bg-blue-dianne/20"
+        >
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+            <path d="M18 6 6 18M6 6l12 12" strokeLinecap="round" />
+          </svg>
+        </button>
+      )}
+    </div>
   )
 }
 
-function CityCombobox({ cities, counts, value, onSelect }) {
-  const [query, setQuery] = useState('')
+function CitySelect({ cities, counts, total, value, onSelect }) {
   const [open, setOpen] = useState(false)
+  const [query, setQuery] = useState('')
+  const ref = useRef(null)
+
+  useEffect(() => {
+    if (!open) return undefined
+    function onDocMouseDown(event) {
+      if (ref.current && !ref.current.contains(event.target)) setOpen(false)
+    }
+    document.addEventListener('mousedown', onDocMouseDown)
+    return () => document.removeEventListener('mousedown', onDocMouseDown)
+  }, [open])
 
   const matches = cities.filter((c) => c.toLowerCase().includes(query.trim().toLowerCase()))
+  const triggerLabel = value === 'all' ? 'Toutes les villes' : value
+
+  function choose(next) {
+    onSelect(next)
+    setQuery('')
+    setOpen(false)
+  }
 
   return (
-    <div className="relative w-full" style={{ maxWidth: '22rem' }}>
-      <div className="relative">
-        <svg
-          className="pointer-events-none absolute left-spacing-md top-1/2 -translate-y-1/2 text-blue-dianne/40"
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          aria-hidden="true"
+    <div ref={ref} className="relative w-full">
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        className="flex w-full items-center justify-between gap-spacing-md rounded-full border border-blue-dianne/15 bg-white px-spacing-lg py-spacing-md font-base text-blue-dianne transition hover:border-blue-dianne/45 focus:border-blue-dianne focus:outline-none focus:ring-2 focus:ring-blue-dianne/15"
+      >
+        <span className="flex min-w-0 items-center gap-spacing-sm">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="shrink-0 text-orange" aria-hidden="true">
+            <path d="M12 21s-7-5.2-7-11a7 7 0 1 1 14 0c0 5.8-7 11-7 11Z" />
+            <circle cx="12" cy="10" r="2.5" />
+          </svg>
+          <span className="truncate font-semibold">{triggerLabel}</span>
+        </span>
+        <span className="flex items-center gap-spacing-sm">
+          <span className="inline-flex h-[1.4rem] min-w-[1.4rem] items-center justify-center rounded-full bg-blue-dianne/10 px-1 font-xs font-bold text-blue-dianne/70">
+            {value === 'all' ? total : counts[value] || 0}
+          </span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={`shrink-0 transition ${open ? 'rotate-180' : ''}`} aria-hidden="true">
+            <path d="m6 9 6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </span>
+      </button>
+
+      {open && (
+        <div
+          className="absolute left-0 right-0 mt-spacing-xs rounded-2xl border border-blue-dianne/10 bg-white p-spacing-sm"
+          style={{ zIndex: 1000, boxShadow: '0 18px 40px rgba(18,61,51,0.18)' }}
         >
-          <circle cx="11" cy="11" r="7" />
-          <path d="m21 21-4.3-4.3" strokeLinecap="round" />
-        </svg>
-        <input
-          type="text"
-          value={query}
-          placeholder="Rechercher une ville…"
-          onChange={(e) => {
-            setQuery(e.target.value)
-            setOpen(true)
-          }}
-          onFocus={() => setOpen(true)}
-          onBlur={() => setTimeout(() => setOpen(false), 120)}
-          className="w-full rounded-full border border-blue-dianne/15 bg-white pl-9 pr-spacing-lg py-spacing-sm font-base text-blue-dianne placeholder:text-blue-dianne/40 focus:border-blue-dianne focus:outline-none"
-        />
-      </div>
-      {open && matches.length > 0 && (
-        <ul
-          className="absolute left-0 right-0 mt-spacing-xs rounded-2xl border border-blue-dianne/10 bg-white overflow-hidden overflow-y-auto"
-          style={{ zIndex: 1000, maxHeight: '16rem', boxShadow: '0 18px 40px rgba(18,61,51,0.18)' }}
-        >
-          {matches.map((city) => (
-            <li key={city}>
+          <div className="relative mb-spacing-sm">
+            <svg className="pointer-events-none absolute left-spacing-md top-1/2 -translate-y-1/2 text-blue-dianne/40" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+              <circle cx="11" cy="11" r="7" />
+              <path d="m21 21-4.3-4.3" strokeLinecap="round" />
+            </svg>
+            <input
+              type="text"
+              autoFocus
+              value={query}
+              placeholder="Filtrer les villes…"
+              onChange={(e) => setQuery(e.target.value)}
+              className="w-full rounded-full border border-blue-dianne/10 bg-surface pl-8 pr-spacing-md py-spacing-sm font-sm text-blue-dianne placeholder:text-blue-dianne/40 focus:border-blue-dianne focus:outline-none"
+            />
+          </div>
+          <ul className="overflow-y-auto" style={{ maxHeight: '15rem' }} role="listbox">
+            <li>
               <button
                 type="button"
-                onMouseDown={(e) => e.preventDefault()}
-                onClick={() => {
-                  onSelect(city)
-                  setQuery('')
-                  setOpen(false)
-                }}
+                onClick={() => choose('all')}
                 className={[
-                  'flex w-full items-center justify-between gap-spacing-md px-spacing-lg py-spacing-sm text-left font-base transition',
-                  value === city ? 'bg-blue-dianne text-white' : 'text-blue-dianne hover:bg-blue-dianne/5',
+                  'flex w-full items-center justify-between gap-spacing-md rounded-xl px-spacing-md py-spacing-sm text-left font-base transition',
+                  value === 'all' ? 'bg-blue-dianne text-white' : 'text-blue-dianne hover:bg-blue-dianne/5',
                 ].join(' ')}
               >
-                <span className="font-semibold">{city}</span>
-                <span className={value === city ? 'font-sm text-white/70' : 'font-sm text-blue-dianne/50'}>
-                  {counts[city]}
-                </span>
+                <span className="font-semibold">Toutes les villes</span>
+                <span className={value === 'all' ? 'font-sm text-white/70' : 'font-sm text-blue-dianne/50'}>{total}</span>
               </button>
             </li>
-          ))}
-        </ul>
+            {matches.length === 0 ? (
+              <li className="px-spacing-md py-spacing-sm font-sm text-blue-dianne/50">Aucune ville</li>
+            ) : (
+              matches.map((city) => (
+                <li key={city}>
+                  <button
+                    type="button"
+                    onClick={() => choose(city)}
+                    className={[
+                      'flex w-full items-center justify-between gap-spacing-md rounded-xl px-spacing-md py-spacing-sm text-left font-base transition',
+                      value === city ? 'bg-blue-dianne text-white' : 'text-blue-dianne hover:bg-blue-dianne/5',
+                    ].join(' ')}
+                  >
+                    <span className="truncate font-semibold">{city}</span>
+                    <span className={value === city ? 'font-sm text-white/70' : 'font-sm text-blue-dianne/50'}>{counts[city] || 0}</span>
+                  </button>
+                </li>
+              ))
+            )}
+          </ul>
+        </div>
       )}
     </div>
+  )
+}
+
+function Segmented({ options, value, onChange }) {
+  return (
+    <div className="inline-flex rounded-full border border-blue-dianne/15 bg-white p-1" role="tablist">
+      {options.map((opt) => {
+        const active = value === opt.value
+        return (
+          <button
+            key={opt.value}
+            type="button"
+            role="tab"
+            aria-selected={active}
+            onClick={() => onChange(opt.value)}
+            className={[
+              'inline-flex items-center gap-spacing-sm rounded-full px-spacing-lg py-spacing-sm font-base font-semibold transition whitespace-nowrap',
+              active ? 'bg-blue-dianne text-white shadow-[0_8px_18px_rgba(18,61,51,0.22)]' : 'text-blue-dianne hover:bg-blue-dianne/5',
+            ].join(' ')}
+          >
+            {opt.label}
+            <span
+              className={[
+                'inline-flex items-center justify-center min-w-[1.4rem] h-[1.4rem] px-1 rounded-full font-xs font-bold',
+                active ? 'bg-white/20 text-white' : 'bg-blue-dianne/10 text-blue-dianne/70',
+              ].join(' ')}
+            >
+              {opt.count}
+            </span>
+          </button>
+        )
+      })}
+    </div>
+  )
+}
+
+function DirectionsLink({ href, children }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={(e) => e.stopPropagation()}
+      className="inline-flex flex-1 items-center justify-center gap-spacing-sm rounded-full bg-orange py-spacing-sm font-sm font-bold text-white transition hover:brightness-95"
+    >
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+        <path d="M12 21s-7-5.2-7-11a7 7 0 1 1 14 0c0 5.8-7 11-7 11Z" />
+        <circle cx="12" cy="10" r="2.5" />
+      </svg>
+      {children}
+    </a>
   )
 }
 
 function StationCard({ station, isActive, onSelect }) {
   const meta = STATUS_META[station.status] || STATUS_META.available
   return (
-    <button
-      type="button"
-      onClick={() => onSelect(station)}
+    <div
+      id={`station-card-${station.id}`}
       className={[
-        'text-left w-full bg-surface rounded-2xl p-spacing-2xl grid gap-spacing-md transition overflow-hidden',
-        isActive
-          ? 'ring-2 ring-blue-dianne shadow-[0_18px_32px_rgba(18,61,51,0.18)]'
-          : 'hover:ring-2 hover:ring-blue-dianne/40',
+        'w-full bg-surface rounded-2xl p-spacing-2xl grid gap-spacing-md transition overflow-hidden',
+        isActive ? 'ring-2 ring-blue-dianne shadow-[0_18px_32px_rgba(18,61,51,0.18)]' : 'hover:ring-2 hover:ring-blue-dianne/40',
       ].join(' ')}
     >
-      <div className="min-w-0">
-        <p className="m-0 font-PosterCutNeue uppercase font-xl text-blue-dianne truncate">
-          {station.name}
-        </p>
-        <p className="m-0 mt-1 font-sm text-blue-dianne/70 truncate">{station.address}</p>
-      </div>
+      <button type="button" onClick={() => onSelect(station)} className="text-left grid gap-spacing-md min-w-0">
+        <div className="min-w-0">
+          {station.operator && (
+            <p className="m-0 font-xs font-bold uppercase tracking-wide text-orange truncate">{station.operator}</p>
+          )}
+          <p className="m-0 font-PosterCutNeue uppercase font-xl text-blue-dianne truncate">{station.name}</p>
+          <p className="m-0 mt-1 font-sm text-blue-dianne/70 truncate">{station.address}</p>
+        </div>
 
-      <div className="flex flex-wrap items-center gap-spacing-sm">
-        <span className="pill-custom inline-flex items-center cursor-auto whitespace-nowrap font-sm py-spacing-xs px-spacing-md">
-          {station.power ? `${station.type} · ${station.power} kW` : station.type}
-        </span>
-        <span className="inline-flex items-center gap-2 font-sm font-semibold text-blue-dianne">
-          <span className="inline-block h-2 w-2 rounded-full" style={{ background: meta.dot }} />
-          {meta.label}
-        </span>
-      </div>
+        <div className="flex flex-wrap items-center gap-spacing-sm">
+          <span className="pill-custom inline-flex items-center cursor-auto whitespace-nowrap font-sm py-spacing-xs px-spacing-md">
+            {powerLabel(station)}
+          </span>
+          <span className="inline-flex items-center gap-2 font-sm font-semibold text-blue-dianne">
+            <span className="inline-block h-2 w-2 rounded-full" style={{ background: meta.dot }} />
+            {meta.label}
+          </span>
+          {station.points > 1 && <span className="font-sm text-blue-dianne/60">· {station.points} bornes</span>}
+        </div>
 
-      <p className="m-0 font-sm text-blue-dianne/75 truncate">
-        {station.connectors.join(' · ')}
-      </p>
-    </button>
+        {station.connectors && station.connectors.length > 0 && (
+          <p className="m-0 font-sm text-blue-dianne/75 truncate">{station.connectors.join(' · ')}</p>
+        )}
+      </button>
+
+      <div className="flex">
+        <DirectionsLink href={googleMapsUrl(station)}>Itinéraire Google Maps</DirectionsLink>
+      </div>
+    </div>
   )
 }
 
@@ -397,18 +339,19 @@ export default function NetworkMapPage() {
   const markersRef = useRef(new Map())
   const leafletRef = useRef(null)
 
-  const [stations, setStations] = useState(FALLBACK_STATIONS)
+  const [stations, setStations] = useState(() => uniqueById(FALLBACK_STATIONS))
   const [mapReady, setMapReady] = useState(false)
   const [activeId, setActiveId] = useState(null)
   const [cityFilter, setCityFilter] = useState('all')
   const [typeFilter, setTypeFilter] = useState('all')
+  const [search, setSearch] = useState('')
 
   // Load live stations from Strapi; keep the bundled fallback if empty/unreachable.
   useEffect(() => {
     let cancelled = false
     fetchChargingStations()
       .then((rows) => {
-        if (!cancelled && Array.isArray(rows) && rows.length) setStations(rows)
+        if (!cancelled && Array.isArray(rows) && rows.length) setStations(uniqueById(rows))
       })
       .catch(() => {
         // Strapi unreachable / not configured — keep fallback stations.
@@ -418,22 +361,54 @@ export default function NetworkMapPage() {
     }
   }, [])
 
-  const cities = useMemo(() => Array.from(new Set(stations.map((s) => s.city))).sort(), [stations])
+  const normalizedSearch = search.trim().toLowerCase()
 
+  const cities = useMemo(
+    () => Array.from(new Set(stations.map((s) => s.city).filter(Boolean))).sort((a, b) => a.localeCompare(b, 'fr')),
+    [stations],
+  )
+
+  // City counts reflect the active type + search so the dropdown shows how many
+  // stations each city would yield under the current selection.
   const cityCounts = useMemo(() => {
     return stations.reduce((acc, s) => {
+      if (typeFilter !== 'all' && s.type !== typeFilter) return acc
+      if (!stationMatchesQuery(s, normalizedSearch)) return acc
       acc[s.city] = (acc[s.city] || 0) + 1
       return acc
     }, {})
-  }, [stations])
+  }, [stations, typeFilter, normalizedSearch])
+
+  const cityTotal = useMemo(() => Object.values(cityCounts).reduce((sum, n) => sum + n, 0), [cityCounts])
+
+  // Type counts reflect the active city + search.
+  const typeCounts = useMemo(() => {
+    const base = stations.filter(
+      (s) => (cityFilter === 'all' || s.city === cityFilter) && stationMatchesQuery(s, normalizedSearch),
+    )
+    return {
+      all: base.length,
+      DC: base.filter((s) => s.type === 'DC').length,
+      AC: base.filter((s) => s.type === 'AC').length,
+    }
+  }, [stations, cityFilter, normalizedSearch])
 
   const filteredStations = useMemo(() => {
     return stations.filter((station) => {
       if (cityFilter !== 'all' && station.city !== cityFilter) return false
       if (typeFilter !== 'all' && station.type !== typeFilter) return false
+      if (!stationMatchesQuery(station, normalizedSearch)) return false
       return true
     })
-  }, [stations, cityFilter, typeFilter])
+  }, [stations, cityFilter, typeFilter, normalizedSearch])
+
+  const hasActiveFilters = cityFilter !== 'all' || typeFilter !== 'all' || search.trim() !== ''
+
+  function resetFilters() {
+    setCityFilter('all')
+    setTypeFilter('all')
+    setSearch('')
+  }
 
   // Initialise Leaflet (map only). Markers are built in a separate effect so
   // they can rebuild when stations arrive from Strapi.
@@ -536,6 +511,9 @@ export default function NetworkMapPage() {
     if (!station) return
     map.flyTo([station.lat, station.lng], Math.max(map.getZoom(), 11), { duration: 0.8 })
     marker.openPopup()
+    // Keep the matching card in view in the side list.
+    const card = document.getElementById(`station-card-${activeId}`)
+    if (card) card.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
   }, [activeId, stations])
 
   return (
@@ -562,56 +540,37 @@ export default function NetworkMapPage() {
               className="m-0 mt-spacing-2xl font-PosterCutNeue uppercase font-4xl md:font-5xl xl:font-6xl text-blue-dianne tracking-tight leading-none"
               style={{ maxWidth: '60rem' }}
             >
-              Trouvez la station EVplug la plus proche.
+              Trouvez la station la plus proche.
             </h2>
           </div>
 
           {/* Filters */}
-          <div className="bg-surface rounded-2xl p-spacing-2xl mb-spacing-4xl grid gap-spacing-4xl xl:grid-cols-[1fr_auto] xl:items-start">
-            <div className="grid gap-spacing-md">
-              <span className="font-sm font-bold uppercase tracking-wide text-blue-dianne/70">
-                Choisissez votre ville
-              </span>
-              <CityCombobox
-                cities={cities}
-                counts={cityCounts}
-                value={cityFilter}
-                onSelect={(city) => setCityFilter(city === cityFilter ? 'all' : city)}
-              />
-              <div className="flex flex-wrap gap-spacing-sm">
-                <FilterChip
-                  label="Toutes"
-                  count={stations.length}
-                  active={cityFilter === 'all'}
-                  onClick={() => setCityFilter('all')}
+          <div className="bg-surface rounded-2xl p-spacing-2xl mb-spacing-4xl grid gap-spacing-2xl">
+            <SearchField value={search} onChange={setSearch} />
+            <div className="grid gap-spacing-2xl lg:grid-cols-[minmax(0,22rem)_1fr] lg:items-end">
+              <div className="grid gap-spacing-sm">
+                <span className="font-sm font-bold uppercase tracking-wide text-blue-dianne/70">Ville</span>
+                <CitySelect
+                  cities={cities}
+                  counts={cityCounts}
+                  total={cityTotal}
+                  value={cityFilter}
+                  onSelect={setCityFilter}
                 />
-                {cities.map((city) => (
-                  <FilterChip
-                    key={city}
-                    label={city}
-                    count={cityCounts[city]}
-                    active={cityFilter === city}
-                    onClick={() => setCityFilter(city === cityFilter ? 'all' : city)}
-                  />
-                ))}
               </div>
-            </div>
-            <div className="grid gap-spacing-md">
-              <span className="font-sm font-bold uppercase tracking-wide text-blue-dianne/70">Type</span>
-              <div className="flex flex-wrap gap-spacing-sm">
-                {[
-                  { value: 'all', label: 'Tous', count: stations.length },
-                  { value: 'DC', label: 'Rapide DC', count: stations.filter((s) => s.type === 'DC').length },
-                  { value: 'AC', label: 'Standard AC', count: stations.filter((s) => s.type === 'AC').length },
-                ].map((opt) => (
-                  <FilterChip
-                    key={opt.value}
-                    label={opt.label}
-                    count={opt.count}
-                    active={typeFilter === opt.value}
-                    onClick={() => setTypeFilter(opt.value)}
+              <div className="grid gap-spacing-sm">
+                <span className="font-sm font-bold uppercase tracking-wide text-blue-dianne/70">Type de recharge</span>
+                <div className="overflow-x-auto -mx-1 px-1">
+                  <Segmented
+                    value={typeFilter}
+                    onChange={setTypeFilter}
+                    options={[
+                      { value: 'all', label: 'Tous', count: typeCounts.all },
+                      { value: 'DC', label: 'Rapide DC', count: typeCounts.DC },
+                      { value: 'AC', label: 'Standard AC', count: typeCounts.AC },
+                    ]}
                   />
-                ))}
+                </div>
               </div>
             </div>
           </div>
@@ -627,7 +586,7 @@ export default function NetworkMapPage() {
               />
               <div className="bg-blue-dianne text-white px-spacing-2xl py-spacing-md flex items-center justify-between flex-wrap gap-spacing-sm">
                 <span className="font-base">
-                  Donnees: OpenStreetMap | Reseau de demonstration EVplug
+                  Données : OpenStreetMap · OpenChargeMap (CC BY 4.0)
                 </span>
                 <span className="flex items-center gap-spacing-md font-base">
                   <span className="inline-flex items-center gap-2">
@@ -640,7 +599,7 @@ export default function NetworkMapPage() {
                   <span className="inline-flex items-center gap-2">
                     <span
                       className="inline-block h-2.5 w-2.5 rounded-full"
-                      style={{ background: '#c8d72d' }}
+                      style={{ background: '#123d33' }}
                     />
                     Standard AC
                   </span>
@@ -654,13 +613,10 @@ export default function NetworkMapPage() {
                 <h3 className="m-0 font-PosterCutNeue uppercase font-2xl text-blue-dianne">
                   {filteredStations.length} station{filteredStations.length > 1 ? 's' : ''}
                 </h3>
-                {(cityFilter !== 'all' || typeFilter !== 'all') && (
+                {hasActiveFilters && (
                   <button
                     type="button"
-                    onClick={() => {
-                      setCityFilter('all')
-                      setTypeFilter('all')
-                    }}
+                    onClick={resetFilters}
                     className="font-base font-bold text-blue-dianne underline underline-offset-2 hover:text-orange"
                   >
                     Reinitialiser
