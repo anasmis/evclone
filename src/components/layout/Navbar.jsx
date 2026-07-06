@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import logo from '../../migrated/assets/layout/logo.webp'
-import iconCompare from '../../migrated/assets/layout/nav/compare.svg'
 import iconStandalone from '../../migrated/assets/layout/nav/standalone-charger.svg'
 import iconInstallation from '../../migrated/assets/layout/nav/installation.svg'
 import iconTakeTheLead from '../../migrated/assets/layout/nav/take-the-lead.svg'
@@ -25,10 +24,10 @@ const NAV_ITEMS = [
     label: 'Particuliers',
     children: [
       {
-        icon: iconCompare,
-        label: 'Comparer nos solutions de recharge',
+        icon: iconCharger,
+        label: 'Recharge à domicile',
         to: '/home/home-charging',
-        description: 'Trouvez la formule adaptée à votre usage',
+        description: 'Installez une borne fiable et garantie chez vous',
       },
       {
         icon: iconStandalone,
@@ -39,9 +38,15 @@ const NAV_ITEMS = [
       },
       {
         icon: iconInstallation,
-        label: 'Installation a domicile',
+        label: 'Installation à domicile',
         to: '/installation',
         description: 'Pose réalisée par des techniciens certifiés EVplug',
+      },
+      {
+        icon: iconTariff,
+        label: 'Carte EVplug',
+        to: '/products/carte-evplug',
+        description: 'Recharge sur le réseau public et avantages, tout inclus',
       },
     ],
     highlight: {
@@ -50,7 +55,7 @@ const NAV_ITEMS = [
       title: 'evplug card.',
       titleColor: '#c8d72d',
       description: 'Recharge intelligente tout inclus',
-      cta: { label: 'En savoir plus', to: '/products/carte-evplug' },
+      cta: { label: 'Choisissez ce qui correspond à vos besoins' },
     },
   },
   {
@@ -250,13 +255,22 @@ function HighlightBox({ highlight, onNavigate }) {
           </div>
           {highlight.cta && (
             <div className="flex mega-menu-cta">
-              <Link
-                to={highlight.cta.to}
-                onClick={onNavigate}
-                style={highlight.ctaColor ? { color: highlight.ctaColor } : undefined}
-              >
-                {highlight.cta.label}
-              </Link>
+              {highlight.cta.to ? (
+                <Link
+                  to={highlight.cta.to}
+                  onClick={onNavigate}
+                  style={highlight.ctaColor ? { color: highlight.ctaColor } : undefined}
+                >
+                  {highlight.cta.label}
+                </Link>
+              ) : (
+                <span
+                  className="font-semibold"
+                  style={{ color: highlight.ctaColor || 'var(--mm-cta, #ffffff)', fontSize: 'var(--font-size-sm)' }}
+                >
+                  {highlight.cta.label}
+                </span>
+              )}
             </div>
           )}
         </div>

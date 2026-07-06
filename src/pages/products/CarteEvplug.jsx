@@ -1,7 +1,4 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import MirrorShell from '../MirrorShell'
-import CardsCarousel from '../../components/common/CardsCarousel'
 import FloatingCtaForm from '../../components/common/FloatingCtaForm'
 import { submitCarteRequest } from '../../lib/api/strapi'
 import Breadcrumb from '../../components/sections/Breadcrumb'
@@ -9,273 +6,213 @@ import Hero from '../../components/sections/Hero'
 import Accordion from '../../components/sections/Accordion'
 import HelpBand from '../../components/sections/HelpBand'
 import heroImg from '../../migrated/assets/carte-evplug/hero.png'
-import filterIcon from '../../migrated/assets/carte-evplug/filter-icon.svg'
 import featureUntethered from '../../migrated/assets/carte-evplug/feature-untethered.jpeg'
 import featureApp from '../../migrated/assets/carte-evplug/feature-app.jpeg'
 import featureTethered from '../../migrated/assets/carte-evplug/feature-tethered.jpeg'
-import featureWarranty from '../../migrated/assets/carte-evplug/feature-warranty.jpeg'
-import tickIcon from '../../migrated/assets/carte-evplug/tick.svg'
-import coinsIcon from '../../migrated/assets/carte-evplug/coins.svg'
-import chargerAccordion1 from '../../migrated/assets/carte-evplug/charger-accordion-1.jpeg'
-import chargerAccordion2 from '../../migrated/assets/carte-evplug/charger-accordion-2.jpeg'
-import appAccordion1 from '../../migrated/assets/carte-evplug/app-accordion-1.jpeg'
-import appAccordion2 from '../../migrated/assets/carte-evplug/app-accordion-2.jpeg'
 import chatIcon from '../../migrated/assets/carte-evplug/chat-icon.svg'
 
-const carouselItems = [
+// Opens the page's floating CTA form (FloatingCtaForm listens for this event)
+// so the CTAs surface the lead form instead of leaving the page.
+const openCtaForm = () => window.dispatchEvent(new CustomEvent('floating-cta-form:open'))
+
+// Each worthy pillar (the card, EVONE, EVPAY) gets its own highlighted section.
+// The supporting items — network access, consumption tracking, budget control —
+// are folded in as points on the section they naturally belong to.
+const sections = [
   {
-    title: 'Coût initial réduit, services inclus',
-    description:
-      "Votre formule peut inclure une borne partenaire, l'installation domicile, la carte EVplug et un package de crédits de recharge selon le profil d'usage.",
+    tag: 'La carte',
+    title: 'Une seule carte pour recharger partout',
+    intro:
+      "La Carte EVplug est une carte RFID sécurisée : un seul support pour accéder au réseau de bornes et payer vos recharges, où que vous soyez.",
     image: featureUntethered,
-    tag: { icon: tickIcon, label: "Économisez jusqu'à 12 000 MAD à l'achat" },
-    cta: { href: 'https://www.maborneelectrique.ma/connexion', label: "Vérifier mon éligibilité", external: true },
+    imageAlt: 'Recharge avec la Carte EVplug',
+    badge: { icon: 'fa-id-card', title: 'Une seule carte', sub: 'Accès + paiement' },
+    cta: 'Obtenir ma carte',
+    points: [
+      {
+        icon: 'fa-charging-station',
+        title: 'Accès au réseau de bornes',
+        body: "Rechargez sur l'ensemble du réseau EVplug Maroc et sur les bornes partenaires en itinérance.",
+      },
+      {
+        icon: 'fa-shield-halved',
+        title: 'Carte RFID sécurisée',
+        body: "Démarrez la recharge d'un simple geste ; en cas de perte, révoquez la carte instantanément.",
+      },
+      {
+        icon: 'fa-user',
+        title: 'Associée à un conducteur ou un véhicule',
+        body: 'Liez la carte à votre compte, à un conducteur ou à un véhicule selon votre usage.',
+      },
+    ],
   },
   {
-    title: 'Recharge intelligente, maîtrisez vos coûts',
-    description:
-      "La recharge intelligente optimise automatiquement vos sessions selon les plages horaires les plus avantageuses. Indiquez simplement l'heure à laquelle votre véhicule doit être prêt, et notre application s'occupe du reste pour minimiser votre facture d'électricité.",
+    tag: 'Plateforme EVONE',
+    title: 'Trouvez, pilotez et maîtrisez votre recharge',
+    intro:
+      "EVONE centralise votre recharge dans un seul espace : localisez les bornes disponibles, accédez à celles de votre entreprise ou de votre résidence, suivez votre consommation et gardez le contrôle de votre budget.",
     image: featureApp,
-    tag: { icon: coinsIcon, label: "Pilotage intelligent de votre recharge via l'application" },
-    cta: { href: 'https://www.maborneelectrique.ma/connexion', label: "Vérifier mon éligibilité", external: true },
+    imageAlt: 'Plateforme EVONE',
+    badge: { icon: 'fa-location-dot', title: 'Temps réel', sub: 'Bornes disponibles' },
+    reverse: true,
+    surface: true,
+    cta: 'Découvrir la plateforme EVONE',
+    points: [
+      {
+        icon: 'fa-map-location-dot',
+        title: 'Les bornes disponibles les plus proches',
+        body: "EVONE affiche en temps réel les bornes ouvertes autour de vous, avec disponibilité et tarifs lorsqu'ils sont fournis.",
+      },
+      {
+        icon: 'fa-building',
+        title: "Vos bornes d'entreprise ou de résidence",
+        body: "Accédez et pilotez les bornes de votre société ou de votre immeuble selon les droits qui vous sont attribués.",
+      },
+      {
+        icon: 'fa-chart-line',
+        title: 'Suivi de consommation',
+        body: "Énergie consommée, durée et coût de chaque session, ainsi que l'historique complet, en direct.",
+      },
+      {
+        icon: 'fa-sack-dollar',
+        title: 'Maîtrise de votre budget',
+        body: 'Séparez le budget recharge du budget personnel lié à votre véhicule et anticipez vos dépenses.',
+      },
+    ],
   },
   {
-    title: 'Maintenance et support inclus',
-    description:
-      "Votre abonnement Carte EVplug inclut un suivi technique, un support réactif et une garantie sur la borne pendant toute la durée de l'abonnement. Notre équipe reste disponible pour vous accompagner en cas de besoin.",
+    tag: 'Paiement EVPAY',
+    title: 'Payez vos recharges partout, en un seul geste',
+    intro:
+      "EVPAY est le paiement intégré à la Carte EVplug : réglez vos recharges partout avec un seul moyen de paiement, sans multiplier les comptes ni les applications.",
     image: featureTethered,
-    cta: { href: 'https://www.maborneelectrique.ma/connexion', label: "Vérifier mon éligibilité", external: true },
-  },
-  {
-    title: 'La borne reste chez vous',
-    description:
-      "Dès le premier jour, la borne est à vous. Au terme de votre abonnement, nous vous contactons pour discuter de la meilleure façon de continuer à profiter des services Carte EVplug.",
-    image: featureWarranty,
-    cta: { href: '/contact-us', label: "Vérifier mon éligibilité", external: false },
-  },
-]
-
-const cardAccordionItems = [
-  {
-    title: 'Accès à tout notre réseau',
-    body: "Des milliers de points de charge ouverts et partenaires partout au Maroc. Trouvez, lancez et suivez vos sessions depuis l'application EVplug.",
-  },
-  {
-    title: 'Carte RFID sécurisée',
-    body: "Paiement sans contact, assignation par utilisateur ou véhicule et révocation instantanée en cas de perte.",
-  },
-  {
-    title: 'Suivi en temps réel',
-    body: "Visualisez vos sessions, l'énergie consommée et les coûts en direct. Exportez vos rapports mensuels en un clic.",
-  },
-  {
-    title: 'Pour les entreprises',
-    body: "Émettez des cartes à vos équipes, définissez des plafonds de dépenses, liez des centres de coût et centralisez la facturation.",
-  },
-  {
-    title: 'Accès à vos bornes privées',
-    body: "Utilisez la carte EVplug comme contrôle d'accès RFID sur vos sites et suivez l'usage privé/pro pour une refacturation simplifiée.",
-  },
-]
-
-const appAccordionItems = [
-  {
-    title: 'Pilotez votre recharge intelligente',
-    body: "Indiquez simplement votre objectif de charge et l'heure à laquelle votre véhicule doit être prêt — par exemple 80 % à 7h — et l'application programme automatiquement votre session pour optimiser votre consommation d'électricité.",
-  },
-  {
-    title: 'Suivez vos sessions de recharge',
-    body: "Consultez l'historique complet de vos sessions de recharge : date, durée, énergie consommée et coûts associés.",
-  },
-  {
-    title: 'Accès à la recharge publique avec la Carte EVplug',
-    body: "Votre abonnement inclut la Carte EVplug pour accéder au réseau de bornes publiques EVplug Maroc et aux bornes partenaires en itinérance. Une seule carte pour recharger partout.",
-  },
-  {
-    title: 'Gestion multi-véhicules',
-    body: "Connectez et gérez plusieurs véhicules électriques depuis la même application. Un invité peut également recharger son véhicule via votre borne.",
-  },
-  {
-    title: 'Mode « Boost » pour recharger immédiatement',
-    body: "Besoin de recharger immédiatement ? Activez le mode Boost pour démarrer la recharge sans attendre la plage horaire optimale.",
-  },
-  {
-    title: 'Tableau de bord de votre activité',
-    body: "Consultez une synthèse détaillée de votre activité de recharge : durée des sessions, énergie consommée et évolution de vos usages, en un seul coup d'œil.",
+    imageAlt: 'Paiement EVPAY',
+    badge: { icon: 'fa-wallet', title: 'Un seul paiement', sub: 'Partout' },
+    cta: 'Activer EVPAY',
+    points: [
+      {
+        icon: 'fa-wallet',
+        title: 'Un seul moyen de paiement',
+        body: 'Réseau public, bornes partenaires et bornes privées : tout se règle via EVPAY.',
+      },
+      {
+        icon: 'fa-file-invoice',
+        title: 'Facturation transparente',
+        body: 'Tarifs affichés avant démarrage lorsqu\'ils sont disponibles, et relevés détaillés de vos sessions.',
+      },
+      {
+        icon: 'fa-briefcase',
+        title: 'Pensé pour les entreprises',
+        body: 'Centralisez la facturation par site, centre de coût ou véhicule, avec des rapports détaillés.',
+      },
+    ],
   },
 ]
 
 const faqItems = [
   {
     q: "Qu'est-ce que la Carte EVplug ?",
-    a: "La Carte EVplug est une carte RFID sécurisée qui vous permet de démarrer et payer vos recharges sur le réseau public EVplug Maroc ainsi que sur les bornes partenaires en itinérance. Elle peut être liée à un utilisateur ou à un véhicule et se gère depuis l'application EVplug ou le portail entreprise.",
+    a: "La Carte EVplug est une carte RFID sécurisée qui vous permet de démarrer et de payer vos recharges sur le réseau public EVplug Maroc et sur les bornes partenaires. Elle donne accès à la plateforme EVONE et au paiement EVPAY, et se gère depuis l'application EVplug.",
+  },
+  {
+    q: "Qu'est-ce que la plateforme EVONE ?",
+    a: "EVONE centralise votre recharge : localisez les bornes disponibles les plus proches, accédez aux bornes de votre entreprise ou de votre résidence, suivez votre consommation et maîtrisez votre budget, le tout depuis un seul espace.",
+  },
+  {
+    q: "Qu'est-ce qu'EVPAY ?",
+    a: "EVPAY est le service de paiement intégré à la Carte EVplug. Il vous permet de régler vos recharges partout — réseau public, bornes partenaires et bornes privées — avec un seul moyen de paiement, sans multiplier les comptes.",
   },
   {
     q: 'Où puis-je utiliser la Carte EVplug ?',
-    a: "Vous pouvez utiliser la carte sur les bornes EVplug Maroc et sur un large réseau de partenaires interopérables. Les points de charge compatibles apparaissent dans la carte interactive de l'application EVplug, avec les tarifs et disponibilités en temps réel lorsque ceux-ci sont fournis par l'opérateur.",
-  },
-  {
-    q: 'Comment activer ma carte ?',
-    a: "Après réception, ajoutez la carte depuis l'application EVplug (section Portefeuille/Cartes) ou depuis le portail entreprise. Associez-la à un utilisateur ou un véhicule et, si nécessaire, définissez un code PIN. La carte est alors prête à l'emploi.",
+    a: "Sur les bornes EVplug Maroc et sur un large réseau de partenaires interopérables. Les points de charge compatibles apparaissent dans EVONE, avec disponibilité et tarifs en temps réel lorsqu'ils sont fournis par l'opérateur.",
   },
   {
     q: 'Comment suis-je facturé(e) ?',
-    a: "Les tarifs sont affichés avant démarrage lorsque disponibles. Vous recevez un relevé détaillé de vos sessions dans l'application et des factures périodiques (mensuelles) récapitulatives. Pour les entreprises, la facturation peut être centralisée par site, centre de coût ou véhicule.",
+    a: "Les tarifs sont affichés avant démarrage lorsqu'ils sont disponibles. Vous recevez un relevé détaillé de vos sessions dans l'application et des factures périodiques récapitulatives. Pour les entreprises, la facturation peut être centralisée par site, centre de coût ou véhicule.",
+  },
+  {
+    q: 'Puis-je séparer mon budget recharge de mon budget personnel ?',
+    a: "Oui. EVONE vous permet de suivre distinctement votre budget de recharge et votre budget personnel lié au véhicule, pour garder le contrôle de vos dépenses et anticiper vos coûts mensuels.",
   },
   {
     q: 'Que faire en cas de perte ou de vol ?',
-    a: "Désactivez immédiatement la carte depuis l'application ou le portail pour empêcher toute utilisation. Vous pouvez demander l'émission d'une nouvelle carte. Des frais de remplacement peuvent s'appliquer.",
-  },
-  {
-    q: 'Puis-je gérer plusieurs cartes et utilisateurs ?',
-    a: "Oui. Les particuliers peuvent associer plusieurs véhicules à un même compte. Les entreprises peuvent émettre et gérer un parc de cartes, attribuer des droits, fixer des plafonds et suivre les dépenses par utilisateur, site ou véhicule.",
-  },
-  {
-    q: "La carte peut-elle contrôler l'accès à mes bornes privées ?",
-    a: "Oui, si vos bornes privées sont compatibles avec le contrôle d'accès RFID. La Carte EVplug peut alors servir de badge d'accès et vous permettre de distinguer les recharges privées et professionnelles pour une refacturation simplifiée.",
-  },
-  {
-    q: "Ai-je besoin d'une connexion Internet ?",
-    a: "Une connexion est nécessaire pour activer la carte et consulter l'historique dans l'application. Sur les bornes publiques, la recharge via RFID fonctionne sans connexion de votre téléphone. Certaines fonctions avancées (statuts en temps réel, mises à jour) requièrent l'accès Internet.",
-  },
-  {
-    q: 'Y a-t-il des frais associés à la carte ?',
-    a: "Des frais d'émission ou de remplacement peuvent s'appliquer. Les tarifs de recharge dépendent du point de charge et de l'opérateur. Le détail des prix est indiqué avant démarrage lorsqu'il est fourni par l'opérateur.",
+    a: "Désactivez immédiatement la carte depuis l'application ou le portail EVONE pour empêcher toute utilisation, puis demandez l'émission d'une nouvelle carte. Des frais de remplacement peuvent s'appliquer.",
   },
   {
     q: 'Proposez-vous des cartes pour les entreprises ?',
-    a: "Oui. La Carte EVplug Entreprise permet d'émettre des cartes à vos équipes, de fixer des limites de dépenses, de centraliser la facturation et d'accéder à des rapports détaillés par site, véhicule ou collaborateur.",
+    a: "Oui. La Carte EVplug Entreprise permet d'émettre des cartes à vos équipes, de fixer des plafonds de dépenses, de centraliser la facturation et d'accéder aux bornes de vos sites via EVONE, avec des rapports détaillés par site, véhicule ou collaborateur.",
   },
 ]
 
 // FAQ items reshaped from {q,a} → {title,body} for the shared Accordion variant.
 const faqAccordionItems = faqItems.map(({ q, a }) => ({ title: q, body: a }))
 
-function CarouselFeatures() {
+// One highlighted section per pillar: tagged heading + icon points on one side,
+// a photo with a floating badge on the other, alternating sides down the page.
+function FeatureSection({ tag, title, intro, points, image, imageAlt, badge, reverse = false, surface = false, cta }) {
+  const circleBg = surface ? 'bg-white' : 'bg-surface'
   return (
-    <div className="container-max-width-tablet mx-auto xl:mx-none container-padding-tablet container-padding-mobile">
-      <CardsCarousel ariaLabel="Avantages Carte EVplug">
-        {carouselItems.map((item) => (
-          <div key={item.title} className="flex md:flex-nowrap flex-wrap md:gap-[25px] gap-spacing-xl">
-            <div className="horizontal-slider-new-content md:w-6/12 w-full">
-              <div className="bg-blue-dianne rounded-2xl grid gap-spacing-4xl text-white p-spacing-6xl horizontal-card auto-rows-max h-full">
-                <div className="grid gap-spacing-2xl">
-                  <h4 className="m-0 font-4xl !hidden sm:!block">{item.title}</h4>
-                  <h5 className="m-0 font-3xl !block sm:!hidden">{item.title}</h5>
-                  <div className="text-block vertical-carousel-des m-0">
-                    <p>{item.description}</p>
-                  </div>
-                </div>
-                <div className="flex justify-start gap-spacing-xl flex-wrap">
-                  {item.cta.external ? (
-                    <a
-                      href={item.cta.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="btn btn-secondary-outline font-base md:px-spacing-md lg:px-spacing-2xl px-spacing-lg"
-                    >
-                      {item.cta.label}
-                    </a>
-                  ) : (
-                    <Link
-                      to={item.cta.href}
-                      className="btn btn-secondary-outline font-base md:px-spacing-md lg:px-spacing-2xl px-spacing-lg"
-                    >
-                      {item.cta.label}
-                    </Link>
-                  )}
+    <section className={`relative ${surface ? 'bg-surface' : 'bg-white'} xl:py-spacing-9xl py-spacing-7xl`}>
+      <div className="container-max-width-desktop container-max-width-tablet container-padding-desktop container-padding-tablet container-padding-mobile mx-auto">
+        <div
+          className={`flex gap-spacing-7xl items-center xl:justify-between justify-center xl:flex-nowrap flex-wrap${
+            reverse ? ' xl:flex-row-reverse' : ''
+          }`}
+        >
+          <div className="xl:max-w-[520px] xl:w-6/12 w-full">
+            <div className="grid gap-spacing-5xl">
+              <div className="grid gap-spacing-3xl">
+                <span className="inline-flex items-center gap-spacing-sm px-spacing-md py-spacing-sm rounded-full bg-lime text-black text-sm font-semibold w-fit">
+                  {tag}
+                </span>
+                <h2 className="tracking-tight m-0">{title}</h2>
+                <div className="m-0">
+                  <p>{intro}</p>
                 </div>
               </div>
-            </div>
-            <div className="horizontal-slider-new-image relative md:w-6/12 w-full">
-              <img
-                src={item.image}
-                alt={item.title}
-                className="w-full object-cover rounded-xl lg:max-w-[484px] lg:h-[340px] md:max-w-[272px] md:h-[363px] max-w-full h-[208px]"
-                loading="lazy"
-              />
-              {item.tag && (
-                <div className="image-tag grid-flow-col">
-                  <div className="w-[40px] h-[40px]">
-                    <img className="w-[40px] h-[40px]" src={item.tag.icon} alt="" />
-                  </div>
-                  <div className="md:font-lg font-base font-semibold md:max-w-[190px] max-w-full w-full m-0">
-                    <p>
-                      <span style={{ whiteSpace: 'pre-wrap' }}>{item.tag.label}</span>
-                    </p>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        ))}
-      </CardsCarousel>
-    </div>
-  )
-}
-
-function StickyTabs() {
-  const tabs = [
-    { id: 'benefits', label: 'Avantages' },
-    { id: 'yourcharger', label: 'Votre carte' },
-    { id: 'yourapp', label: 'Application' },
-  ]
-  const [open, setOpen] = useState(false)
-  const [selected, setSelected] = useState('benefits')
-  const handleSelect = (id) => {
-    setSelected(id)
-    setOpen(false)
-    const target = document.getElementById(id)
-    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  }
-  return (
-    <>
-      <section className="w-full z-50 tab-section tab-section-desktop sticky top-0 hidden md:block">
-        <div className="container-max-width-desktop container-max-width-tablet px-spacing-xl md:px-spacing-4xl xl:px-spacing-7xl mx-auto">
-          <div className="grid grid-flow-col gap-spacing-4xl justify-center tab-block bg-surface rounded-b-2xl shadow py-spacing-md">
-            {tabs.map((tab) => (
-              <a key={tab.id} href={`#${tab.id}`} className="nav-link">
-                {tab.label}
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="w-full z-50 tab-section tab-section-mobile accordion-block sticky top-0 md:hidden">
-        <div className="tab-block-mobile container-max-width-desktop container-max-width-tablet container-padding-desktop container-padding-tablet container-padding-mobile mx-auto">
-          <div className="grid grid-flow-col items-center justify-between w-full gap-spacing-4xl bg-surface rounded-b-2xl shadow py-spacing-sm md:px-spacing-4xl px-spacing-xl">
-            <div className="title font-semibold whitespace-nowrap">Aller à :</div>
-            <div className="relative w-full custom-dropdown col-span-2">
-              <div
-                onClick={() => setOpen((v) => !v)}
-                className="text-black dropdown-selected rounded-md px-spacing-md py-spacing-sm bg-white font-semibold cursor-pointer flex items-center justify-between"
-              >
-                <div className="grid grid-flow-col gap-spacing-4xl items-center justify-between w-full pr-[25px]">
-                  <span className="selected-text">{tabs.find((t) => t.id === selected)?.label}</span>
-                  <span className="w-[24px] h-[24px] flex items-center justify-center absolute right-[6px]">
-                    <img className="w-[12px]" src={filterIcon} alt="icon" loading="lazy" />
-                  </span>
-                </div>
-              </div>
-              {open && (
-                <div className="text-black font-semibold dropdown-options absolute left-0 right-0 mt-2 bg-white border border-blue-dianne rounded-md shadow-md z-50">
-                  {tabs.map((tab) => (
-                    <div
-                      key={tab.id}
-                      onClick={() => handleSelect(tab.id)}
-                      className="dropdown-option px-spacing-xl py-spacing-sm hover:bg-blue-dianne/10 cursor-pointer"
-                    >
-                      {tab.label}
+              <ul className="grid gap-spacing-3xl m-0 p-0 list-none">
+                {points.map((p) => (
+                  <li key={p.title} className="flex items-start gap-spacing-xl">
+                    <span className={`shrink-0 w-11 h-11 rounded-full ${circleBg} flex items-center justify-center`}>
+                      <i className={`fa-solid ${p.icon} text-lg text-blue-dianne`} aria-hidden="true" />
+                    </span>
+                    <div className="grid gap-spacing-xs content-start">
+                      <span className="font-semibold font-lg">{p.title}</span>
+                      <div className="m-0">
+                        <p>{p.body}</p>
+                      </div>
                     </div>
-                  ))}
+                  </li>
+                ))}
+              </ul>
+              {cta && (
+                <div>
+                  <button type="button" className="btn btn-primary" onClick={openCtaForm}>
+                    {cta}
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+          <div className="xl:w-6/12 w-full flex justify-center">
+            <div className="relative w-full max-w-[520px]">
+              <img src={image} alt={imageAlt} className="w-full object-cover rounded-2xl aspect-[4/3]" loading="lazy" />
+              {badge && (
+                <div className="absolute bottom-4 left-4 right-4 sm:right-auto sm:max-w-[260px] bg-white rounded-2xl shadow-xl p-spacing-2xl flex items-center gap-spacing-md">
+                  <span className="shrink-0 w-11 h-11 rounded-full bg-lime flex items-center justify-center">
+                    <i className={`fa-solid ${badge.icon} text-lg text-blue-dianne`} aria-hidden="true" />
+                  </span>
+                  <div className="grid gap-spacing-xs">
+                    <span className="font-semibold leading-tight">{badge.title}</span>
+                    <span className="font-sm leading-tight text-gray-500">{badge.sub}</span>
+                  </div>
                 </div>
               )}
             </div>
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   )
 }
 
@@ -289,122 +226,16 @@ export default function CarteEvplug() {
 
             <Hero
               title="Carte EVplug"
-              subtitle="Une carte unique pour recharger partout sur notre réseau et chez nos partenaires. Pour les particuliers et les entreprises, gérez l'émission de cartes, l'accès à vos bornes locales et le suivi des dépenses depuis un seul espace."
-              ctas={[{ to: '/contact-us', label: 'Obtenir ma carte', variant: 'primary' }]}
-              footnote="Sous réserve d'éligibilité. Conditions générales applicables."
+              subtitle="Une seule carte pour accéder à tout l'écosystème EVplug : localisez les bornes disponibles avec la plateforme EVONE, rechargez sur tout le réseau, payez partout avec EVPAY, et suivez votre consommation comme votre budget."
+              ctas={[{ onClick: openCtaForm, label: 'Obtenir ma carte', variant: 'primary' }]}
+              footnote="Pour les particuliers et les entreprises. Sous réserve d'éligibilité."
               image={heroImg}
               imageAlt="Carte EVplug"
             />
 
-            <StickyTabs />
-
-            {/* Section title */}
-            <section
-              id="benefits"
-              className="header-two relative top-spacing"
-              style={{ backgroundColor: '#ffffff' }}
-            >
-              <div className="container-max-width-desktop container-max-width-tablet container-padding-desktop container-padding-tablet container-padding-mobile mx-auto pt-spacing-7xl grid gap-spacing-7xl">
-                <div className="max-w-[480px] grid gap-spacing-3xl relative">
-                  <h2 className="tracking-tight m-0">La carte de recharge universelle</h2>
-                  <div className="hero-banner-des">
-                    <p>Ce que vous obtenez :</p>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            {/* Feature cards grid */}
-            <section className="horizontal-carousel-new-section relative overflow-hidden md:pb-spacing-7xl pb-spacing-4xl">
-              <div className="container-max-width-desktop container-max-width-tablet container-padding-desktop container-padding-tablet container-padding-mobile mx-auto md:pt-spacing-7xl md:pb-spacing-6xl py-spacing-4xl">
-                <CarouselFeatures />
-              </div>
-            </section>
-
-            {/* Votre carte EVplug accordion */}
-            <section id="yourcharger" className="relative your-charger-section top-spacing">
-              <div className="bg-white">
-                <div className="container-max-width-desktop container-max-width-tablet container-padding-desktop container-padding-tablet container-padding-mobile mx-auto xl:py-spacing-9xl py-spacing-7xl">
-                  <div className="flex gap-spacing-7xl items-center xl:justify-between justify-center xl:flex-nowrap flex-wrap xl:flex-row-reverse">
-                    <div className="xl:max-w-[480px] xl:w-6/12">
-                      <div className="grid gap-spacing-6xl">
-                        <div className="view-header">
-                          <div className="grid gap-spacing-3xl">
-                            <h2 className="tracking-tight m-0 pr-spacing-3xl">Votre carte EVplug</h2>
-                            <div className="m-0 pr-spacing-3xl">
-                              <p>
-                                Rechargez sur l&rsquo;ensemble de notre réseau public et partenaires avec une seule carte
-                                RFID sécurisée. Associez-la à un utilisateur ou à un véhicule et maîtrisez vos
-                                dépenses.
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                        <Accordion items={cardAccordionItems} />
-                      </div>
-                    </div>
-                    <div className="flex flex-col items-center gap-6 md:max-w-[582px] max-w-[370px] xl:w-6/12 w-full">
-                      <div className="first-top xl:ml-auto">
-                        <img
-                          src={chargerAccordion1}
-                          alt=""
-                          className="md:w-[379px] md:h-[505px] w-[240px] h-auto object-cover rounded-2xl"
-                        />
-                      </div>
-                      <div className="second-bottom mr-auto relative -mt-[120px]">
-                        <img
-                          src={chargerAccordion2}
-                          alt=""
-                          className="md:w-[276px] md:h-[276px] w-[175px] h-[175px] object-cover rounded-2xl"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            {/* Application accordion */}
-            <section id="yourapp" className="relative your-charger-section top-spacing">
-              <div className="bg-white">
-                <div className="container-max-width-desktop container-max-width-tablet container-padding-desktop container-padding-tablet container-padding-mobile mx-auto xl:py-spacing-9xl py-spacing-7xl">
-                  <div className="flex gap-spacing-7xl items-center xl:justify-between justify-center xl:flex-nowrap flex-wrap">
-                    <div className="xl:max-w-[480px] xl:w-6/12">
-                      <div className="grid gap-spacing-6xl">
-                        <div className="view-header">
-                          <div className="grid gap-spacing-3xl">
-                            <h3 className="tracking-tight m-0 pr-spacing-3xl">L&rsquo;application EVplug</h3>
-                            <div className="m-0 pr-spacing-3xl">
-                              <p>
-                                L&rsquo;application EVplug centralise tout ce dont vous avez besoin pour piloter, suivre et
-                                optimiser votre recharge depuis votre smartphone.
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                        <Accordion items={appAccordionItems} />
-                      </div>
-                    </div>
-                    <div className="flex flex-col items-center gap-6 md:max-w-[582px] max-w-[370px] xl:w-6/12 w-full">
-                      <div className="first-top xl:ml-auto">
-                        <img
-                          src={appAccordion1}
-                          alt=""
-                          className="md:w-[379px] md:h-[505px] w-[240px] h-auto object-cover rounded-2xl"
-                        />
-                      </div>
-                      <div className="second-bottom mr-auto relative -mt-[120px]">
-                        <img
-                          src={appAccordion2}
-                          alt=""
-                          className="md:w-[276px] md:h-[276px] w-[175px] h-[175px] object-cover rounded-2xl"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
+            {sections.map((section) => (
+              <FeatureSection key={section.tag} {...section} />
+            ))}
 
             {/* FAQ */}
             <section className="bg-white">

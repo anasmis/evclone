@@ -66,6 +66,8 @@ const DIRECT_PHONES = [
   { label: '+212 661 22 80 10', href: 'tel:+212661228010' },
 ]
 
+const TICKET_URL = 'https://myaccount.evplug.ma/forms/ticket?styled=1&with_logo=1'
+
 function FooterColumn({ column }) {
   return (
     <div className="w-full at-item">
@@ -108,6 +110,27 @@ export default function Footer() {
               >
                 Trust and love your charging experience
               </p>
+              <div className="mt-spacing-5xl grid gap-spacing-md">
+                <h6 className="text-white/60 font-xs uppercase" style={{ letterSpacing: '0.12em' }}>
+                  Lignes directes
+                </h6>
+                <ul className="grid gap-2">
+                  {DIRECT_PHONES.map((phone) => (
+                    <li key={phone.href}>
+                      <a
+                        href={phone.href}
+                        className="text-white/80 hover:text-white inline-flex items-center gap-2 font-sm"
+                        style={{ letterSpacing: '0.02em' }}
+                      >
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                          <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.24 1.02l-2.21 2.2z" />
+                        </svg>
+                        {phone.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
             {COLUMNS.map((col) => (
               <FooterColumn key={col.title} column={col} />
@@ -115,10 +138,9 @@ export default function Footer() {
             <div className="w-full social-icons pt-spacing-5xl xl:pt-0">
               <div className="footer-menu grid xl:justify-end xl:gap-spacing-6xl gap-spacing-4xl">
                 <div className="grid gap-spacing-xl grid-flow-row">
-                  <h6 className="text-white font-semibold font-lg">Numéros dédiés</h6>
-                  <a
-                    href={SUPPORT_PHONE.href}
-                    className="block w-full"
+                  <h6 className="text-white font-semibold font-lg">Support</h6>
+                  <div
+                    className="w-full"
                     style={{
                       width: '100%',
                       maxWidth: '320px',
@@ -128,44 +150,64 @@ export default function Footer() {
                       padding: '18px 20px',
                     }}
                   >
-                    <span
-                      className="flex items-center gap-3 text-white/60 font-xs uppercase"
-                      style={{ letterSpacing: '0.12em', whiteSpace: 'nowrap' }}
-                    >
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                        <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.24 1.02l-2.21 2.2z" />
-                      </svg>
-                      Support client
-                    </span>
-                    <span
-                      className="block text-white mt-2"
+                    <a href={SUPPORT_PHONE.href} className="block">
+                      <span
+                        className="flex items-center gap-3 text-white/60 font-xs uppercase"
+                        style={{ letterSpacing: '0.12em', whiteSpace: 'nowrap' }}
+                      >
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                          <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.24 1.02l-2.21 2.2z" />
+                        </svg>
+                        Support client
+                      </span>
+                      <span
+                        className="block text-white mt-2"
+                        style={{
+                          fontFamily: 'var(--brand-font-heading)',
+                          fontSize: 'clamp(1.5rem, 2.4vw, 2rem)',
+                          letterSpacing: '0.02em',
+                          lineHeight: 1.1,
+                          whiteSpace: 'nowrap',
+                        }}
+                      >
+                        {SUPPORT_PHONE.label}
+                      </span>
+                    </a>
+                    <div
+                      aria-hidden="true"
+                      style={{ height: '1px', background: 'rgba(255,255,255,0.14)', margin: '16px 0' }}
+                    />
+                    <a
+                      href={TICKET_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2 font-semibold"
                       style={{
-                        fontFamily: 'var(--brand-font-heading)',
-                        fontSize: 'clamp(1.5rem, 2.4vw, 2rem)',
-                        letterSpacing: '0.02em',
-                        lineHeight: 1.1,
-                        whiteSpace: 'nowrap',
+                        width: '100%',
+                        borderRadius: '999px',
+                        padding: '11px 16px',
+                        background: 'var(--brand-color-accent, #c8d72d)',
+                        color: '#0a1f1a',
+                        letterSpacing: '0.01em',
                       }}
                     >
-                      {SUPPORT_PHONE.label}
-                    </span>
-                  </a>
-                  <ul className="grid gap-1 mt-spacing-xl">
-                    {DIRECT_PHONES.map((phone) => (
-                      <li key={phone.href}>
-                        <a
-                          href={phone.href}
-                          className="text-white/70 hover:text-white inline-flex items-center gap-2 font-sm"
-                          style={{ letterSpacing: '0.02em' }}
-                        >
-                          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                            <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.24 1.02l-2.21 2.2z" />
-                          </svg>
-                          {phone.label}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
+                      <svg
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path d="M3 9a3 3 0 0 0 0 6v2a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2z" />
+                        <path d="M13 5v14" />
+                      </svg>
+                      Ouvrir un ticket
+                    </a>
+                  </div>
                 </div>
                 <div className="grid gap-spacing-3xl grid-flow-row">
                   <h6 className="text-white font-semibold font-lg">Suivez-nous</h6>
@@ -199,11 +241,12 @@ export default function Footer() {
           </div>
 
           <div className="footer-bottom pt-4">
-            <div className="grid gap-spacing-xl xl:grid-flow-col font-sm">
+            <div className="grid gap-spacing-xl xl:grid-flow-col font-sm items-center">
               <div className="copyright text-white/60">&copy; EVplug Maroc 2026</div>
-              <div className="text-white md:flex xl:justify-end">
+              <div className="text-white xl:text-right">
                 <span className="font-semibold">EVplug Maroc</span>
-                &nbsp;Siège : Casablanca, Maroc &nbsp;|&nbsp; Interventions : Casablanca, Rabat, Marrakech, Tanger
+                &nbsp;&mdash; Siège : Casablanca, Maroc &nbsp;&middot;&nbsp; Interventions partout au Maroc, à partir de
+                Casablanca, Rabat, Marrakech et Tanger
               </div>
             </div>
             <div className="pt-6 copyright-bottom font-xs text-start text-white/60">

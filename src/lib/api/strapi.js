@@ -248,8 +248,10 @@ export function normalizeArticle(entry) {
 async function fetchArticlesByKind(kind, query = {}) {
   const items = await listEntries('evplug-blog-posts', {
     'filters[kind][$eq]': kind,
-    'populate[image]': '*',
-    'populate[author]': '*',
+    // Strapi v5 rejects `populate[image]=*` for a media field with a 400
+    // ("Invalid key related at image.related"); `=true` is the correct form.
+    'populate[image]': 'true',
+    'populate[author]': 'true',
     sort: 'createdAt:desc',
     'pagination[pageSize]': 100,
     ...query,
@@ -271,8 +273,8 @@ export async function fetchArticleBySlug(kind, slug, query = {}) {
   const items = await listEntries('evplug-blog-posts', {
     'filters[slug][$eq]': slug,
     'filters[kind][$eq]': kind,
-    'populate[image]': '*',
-    'populate[author]': '*',
+    'populate[image]': 'true',
+    'populate[author]': 'true',
     'pagination[pageSize]': 1,
     ...query,
   })

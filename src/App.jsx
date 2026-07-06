@@ -1,5 +1,6 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import ScrollToTop from './components/ScrollToTop'
+import FloatingAssistant from './components/common/FloatingAssistant'
 import HomePage from './pages/HomePage'
 import NetworkMapPage from './pages/NetworkMapPage'
 import CarteEvplug from './pages/products/CarteEvplug'
@@ -83,6 +84,7 @@ function App() {
     <BrowserRouter>
       <ScrollToTop />
       <AppRoutes />
+      <FloatingAssistant />
     </BrowserRouter>
   )
 }
