@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
+import { marked } from 'marked'
 import MirrorShell from './MirrorShell'
 import NotFoundPage from './NotFoundPage'
 import Breadcrumb from '../components/sections/Breadcrumb'
@@ -11,9 +12,12 @@ import {
 } from '../data/editorial'
 import {
   fetchArticleBySlug,
+  fetchEditorialArticles,
+  fetchEditorialArticleBySlug,
   fetchGuideArticles,
-  fetchNewsArticles,
 } from '../lib/api/strapi'
+
+marked.setOptions({ gfm: true, breaks: false })
 
 const FAMILIES = {
   news: {
@@ -23,7 +27,8 @@ const FAMILIES = {
     rootRoute: '/news',
     docTitleSuffix: 'Actualites | EVplug',
     getArticle: getNewsArticle,
-    fetchList: fetchNewsArticles,
+    fetchList: fetchEditorialArticles,
+    fetchArticle: fetchEditorialArticleBySlug,
     fallbackList: newsArticles,
   },
   guides: {
@@ -78,6 +83,11 @@ function Block({ block }) {
   }
 }
 
+function renderArticleMarkup(content) {
+  if (!content) return ''
+  return marked.parse(content)
+}
+
 function RelatedArticles({ family, articles, currentSlug }) {
   const related = articles.filter((a) => a.slug !== currentSlug).slice(0, 3)
   if (related.length === 0) return null
@@ -98,7 +108,7 @@ function RelatedArticles({ family, articles, currentSlug }) {
                   <div className="article-block grid grid-flow-row auto-rows-max gap-spacing-xl">
                     <div className="article">
                       <img
-                        className="rounded-lg w-full object-cover h-[284px]"
+                        className="rounded-lg w-full object-cover h-71"
                         src={a.image}
                         alt={a.title}
                         loading="lazy"
@@ -136,7 +146,9 @@ export default function ArticlePage({ familyKey }) {
     if (!family) return undefined
     let cancelled = false
 
-    fetchArticleBySlug(family.kind, slug)
+    const fetchSingle = family.fetchArticle ?? ((value) => fetchArticleBySlug(family.kind, value))
+
+    fetchSingle(slug)
       .then((found) => {
         if (!cancelled) setRemote({ slug, article: found ?? null, resolved: true })
       })
@@ -179,7 +191,7 @@ export default function ArticlePage({ familyKey }) {
 
   return (
     <MirrorShell documentTitle={`${article.title} | ${family.docTitleSuffix}`}>
-      <div className="region region-content">
+      <div className="region region-content editorial-page">
         <article className="node node--type-page">
           <div className="node__content">
             <Breadcrumb
@@ -190,29 +202,42 @@ export default function ArticlePage({ familyKey }) {
             {/* Hero: title on the left, cover image on the right */}
             <section className="article-hero">
               <div className="container-max-width-desktop container-max-width-tablet container-padding-desktop container-padding-tablet container-padding-mobile mx-auto pt-spacing-4xl pb-spacing-4xl">
-                <div className="grid md:grid-cols-2 gap-spacing-4xl items-center">
-                  <div className="grid gap-spacing-xl auto-rows-max">
-                    {article.categories && article.categories.length > 0 && (
-                      <div>
-                        {article.categories.map((c) => (
-                          <span key={c} className="py-spacing-sm px-spacing-md tag mr-2 mb-1">
-                            {c}
-                          </span>
-                        ))}
+                <div className="editorial-surface rounded-3xl overflow-hidden">
+                  <div className="grid lg:grid-cols-[minmax(0,1.35fr)_minmax(280px,0.65fr)] gap-spacing-0 items-stretch">
+                    <div className="grid gap-spacing-xl auto-rows-max p-spacing-4xl md:p-spacing-5xl lg:p-spacing-6xl min-w-0">
+                      <div className="flex flex-wrap items-center gap-2">
+                        {article.categories && article.categories.length > 0 &&
+                          article.categories.map((c) => (
+                            <span key={c} className="py-spacing-sm px-spacing-md tag">
+                              {c}
+                            </span>
+                          ))}
                       </div>
-                    )}
-                    <h1 className="font-TTCommons mb-0">{article.title}</h1>
-                    <p className="font-lg m-0">{article.description}</p>
-                    <div className="font-sm text-abbey font-medium">
-                      {article.date} · {article.readTime} min read
+                      <h1 className="font-TTCommons mb-0" style={{ maxWidth: '18ch', lineHeight: 1.02 }}>
+                        {article.title}
+                      </h1>
+                      <p className="font-lg m-0" style={{ maxWidth: '62ch' }}>
+                        {article.description || article.excerpt}
+                      </p>
+                      <div className="flex flex-wrap items-center gap-spacing-md text-abbey font-medium">
+                        <span>{article.date || article.publishedDate}</span>
+                        <span aria-hidden="true">·</span>
+                        <span>{article.readTime} min read</span>
+                        {article.language && (
+                          <>
+                            <span aria-hidden="true">·</span>
+                            <span className="uppercase tracking-[0.12em]">{article.language}</span>
+                          </>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                  <div>
-                    <img
-                      src={article.image}
-                      alt={article.title}
-                      className="rounded-2xl w-full object-cover aspect-[4/3]"
-                    />
+                    <div className="min-h-full bg-blue-dianne p-spacing-md md:p-spacing-xl lg:p-spacing-4xl flex items-center justify-center">
+                      <img
+                        src={article.image}
+                        alt={article.title}
+                        className="rounded-2xl w-full object-cover aspect-4/5 max-h-130"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -220,10 +245,14 @@ export default function ArticlePage({ familyKey }) {
 
             <section className="article-body">
               <div className="container-max-width-desktop container-max-width-tablet container-padding-desktop container-padding-tablet container-padding-mobile mx-auto py-spacing-6xl">
-                <div className="max-w-3xl mx-auto">
-                  {article.body.map((block, i) => (
-                    <Block key={i} block={block} />
-                  ))}
+                <div className="editorial-surface rounded-3xl p-spacing-4xl md:p-spacing-5xl lg:p-spacing-6xl w-full">
+                  <div className="editorial-prose w-full">
+                    {Array.isArray(article.body) && article.body.length > 0 ? (
+                      article.body.map((block, i) => <Block key={i} block={block} />)
+                    ) : article.content ? (
+                      <div dangerouslySetInnerHTML={{ __html: renderArticleMarkup(article.content) }} />
+                    ) : null}
+                  </div>
                 </div>
               </div>
             </section>

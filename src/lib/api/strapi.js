@@ -224,6 +224,12 @@ export function submitCarteRequest(values) {
 // distinguished by `kind`: "news" | "guide").
 // -------------------------------------------------------------------
 
+function resolveArticleImage(image) {
+  if (!image) return ''
+  if (typeof image === 'string') return image.trim()
+  return strapiMediaUrl(image) || ''
+}
+
 // Normalize a Strapi blog-post entry into the shape the listing cards and
 // ArticlePage block renderer expect.
 export function normalizeArticle(entry) {
@@ -242,6 +248,37 @@ export function normalizeArticle(entry) {
     body: Array.isArray(entry.body) ? entry.body : [],
     featured: entry.featured ?? false,
     author: entry.author ?? null,
+  }
+}
+
+// Normalize the newer `articles` collection used by the editorial/news pages.
+// This schema stores the cover image as text and the article body as rich text.
+export function normalizeEditorialArticle(entry) {
+  if (!entry) return null
+  const publishedDate = entry.publishedDate ?? entry.publishedAt ?? ''
+  return {
+    id: entry.id,
+    slug: entry.slug,
+    title: entry.title ?? '',
+    description: entry.excerpt ?? entry.description ?? '',
+    excerpt: entry.excerpt ?? entry.description ?? '',
+    image: resolveArticleImage(entry.image),
+    date: publishedDate,
+    publishedDate,
+    readTime: entry.readTime ?? null,
+    tag: entry.tag ?? '',
+    content: typeof entry.content === 'string' ? entry.content : '',
+    gallery: Array.isArray(entry.gallery) ? entry.gallery : [],
+    featured: entry.isFeatured ?? false,
+    breakingNews: entry.isBreakingNews ?? false,
+    author: entry.author ?? null,
+    category: entry.category ?? null,
+    metaTitle: entry.metaTitle ?? '',
+    metaDescription: entry.metaDescription ?? '',
+    metaKeywords: entry.metaKeywords ?? '',
+    ogImage: entry.ogImage ?? null,
+    language: entry.language ?? 'fr',
+    status: entry.status ?? 'draft',
   }
 }
 
@@ -267,6 +304,15 @@ export function fetchGuideArticles(query = {}) {
   return fetchArticlesByKind('guide', query)
 }
 
+export function fetchEditorialArticles(query = {}) {
+  return listEntries('articles', {
+    // Latest published editorial items first.
+    sort: 'publishedAt:desc',
+    'pagination[pageSize]': 100,
+    ...query,
+  }).then((items) => items.map(normalizeEditorialArticle))
+}
+
 // Find a single article by slug (Strapi's findOne expects an id/documentId,
 // not a slug, so we filter instead).
 export async function fetchArticleBySlug(kind, slug, query = {}) {
@@ -279,6 +325,15 @@ export async function fetchArticleBySlug(kind, slug, query = {}) {
     ...query,
   })
   return items.length ? normalizeArticle(items[0]) : null
+}
+
+export async function fetchEditorialArticleBySlug(slug, query = {}) {
+  const items = await listEntries('articles', {
+    'filters[slug][$eq]': slug,
+    'pagination[pageSize]': 1,
+    ...query,
+  })
+  return items.length ? normalizeEditorialArticle(items[0]) : null
 }
 
 export function fetchServices(query = {}) {

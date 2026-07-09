@@ -37,13 +37,7 @@ const NAV_ITEMS = [
         description: 'Notre borne primée, simple et fiable',
       },
       {
-        icon: iconInstallation,
-        label: 'Installation à domicile',
-        to: '/installation',
-        description: 'Pose réalisée par des techniciens certifiés EVplug',
-      },
-      {
-        icon: iconTariff,
+        iconClass: 'fa-regular fa-id-card',
         label: 'Carte EVplug',
         to: '/products/carte-evplug',
         description: 'Recharge sur le réseau public et avantages, tout inclus',
@@ -179,10 +173,16 @@ function SubmenuLink({ child, onNavigate }) {
   const className = 'submenu-item-block'
   const inner = (
     <>
-      {child.icon && (
+      {child.iconClass ? (
         <div className="menu-item-icon">
-          <img loading="lazy" width="960" src={child.icon} alt="" className="img-fluid" />
+          <i className={child.iconClass} aria-hidden="true" />
         </div>
+      ) : (
+        child.icon && (
+          <div className="menu-item-icon">
+            <img loading="lazy" width="960" src={child.icon} alt="" className="img-fluid" />
+          </div>
+        )
       )}
       <div className="submenu-block">
         <span className="nav-link">{child.label}</span>

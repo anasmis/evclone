@@ -92,51 +92,59 @@ export default function Footer() {
     <footer role="contentinfo" className="footer-section z-10 mt-auto text-white">
       <div className="container-max-width-desktop container-max-width-tablet py-spacing-4xl md:px-spacing-4xl px-spacing-xl xl:py-spacing-3xl pb-spacing-xl md:pb-spacing-3xl xl:px-spacing-7xl mx-auto">
         <div className="grid bg-black rounded-2xl gap-spacing-7xl xl:py-spacing-5xl xl:px-spacing-7xl px-spacing-4xl py-spacing-5xl">
-          <div className="xl:gap-spacing-4xl gap-spacing-xl grid xl:grid-flow-col accordion">
-            <div className="w-full xl:pb-spacing-0 pb-spacing-2xl">
+          <div className="xl:gap-spacing-lg gap-spacing-lg grid xl:grid-flow-col xl:items-start accordion">
+            <div className="w-full xl:max-w-65 xl:pb-spacing-0 pb-spacing-xl">
               <Link to="/" className="logo mb-8 inline-block" aria-label="EVplug Maroc">
-                <img src={logo} alt="EVplug Maroc" className="img-fluid max-w-[140px] md:max-w-[180px]" loading="lazy" />
+                <img src={logo} alt="EVplug Maroc" className="img-fluid max-w-35 md:max-w-45" loading="lazy" />
               </Link>
               <p
-                className="text-white mt-spacing-2xl"
+                className="text-white mt-spacing-xl"
                 style={{
                   fontFamily: 'var(--brand-font-heading)',
-                  fontSize: 'clamp(1.75rem, 3.4vw, 2.75rem)',
+                  fontSize: 'clamp(2.2rem, 3.4vw, 2.3rem)',
                   lineHeight: 1.05,
                   letterSpacing: '-0.01em',
-                  margin: '20px 0 0',
-                  maxWidth: '22ch',
+                  margin: '12px 0 0',
+                  maxWidth: '15ch',
                 }}
               >
                 Trust and love your charging experience
               </p>
-              <div className="mt-spacing-5xl grid gap-spacing-md">
-                <h6 className="text-white/60 font-xs uppercase" style={{ letterSpacing: '0.12em' }}>
-                  Lignes directes
-                </h6>
-                <ul className="grid gap-2">
-                  {DIRECT_PHONES.map((phone) => (
-                    <li key={phone.href}>
+            </div>
+            <div className="w-full grid gap-spacing-2xl xl:gap-spacing-3xl xl:self-start">
+              <div className="grid gap-spacing-3xl xl:grid-cols-3 xl:gap-spacing-2xl">
+                {COLUMNS.map((col) => (
+                  <FooterColumn key={col.title} column={col} />
+                ))}
+              </div>
+
+              <div className="w-full border-t border-white/15 pt-spacing-3xl">
+                <div className="flex flex-col gap-spacing-md">
+                  <h6 className="text-white font-semibold font-lg uppercase tracking-[0.12em]">
+                    Lignes directes
+                  </h6>
+                  <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                    {DIRECT_PHONES.map((phone, index) => (
                       <a
+                        key={phone.href}
                         href={phone.href}
-                        className="text-white/80 hover:text-white inline-flex items-center gap-2 font-sm"
+                        className="inline-flex items-center gap-2 text-white font-semibold hover:text-white/90 font-sm"
                         style={{ letterSpacing: '0.02em' }}
                       >
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                           <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.24 1.02l-2.21 2.2z" />
                         </svg>
                         {phone.label}
+                        {index === 0 && <span className="text-white/35">|</span>}
                       </a>
-                    </li>
-                  ))}
-                </ul>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
-            {COLUMNS.map((col) => (
-              <FooterColumn key={col.title} column={col} />
-            ))}
-            <div className="w-full social-icons pt-spacing-5xl xl:pt-0">
-              <div className="footer-menu grid xl:justify-end xl:gap-spacing-6xl gap-spacing-4xl">
+
+            <div className="w-full social-icons pt-spacing-4xl xl:pt-0">
+              <div className="footer-menu grid xl:justify-end xl:gap-spacing-5xl gap-spacing-4xl">
                 <div className="grid gap-spacing-xl grid-flow-row">
                   <h6 className="text-white font-semibold font-lg">Support</h6>
                   <div

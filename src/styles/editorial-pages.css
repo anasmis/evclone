@@ -20,6 +20,25 @@
   margin-top: 1.15rem;
 }
 
+.editorial-prose {
+  width: 100%;
+  max-width: none;
+}
+
+.editorial-page .paragraphs-content-wrapper,
+.editorial-page .paragraphs-content-wrapper * {
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+  white-space: normal !important;
+}
+
+.editorial-page .editorial-prose,
+.editorial-page .editorial-prose p,
+.editorial-page .editorial-prose li {
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
 .editorial-prose h2,
 .editorial-prose h3,
 .editorial-prose h4 {

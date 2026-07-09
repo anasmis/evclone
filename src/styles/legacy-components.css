@@ -704,6 +704,16 @@
     height: 32px;
     width: 32px;
   }
+  .menu-item-icon i {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    font-size: 26px;
+    line-height: 1;
+    color: #000;
+  }
   .top-right-block .region-nav-additional {
     display: grid;
     grid-auto-flow: column;

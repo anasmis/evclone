@@ -5,10 +5,15 @@
 //
 // Configure via Vite env vars (see .env.local):
 //   VITE_N8N_WEBHOOK_URL    -> the Production URL of the n8n Webhook node
-//   VITE_N8N_WEBHOOK_TOKEN  -> optional secret, sent as `Authorization: Bearer <token>`
+//   VITE_N8N_WEBHOOK_AUTH_HEADER -> optional custom header name
+//   VITE_N8N_WEBHOOK_AUTH_VALUE  -> value sent in that custom header
+//   VITE_N8N_WEBHOOK_TOKEN       -> optional legacy bearer token, sent as
+//                                   `Authorization: Bearer <token>`
 
 const WEBHOOK_URL = (import.meta.env.VITE_N8N_WEBHOOK_URL || '').trim()
 const WEBHOOK_TOKEN = (import.meta.env.VITE_N8N_WEBHOOK_TOKEN || '').trim()
+const WEBHOOK_AUTH_HEADER = (import.meta.env.VITE_N8N_WEBHOOK_AUTH_HEADER || '').trim()
+const WEBHOOK_AUTH_VALUE = (import.meta.env.VITE_N8N_WEBHOOK_AUTH_VALUE || '').trim()
 
 export const isAssistantConfigured = () => Boolean(WEBHOOK_URL)
 
@@ -18,6 +23,23 @@ export class AssistantError extends Error {
     this.name = 'AssistantError'
     this.status = status
   }
+}
+
+function buildAssistantAuthHeaders() {
+  const hasCustomHeaderName = Boolean(WEBHOOK_AUTH_HEADER)
+  const hasCustomHeaderValue = Boolean(WEBHOOK_AUTH_VALUE)
+
+  if (hasCustomHeaderName !== hasCustomHeaderValue) {
+    throw new AssistantError(
+      'Assistant auth header config is incomplete. Set both VITE_N8N_WEBHOOK_AUTH_HEADER and VITE_N8N_WEBHOOK_AUTH_VALUE, or leave both empty.',
+    )
+  }
+
+  const authHeaders = {}
+  if (hasCustomHeaderName) authHeaders[WEBHOOK_AUTH_HEADER] = WEBHOOK_AUTH_VALUE
+  if (WEBHOOK_TOKEN) authHeaders.Authorization = `Bearer ${WEBHOOK_TOKEN}`
+
+  return authHeaders
 }
 
 // n8n workflows return wildly different shapes depending on how they're wired
@@ -65,8 +87,10 @@ export async function sendAssistantMessage({ message, sessionId, advisor, histor
     )
   }
 
-  const headers = { 'Content-Type': 'application/json' }
-  if (WEBHOOK_TOKEN) headers.Authorization = `Bearer ${WEBHOOK_TOKEN}`
+  const headers = {
+    'Content-Type': 'application/json',
+    ...buildAssistantAuthHeaders(),
+  }
 
   // Send the message under a few common keys so the workflow can read whichever
   // its trigger/agent expects (`chatInput` for the AI Agent, `message`, …).
