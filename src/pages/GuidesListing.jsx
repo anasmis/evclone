@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import MirrorShell from './MirrorShell'
+import Seo from '../components/seo/Seo'
 import Breadcrumb from '../components/sections/Breadcrumb'
 import heroIcon from '../migrated/assets/guides/hero.svg'
 import { GUIDE_CATEGORIES, guideArticles } from '../data/editorial'
@@ -199,6 +200,11 @@ export default function GuidesListing() {
 
   return (
     <MirrorShell documentTitle="Guides | EVplug">
+      <Seo
+        title="Guides | EVplug"
+        description="Tout ce qu'il faut savoir sur la recharge de véhicules électriques : guides pratiques, coûts et conseils au quotidien."
+        path="/guides"
+      />
       <div className="region region-content">
         <article className="node node--type-page">
           <div className="node__content">

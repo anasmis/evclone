@@ -30,7 +30,7 @@ export default function Securite() {
         </p>
         <ul className="m-0">
           <li>
-            Nous écrire à <a href="mailto:support@evplug.com">support@evplug.com</a> en décrivant la vulnérabilité et
+            Nous écrire à <a href="mailto:support@evplug.ma">support@evplug.ma</a> en décrivant la vulnérabilité et
             les étapes permettant de la reproduire.
           </li>
           <li>Ne pas exploiter la faille au-delà de ce qui est nécessaire pour en démontrer l’existence.</li>
@@ -43,7 +43,7 @@ export default function Securite() {
         <p className="m-0">
           Conservez votre code d’authentification et votre identifiant unique de manière confidentielle et ne les
           partagez jamais avec des tiers. En cas de doute sur la sécurité de votre compte, contactez immédiatement notre
-          équipe support à <a href="mailto:support@evplug.com">support@evplug.com</a> ou au{' '}
+          équipe support à <a href="mailto:support@evplug.ma">support@evplug.ma</a> ou au{' '}
           <a href="tel:+212521335075">05 21 33 50 75</a>.
         </p>
       </LegalSection>

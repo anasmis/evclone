@@ -13,7 +13,7 @@ import heroImg from '../../migrated/assets/solutions/entreprise/hero.jpeg'
 import storyImg from '../../migrated/assets/solutions/entreprise/story.jpeg'
 import platformImg from '../../migrated/assets/solutions/entreprise/platform.jpeg'
 
-const ADVISOR_EMAIL = 'mailto:contact@evplug.com'
+const ADVISOR_EMAIL = 'mailto:contact@evplug.ma'
 
 const benefits = [
   {

@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom'
 import { marked } from 'marked'
 import MirrorShell from './MirrorShell'
 import NotFoundPage from './NotFoundPage'
+import Seo, { absoluteUrl } from '../components/seo/Seo'
 import Breadcrumb from '../components/sections/Breadcrumb'
 import {
   getGuideArticle,
@@ -189,8 +190,37 @@ export default function ArticlePage({ familyKey }) {
     return <NotFoundPage />
   }
 
+  const articlePath = `${family.rootRoute}/${article.slug}`
+  const articleDescription = article.description || article.excerpt || ''
+  const articleImage = absoluteUrl(article.image)
+  const authorName =
+    (typeof article.author === 'string' && article.author) ||
+    article.author?.name ||
+    'EVplug'
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': family.key === 'news' ? 'NewsArticle' : 'Article',
+    headline: article.title,
+    description: articleDescription,
+    ...(articleImage ? { image: [articleImage] } : {}),
+    ...(article.date || article.publishedDate
+      ? { datePublished: article.date || article.publishedDate }
+      : {}),
+    author: { '@type': authorName === 'EVplug' ? 'Organization' : 'Person', name: authorName },
+    publisher: { '@type': 'Organization', name: 'EVplug' },
+    ...(absoluteUrl(articlePath) ? { mainEntityOfPage: absoluteUrl(articlePath) } : {}),
+  }
+
   return (
     <MirrorShell documentTitle={`${article.title} | ${family.docTitleSuffix}`}>
+      <Seo
+        title={`${article.title} | ${family.docTitleSuffix}`}
+        description={articleDescription}
+        path={articlePath}
+        image={article.image}
+        type="article"
+        jsonLd={jsonLd}
+      />
       <div className="region region-content editorial-page">
         <article className="node node--type-page">
           <div className="node__content">

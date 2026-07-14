@@ -36,7 +36,7 @@ export default function RetoursRemboursements() {
             Indiquer le numéro de commande, le nom de l’Adhérent et l’adresse e-mail utilisés lors de l’inscription.
           </li>
           <li>
-            Envoyer votre demande à <a href="mailto:support@evplug.com">support@evplug.com</a> dans le délai de sept (7)
+            Envoyer votre demande à <a href="mailto:support@evplug.ma">support@evplug.ma</a> dans le délai de sept (7)
             jours.
           </li>
         </ul>
@@ -61,7 +61,7 @@ export default function RetoursRemboursements() {
       <LegalSection title="Nous contacter">
         <p className="m-0">
           Pour toute question relative à un retour ou un remboursement, contactez notre équipe support à{' '}
-          <a href="mailto:support@evplug.com">support@evplug.com</a> ou au{' '}
+          <a href="mailto:support@evplug.ma">support@evplug.ma</a> ou au{' '}
           <a href="tel:+212521335075">05 21 33 50 75</a>.
         </p>
       </LegalSection>

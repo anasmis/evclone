@@ -382,6 +382,16 @@ export async function fetchChargingStations(query = {}) {
   return items.map(normalizeStation).filter(Boolean)
 }
 
+// -------------------------------------------------------------------
+// Content reads — Google reviews (proxied server-side so the Google
+// Places API key stays off the client). Returns null when the backend
+// has no data configured yet, so callers can render nothing gracefully.
+// -------------------------------------------------------------------
+export async function fetchGoogleReviews() {
+  const res = await request('/api/google-reviews', { method: 'GET' })
+  return res?.data ?? null
+}
+
 // Single-type: CMS-managed copy for /solutions/evone-management-platform.
 // Populates every component + media so the React page can render directly.
 export async function fetchEvonePage(query = {}) {

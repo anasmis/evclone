@@ -1,6 +1,7 @@
 import { useDeferredValue, useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import MirrorShell from './MirrorShell'
+import Seo from '../components/seo/Seo'
 import Breadcrumb from '../components/sections/Breadcrumb'
 import heroIcon from '../migrated/assets/news/hero.svg'
 import { newsArticles } from '../data/editorial'
@@ -147,6 +148,11 @@ export default function NewsListing() {
 
   return (
     <MirrorShell documentTitle="Actualités | EVplug">
+      <Seo
+        title="Actualités | EVplug"
+        description="Découvrez les dernières actualités d'EVplug : mobilité électrique, recharge et infrastructure au Maroc."
+        path="/news"
+      />
       <div className="region region-content">
         <article className="node node--type-page">
           <div className="node__content">

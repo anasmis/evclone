@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom'
 import MirrorShell from './MirrorShell'
+import Seo from '../components/seo/Seo'
 import CardsCarousel from '../components/common/CardsCarousel'
 import BrandsMarquee from '../components/common/BrandsMarquee'
 import AnimatedSection from '../components/common/AnimatedSection'
 import CtaBanner from '../components/sections/CtaBanner'
+import GoogleReviews from '../components/sections/GoogleReviews'
 import hero from '../migrated/assets/home/hero.jpeg'
 import usp1 from '../migrated/assets/home/usp-1.svg'
 import usp2 from '../migrated/assets/home/usp-2.svg'
@@ -149,6 +151,12 @@ const brands = [
 export default function HomePage() {
   return (
     <MirrorShell pageClasses={PAGE_CLASSES} documentTitle="EVplug Maroc — Mobilité électrique au Maroc">
+      <Seo
+        title="EVplug Maroc — Mobilité électrique au Maroc"
+        description="EVplug Maroc — solutions de recharge pour véhicules électriques à domicile, en entreprise et sur la route."
+        path="/"
+        image={hero}
+      />
       {/* Hero */}
       <AnimatedSection className="relative header-banner-section bg-white" variant="fade" duration={2} amount={0.05}>
         <div className="mx-auto md:py-spacing-7xl py-spacing-4xl">
@@ -338,6 +346,9 @@ export default function HomePage() {
           </div>
         </div>
       </AnimatedSection>
+
+      {/* Google reviews */}
+      <GoogleReviews />
 
       {/* Benefits vertical */}
       <AnimatedSection className="relative benefits-vertical bg-white rounded-t-3xl top-spacing">

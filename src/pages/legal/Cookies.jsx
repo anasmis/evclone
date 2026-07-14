@@ -84,7 +84,7 @@ export default function Cookies() {
       <LegalSection title="Nous contacter">
         <p className="m-0">
           Pour toute question relative à cette politique de cookies, vous pouvez nous écrire à{' '}
-          <a href="mailto:support@evplug.com">support@evplug.com</a>.
+          <a href="mailto:support@evplug.ma">support@evplug.ma</a>.
         </p>
       </LegalSection>
     </LegalPage>

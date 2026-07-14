@@ -23,7 +23,7 @@ const SECTIONS = [
           <br />
           Mobile : <a href="tel:+212665254905">+212 6 65 25 49 05</a>
           <br />
-          Support : <a href="mailto:support@evplug.com">support@evplug.com</a>
+          Support : <a href="mailto:support@evplug.ma">support@evplug.ma</a>
         </p>
       </>
     ),
@@ -49,7 +49,7 @@ const SECTIONS = [
           recommandons aux parents de s’impliquer dans les activités en ligne de leurs enfants pour éviter la collecte
           de données sans autorisation parentale. Si vous pensez que nous avons collecté des données personnelles sur
           un mineur sans cette autorisation, veuillez nous contacter à{' '}
-          <a href="mailto:support@evplug.com">support@evplug.com</a> pour que nous puissions supprimer ces informations.
+          <a href="mailto:support@evplug.ma">support@evplug.ma</a> pour que nous puissions supprimer ces informations.
         </p>
       </>
     ),
@@ -130,7 +130,7 @@ const SECTIONS = [
         vous envoyer, ou à une autre organisation de votre choix, les données personnelles que nous détenons vous
         concernant sous forme de fichier informatique. Vous pouvez envoyer une demande d’accès, de correction, de
         suppression, de transfert de données, de retrait de votre consentement ou d’opposition au traitement de vos
-        données personnelles à <a href="mailto:support@evplug.com">support@evplug.com</a>. Pour garantir que la demande
+        données personnelles à <a href="mailto:support@evplug.ma">support@evplug.ma</a>. Pour garantir que la demande
         d’accès a bien été faite par vous, nous vous demandons d’accompagner votre demande d’une copie de votre pièce
         d’identité.
       </p>

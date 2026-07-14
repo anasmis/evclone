@@ -1,7 +1,7 @@
 import LegalPage, { LegalSection } from './LegalPage'
 
-const SITE = 'www.evplug.com'
-const SITE_URL = 'https://www.evplug.com'
+const SITE = 'www.evplug.ma'
+const SITE_URL = 'https://www.evplug.ma'
 
 const ARTICLES = [
   {

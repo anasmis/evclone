@@ -144,7 +144,7 @@ export default function Footer() {
             </div>
 
             <div className="w-full social-icons pt-spacing-4xl xl:pt-0">
-              <div className="footer-menu grid xl:justify-end xl:gap-spacing-5xl gap-spacing-4xl">
+              <div className="footer-menu grid xl:justify-end xl:gap-spacing-2xl gap-spacing-1xl">
                 <div className="grid gap-spacing-xl grid-flow-row">
                   <h6 className="text-white font-semibold font-lg">Support</h6>
                   <div
@@ -159,20 +159,12 @@ export default function Footer() {
                     }}
                   >
                     <a href={SUPPORT_PHONE.href} className="block">
-                      <span
-                        className="flex items-center gap-3 text-white/60 font-xs uppercase"
-                        style={{ letterSpacing: '0.12em', whiteSpace: 'nowrap' }}
-                      >
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                          <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.24 1.02l-2.21 2.2z" />
-                        </svg>
-                        Support client
-                      </span>
+
                       <span
                         className="block text-white mt-2"
                         style={{
                           fontFamily: 'var(--brand-font-heading)',
-                          fontSize: 'clamp(1.5rem, 2.4vw, 2rem)',
+                          fontSize: 'clamp(0.9rem, 2.4vw, 2rem)',
                           letterSpacing: '0.02em',
                           lineHeight: 1.1,
                           whiteSpace: 'nowrap',
