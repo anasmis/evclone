@@ -144,9 +144,13 @@ const NAV_ITEMS = [
       },
       {
         icon: iconEnergy,
-        label: 'Simulateur de recharge',
-        to: '/training/simulator',
-        description: 'Trouvez la solution de recharge la plus adaptee a votre vehicule et vos habitudes.',
+        label: 'Outils de simulation et comparaison',
+        description: 'Calculez vos besoins puis comparez les bornes et les véhicules.',
+        links: [
+          { label: 'Simulateur de recharge', to: '/training/simulator#simulator' },
+          { label: 'Comparateur de bornes', to: '/training/simulator#products' },
+          { label: 'Comparateur de véhicules', to: '/training/simulator#vehicles' },
+        ],
       },
       {
         icon: iconProfile,

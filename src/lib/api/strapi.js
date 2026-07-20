@@ -340,6 +340,93 @@ export function fetchServices(query = {}) {
   return listEntries('evplug-services', { 'populate[icon]': '*', ...query })
 }
 
+const firstValue = (entry, keys, fallback = '') => {
+  for (const key of keys) {
+    const value = entry?.[key]
+    if (value !== undefined && value !== null && value !== '') return value
+  }
+  return fallback
+}
+
+const numericValue = (entry, keys) => {
+  const value = Number(firstValue(entry, keys, Number.NaN))
+  return Number.isFinite(value) ? value : null
+}
+
+export function normalizeComparatorProduct(entry) {
+  if (!entry) return null
+  return {
+    id: entry.documentId || String(entry.id),
+    name: firstValue(entry, ['Name', 'name', 'Nom']),
+    brand: firstValue(entry, ['Brand', 'brand', 'Marque']),
+    category: firstValue(entry, ['Type', 'subcategory', 'category', 'Categorie']),
+    price: numericValue(entry, ['price', 'prix']),
+    image: strapiMediaUrl(entry.Image) || strapiMediaUrl(entry.image) || '',
+    description: firstValue(entry, ['Description', 'DescriptionAccessory', 'description']),
+    power: firstValue(entry, ['Puissancedecharge', 'power', 'Puissance']),
+    voltage: firstValue(entry, ['voltage', 'Tension']),
+    current: firstValue(entry, ['current', 'Courant']),
+    dimensions: firstValue(entry, ['Dimensionsduboitier', 'dimensions', 'Dimensions']),
+    weight: firstValue(entry, ['Poids', 'weight']),
+    warranty: firstValue(entry, ['Garantiefournisseur', 'warranty', 'Garantie']),
+    connectivity: firstValue(entry, ['Connectivite', 'connectivity']),
+    features: firstValue(entry, ['caracteristic_list', 'features'], []),
+    specifications: entry.specifications && typeof entry.specifications === 'object' ? entry.specifications : {},
+  }
+}
+
+export function normalizeComparatorVehicle(entry) {
+  if (!entry) return null
+  const brand = firstValue(entry, ['Brand', 'Marque', 'brand'])
+  const model = firstValue(entry, ['Modele', 'model'])
+  return {
+    id: entry.documentId || String(entry.id),
+    name: firstValue(entry, ['FullName', 'name'], [brand, model].filter(Boolean).join(' ')),
+    brand,
+    model,
+    category: firstValue(entry, ['Categorie', 'category']),
+    price: numericValue(entry, ['prix', 'price']),
+    image: strapiMediaUrl(entry.Images) || strapiMediaUrl(entry.image) || strapiMediaUrl(entry.Image) || '',
+    range: firstValue(entry, ['Autonomieofficielle', 'range']),
+    battery: firstValue(entry, ['Capacitebatterie', 'Capacitedebatterie', 'batteryCapacity']),
+    consumption: firstValue(entry, ['ConsommationmixteWLTP', 'Consommation', 'consumption']),
+    power: firstValue(entry, ['Puissance', 'Puissancemaxi', 'power']),
+    acceleration: firstValue(entry, ['Accelerationde0a100kmh', 'acceleration']),
+    topSpeed: firstValue(entry, ['Vitessemax', 'Vitessemaxi', 'topSpeed']),
+    fastCharging: firstValue(entry, ['RechargeDCmax', 'PuissancemaxDC', 'Tempsderechargerapide', 'fastCharging']),
+    chargingType: [firstValue(entry, ['ConnecteurAC']), firstValue(entry, ['ConnecteurDC'])].filter(Boolean).join(' / ') || firstValue(entry, ['Typederecharge', 'chargingType']),
+    seats: firstValue(entry, ['Places', 'Nombredeplace', 'seats']),
+    trunkVolume: firstValue(entry, ['Volumeducoffre', 'Volumedecoffre', 'trunkVolume']),
+    weight: firstValue(entry, ['Poids', 'weight']),
+    dimensions: [
+      firstValue(entry, ['Longueur', 'length']),
+      firstValue(entry, ['Largeur', 'width']),
+      firstValue(entry, ['Hauteur', 'height']),
+    ].filter(Boolean).join(' × '),
+    warranty: firstValue(entry, ['Garantie', 'warranty']),
+  }
+}
+
+export async function fetchComparatorProducts(query = {}) {
+  const items = await listEntries('products', {
+    populate: '*',
+    sort: 'Name:asc',
+    'pagination[pageSize]': 200,
+    ...query,
+  })
+  return items.map(normalizeComparatorProduct).filter((item) => item?.name)
+}
+
+export async function fetchComparatorVehicles(query = {}) {
+  const items = await listEntries('vehicules', {
+    populate: '*',
+    sort: 'FullName:asc',
+    'pagination[pageSize]': 300,
+    ...query,
+  })
+  return items.map(normalizeComparatorVehicle).filter((item) => item?.name)
+}
+
 // -------------------------------------------------------------------
 // Content reads — charging stations
 // -------------------------------------------------------------------
@@ -417,7 +504,9 @@ export async function fetchEvonePage(query = {}) {
 // shape `{ url }`, or null. Returns null when the field is unset.
 export function strapiMediaUrl(media) {
   if (!media) return null
-  const node = media.data?.attributes ?? media.data ?? media
+  const rawNode = media.data?.attributes ?? media.data ?? media
+  const firstNode = Array.isArray(rawNode) ? rawNode[0] : rawNode
+  const node = firstNode?.attributes ?? firstNode
   const url = node?.url
   if (!url) return null
   if (/^https?:\/\//i.test(url)) return url
