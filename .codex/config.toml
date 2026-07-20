@@ -1,0 +1,9 @@
+[mcp_servers.nano-banana]
+command = "npx"
+args = [
+    "-y",
+    "nanobanana-mcp",
+]
+
+[mcp_servers.nano-banana.env]
+GEMINI_API_KEY = "AIzaSyDoKshHFgCfXQG2NIPFXGrptdmHTcsF6hc"

@@ -143,6 +143,12 @@ const NAV_ITEMS = [
         description: 'Certification EVplug pour électriciens : niveaux, calendrier et garantie 5 ans.',
       },
       {
+        icon: iconEnergy,
+        label: 'Simulateur de recharge',
+        to: '/training/simulator',
+        description: 'Trouvez la solution de recharge la plus adaptee a votre vehicule et vos habitudes.',
+      },
+      {
         icon: iconProfile,
         label: 'Formations entreprises',
         to: '/training/corporate',

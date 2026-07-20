@@ -21,6 +21,7 @@ export const ALLOWED_EXACT_ROUTES = new Set([
   '/about',
   // Formation
   '/approved-installer-training',
+  '/training/simulator',
   // Contact
   '/contact-us',
   // Footer

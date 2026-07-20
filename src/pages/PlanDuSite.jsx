@@ -41,6 +41,7 @@ const SITEMAP = [
       { label: 'Centre de formation', to: '/training' },
       { label: 'Formation installateurs', to: '/training/electricians' },
       { label: 'Formation entreprises', to: '/training/corporate' },
+      { label: 'Simulateur de recharge', to: '/training/simulator' },
     ],
   },
   {

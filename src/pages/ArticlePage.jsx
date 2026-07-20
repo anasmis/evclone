@@ -3,7 +3,8 @@ import { useParams, Link } from 'react-router-dom'
 import { marked } from 'marked'
 import MirrorShell from './MirrorShell'
 import NotFoundPage from './NotFoundPage'
-import Seo, { absoluteUrl } from '../components/seo/Seo'
+import Seo from '../components/seo/Seo'
+import { absoluteUrl } from '../components/seo/absoluteUrl'
 import Breadcrumb from '../components/sections/Breadcrumb'
 import {
   getGuideArticle,

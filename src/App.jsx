@@ -22,6 +22,7 @@ import ArticlePage from './pages/ArticlePage'
 import TrainingHub from './pages/training/TrainingHub'
 import Electricians from './pages/training/Electricians'
 import Corporate from './pages/training/Corporate'
+import ChargingSimulatorPage from './pages/training/ChargingSimulatorPage'
 import PrivacyPolicy from './pages/legal/Confidentialite'
 import TermsAndConditions from './pages/legal/TermsAndConditions'
 import Cookies from './pages/legal/Cookies'
@@ -65,6 +66,7 @@ function AppRoutes() {
       <Route path="/training" element={<TrainingHub />} />
       <Route path="/training/electricians" element={<Electricians />} />
       <Route path="/training/corporate" element={<Corporate />} />
+      <Route path="/training/simulator" element={<ChargingSimulatorPage />} />
       <Route path="/approved-installer-training" element={<Navigate to="/training" replace />} />
 
       <Route path="/general-terms-and-conditions" element={<TermsAndConditions />} />

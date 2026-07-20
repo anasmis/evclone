@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { absoluteUrl } from './absoluteUrl'
 
 // Dependency-free document-head manager.
 //
@@ -12,16 +13,6 @@ import { useEffect } from 'react'
 // mount, restores/removes them on unmount so client-side navigation between
 // pages never leaves stale tags behind, and flips a `data-seo-ready` flag on
 // <html> that the prerender script waits for before snapshotting.
-
-const SITE_URL = (import.meta.env.VITE_SITE_URL || '').replace(/\/+$/, '')
-
-// Turn a possibly-relative image/URL into an absolute one for OG/Twitter/canonical.
-export function absoluteUrl(value) {
-  if (!value) return ''
-  if (/^https?:\/\//i.test(value)) return value
-  if (!SITE_URL) return '' // never emit a wrong-origin absolute URL
-  return `${SITE_URL}${value.startsWith('/') ? value : `/${value}`}`
-}
 
 export default function Seo({
   title,

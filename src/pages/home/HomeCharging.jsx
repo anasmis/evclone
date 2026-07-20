@@ -10,7 +10,6 @@ import Accordion from '../../components/sections/Accordion'
 import HelpBand from '../../components/sections/HelpBand'
 import CtaBanner from '../../components/sections/CtaBanner'
 import BenefitsStrip from '../../components/sections/BenefitsStrip'
-import HomeChargingSimulator from '../../components/sections/HomeChargingSimulator'
 import hero from '../../migrated/assets/installation/standard-img-1.jpeg'
 import iconCharger from '../../migrated/assets/home-charging/icon-charger.svg'
 import iconInstall from '../../migrated/assets/home-charging/icon-install.svg'
@@ -486,8 +485,14 @@ export default function HomeCharging() {
             {/* Quality commitments */}
             <EngagementsShowcase />
 
-            {/* Decide your needs — interactive charging configurator */}
-            <HomeChargingSimulator />
+            {/* Link to the full interactive charging configurator */}
+            <section className="bg-white relative py-spacing-7xl">
+              <div className="container-max-width-desktop container-max-width-tablet container-padding-desktop container-padding-tablet container-padding-mobile mx-auto flex justify-center">
+                <Link to="/training/simulator" className="btn btn-primary">
+                  Ouvrir le simulateur de recharge
+                </Link>
+              </div>
+            </section>
 
             {/* How it works */}
             <section className="bg-surface relative xl:py-spacing-9xl py-spacing-7xl how-it-work-section">
