@@ -1,0 +1,253 @@
+/* ---------------------------------------------------------------------------
+   Local fonts
+   --------------------------------------------------------------------------- */
+@font-face {
+  font-family: 'Poster Cut Neue';
+  src: url('./fonts/PosterCutNeue-Regular.woff2') format('woff2'),
+       url('./fonts/PosterCutNeue-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TT Commons Pro';
+  src: url('./fonts/TTCommonsPro-Lt.woff2') format('woff2'),
+       url('./fonts/TTCommonsPro-Lt.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TT Commons Pro';
+  src: url('./fonts/TTCommonsPro-Rg.woff2') format('woff2'),
+       url('./fonts/TTCommonsPro-Rg.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TT Commons Pro';
+  src: url('./fonts/TTCommonsPro-Md.woff2') format('woff2'),
+       url('./fonts/TTCommonsPro-Md.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TT Commons Pro';
+  src: url('./fonts/TTCommonsPro-Db.woff2') format('woff2'),
+       url('./fonts/TTCommonsPro-Db.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TT Commons Pro';
+  src: url('./fonts/TTCommonsPro-Bd.woff2') format('woff2'),
+       url('./fonts/TTCommonsPro-Bd.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TT Commons Pro';
+  src: url('./fonts/TTCommonsPro-XBd.woff2') format('woff2'),
+       url('./fonts/TTCommonsPro-XBd.woff') format('woff');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TT Commons Pro';
+  src: url('./fonts/TTCommonsPro-Blk.woff2') format('woff2'),
+       url('./fonts/TTCommonsPro-Blk.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---------------------------------------------------------------------------
+   Tailwind 4 theme tokens — derived from the legacy podpoint theme so the
+   custom utility classes used throughout the React pages keep working.
+   --------------------------------------------------------------------------- */
+@theme {
+  /* Brand fonts */
+  --font-sans: 'TT Commons Pro', ui-sans-serif, system-ui, sans-serif;
+  --font-TTCommons: 'TT Commons Pro', sans-serif;
+  --font-PosterCutNeue: 'Poster Cut Neue', sans-serif;
+
+  /* Font weights (legacy components reference --font-weight-regular / -x-light) */
+  --font-weight-x-light: 200;
+  --font-weight-regular: 400;
+
+  /* Brand colors */
+  --color-primary: #000000;
+  --color-secondary: #F2F5C4;
+  --color-blue-dianne: #163E4C;
+  --color-greendark: #163E4D;
+  --color-orange: #FE5716;
+  --color-sky: #9BDCE1;
+  --color-yellow: #FFDC50;
+  --color-purple: #550041;
+  --color-brown: #613500;
+  --color-pear: #C8D72D;
+  --color-lime: #C8D72D;
+  --color-greenlight: #CFE031;
+  --color-ripe-plum: #42005C;
+  --color-casablanca: #f3a929;
+  --color-pink: #d78583;
+  --color-cornflower: #87B4E1;
+
+  /* Neutral palette */
+  --color-abbey: #5A5A5F;
+  --color-gray: #80807E;
+  --color-graylight: #F7F7F5;
+  --color-graydark: #F0EEEB;
+  --color-surface: #F5F1EB;
+  --color-chocolate-100: #F2EDE6;
+  --color-charcoal-50: #F5F5F5;
+
+  /* Custom spacing scale used by the *-spacing-* utilities below */
+  --spacing-none: 0px;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 14px;
+  --spacing-xl: 16px;
+  --spacing-2xl: 20px;
+  --spacing-3xl: 24px;
+  --spacing-4xl: 32px;
+  --spacing-5xl: 40px;
+  --spacing-6xl: 48px;
+  --spacing-7xl: 64px;
+  --spacing-8xl: 80px;
+  --spacing-9xl: 120px;
+}
+
+/* ---------------------------------------------------------------------------
+   Non-utility CSS variables consumed directly by legacy component rules.
+   Kept outside @theme because @theme is for tokens that drive utility
+   generation — these are plain custom properties used in var() lookups.
+   --------------------------------------------------------------------------- */
+:root {
+  /* Type scale referenced by .font-* utilities and many component rules */
+  --font-size-xs: 12px;   --line-height-xs: 16px;
+  --font-size-sm: 14px;   --line-height-sm: 21px;
+  --font-size-base: 16px; --line-height-base: 24px;
+  --font-size-lg: 18px;   --line-height-lg: 27px;
+  --font-size-xl: 20px;   --line-height-xl: 30px;
+  --font-size-2xl: 24px;  --line-height-2xl: 29px;
+  --font-size-3xl: 30px;  --line-height-3xl: 36px;
+  --font-size-4xl: 32px;  --line-height-4xl: 38px;
+  --font-size-5xl: 32px;
+  --font-size-6xl: 48px;  --line-height-6xl: 58px;
+  --font-size-7xl: 60px;  --line-height-7xl: 72px;
+  --font-size-8xl: 64px;  --line-height-8xl: 72px;
+
+  /* Layout */
+  --container-max-width-mobile: 480px;
+  --container-max-width-tablet: 1088px;
+  --container-max-width-desktop: 1440px;
+  --container-padding-mobile: 16px;
+  --container-padding-tablet: 32px;
+  --container-padding-desktop: 120px;
+
+  --paragraph-max-width: 45rem;
+  --paragraph-max-small-width: 42.875rem;
+
+  --section-desktop-padding-sm: 64px;
+  --section-desktop-padding-lg: 80px;
+  --section-desktop-padding-x: 32px;
+
+  --grid-desktop-columns: 12;
+  --grid-desktop-gutter: 32px;
+  --grid-desktop-margin: 120px;
+  --grid-tablet-columns: 8;
+  --grid-tablet-gutter: 32px;
+  --grid-tablet-margin: 32px;
+  --grid-mobile-columns: 4;
+  --grid-mobile-gutter: 16px;
+  --grid-mobile-margin: 16px;
+
+  --margin-inline-mobile: clamp(16px, 5vw, 24px);
+  --margin-inline-tablet: clamp(32px, 6vw, 80px);
+  --margin-inline-desktop: clamp(80px, 8vw, 120px);
+}
+
+/* ---------------------------------------------------------------------------
+   Custom font-size utilities — `font-Xxl` maps size + line-height together.
+   Distinct from Tailwind's built-in `font-{weight|family}` utilities because
+   the tokens live under different namespaces.
+   --------------------------------------------------------------------------- */
+@utility font-xs   { font-size: var(--font-size-xs);   line-height: var(--line-height-xs); }
+@utility font-sm   { font-size: var(--font-size-sm);   line-height: var(--line-height-sm); }
+@utility font-base { font-size: var(--font-size-base); line-height: var(--line-height-base); }
+@utility font-lg   { font-size: var(--font-size-lg);   line-height: var(--line-height-lg); }
+@utility font-xl   { font-size: var(--font-size-xl);   line-height: var(--line-height-xl); }
+@utility font-2xl  { font-size: var(--font-size-2xl);  line-height: var(--line-height-2xl); }
+@utility font-3xl  { font-size: var(--font-size-3xl);  line-height: var(--line-height-3xl); }
+@utility font-4xl  { font-size: var(--font-size-4xl);  line-height: var(--line-height-4xl); }
+@utility font-5xl  { font-size: var(--font-size-5xl);  line-height: var(--line-height-4xl); }
+@utility font-6xl  { font-size: var(--font-size-6xl);  line-height: var(--line-height-6xl); }
+@utility font-7xl  { font-size: var(--font-size-7xl);  line-height: var(--line-height-7xl); }
+@utility font-8xl  { font-size: var(--font-size-8xl);  line-height: var(--line-height-8xl); }
+
+/* ---------------------------------------------------------------------------
+   Spacing utilities keyed on the custom `--spacing-*` scale.
+   --------------------------------------------------------------------------- */
+@utility gap-spacing-*  { gap:           --value(--spacing-*); }
+@utility p-spacing-*    { padding:       --value(--spacing-*); }
+@utility pt-spacing-*   { padding-top:   --value(--spacing-*); }
+@utility pb-spacing-*   { padding-bottom:--value(--spacing-*); }
+@utility pl-spacing-*   { padding-left:  --value(--spacing-*); }
+@utility pr-spacing-*   { padding-right: --value(--spacing-*); }
+@utility px-spacing-*   { padding-inline:--value(--spacing-*); }
+@utility py-spacing-*   { padding-block: --value(--spacing-*); }
+@utility m-spacing-*    { margin:        --value(--spacing-*); }
+@utility mt-spacing-*   { margin-top:    --value(--spacing-*); }
+@utility mb-spacing-*   { margin-bottom: --value(--spacing-*); }
+@utility ml-spacing-*   { margin-left:   --value(--spacing-*); }
+@utility mr-spacing-*   { margin-right:  --value(--spacing-*); }
+@utility mx-spacing-*   { margin-inline: --value(--spacing-*); }
+@utility my-spacing-*   { margin-block:  --value(--spacing-*); }
+@utility space-x-spacing-* {
+  & > :not(:last-child) { margin-right: --value(--spacing-*); }
+}
+@utility space-y-spacing-* {
+  & > :not(:last-child) { margin-bottom: --value(--spacing-*); }
+}
+
+/* `pb-spacing-0` / `py-spacing-none` etc. — explicit 0 aliases */
+@utility pb-spacing-0  { padding-bottom: 0; }
+@utility pl-spacing-0  { padding-left: 0; }
+@utility pr-spacing-0  { padding-right: 0; }
+@utility pt-spacing-0  { padding-top: 0; }
+@utility px-spacing-0  { padding-inline: 0; }
+@utility py-spacing-0  { padding-block: 0; }
+
+/* ---------------------------------------------------------------------------
+   Container width / padding utilities — responsive, mirroring the legacy
+   breakpoints. Written into @layer utilities directly because Tailwind 4's
+   @utility directive hoists nested @media blocks back to the top level
+   alongside an unconditional base rule, which breaks the responsive intent.
+   --------------------------------------------------------------------------- */
+@layer utilities {
+  @media (max-width: 767px) {
+    .container-padding-mobile { padding-left: 16px;  padding-right: 16px; }
+  }
+  @media (min-width: 768px) and (max-width: 1279px) {
+    .container-max-width-tablet { max-width: 1088px; }
+    .container-padding-tablet   { padding-left: 32px; padding-right: 32px; }
+  }
+  @media (min-width: 1280px) {
+    .container-max-width-desktop { max-width: 1440px; }
+    .container-padding-desktop   { padding-left: 120px; padding-right: 120px; }
+  }
+}

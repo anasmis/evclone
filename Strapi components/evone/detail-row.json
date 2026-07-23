@@ -1,0 +1,38 @@
+{
+  "collectionName": "components_evone_detail_rows",
+  "info": {
+    "displayName": "Detail Row",
+    "description": "Image + title + lead + intro + bullet list, alternating left/right"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "maxLength": 120
+    },
+    "lead": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "intro": {
+      "type": "text",
+      "maxLength": 500
+    },
+    "bullets": {
+      "type": "json",
+      "default": []
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "reversed": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

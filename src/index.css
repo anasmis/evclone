@@ -1,0 +1,118 @@
+@import "tailwindcss";
+@import "./styles/theme.css";
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+@import "leaflet/dist/leaflet.css";
+@import "./styles/owl.carousel.css";
+@import "./styles/owl.theme.default.css";
+@import "./styles/aos.css";
+@import "./styles/legacy-base.css";
+@import "./styles/legacy-components.css";
+@import "./styles/legacy-utilities.css";
+@import "./styles/brand-identity.css";
+@import "./styles/editorial-pages.css";
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+
+.dialog-off-canvas-main-canvas header.header-section {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+}
+
+/* When the navbar is rendered via portal, apply the same positioning */
+.evplug-navbar-portal header.header-section {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+}
+
+/* Ensure portaled navbar and its dropdowns are clickable and above content */
+.evplug-navbar-portal {
+  position: relative;
+  z-index: 10000;
+  pointer-events: auto;
+}
+.evplug-navbar-portal header.header-section,
+.evplug-navbar-portal .header-section-inner,
+.evplug-navbar-portal nav.navbar {
+  overflow: visible;
+}
+.evplug-navbar-portal .megamenu {
+  position: absolute;
+  z-index: 10001;
+}
+
+.dialog-off-canvas-main-canvas header.header-section nav.navbar {
+  background: transparent !important;
+}
+
+/* Keep navbar background transparent when portaled */
+.evplug-navbar-portal header.header-section nav.navbar {
+  background: transparent !important;
+}
+
+.dialog-off-canvas-main-canvas header.header-section .header-section-inner {
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+/* Match inner transition when portaled */
+.evplug-navbar-portal .header-section-inner {
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.dialog-off-canvas-main-canvas header.header-section.nav-scrolled .header-section-inner {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.22);
+}
+
+/* Scroll shadow when the wrapper toggles nav-scrolled */
+.evplug-navbar-portal.nav-scrolled .header-section-inner {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.22);
+}
+
+/* Navbar logo sizing and alignment */
+.dialog-off-canvas-main-canvas header.header-section .logo,
+.evplug-navbar-portal header.header-section .logo {
+  width: 120px; /* mobile default */
+  height: auto;
+  display: flex;
+  align-items: center;
+}
+
+.dialog-off-canvas-main-canvas header.header-section .logo img,
+.evplug-navbar-portal header.header-section .logo img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .dialog-off-canvas-main-canvas header.header-section .logo,
+  .evplug-navbar-portal header.header-section .logo {
+    width: 160px; /* desktop/tablet */
+  }
+}
+
+.dialog-off-canvas-main-canvas {
+  padding-top: var(--evplug-nav-h, 110px);
+}
+
+/* Add a little breathing room below the navbar so titles aren't cramped */
+.editorial-shell .editorial-main {
+  margin-top: 12px;
+}
+
+.evplug-zapmap-map {
+  height: min(72vh, 680px);
+  min-height: 420px;
+  width: 100%;
+}
