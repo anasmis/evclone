@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/prerender.mjs",
-    "build:spa": "vite build",
+    "build": "vite build && node scripts/prepare-sites-build.mjs && node scripts/prerender.mjs",
+    "build:spa": "vite build && node scripts/prepare-sites-build.mjs",
     "prerender": "node scripts/prerender.mjs",
     "lint": "eslint .",
     "preview": "vite preview"
@@ -24,6 +24,7 @@
     "react-router-dom": "^7.14.2"
   },
   "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.46.0",
     "@emnapi/core": "1.10.0",
     "@emnapi/runtime": "1.10.0",
     "@eslint/js": "^10.0.1",
@@ -39,6 +40,7 @@
     "postcss": "^8.5.10",
     "puppeteer": "^25.3.0",
     "tailwindcss": "^4.2.4",
-    "vite": "^8.0.10"
+    "vite": "^8.0.10",
+    "wrangler": "^4.113.0"
   }
 }

@@ -1,18 +1,28 @@
-export const HOME_ENERGY_RATE = 1.6
+export const HOME_ENERGY_RATE = 1.3817
 export const AC_CHARGING_EFFICIENCY = 0.9
 
-export const HOME_CHARGING_VEHICLES = [
-  { id: 'citadine', label: 'Citadine', consumption: 14, icon: 'fa-car-side' },
-  { id: 'berline', label: 'Berline', consumption: 17, icon: 'fa-car' },
-  { id: 'suv', label: 'SUV / Familiale', consumption: 20, icon: 'fa-truck' },
+export const ONEE_RESIDENTIAL_RATES = [
+  { id: 'tier-1', label: '0–100 kWh', rate: 0.9010 },
+  { id: 'tier-2', label: '101–200 kWh', rate: 1.0732 },
+  { id: 'tier-4', label: '201–300 kWh', rate: 1.1676 },
+  { id: 'tier-5', label: '301–500 kWh', rate: 1.3817, recommended: true },
+  { id: 'tier-6', label: 'Plus de 500 kWh', rate: 1.5958 },
 ]
 
-export const HOME_CHARGERS = [
-  { id: 'prise', label: 'Prise domestique', power: 2.3, phase: 'mono', amp: '10 A', icon: 'fa-plug' },
-  { id: 'renforcee', label: 'Prise renforcée', power: 3.7, phase: 'mono', amp: '16 A', icon: 'fa-plug-circle-bolt' },
-  { id: 'wb7', label: 'Wallbox 7,4 kW', power: 7.4, phase: 'mono', amp: '32 A', icon: 'fa-charging-station' },
-  { id: 'wb11', label: 'Wallbox 11 kW', power: 11, phase: 'tri', amp: '3× 16 A', icon: 'fa-charging-station' },
-  { id: 'wb22', label: 'Wallbox 22 kW', power: 22, phase: 'tri', amp: '3× 32 A', icon: 'fa-bolt' },
+export const CHARGER_POWER_PRESETS = [
+  { value: 2.3, label: 'Prise', detail: '2,3 kW' },
+  { value: 3.7, label: 'Renforcée', detail: '3,7 kW' },
+  { value: 7.4, label: 'Wallbox', detail: '7,4 kW' },
+  { value: 11, label: 'Wallbox', detail: '11 kW' },
+  { value: 22, label: 'Wallbox', detail: '22 kW' },
+]
+
+export const ELECTRICAL_SUPPLIES = [
+  { id: 'mono-220', label: '220 V', detail: 'Monophasé', voltage: 220, phases: 1, icon: 'fa-house' },
+  { id: 'mono-230', label: '230 V', detail: 'Monophasé', voltage: 230, phases: 1, icon: 'fa-house' },
+  { id: 'tri-380', label: '380 V', detail: 'Triphasé', voltage: 380, phases: 3, icon: 'fa-industry' },
+  { id: 'tri-400', label: '400 V', detail: 'Triphasé', voltage: 400, phases: 3, icon: 'fa-industry' },
+  { id: 'custom', label: 'Autre', detail: 'À préciser', voltage: null, phases: null, icon: 'fa-pen' },
 ]
 
 const clamp = (value, min, max) => Math.min(max, Math.max(min, value))
@@ -28,59 +38,76 @@ export function formatChargingTime(hours) {
   return `${wholeHours} h ${String(minutes).padStart(2, '0')}`
 }
 
-export function calculateHomeChargingScenario({
-  vehicleId,
-  batteryCapacity,
-  dailyDistance,
-  phase,
-  chargingWindow,
-  winter,
-}) {
-  const vehicle = HOME_CHARGING_VEHICLES.find((item) => item.id === vehicleId) || HOME_CHARGING_VEHICLES[1]
-  const safeBatteryCapacity = clamp(Number(batteryCapacity) || 60, 1, 200)
-  const safeDailyDistance = clamp(Number(dailyDistance) || 0, 0, 1000)
-  const safeChargingWindow = clamp(Number(chargingWindow) || 0, 0, 24)
-  const consumption = vehicle.consumption * (winter ? 1.2 : 1)
-  const kmPerKwh = 100 / consumption
+export function calculateSupplyPower({ voltage, amperage, phases }) {
+  const safeVoltage = clamp(Number(voltage) || 220, 100, 500)
+  const safeAmperage = clamp(Number(amperage) || 16, 1, 100)
+  const safePhases = Number(phases) === 3 ? 3 : 1
 
-  // Energy stored in the battery to replace the day's driving.
-  const dailyBatteryEnergy = (safeDailyDistance * consumption) / 100
-  // Energy billed at the meter, including estimated AC conversion losses.
-  const dailyGridEnergy = dailyBatteryEnergy / AC_CHARGING_EFFICIENCY
-  const batteryUsePercent = (dailyBatteryEnergy / safeBatteryCapacity) * 100
-  const estimatedRangeKm = safeBatteryCapacity * kmPerKwh
-  const exceedsBatteryRange = dailyBatteryEnergy > safeBatteryCapacity
-
-  const compatibleChargers = HOME_CHARGERS.filter((charger) => phase === 'tri' || charger.phase === 'mono')
-  const rows = compatibleChargers.map((charger) => {
-    const batteryPower = charger.power * AC_CHARGING_EFFICIENCY
-    const dailyTime = dailyBatteryEnergy / batteryPower
-
-    return {
-      ...charger,
-      batteryPower,
-      dailyTime,
-      fullTime: (safeBatteryCapacity * 0.6) / batteryPower,
-      kmPerHour: batteryPower * kmPerKwh,
-      fitsWindow: dailyTime <= safeChargingWindow,
-    }
-  })
-
-  const wallboxes = rows.filter((row) => row.power >= 7.4)
-  const recommended = wallboxes.find((row) => row.fitsWindow) || wallboxes[wallboxes.length - 1]
+  const power = safePhases === 3
+    ? (Math.sqrt(3) * safeVoltage * safeAmperage) / 1000
+    : (safeVoltage * safeAmperage) / 1000
 
   return {
-    vehicle,
-    rows,
-    recommended,
-    consumption,
-    dailyBatteryEnergy,
-    dailyGridEnergy,
-    dailyCost: dailyGridEnergy * HOME_ENERGY_RATE,
-    batteryUsePercent,
-    batteryMeterPercent: clamp(batteryUsePercent, 0, 100),
-    estimatedRangeKm,
-    exceedsBatteryRange,
-    maxTime: Math.max(...rows.map((row) => row.dailyTime), 0),
+    voltage: safeVoltage,
+    amperage: safeAmperage,
+    phases: safePhases,
+    power,
+  }
+}
+
+export function calculateHomeChargingScenario({
+  batteryCapacity,
+  startLevel,
+  targetLevel,
+  chargerPower,
+  supplyId,
+  customVoltage,
+  customPhases,
+  amperage,
+  chargingWindow,
+  energyRate,
+}) {
+  const supplyPreset = ELECTRICAL_SUPPLIES.find((item) => item.id === supplyId) || ELECTRICAL_SUPPLIES[0]
+  const phases = supplyPreset.id === 'custom' ? (Number(customPhases) === 3 ? 3 : 1) : supplyPreset.phases
+  const voltage = supplyPreset.id === 'custom' ? customVoltage : supplyPreset.voltage
+  const supply = calculateSupplyPower({ voltage, amperage, phases })
+
+  const safeBatteryCapacity = clamp(Number(batteryCapacity) || 60, 10, 200)
+  const safeStartLevel = clamp(Number(startLevel) || 0, 0, 99)
+  const safeTargetLevel = clamp(Number(targetLevel) || 100, safeStartLevel + 1, 100)
+  const safeChargerPower = clamp(Number(chargerPower) || 7.4, 1.4, 22)
+  const safeChargingWindow = clamp(Number(chargingWindow) || 0, 1, 24)
+  const safeEnergyRate = clamp(Number(energyRate) || HOME_ENERGY_RATE, 0.01, 20)
+
+  const batteryEnergy = safeBatteryCapacity * ((safeTargetLevel - safeStartLevel) / 100)
+  const effectiveGridPower = Math.min(safeChargerPower, supply.power)
+  const batteryChargingPower = effectiveGridPower * AC_CHARGING_EFFICIENCY
+  const gridEnergy = batteryEnergy / AC_CHARGING_EFFICIENCY
+  const chargingTime = batteryEnergy / batteryChargingPower
+  const cost = gridEnergy * safeEnergyRate
+  const supplyLimited = supply.power + 0.05 < safeChargerPower
+  const fitsWindow = chargingTime <= safeChargingWindow
+  const requiredGridPower = batteryEnergy / (AC_CHARGING_EFFICIENCY * safeChargingWindow)
+  const suggestedChargerPower = clamp(Math.ceil(requiredGridPower * 10) / 10, 1.4, 22)
+
+  return {
+    batteryCapacity: safeBatteryCapacity,
+    startLevel: safeStartLevel,
+    targetLevel: safeTargetLevel,
+    chargerPower: safeChargerPower,
+    chargingWindow: safeChargingWindow,
+    energyRate: safeEnergyRate,
+    supply,
+    batteryEnergy,
+    gridEnergy,
+    effectiveGridPower,
+    batteryChargingPower,
+    chargingTime,
+    cost,
+    supplyLimited,
+    fitsWindow,
+    requiredGridPower,
+    suggestedChargerPower,
+    wattHourRate: safeEnergyRate / 1000,
   }
 }

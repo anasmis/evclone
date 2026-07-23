@@ -25,7 +25,7 @@ import fs from 'node:fs/promises'
 import path from 'node:path'
 import process from 'node:process'
 
-const DIST = path.resolve('dist')
+const DIST = path.resolve('dist/client')
 
 const env = loadEnv('production', process.cwd(), '')
 const STRAPI_URL = (process.env.VITE_STRAPI_URL || env.VITE_STRAPI_URL || '').replace(/\/+$/, '')
@@ -189,6 +189,9 @@ async function main() {
 }
 
 function closeServer(server) {
+  if (typeof server?.close === 'function') {
+    return server.close()
+  }
   return new Promise((resolve) => {
     if (server?.httpServer) server.httpServer.close(() => resolve())
     else resolve()
