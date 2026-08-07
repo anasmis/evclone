@@ -71,8 +71,8 @@ export default function ChargingSimulatorPage() {
               aria-labelledby={`tool-tab-${activeTool}`}
             >
               {activeTool === 'simulator' && <HomeChargingSimulator />}
-              {activeTool === 'products' && <CatalogComparator type="products" />}
-              {activeTool === 'vehicles' && <CatalogComparator type="vehicles" />}
+              {activeTool === 'products' && <CatalogComparator key="products" type="products" />}
+              {activeTool === 'vehicles' && <CatalogComparator key="vehicles" type="vehicles" />}
             </div>
           </div>
         </article>

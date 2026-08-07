@@ -108,6 +108,37 @@ async function listEntries(plural, query) {
   )
 }
 
+async function listAllEntries(plural, query = {}) {
+  const pageSize = 100
+  const normalizePage = (entries) => (entries ?? []).map((entry) =>
+    entry?.attributes ? { id: entry.id, ...entry.attributes } : entry,
+  )
+  const firstPage = await request(`/api/${plural}`, {
+    method: 'GET',
+    query: {
+      ...query,
+      'pagination[page]': 1,
+      'pagination[pageSize]': pageSize,
+    },
+  })
+  const items = normalizePage(firstPage?.data)
+  const pageCount = Math.max(1, Number(firstPage?.meta?.pagination?.pageCount) || 1)
+
+  for (let page = 2; page <= pageCount; page += 1) {
+    const response = await request(`/api/${plural}`, {
+      method: 'GET',
+      query: {
+        ...query,
+        'pagination[page]': page,
+        'pagination[pageSize]': pageSize,
+      },
+    })
+    items.push(...normalizePage(response?.data))
+  }
+
+  return items
+}
+
 async function findEntry(plural, id, query) {
   const res = await request(`/api/${plural}/${id}`, { method: 'GET', query })
   const entry = res?.data
@@ -353,6 +384,29 @@ const numericValue = (entry, keys) => {
   return Number.isFinite(value) ? value : null
 }
 
+const decimalFromText = (value) => {
+  const numeric = Number(String(value ?? '').replace(',', '.').replace(/[^0-9.-]/g, ''))
+  return Number.isFinite(numeric) ? numeric : null
+}
+
+const batteryCapacityFromText = (value) => {
+  if (typeof value === 'number') return Number.isFinite(value) ? value : null
+  const text = String(value ?? '').trim()
+  if (!text) return null
+
+  const usableBefore = text.match(/(\d+(?:[,.]\d+)?)\s*kWh[^0-9]{0,24}utilis/i)
+  const usableAfter = text.match(/utilis[^0-9]{0,24}(\d+(?:[,.]\d+)?)\s*kWh/i)
+  const firstCapacity = text.match(/(\d+(?:[,.]\d+)?)\s*kWh/i)
+  return decimalFromText(usableBefore?.[1] || usableAfter?.[1] || firstCapacity?.[1] || (/^\d+(?:[,.]\d+)?$/.test(text) ? text : ''))
+}
+
+const chargingPowerFromText = (value) => {
+  if (typeof value === 'number') return Number.isFinite(value) ? value : null
+  const match = String(value ?? '').match(/(\d+(?:[,.]\d+)?)\s*kW(?!h)/i)
+  const text = String(value ?? '').trim()
+  return decimalFromText(match?.[1] || (/^\d+(?:[,.]\d+)?$/.test(text) ? text : ''))
+}
+
 export function normalizeComparatorProduct(entry) {
   if (!entry) return null
   return {
@@ -379,6 +433,8 @@ export function normalizeComparatorVehicle(entry) {
   if (!entry) return null
   const brand = firstValue(entry, ['Brand', 'Marque', 'brand'])
   const model = firstValue(entry, ['Modele', 'model'])
+  const battery = firstValue(entry, ['Capacitebatterie', 'Capacitedebatterie', 'batteryCapacity'])
+  const acCharging = firstValue(entry, ['RechargeACmax', 'PuissancemaxAC', 'ChargeAC', 'ConnecteurAC'])
   return {
     id: entry.documentId || String(entry.id),
     name: firstValue(entry, ['FullName', 'name'], [brand, model].filter(Boolean).join(' ')),
@@ -388,12 +444,15 @@ export function normalizeComparatorVehicle(entry) {
     price: numericValue(entry, ['prix', 'price']),
     image: strapiMediaUrl(entry.Images) || strapiMediaUrl(entry.image) || strapiMediaUrl(entry.Image) || '',
     range: firstValue(entry, ['Autonomieofficielle', 'range']),
-    battery: firstValue(entry, ['Capacitebatterie', 'Capacitedebatterie', 'batteryCapacity']),
+    battery,
+    batteryCapacity: batteryCapacityFromText(battery),
     consumption: firstValue(entry, ['ConsommationmixteWLTP', 'Consommation', 'consumption']),
     power: firstValue(entry, ['Puissance', 'Puissancemaxi', 'power']),
     acceleration: firstValue(entry, ['Accelerationde0a100kmh', 'acceleration']),
     topSpeed: firstValue(entry, ['Vitessemax', 'Vitessemaxi', 'topSpeed']),
     fastCharging: firstValue(entry, ['RechargeDCmax', 'PuissancemaxDC', 'Tempsderechargerapide', 'fastCharging']),
+    acCharging,
+    maxAcPower: chargingPowerFromText(acCharging),
     chargingType: [firstValue(entry, ['ConnecteurAC']), firstValue(entry, ['ConnecteurDC'])].filter(Boolean).join(' / ') || firstValue(entry, ['Typederecharge', 'chargingType']),
     seats: firstValue(entry, ['Places', 'Nombredeplace', 'seats']),
     trunkVolume: firstValue(entry, ['Volumeducoffre', 'Volumedecoffre', 'trunkVolume']),
@@ -407,24 +466,47 @@ export function normalizeComparatorVehicle(entry) {
   }
 }
 
-export async function fetchComparatorProducts(query = {}) {
-  const items = await listEntries('products', {
+let comparatorProductsCache = null
+let comparatorVehiclesCache = null
+
+async function loadComparatorProducts(query = {}) {
+  const items = await listAllEntries('products', {
     populate: '*',
     sort: 'Name:asc',
-    'pagination[pageSize]': 200,
     ...query,
   })
   return items.map(normalizeComparatorProduct).filter((item) => item?.name)
 }
 
-export async function fetchComparatorVehicles(query = {}) {
-  const items = await listEntries('vehicules', {
+async function loadComparatorVehicles(query = {}) {
+  const items = await listAllEntries('vehicules', {
     populate: '*',
     sort: 'FullName:asc',
-    'pagination[pageSize]': 300,
     ...query,
   })
   return items.map(normalizeComparatorVehicle).filter((item) => item?.name)
+}
+
+export function fetchComparatorProducts(query = {}) {
+  if (Object.keys(query).length) return loadComparatorProducts(query)
+  if (!comparatorProductsCache) {
+    comparatorProductsCache = loadComparatorProducts().catch((error) => {
+      comparatorProductsCache = null
+      throw error
+    })
+  }
+  return comparatorProductsCache
+}
+
+export function fetchComparatorVehicles(query = {}) {
+  if (Object.keys(query).length) return loadComparatorVehicles(query)
+  if (!comparatorVehiclesCache) {
+    comparatorVehiclesCache = loadComparatorVehicles().catch((error) => {
+      comparatorVehiclesCache = null
+      throw error
+    })
+  }
+  return comparatorVehiclesCache
 }
 
 // -------------------------------------------------------------------
