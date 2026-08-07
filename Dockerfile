@@ -1,6 +1,16 @@
 # syntax=docker/dockerfile:1
 
-FROM node:22-alpine AS builder
+FROM node:22-bookworm-slim AS builder
+
+# The prerenderer starts Vite's Cloudflare preview runtime and Puppeteer.
+# Debian provides the glibc runtime required by workerd; system Chromium keeps
+# the browser dependency deterministic inside the VPS build.
+ENV PUPPETEER_SKIP_DOWNLOAD=true \
+    PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends chromium ca-certificates fonts-liberation \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
