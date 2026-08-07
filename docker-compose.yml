@@ -18,6 +18,8 @@ services:
     build:
       context: .
       target: production
+      secrets:
+        - env_local
     ports:
       - "7001:80"
     environment:
@@ -25,3 +27,7 @@ services:
 
 volumes:
   node_modules:
+
+secrets:
+  env_local:
+    file: ./.env.local

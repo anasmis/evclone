@@ -6,10 +6,16 @@ on:
   pull_request:
     branches: [main]
 
+concurrency:
+  group: evplug-production-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
 jobs:
-  # ── Lint + build ────────────────────────────────────────────────────────────
   build:
-    name: Lint & Build
+    name: Lint & application build
     runs-on: ubuntu-latest
 
     steps:
@@ -27,35 +33,46 @@ jobs:
       - name: Lint
         run: npm run lint
 
-      - name: Build
-        run: npm run build
+      # GitHub-hosted runners cannot reach the protected Strapi instance.
+      # Validate the application shell here; the VPS performs the CMS-backed
+      # prerender and refuses to deploy incomplete article HTML.
+      - name: Build application shell
+        run: npm run build:ci
 
-      - name: Upload dist artifact
+      - name: Upload application-shell artifact
         uses: actions/upload-artifact@v4
         with:
-          name: dist
+          name: dist-application-shell
           path: dist/
           retention-days: 7
 
-  # ── Deploy to VPS via SSH (main branch only) ────────────────────────────────
   deploy:
-    name: Deploy to VPS
+    name: Prerender blogs and deploy on VPS
     needs: build
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
 
     steps:
-      - name: Deploy over SSH
+      - name: Build verified HTML and deploy
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
           password: ${{ secrets.VPS_PASSWORD }}
           port: ${{ secrets.VPS_PORT }}
+          command_timeout: 30m
           script: |
-            set -e
+            set -eu
             cd /home/brahim/evclone
             git fetch origin main
             git checkout main
             git reset --hard origin/main
-            docker compose --env-file .env.local up -d --build app
+
+            test -f .env.local || {
+              echo "Missing /home/brahim/evclone/.env.local; cannot prerender Strapi articles."
+              exit 1
+            }
+
+            docker compose --env-file .env.local build --pull app
+            docker compose --env-file .env.local up -d --no-build app
+            docker compose --env-file .env.local ps app

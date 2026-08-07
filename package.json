@@ -6,8 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build && node scripts/prepare-sites-build.mjs && node scripts/prerender.mjs",
+    "build:ci": "vite build && node scripts/prepare-sites-build.mjs",
     "build:spa": "vite build && node scripts/prepare-sites-build.mjs",
     "prerender": "node scripts/prerender.mjs",
+    "verify:prerender": "node scripts/verify-prerender.mjs",
     "lint": "eslint .",
     "preview": "vite preview"
   },
